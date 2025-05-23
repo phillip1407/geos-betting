@@ -9,6 +9,7 @@
     :root {
       --main-color: #142541;
       --bottom-box-color: #e2e8f0;
+      --top-box-color: #f9fafb;
     }
     .bg-main { background-color: var(--main-color); }
     .text-main { color: var(--main-color); }
@@ -25,6 +26,11 @@
       transform: translateY(-4px);
       transition: all 0.3s ease;
       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    .team-logo {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -57,7 +63,7 @@
       <h2 class="text-2xl font-bold text-main mb-4">Dagens Spil</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
-          <div class="p-4 text-center">
+          <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
             <p class="text-lg font-bold">FC København</p>
             <p class="text-sm text-gray-500">vs</p>
@@ -68,10 +74,14 @@
             <span class="font-bold text-main">Odds 1.85</span>
           </div>
         </div>
+
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
-          <div class="p-4 text-center">
+          <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
-            <p class="text-lg font-bold">Real Madrid</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Real Madrid" class="team-logo" />
+              <p class="text-lg font-bold">Real Madrid</p>
+            </div>
             <p class="text-sm text-gray-500">vs</p>
             <p class="text-lg font-bold">Real Sociedad</p>
           </div>
@@ -80,22 +90,30 @@
             <span class="font-bold text-main">Odds 2.10</span>
           </div>
         </div>
+
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
-          <div class="p-4 text-center">
+          <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
             <p class="text-lg font-bold">Manchester City</p>
             <p class="text-sm text-gray-500">vs</p>
-            <p class="text-lg font-bold">Arsenal</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png" alt="Arsenal" class="team-logo" />
+              <p class="text-lg font-bold">Arsenal</p>
+            </div>
           </div>
           <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
             <span class="font-semibold text-gray-700">Geo</span>
             <span class="font-bold text-main">Odds 1.95</span>
           </div>
         </div>
+
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
-          <div class="p-4 text-center">
+          <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
-            <p class="text-lg font-bold">Bayern München</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png" alt="Bayern" class="team-logo" />
+              <p class="text-lg font-bold">Bayern München</p>
+            </div>
             <p class="text-sm text-gray-500">vs</p>
             <p class="text-lg font-bold">Dortmund</p>
           </div>
