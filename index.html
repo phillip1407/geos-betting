@@ -20,13 +20,44 @@
       background-color: #0f1d33; 
       transform: scale(1.05);
     }
-    /* Betting kupon styling og transition */
-    #betting-kupon {
-      transform-origin: center center;
-      transition: transform 0.3s ease-out;
-      cursor: pointer;
+
+    /* Betting kupon spinner hero */
+    #hero-kupon {
+      margin: 40px auto;
+      width: 280px;
+      height: 280px;
+      background-color: var(--main-color);
+      border-radius: 20px;
+      color: white;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.4rem;
+      text-align: center;
       user-select: none;
+      box-shadow: 0 8px 20px rgba(20, 37, 65, 0.6);
+      animation: spin 12s linear infinite;
     }
+    /* Slow continuous spin */
+    @keyframes spin {
+      from { transform: rotate(0deg);}
+      to { transform: rotate(360deg);}
+    }
+
+    /* Tekst fade animation */
+    #hero-text {
+      position: absolute;
+      width: 220px;
+      padding: 10px 20px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -40,8 +71,13 @@
     </div>
   </header>
 
+  <!-- Hero section med spinning kupon og skiftende tekst -->
+  <section id="hero-kupon">
+    <div id="hero-text">Velkommen til Geo Betting Tips</div>
+  </section>
+
   <!-- Main -->
-  <main class="p-6 space-y-12">
+  <main class="p-6 space-y-12 max-w-5xl mx-auto">
 
     <!-- Dagens Tip -->
     <section>
@@ -117,33 +153,34 @@
 
   </main>
 
-  <!-- Betting Kupon -->
-  <div id="betting-kupon" class="fixed bottom-20 right-8 bg-main text-white p-6 rounded-lg shadow-lg w-64 z-50">
-    <h3 class="text-xl font-bold mb-4">Din Betting Kupon</h3>
-    <ul class="list-disc list-inside">
-      <li>⚽ FC København vs Brøndby - Over 2.5 mål</li>
-      <li>🎾 Holger Rune vinder næste kamp</li>
-      <li>🏒 VM Ishockey 2025: Danmark - Sverige</li>
-    </ul>
-    <button class="btn-main mt-4 w-full py-2 rounded">Spil nu</button>
-  </div>
-
   <!-- Footer -->
   <footer class="bg-gray-200 text-center p-4 text-sm">
     © 2025 Geo Betting Tips. Alle rettigheder forbeholdes.
   </footer>
 
   <script>
-    const kupon = document.getElementById('betting-kupon');
+    const texts = [
+      "Velkommen til Geo Betting Tips",
+      "Dagens bedste spil – altid analyseret",
+      "Eksklusive betting-anbefalinger og strategier",
+      "Din pålidelige guide til sportsvæddemål",
+      "Få værdifulde tips – spil smartere"
+    ];
 
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
+    const heroTextEl = document.getElementById('hero-text');
+    let index = 0;
 
-      // Rotation fra -15 til +15 grader alt efter scroll (0-800px)
-      let rotation = Math.min(scrollY / 800 * 30, 30) - 15;
+    function changeText() {
+      heroTextEl.style.opacity = 0;
+      setTimeout(() => {
+        heroTextEl.textContent = texts[index];
+        heroTextEl.style.opacity = 1;
+        index = (index + 1) % texts.length;
+      }, 1000);
+    }
 
-      kupon.style.transform = `rotate(${rotation}deg)`;
-    });
+    // Skift tekst hver 4 sekunder
+    setInterval(changeText, 4000);
   </script>
 
 </body>
