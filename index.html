@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mathi og Geos Betting Tips</title>
+  <title>Geo Betting Tips</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     :root {
@@ -16,51 +16,41 @@
       color: white;
     }
     .btn-main:hover { background-color: #0f1d33; }
-    /* Dropdown styling */
-    .dropdown-menu {
-      display: none;
-    }
-    .dropdown-menu.show {
-      display: block;
+
+    /* YouTube video som baggrund */
+    #video-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+      object-fit: cover;
+      filter: brightness(0.5); /* mørkere video, så tekst bliver nemmere at læse */
     }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-  <!-- Header + Navigation -->
-  <header class="bg-main text-white p-6 flex items-center justify-between">
-    <div class="flex items-center gap-4">
-      <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
-      <div>
-        <h1 class="text-3xl font-bold">Mathi og Geos Betting Tips</h1>
-        <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
-      </div>
+  <!-- YouTube video baggrund -->
+  <iframe
+    id="video-bg"
+    src="https://www.youtube.com/embed/eIU8uAR-TJM?autoplay=1&mute=1&controls=0&loop=1&playlist=eIU8uAR-TJM&modestbranding=1&showinfo=0&rel=0"
+    frameborder="0"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+  </iframe>
+
+  <!-- Header -->
+  <header class="bg-main text-white p-6 flex items-center gap-4 relative z-10">
+    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
+    <div>
+      <h1 class="text-3xl font-bold">Geo Betting Tips</h1>
+      <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
     </div>
-
-    <nav class="flex gap-6 text-white font-semibold relative">
-      <a href="dagensspil.html" class="hover:text-gray-300">Dagens Spil</a>
-      <a href="sport.html" class="hover:text-gray-300">Sport</a>
-
-      <div class="dropdown relative">
-        <button id="dropdownBtn" aria-haspopup="true" aria-expanded="false" class="hover:text-gray-300 flex items-center gap-1 focus:outline-none">
-          Events
-          <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.5 7l4.5 4.5 4.5-4.5z"/></svg>
-        </button>
-        <ul id="dropdownMenu" class="dropdown-menu absolute bg-white text-main mt-2 rounded shadow-lg min-w-[200px] z-10">
-          <li><a href="events.html#vm-ishockey" class="block px-4 py-2 hover:bg-gray-100">VM Ishockey 2025</a></li>
-          <li><a href="events.html#french-open" class="block px-4 py-2 hover:bg-gray-100">French Open 2025</a></li>
-          <li><a href="events.html#holger-rune" class="block px-4 py-2 hover:bg-gray-100">Holger Runes næste kamp</a></li>
-          <li><a href="events.html#clara-tauson" class="block px-4 py-2 hover:bg-gray-100">Clara Tausons næste kamp</a></li>
-          <li><a href="events.html#elmer-moeller" class="block px-4 py-2 hover:bg-gray-100">Elmer Møllers næste kamp</a></li>
-          <li><hr class="my-1 border-gray-300"></li>
-          <li><a href="events.html" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Se alle events her</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
 
   <!-- Main -->
-  <main class="p-6 space-y-12">
+  <main class="p-6 space-y-12 relative z-10">
 
     <!-- Dagens Tip -->
     <section>
@@ -87,7 +77,7 @@
           </div>
         </div>
 
-        <!-- Nyhed 2 (La Liga & Mbappé) -->
+        <!-- Nyhed 2 -->
         <div class="bg-white rounded shadow overflow-hidden">
           <img src="https://www.spilxperten.com/wp-content/uploads/2025/02/Real-Madrid_Girona_Mbappe.jpg" alt="Mbappe" class="w-full h-48 object-cover"/>
           <div class="p-4">
@@ -120,7 +110,7 @@
     <!-- Om -->
     <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Om siden</h2>
-      <p>Velkommen til Mathi og Geos Betting Tips – hvor vi deler vores bedste spilforslag og analyser. Erfaring, passion og værdi samlet ét sted.</p>
+      <p>Velkommen til Geo Betting Tips – hvor vi deler vores bedste spilforslag og analyser. Erfaring, passion og værdi samlet ét sted.</p>
     </section>
 
     <!-- Kontakt -->
@@ -137,33 +127,9 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-200 text-center p-4 text-sm">
-    © 2025 Mathi og Geos Betting Tips. Alle rettigheder forbeholdes.
+  <footer class="bg-gray-200 text-center p-4 text-sm relative z-10">
+    © 2025 Geo Betting Tips. Alle rettigheder forbeholdes.
   </footer>
-
-  <!-- Dropdown JS -->
-  <script>
-    const dropdownBtn = document.getElementById('dropdownBtn');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    dropdownBtn.addEventListener('click', () => {
-      const isShown = dropdownMenu.classList.contains('show');
-      if (isShown) {
-        dropdownMenu.classList.remove('show');
-        dropdownBtn.setAttribute('aria-expanded', 'false');
-      } else {
-        dropdownMenu.classList.add('show');
-        dropdownBtn.setAttribute('aria-expanded', 'true');
-      }
-    });
-
-    window.addEventListener('click', (e) => {
-      if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-        dropdownMenu.classList.remove('show');
-        dropdownBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-  </script>
 
 </body>
 </html>
