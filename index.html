@@ -4,7 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Geo Betting Tips</title>
+
+  <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
   <style>
     :root {
       --main-color: #142541;
@@ -14,127 +20,46 @@
     .btn-main {
       background-color: var(--main-color);
       color: white;
-      transition: background-color 0.3s ease, transform 0.3s ease;
     }
-    .btn-main:hover { 
-      background-color: #0f1d33; 
-      transform: scale(1.05);
-    }
-
-    /* Betting kupon spinner hero */
-    #hero-kupon {
-      margin: 40px auto;
-      width: 280px;
-      height: 280px;
-      background-color: var(--main-color);
-      border-radius: 20px;
-      color: white;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.4rem;
-      text-align: center;
-      user-select: none;
-      box-shadow: 0 8px 20px rgba(20, 37, 65, 0.6);
-      animation: spin 12s linear infinite;
-    }
-    /* Slow continuous spin */
-    @keyframes spin {
-      from { transform: rotate(0deg);}
-      to { transform: rotate(360deg);}
-    }
-
-    /* Tekst fade animation */
-    #hero-text {
-      position: absolute;
-      width: 220px;
-      padding: 10px 20px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 1;
-      transition: opacity 1s ease;
-    }
-
+    .btn-main:hover { background-color: #0f1d33; }
   </style>
 </head>
+
 <body class="bg-gray-100 text-gray-900">
 
   <!-- Header -->
   <header class="bg-main text-white p-6 flex items-center gap-4">
-    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
+    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?format=webp&quality=lossless&width=70" alt="Logo" class="h-12 w-auto" />
     <div>
       <h1 class="text-3xl font-bold">Geo Betting Tips</h1>
       <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
     </div>
   </header>
 
-  <!-- Hero section med spinning kupon og skiftende tekst -->
-  <section id="hero-kupon">
-    <div id="hero-text">Velkommen til Geo Betting Tips</div>
-  </section>
-
   <!-- Main -->
-  <main class="p-6 space-y-12 max-w-5xl mx-auto">
+  <main class="p-6 space-y-12">
 
-    <!-- Dagens Tip -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Dagens Tip</h2>
-      <div class="bg-white shadow-md rounded-lg p-4">
-        <h3 class="text-xl font-bold">⚽ FC København vs Brøndby</h3>
-        <p>Spilforslag: Over 2.5 mål – Odds 1.85</p>
-        <p>Analyse: Begge hold scorer ofte og har offensivt fokus. Værdi i over-spillet.</p>
-      </div>
-    </section>
-
-    <!-- Sportsnyheder -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Seneste Sportsnyheder</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-
-        <!-- Nyhed 1 -->
-        <div class="bg-white rounded shadow overflow-hidden">
-          <img src="https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large/image/168/1681809/24442919-tennis-fra-open-2023.jpg" alt="Sportsnyhed" class="w-full h-48 object-cover"/>
-          <div class="p-4">
-            <h3 class="text-lg font-bold">French Open: Kan Holger Rune levere på Grand Slam-gruset?</h3>
-            <p class="text-sm text-gray-600">23. maj 2025 kl. 14:34</p>
-            <p class="mt-2">French Open starter søndag d. 25. maj... <a href="#" class="text-main font-semibold">Læs mere</a></p>
-          </div>
-        </div>
-
-        <!-- Nyhed 2 (La Liga & Mbappé) -->
-        <div class="bg-white rounded shadow overflow-hidden">
-          <img src="https://www.spilxperten.com/wp-content/uploads/2025/02/Real-Madrid_Girona_Mbappe.jpg" alt="Mbappe" class="w-full h-48 object-cover"/>
-          <div class="p-4">
-            <h3 class="text-lg font-bold">Real Madrid – Real Sociedad 1 (2-0)</h3>
-            <p class="text-sm text-gray-600">Lørdag d. 24. maj kl. 16:15</p>
-            <p class="mt-2">Det er tid til sidste runde i La Liga. Bliver det Leganés eller Espanyol, der må en tur ned, og hvem af Rayo, Celta og Osasuna snupper Europa? Mbappé kan vinde den gyldne støvle – han mangler kun ét mål! <a href="#" class="text-main font-semibold">Læs hele optakten</a></p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Tilbud -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Tilbud fra Bookmakere</h2>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="text-lg font-bold">🎁 Bet365: Få op til 500 kr. i bonus</h3>
-          <p class="mb-2">Registrér dig i dag og modtag en velkomstbonus.</p>
-          <a href="https://www.bet365.com" target="_blank" class="inline-block btn-main px-4 py-2 rounded">Hent tilbud</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="text-lg font-bold">🔥 Betano: 100% bonus op til 1.000 kr.</h3>
-          <p class="mb-2">Spil med stil og hent din bonus som ny spiller hos Betano.</p>
-          <a href="https://www.betano.dk" target="_blank" class="inline-block btn-main px-4 py-2 rounded">Hent tilbud</a>
+    <!-- Scroll-triggered bettingkupon -->
+    <section class="p-6 bg-gray-100">
+      <div 
+        class="max-w-md mx-auto bg-white rounded-lg shadow-xl p-6 transform scale-95 rotate-[-1deg] border-2 border-gray-300"
+        data-aos="zoom-in"
+        data-aos-delay="200"
+        data-aos-easing="ease-out-cubic"
+      >
+        <h3 class="text-xl font-bold mb-2 text-main">🧾 Geo Betting Kupon</h3>
+        <ul class="space-y-1 text-sm text-gray-800">
+          <li>FC København vs Brøndby - Over 2.5 mål (1.85)</li>
+          <li>Clara Tauson vinder 2-0 (2.10)</li>
+          <li>Canada vinder mod Sverige (2.25)</li>
+        </ul>
+        <div class="mt-4 text-right font-bold text-main">
+          Samlet odds: 8.70
         </div>
       </div>
     </section>
 
-    <!-- Om -->
+    <!-- Om siden -->
     <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Om siden</h2>
       <p>Velkommen til Geo Betting Tips – hvor vi deler vores bedste spilforslag og analyser. Erfaring, passion og værdi samlet ét sted.</p>
@@ -158,29 +83,13 @@
     © 2025 Geo Betting Tips. Alle rettigheder forbeholdes.
   </footer>
 
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    const texts = [
-      "Velkommen til Geo Betting Tips",
-      "Dagens bedste spil – altid analyseret",
-      "Eksklusive betting-anbefalinger og strategier",
-      "Din pålidelige guide til sportsvæddemål",
-      "Få værdifulde tips – spil smartere"
-    ];
-
-    const heroTextEl = document.getElementById('hero-text');
-    let index = 0;
-
-    function changeText() {
-      heroTextEl.style.opacity = 0;
-      setTimeout(() => {
-        heroTextEl.textContent = texts[index];
-        heroTextEl.style.opacity = 1;
-        index = (index + 1) % texts.length;
-      }, 1000);
-    }
-
-    // Skift tekst hver 4 sekunder
-    setInterval(changeText, 4000);
+    AOS.init({
+      duration: 1200,
+      once: true
+    });
   </script>
 
 </body>
