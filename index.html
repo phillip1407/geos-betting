@@ -2,9 +2,9 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Geo Betting Tips</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
     :root {
       --main-color: #142541;
@@ -17,41 +17,141 @@
     }
     .btn-main:hover { background-color: #0f1d33; }
 
-    /* YouTube video som baggrund */
-    #video-bg {
-      position: fixed;
+    /* Hero sektion med video baggrund */
+    .hero {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+    }
+    .hero iframe {
+      position: absolute;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      pointer-events: none;
-      z-index: -1;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      filter: brightness(0.5); /* mørkere video, så tekst bliver nemmere at læse */
+      filter: brightness(0.4);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      z-index: 1;
+    }
+
+    /* Logo og slogan til venstre */
+    .hero-left {
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+      transform: translateY(-50%);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: white;
+    }
+    .hero-left img {
+      height: 80px;
+      width: auto;
+    }
+    .hero-left div h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .hero-left div p {
+      margin-top: 0.25rem;
+      font-size: 1rem;
+    }
+
+    /* Centeret tekst på video */
+    .hero-center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      color: white;
+      font-size: 3rem;
+      font-weight: 800;
+      text-shadow:
+        2px 2px 4px rgba(0,0,0,0.7),
+        -2px -2px 4px rgba(0,0,0,0.7);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    /* Navigation knapper */
+    nav {
+      background-color: var(--main-color);
+    }
+    nav .nav-buttons {
+      max-width: 1024px;
+      margin: 0 auto;
+      display: flex;
+      gap: 1rem;
+      padding: 0.5rem 1rem;
+    }
+    nav .nav-buttons a {
+      color: white;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      border-radius: 0.375rem; /* rounded-md */
+      transition: background-color 0.2s ease;
+      text-decoration: none;
+    }
+    nav .nav-buttons a:hover {
+      background-color: #0f1d33;
+    }
+
+    main {
+      max-width: 1024px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-  <!-- YouTube video baggrund -->
-  <iframe
-    id="video-bg"
-    src="https://www.youtube.com/embed/eIU8uAR-TJM?autoplay=1&mute=1&controls=0&loop=1&playlist=eIU8uAR-TJM&modestbranding=1&showinfo=0&rel=0"
-    frameborder="0"
-    allow="autoplay; fullscreen"
-    allowfullscreen>
-  </iframe>
+  <!-- Hero sektion med video og overlay -->
+  <section class="hero">
+    <iframe
+      src="https://www.youtube.com/embed/eIU8uAR-TJM?autoplay=1&mute=1&controls=0&loop=1&playlist=eIU8uAR-TJM&modestbranding=1&rel=0&showinfo=0"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+      title="Baggrundsvideo"
+    ></iframe>
+    <div class="hero-overlay"></div>
 
-  <!-- Header -->
-  <header class="bg-main text-white p-6 flex items-center gap-4 relative z-10">
-    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
-    <div>
-      <h1 class="text-3xl font-bold">Geo Betting Tips</h1>
-      <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
+    <!-- Logo og slogan til venstre -->
+    <div class="hero-left">
+      <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Geo Betting Tips Logo" />
+      <div>
+        <h1>Geo Betting Tips</h1>
+        <p>Dagens bedste spil – analyseret og anbefalet</p>
+      </div>
     </div>
-  </header>
 
-  <!-- Main -->
-  <main class="p-6 space-y-12 relative z-10">
+    <!-- Centeret tekst -->
+    <div class="hero-center-text">Geo Betting Tips</div>
+  </section>
 
+  <!-- Navigation knapper -->
+  <nav>
+    <div class="nav-buttons">
+      <a href="dagens-spil.html">Dagens Spil</a>
+      <a href="sport.html">Sport</a>
+      <a href="events.html">Events</a>
+    </div>
+  </nav>
+
+  <!-- Resten af forsiden -->
+  <main>
     <!-- Dagens Tip -->
     <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Dagens Tip</h2>
@@ -63,7 +163,7 @@
     </section>
 
     <!-- Sportsnyheder -->
-    <section>
+    <section class="mt-12">
       <h2 class="text-2xl font-semibold mb-4 text-main">Seneste Sportsnyheder</h2>
       <div class="grid md:grid-cols-2 gap-6">
 
@@ -73,7 +173,7 @@
           <div class="p-4">
             <h3 class="text-lg font-bold">French Open: Kan Holger Rune levere på Grand Slam-gruset?</h3>
             <p class="text-sm text-gray-600">23. maj 2025 kl. 14:34</p>
-            <p class="mt-2">French Open starter søndag d. 25. maj... <a href="#" class="text-main font-semibold">Læs mere</a></p>
+            <p class="mt-2">French Open starter søndag d. 25. maj... <a href="events.html#holger-rune" class="text-main font-semibold">Læs mere</a></p>
           </div>
         </div>
 
@@ -83,7 +183,7 @@
           <div class="p-4">
             <h3 class="text-lg font-bold">Real Madrid – Real Sociedad 1 (2-0)</h3>
             <p class="text-sm text-gray-600">Lørdag d. 24. maj kl. 16:15</p>
-            <p class="mt-2">Det er tid til sidste runde i La Liga. Bliver det Leganés eller Espanyol, der må en tur ned, og hvem af Rayo, Celta og Osasuna snupper Europa? Mbappé kan vinde den gyldne støvle – han mangler kun ét mål! <a href="#" class="text-main font-semibold">Læs hele optakten</a></p>
+            <p class="mt-2">Det er tid til sidste runde i La Liga. Mbappé kan vinde den gyldne støvle – han mangler kun ét mål! <a href="events.html" class="text-main font-semibold">Læs hele optakten</a></p>
           </div>
         </div>
 
@@ -91,7 +191,7 @@
     </section>
 
     <!-- Tilbud -->
-    <section>
+    <section class="mt-12">
       <h2 class="text-2xl font-semibold mb-4 text-main">Tilbud fra Bookmakere</h2>
       <div class="grid md:grid-cols-2 gap-4">
         <div class="bg-white p-4 shadow rounded">
@@ -108,26 +208,24 @@
     </section>
 
     <!-- Om -->
-    <section>
+    <section class="mt-12">
       <h2 class="text-2xl font-semibold mb-4 text-main">Om siden</h2>
       <p>Velkommen til Geo Betting Tips – hvor vi deler vores bedste spilforslag og analyser. Erfaring, passion og værdi samlet ét sted.</p>
     </section>
 
     <!-- Kontakt -->
-    <section>
+    <section class="mt-12 mb-12">
       <h2 class="text-2xl font-semibold mb-4 text-main">Kontakt</h2>
-      <form class="bg-white p-4 rounded shadow-md space-y-4">
-        <input type="text" placeholder="Navn" class="w-full p-2 border rounded" required>
-        <input type="email" placeholder="Email" class="w-full p-2 border rounded" required>
+      <form class="bg-white p-4 rounded shadow-md space-y-4 max-w-md">
+        <input type="text" placeholder="Navn" class="w-full p-2 border rounded" required />
+        <input type="email" placeholder="Email" class="w-full p-2 border rounded" required />
         <textarea placeholder="Din besked..." class="w-full p-2 border rounded" rows="4" required></textarea>
         <button type="submit" class="btn-main px-4 py-2 rounded">Send</button>
       </form>
     </section>
-
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-200 text-center p-4 text-sm relative z-10">
+  <footer class="bg-gray-200 text-center p-4 text-sm">
     © 2025 Geo Betting Tips. Alle rettigheder forbeholdes.
   </footer>
 
