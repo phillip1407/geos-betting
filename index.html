@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mathi og Geos Betting Tips</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
     :root {
       --main-color: #142541;
@@ -16,23 +16,48 @@
       color: white;
     }
     .btn-main:hover { background-color: #0f1d33; }
+    /* Dropdown styling */
+    .dropdown:hover > .dropdown-menu {
+      display: block;
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
   <!-- Header -->
-  <header class="bg-main text-white p-6 flex items-center gap-4">
-    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
-    <div>
-      <h1 class="text-3xl font-bold">Mathi og Geos Betting Tips</h1>
-      <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
+  <header class="bg-main text-white p-6 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
+      <div>
+        <h1 class="text-3xl font-bold">Mathi og Geos Betting Tips</h1>
+        <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
+      </div>
     </div>
+
+    <nav class="flex gap-6 text-white font-semibold relative">
+      <a href="dagensspil.html" class="hover:text-gray-300">Dagens Spil</a>
+      <a href="sport.html" class="hover:text-gray-300">Sport</a>
+
+      <div class="dropdown relative">
+        <button class="hover:text-gray-300 flex items-center gap-1 focus:outline-none">
+          Events
+          <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.5 7l4.5 4.5 4.5-4.5z"/></svg>
+        </button>
+        <ul class="dropdown-menu absolute hidden bg-white text-main mt-2 rounded shadow-lg min-w-[200px] z-10">
+          <li><a href="events.html#vm-ishockey" class="block px-4 py-2 hover:bg-gray-100">VM Ishockey 2025</a></li>
+          <li><a href="events.html#french-open" class="block px-4 py-2 hover:bg-gray-100">French Open 2025</a></li>
+          <li><a href="events.html#holger-rune" class="block px-4 py-2 hover:bg-gray-100">Holger Runes næste kamp</a></li>
+          <li><a href="events.html#clara-tauson" class="block px-4 py-2 hover:bg-gray-100">Clara Tausons næste kamp</a></li>
+          <li><a href="events.html#elmer-moeller" class="block px-4 py-2 hover:bg-gray-100">Elmer Møllers næste kamp</a></li>
+          <li><hr class="my-1 border-gray-300"></li>
+          <li><a href="events.html" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Se alle events her</a></li>
+        </ul>
+      </div>
+    </nav>
   </header>
 
-  <!-- Main -->
   <main class="p-6 space-y-12">
-
-    <!-- Dagens Tip -->
+    <!-- Din nuværende indhold på forsiden her -->
     <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Dagens Tip</h2>
       <div class="bg-white shadow-md rounded-lg p-4">
@@ -45,46 +70,13 @@
     <!-- Sportsnyheder -->
     <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Seneste Sportsnyheder</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-
-        <!-- Nyhed 1 -->
-        <div class="bg-white rounded shadow overflow-hidden">
-          <img src="https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large/image/168/1681809/24442919-tennis-fra-open-2023.jpg" alt="Sportsnyhed" class="w-full h-48 object-cover"/>
-          <div class="p-4">
-            <h3 class="text-lg font-bold">French Open: Kan Holger Rune levere på Grand Slam-gruset?</h3>
-            <p class="text-sm text-gray-600">23. maj 2025 kl. 14:34</p>
-            <p class="mt-2">French Open starter søndag d. 25. maj... <a href="#" class="text-main font-semibold">Læs mere</a></p>
-          </div>
-        </div>
-
-        <!-- Nyhed 2 (La Liga & Mbappé) -->
-        <div class="bg-white rounded shadow overflow-hidden">
-          <img src="https://www.spilxperten.com/wp-content/uploads/2025/02/Real-Madrid_Girona_Mbappe.jpg" alt="Mbappe" class="w-full h-48 object-cover"/>
-          <div class="p-4">
-            <h3 class="text-lg font-bold">Real Madrid – Real Sociedad 1 (2-0)</h3>
-            <p class="text-sm text-gray-600">Lørdag d. 24. maj kl. 16:15</p>
-            <p class="mt-2">Det er tid til sidste runde i La Liga. Bliver det Leganés eller Espanyol, der må en tur ned, og hvem af Rayo, Celta og Osasuna snupper Europa? Mbappé kan vinde den gyldne støvle – han mangler kun ét mål! <a href="#" class="text-main font-semibold">Læs hele optakten</a></p>
-          </div>
-        </div>
-
-      </div>
+      <!-- ... -->
     </section>
 
     <!-- Tilbud -->
     <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Tilbud fra Bookmakere</h2>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="text-lg font-bold">🎁 Bet365: Få op til 500 kr. i bonus</h3>
-          <p class="mb-2">Registrér dig i dag og modtag en velkomstbonus.</p>
-          <a href="https://www.bet365.com" target="_blank" class="inline-block btn-main px-4 py-2 rounded">Hent tilbud</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="text-lg font-bold">🔥 Betano: 100% bonus op til 1.000 kr.</h3>
-          <p class="mb-2">Spil med stil og hent din bonus som ny spiller hos Betano.</p>
-          <a href="https://www.betano.dk" target="_blank" class="inline-block btn-main px-4 py-2 rounded">Hent tilbud</a>
-        </div>
-      </div>
+      <!-- ... -->
     </section>
 
     <!-- Om -->
@@ -103,10 +95,8 @@
         <button type="submit" class="btn-main px-4 py-2 rounded">Send</button>
       </form>
     </section>
-
   </main>
 
-  <!-- Footer -->
   <footer class="bg-gray-200 text-center p-4 text-sm">
     © 2025 Mathi og Geos Betting Tips. Alle rettigheder forbeholdes.
   </footer>
