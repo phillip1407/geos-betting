@@ -62,12 +62,17 @@
     <section>
       <h2 class="text-2xl font-bold text-main mb-4">Dagens Spil</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- FC København vs Brøndby IF -->
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
           <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
             <p class="text-lg font-bold">FC København</p>
             <p class="text-sm text-gray-500">vs</p>
-            <p class="text-lg font-bold">Brøndby IF</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://www.brondbyif.net/media/4410/bif_1964_shadow_box.png" alt="Brøndby IF" class="team-logo" />
+              <p class="text-lg font-bold">Brøndby IF</p>
+            </div>
           </div>
           <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
             <span class="font-semibold text-gray-700">Geo</span>
@@ -75,6 +80,7 @@
           </div>
         </div>
 
+        <!-- Real Madrid vs Real Sociedad -->
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
           <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
@@ -83,7 +89,10 @@
               <p class="text-lg font-bold">Real Madrid</p>
             </div>
             <p class="text-sm text-gray-500">vs</p>
-            <p class="text-lg font-bold">Real Sociedad</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Real_Sociedad_logo.svg/1200px-Real_Sociedad_logo.svg.png" alt="Real Sociedad" class="team-logo" />
+              <p class="text-lg font-bold">Real Sociedad</p>
+            </div>
           </div>
           <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
             <span class="font-semibold text-gray-700">Mathi</span>
@@ -91,10 +100,14 @@
           </div>
         </div>
 
+        <!-- Manchester City vs Arsenal -->
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
           <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
-            <p class="text-lg font-bold">Manchester City</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png" alt="Manchester City" class="team-logo" />
+              <p class="text-lg font-bold">Manchester City</p>
+            </div>
             <p class="text-sm text-gray-500">vs</p>
             <div class="flex items-center justify-center gap-2">
               <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png" alt="Arsenal" class="team-logo" />
@@ -107,92 +120,32 @@
           </div>
         </div>
 
+        <!-- Bayern München vs Dortmund -->
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
           <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
             <div class="flex items-center justify-center gap-2">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png" alt="Bayern" class="team-logo" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png" alt="Bayern München" class="team-logo" />
               <p class="text-lg font-bold">Bayern München</p>
             </div>
             <p class="text-sm text-gray-500">vs</p>
-            <p class="text-lg font-bold">Dortmund</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/2048px-Borussia_Dortmund_logo.svg.png" alt="Dortmund" class="team-logo" />
+              <p class="text-lg font-bold">Dortmund</p>
+            </div>
           </div>
           <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
             <span class="font-semibold text-gray-700">Mathi</span>
             <span class="font-bold text-main">Odds 2.00</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Sportsnyheder -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Seneste Sportsnyheder</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-
-        <!-- Nyhed 1 -->
-        <div class="bg-white rounded shadow overflow-hidden">
-          <img src="https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large/image/168/1681809/24442919-tennis-fra-open-2023.jpg" alt="Holger Rune" class="w-full h-48 object-cover"/>
-          <div class="p-4">
-            <h3 class="text-lg font-bold">French Open: Kan Holger Rune levere på Grand Slam-gruset?</h3>
-            <p class="text-sm text-gray-600">23. maj 2025 kl. 14:34</p>
-            <p class="mt-2">French Open starter søndag d. 25. maj... <a href="#" class="text-main font-semibold">Læs mere</a></p>
-          </div>
-        </div>
-
-        <!-- Nyhed 2 -->
-        <div class="bg-white rounded shadow overflow-hidden">
-          <img src="https://www.spilxperten.com/wp-content/uploads/2025/02/Real-Madrid_Girona_Mbappe.jpg" alt="Mbappe" class="w-full h-48 object-cover"/>
-          <div class="p-4">
-            <h3 class="text-lg font-bold">Real Madrid – Real Sociedad 1 (2-0)</h3>
-            <p class="text-sm text-gray-600">Lørdag d. 24. maj kl. 16:15</p>
-            <p class="mt-2">Det er tid til sidste runde i La Liga. Mbappé mangler ét mål for den gyldne støvle! <a href="#" class="text-main font-semibold">Læs hele optakten</a></p>
-          </div>
-        </div>
 
       </div>
     </section>
 
-    <!-- Tilbud -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Tilbud fra Bookmakere</h2>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="text-lg font-bold">🎁 Bet365: Få op til 500 kr. i bonus</h3>
-          <p class="mb-2">Registrér dig i dag og modtag en velkomstbonus.</p>
-          <a href="https://www.bet365.com" target="_blank" class="inline-block btn-main px-4 py-2 rounded">Hent tilbud</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="text-lg font-bold">🔥 Betano: 100% bonus op til 1.000 kr.</h3>
-          <p class="mb-2">Spil med stil og hent din bonus som ny spiller hos Betano.</p>
-          <a href="https://www.betano.dk" target="_blank" class="inline-block btn-main px-4 py-2 rounded">Hent tilbud</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Om -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Om siden</h2>
-      <p>Velkommen til Geo Betting Tips – hvor vi deler vores bedste spilforslag og analyser. Erfaring, passion og værdi samlet ét sted.</p>
-    </section>
-
-    <!-- Kontakt -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Kontakt</h2>
-      <form class="bg-white p-4 rounded shadow-md space-y-4">
-        <input type="text" placeholder="Navn" class="w-full p-2 border rounded" required>
-        <input type="email" placeholder="Email" class="w-full p-2 border rounded" required>
-        <textarea placeholder="Din besked..." class="w-full p-2 border rounded" rows="4" required></textarea>
-        <button type="submit" class="btn-main px-4 py-2 rounded">Send</button>
-      </form>
-    </section>
+    <!-- Eventuelt flere sektioner -->
 
   </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-200 text-center p-4 text-sm">
-    © 2025 Geo Betting Tips. Alle rettigheder forbeholdes.
-  </footer>
 
 </body>
 </html>
