@@ -9,72 +9,31 @@
     :root {
       --main-color: #142541;
     }
-    body {
-      background-color: #f3f4f6; /* bg-gray-100 */
-      color: #1f2937; /* text-gray-900 */
-      font-family: system-ui, sans-serif;
-    }
+    .bg-main { background-color: var(--main-color); }
+    .text-main { color: var(--main-color); }
     .btn-main {
       background-color: var(--main-color);
       color: white;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
-    .btn-main:hover {
-      background-color: #0f1d33;
+    .btn-main:hover { 
+      background-color: #0f1d33; 
+      transform: scale(1.05);
     }
-
-    /* Header med holografisk blå overlay */
-    header {
-      position: relative;
-      background: linear-gradient(135deg, #142541, #2a3d66, #142541);
-      overflow: hidden;
-      padding: 1.5rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: white;
-    }
-
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(
-        45deg,
-        rgba(100, 170, 255, 0.4),
-        rgba(150, 200, 255, 0.5),
-        rgba(100, 170, 255, 0.4),
-        rgba(150, 200, 255, 0.5)
-      );
-      background-size: 200% 200%;
-      animation: holoShift 6s ease infinite;
-      pointer-events: none;
-      z-index: 0;
-      mix-blend-mode: screen;
-    }
-
-    header > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    @keyframes holoShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    /* Betting kupon styling og transition */
+    #betting-kupon {
+      transform-origin: center center;
+      transition: transform 0.3s ease-out;
+      cursor: pointer;
+      user-select: none;
     }
   </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900">
 
   <!-- Header -->
-  <header>
-    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Geo Betting Tips Logo" class="h-12 w-auto" />
+  <header class="bg-main text-white p-6 flex items-center gap-4">
+    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
     <div>
       <h1 class="text-3xl font-bold">Geo Betting Tips</h1>
       <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
@@ -82,7 +41,7 @@
   </header>
 
   <!-- Main -->
-  <main class="p-6 space-y-12 max-w-7xl mx-auto">
+  <main class="p-6 space-y-12">
 
     <!-- Dagens Tip -->
     <section>
@@ -101,11 +60,11 @@
 
         <!-- Nyhed 1 -->
         <div class="bg-white rounded shadow overflow-hidden">
-          <img src="https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large/image/168/1681809/24442919-tennis-fra-open-2023.jpg" alt="Holger Rune French Open" class="w-full h-48 object-cover"/>
+          <img src="https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large/image/168/1681809/24442919-tennis-fra-open-2023.jpg" alt="Sportsnyhed" class="w-full h-48 object-cover"/>
           <div class="p-4">
             <h3 class="text-lg font-bold">French Open: Kan Holger Rune levere på Grand Slam-gruset?</h3>
             <p class="text-sm text-gray-600">23. maj 2025 kl. 14:34</p>
-            <p class="mt-2">French Open starter søndag d. 25. maj. Holger Rune kæmper for at nå langt i turneringen og vise sit talent på gruset. Følg med i hans kampe og resultater. <a href="#" class="text-main font-semibold">Læs mere</a></p>
+            <p class="mt-2">French Open starter søndag d. 25. maj... <a href="#" class="text-main font-semibold">Læs mere</a></p>
           </div>
         </div>
 
@@ -158,10 +117,34 @@
 
   </main>
 
+  <!-- Betting Kupon -->
+  <div id="betting-kupon" class="fixed bottom-20 right-8 bg-main text-white p-6 rounded-lg shadow-lg w-64 z-50">
+    <h3 class="text-xl font-bold mb-4">Din Betting Kupon</h3>
+    <ul class="list-disc list-inside">
+      <li>⚽ FC København vs Brøndby - Over 2.5 mål</li>
+      <li>🎾 Holger Rune vinder næste kamp</li>
+      <li>🏒 VM Ishockey 2025: Danmark - Sverige</li>
+    </ul>
+    <button class="btn-main mt-4 w-full py-2 rounded">Spil nu</button>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-gray-200 text-center p-4 text-sm">
     © 2025 Geo Betting Tips. Alle rettigheder forbeholdes.
   </footer>
+
+  <script>
+    const kupon = document.getElementById('betting-kupon');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+
+      // Rotation fra -15 til +15 grader alt efter scroll (0-800px)
+      let rotation = Math.min(scrollY / 800 * 30, 30) - 15;
+
+      kupon.style.transform = `rotate(${rotation}deg)`;
+    });
+  </script>
 
 </body>
 </html>
