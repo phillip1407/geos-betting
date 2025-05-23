@@ -2,7 +2,7 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Events - Mathi og Geos Betting Tips</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
@@ -20,58 +20,23 @@
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-  <!-- Header -->
-  <header class="bg-main text-white p-6 flex items-center gap-4 justify-between">
+  <!-- Header + Navigation -->
+  <header class="bg-main text-white p-6 flex items-center justify-between">
     <div class="flex items-center gap-4">
       <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
-      <div>
-        <h1 class="text-3xl font-bold">Mathi og Geos Betting Tips</h1>
-        <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
-      </div>
+      <h1 class="text-3xl font-bold">Mathi og Geos Betting Tips</h1>
     </div>
-    <nav class="flex gap-4">
-      <a href="dagensspil.html" class="btn-main px-4 py-2 rounded font-semibold hover:bg-[#0f1d33]">Dagens Spil</a>
-      <a href="sport.html" class="btn-main px-4 py-2 rounded font-semibold hover:bg-[#0f1d33]">Sport</a>
-      <a href="events.html" class="btn-main px-4 py-2 rounded font-semibold hover:bg-[#0f1d33]">Events</a>
+    <nav class="flex gap-6 text-white font-semibold">
+      <a href="dagensspil.html" class="hover:text-gray-300">Dagens Spil</a>
+      <a href="sport.html" class="hover:text-gray-300">Sport</a>
+      <a href="events.html" class="underline">Events</a>
     </nav>
   </header>
 
-  <main class="p-6 space-y-8">
-    <h2 class="text-3xl font-bold text-main mb-6">Events 2025</h2>
+  <main class="p-6 space-y-8 max-w-4xl mx-auto">
 
-    <article class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-xl font-semibold mb-2">🏒 VM Ishockey 2025</h3>
-      <p>Verdensmesterskabet i ishockey 2025 byder på intense kampe mellem de bedste hold fra hele verden. Spændingen er høj, og det er en oplagt mulighed for at finde gode betting-odds på kampe og overraskelser.</p>
-    </article>
+    <h2 class="text-3xl font-semibold text-main mb-6">Events</h2>
 
-    <article class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-xl font-semibold mb-2">🎾 French Open 2025</h3>
-      <p>French Open, Grand Slam-turneringen på grus, afholdes i maj 2025. Følg med i kampene, hvor store profiler som Holger Rune kæmper om titlen. Perfekt til analyse og spil på tenniskampe.</p>
-    </article>
-
-    <article class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-xl font-semibold mb-2">🎾 Holger Runes næste kamp</h3>
-      <p>Holger Rune er en af Danmarks mest lovende tennisstjerner. Hold øje med hans næste kamp for at få de bedste bettingtips baseret på hans form og modstander.</p>
-    </article>
-
-    <article class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-xl font-semibold mb-2">🎾 Clara Tausons næste kamp</h3>
-      <p>Clara Tauson er en talentfuld dansk tennisspiller med stort potentiale. Vi følger hendes kampe nøje og giver dig tips til, hvordan du kan spille på hendes kampe.</p>
-    </article>
-
-    <article class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-xl font-semibold mb-2">⛳ Elmer Møllers næste kamp</h3>
-      <p>Elmer Møller er en stigende tennisprofil, og hans næste kamp kan være et godt bettingspot. Hold øje med opdateringer og analyser her.</p>
-    </article>
-
-    <article class="text-center mt-10">
-      <a href="#" class="text-main font-semibold underline">Se alle events her</a>
-    </article>
-  </main>
-
-  <footer class="bg-gray-200 text-center p-4 text-sm">
-    © 2025 Mathi og Geos Betting Tips. Alle rettigheder forbeholdes.
-  </footer>
-
-</body>
-</html>
+    <section id="vm-ishockey" class="bg-white p-6 rounded shadow-md">
+      <h3 class="text-2xl font-bold mb-2">VM Ishockey 2025</h3>
+      <p>Verdensmesterskabet i ishockey 2025 samler de bedste nationer. Danmark forventes at
