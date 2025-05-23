@@ -62,19 +62,21 @@
     <section>
       <h2 class="text-2xl font-bold text-main mb-4">Dagens Spil</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <!-- FC København vs Brøndby IF -->
+        <!-- FC København vs Brøndby -->
         <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
           <div class="p-4 text-center" style="background-color: var(--top-box-color);">
             <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
-            <p class="text-lg font-bold">FC København</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXnC2BTDdSQrjR1AFjilIXpuY4ap2xIvsMEA&s" alt="FCK" class="team-logo" />
+              <p class="text-lg font-bold">FC København</p>
+            </div>
             <p class="text-sm text-gray-500">vs</p>
             <div class="flex items-center justify-center gap-2">
               <img src="https://www.brondbyif.net/media/4410/bif_1964_shadow_box.png" alt="Brøndby IF" class="team-logo" />
               <p class="text-lg font-bold">Brøndby IF</p>
             </div>
           </div>
-          <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
+          <div class="flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
             <span class="font-semibold text-gray-700">Geo</span>
             <span class="font-bold text-main">Odds 1.85</span>
           </div>
@@ -94,7 +96,7 @@
               <p class="text-lg font-bold">Real Sociedad</p>
             </div>
           </div>
-          <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
+          <div class="flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
             <span class="font-semibold text-gray-700">Mathi</span>
             <span class="font-bold text-main">Odds 2.10</span>
           </div>
@@ -114,7 +116,7 @@
               <p class="text-lg font-bold">Arsenal</p>
             </div>
           </div>
-          <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
+          <div class="flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
             <span class="font-semibold text-gray-700">Geo</span>
             <span class="font-bold text-main">Odds 1.95</span>
           </div>
@@ -134,19 +136,72 @@
               <p class="text-lg font-bold">Dortmund</p>
             </div>
           </div>
-          <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
+          <div class="flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
             <span class="font-semibold text-gray-700">Mathi</span>
             <span class="font-bold text-main">Odds 2.00</span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- Her indsætter du eventuelt andre sektioner, som var på forsiden -->
-    <section>
-      <h2 class="text-2xl font-bold text-main mb-4">Seneste Events</h2>
-      <p>Her kan du tilføje dine seneste sportsbegivenheder eller bettingtips.</p>
+    <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
+
+    <!-- Nederste fanebaserede sektion -->
+    <section class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-12">
+      <div class="flex border-b border-gray-300 mb-4">
+        <button id="btn-seneste" 
+                class="px-4 py-2 font-semibold text-main border-b-2 border-main focus:outline-none"
+                onclick="showTab('seneste')">Seneste</button>
+        <button id="btn-tilbud" 
+                class="px-4 py-2 font-semibold text-gray-500 hover:text-main focus:outline-none"
+                onclick="showTab('tilbud')">Tilbud</button>
+      </div>
+
+      <div id="content-seneste" class="tab-content">
+        <p class="text-gray-700">Her vises det seneste indhold. Fx seneste spil, nyheder eller tips...</p>
+      </div>
+
+      <div id="content-tilbud" class="tab-content hidden">
+        <p class="text-gray-700">Her vises de aktuelle tilbud. Fx eksklusive odds, kampagner osv.</p>
+      </div>
     </section>
 
-    <
+  </main>
+
+  <script>
+    function showTab(tab) {
+      const senesteContent = document.getElementById('content-seneste');
+      const tilbudContent = document.getElementById('content-tilbud');
+
+      const btnSeneste = document.getElementById('btn-seneste');
+      const btnTilbud = document.getElementById('btn-tilbud');
+
+      if (tab === 'seneste') {
+        senesteContent.classList.remove('hidden');
+        tilbudContent.classList.add('hidden');
+
+        btnSeneste.classList.add('border-main', 'text-main');
+        btnSeneste.classList.remove('text-gray-500');
+
+        btnTilbud.classList.remove('border-main', 'text-main');
+        btnTilbud.classList.add('text-gray-500');
+      } else if (tab === 'tilbud') {
+        tilbudContent.classList.remove('hidden');
+        senesteContent.classList.add('hidden');
+
+        btnTilbud.classList.add('border-main', 'text-main');
+        btnTilbud.classList.remove('text-gray-500');
+
+        btnSeneste.classList.remove('border-main', 'text-main');
+        btnSeneste.classList.add('text-gray-500');
+      }
+    }
+
+    // Sæt "Seneste" som standard aktiv fane
+    document.addEventListener('DOMContentLoaded', () => {
+      showTab('seneste');
+    });
+  </script>
+
+</body>
+</html>
