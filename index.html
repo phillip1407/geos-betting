@@ -8,6 +8,8 @@
   <style>
     :root {
       --main-color: #142541;
+      --bottom-box-color: #e2e8f0;
+      --top-box-color: #f9fafb;
     }
     .bg-main { background-color: var(--main-color); }
     .text-main { color: var(--main-color); }
@@ -16,10 +18,19 @@
       color: white;
     }
     .btn-main:hover { background-color: #0f1d33; }
-
     .pattern-bg {
       background: radial-gradient(circle at 1px 1px, rgba(20, 37, 65, 0.3) 1px, transparent 0);
       background-size: 20px 20px;
+    }
+    .box-hover:hover {
+      transform: translateY(-4px);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    .team-logo {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -47,67 +58,70 @@
   <!-- Main -->
   <main class="p-6 space-y-12">
 
-    <!-- Dagens Spil Sektion -->
+    <!-- Dagens Spil Boks -->
     <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Dagens Spil</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Boks -->
-        <div class="bg-white rounded-lg shadow-md p-4 transform hover:-translate-y-1 transition duration-300 relative">
-          <div class="absolute left-2 top-2 text-sm text-gray-500">24. maj 2025</div>
-          <div class="flex flex-col items-center space-y-1 mt-4">
-            <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Real_Madrid_CF.svg" class="h-10" alt="Real Madrid" />
-            <span class="text-center font-bold">Real Madrid</span>
-            <span class="text-main font-bold text-lg">VS</span>
-            <span class="text-center font-bold">Barcelona</span>
-            <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" class="h-10" alt="Barcelona" />
+      <h2 class="text-2xl font-bold text-main mb-4">Dagens Spil</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
+          <div class="p-4 text-center" style="background-color: var(--top-box-color);">
+            <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
+            <p class="text-lg font-bold">FC København</p>
+            <p class="text-sm text-gray-500">vs</p>
+            <p class="text-lg font-bold">Brøndby IF</p>
+          </div>
+          <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
+            <span class="font-semibold text-gray-700">Geo</span>
+            <span class="font-bold text-main">Odds 1.85</span>
           </div>
         </div>
 
-        <!-- Boks 2 -->
-        <div class="bg-white rounded-lg shadow-md p-4 transform hover:-translate-y-1 transition duration-300 relative">
-          <div class="absolute left-2 top-2 text-sm text-gray-500">24. maj 2025</div>
-          <div class="flex flex-col items-center space-y-1 mt-4">
-            <img src="https://upload.wikimedia.org/wikipedia/en/f/f4/Manchester_United_FC_crest.svg" class="h-10" alt="Man United" />
-            <span class="text-center font-bold">Man United</span>
-            <span class="text-main font-bold text-lg">VS</span>
-            <span class="text-center font-bold">Liverpool</span>
-            <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" class="h-10" alt="Liverpool" />
+        <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
+          <div class="p-4 text-center" style="background-color: var(--top-box-color);">
+            <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Real Madrid" class="team-logo" />
+              <p class="text-lg font-bold">Real Madrid</p>
+            </div>
+            <p class="text-sm text-gray-500">vs</p>
+            <p class="text-lg font-bold">Real Sociedad</p>
+          </div>
+          <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
+            <span class="font-semibold text-gray-700">Mathi</span>
+            <span class="font-bold text-main">Odds 2.10</span>
           </div>
         </div>
 
-        <!-- Boks 3 -->
-        <div class="bg-white rounded-lg shadow-md p-4 transform hover:-translate-y-1 transition duration-300 relative">
-          <div class="absolute left-2 top-2 text-sm text-gray-500">24. maj 2025</div>
-          <div class="flex flex-col items-center space-y-1 mt-4">
-            <img src="https://upload.wikimedia.org/wikipedia/en/c/cc/Bayern_Munich_logo_%282017%29.svg" class="h-10" alt="Bayern" />
-            <span class="text-center font-bold">Bayern München</span>
-            <span class="text-main font-bold text-lg">VS</span>
-            <span class="text-center font-bold">Dortmund</span>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Borussia_Dortmund_logo.svg" class="h-10" alt="Dortmund" />
+        <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
+          <div class="p-4 text-center" style="background-color: var(--top-box-color);">
+            <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
+            <p class="text-lg font-bold">Manchester City</p>
+            <p class="text-sm text-gray-500">vs</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png" alt="Arsenal" class="team-logo" />
+              <p class="text-lg font-bold">Arsenal</p>
+            </div>
+          </div>
+          <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
+            <span class="font-semibold text-gray-700">Geo</span>
+            <span class="font-bold text-main">Odds 1.95</span>
           </div>
         </div>
 
-        <!-- Boks 4 -->
-        <div class="bg-white rounded-lg shadow-md p-4 transform hover:-translate-y-1 transition duration-300 relative">
-          <div class="absolute left-2 top-2 text-sm text-gray-500">24. maj 2025</div>
-          <div class="flex flex-col items-center space-y-1 mt-4">
-            <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/Arsenal_FC.svg" class="h-10" alt="Arsenal" />
-            <span class="text-center font-bold">Arsenal</span>
-            <span class="text-main font-bold text-lg">VS</span>
-            <span class="text-center font-bold">Chelsea</span>
-            <img src="https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg" class="h-10" alt="Chelsea" />
+        <div class="bg-white rounded-lg overflow-hidden shadow box-hover">
+          <div class="p-4 text-center" style="background-color: var(--top-box-color);">
+            <p class="text-sm text-gray-500 mb-1">24. maj 2025</p>
+            <div class="flex items-center justify-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png" alt="Bayern" class="team-logo" />
+              <p class="text-lg font-bold">Bayern München</p>
+            </div>
+            <p class="text-sm text-gray-500">vs</p>
+            <p class="text-lg font-bold">Dortmund</p>
+          </div>
+          <div class="bg-gray-200 flex justify-between items-center px-4 py-2 text-sm" style="background-color: var(--bottom-box-color);">
+            <span class="font-semibold text-gray-700">Mathi</span>
+            <span class="font-bold text-main">Odds 2.00</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Dagens Tip -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-main">Dagens Tip</h2>
-      <div class="bg-white shadow-md rounded-lg p-4">
-        <h3 class="text-xl font-bold">⚽ FC København vs Brøndby</h3>
-        <p>Spilforslag: Over 2.5 mål – Odds 1.85</p>
-        <p>Analyse: Begge hold scorer ofte og har offensivt fokus. Værdi i over-spillet.</p>
       </div>
     </section>
 
