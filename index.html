@@ -16,106 +16,24 @@
       color: white;
     }
     .btn-main:hover { background-color: #0f1d33; }
-
-    /* Dropdown styling */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: white;
-      min-width: 220px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      z-index: 10;
-      border-radius: 0.375rem;
-      overflow: hidden;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    .dropdown-content a {
-      color: var(--main-color);
-      padding: 10px 16px;
-      text-decoration: none;
-      display: block;
-      transition: background-color 0.3s;
-      font-weight: 600;
-    }
-    .dropdown-content a:hover {
-      background-color: var(--main-color);
-      color: white;
-    }
-
-    /* Undermenu (Events) styling */
-    .dropdown-submenu {
-      position: relative;
-    }
-    .dropdown-submenu:hover .dropdown-submenu-content {
-      display: block;
-    }
-    .dropdown-submenu-content {
-      display: none;
-      position: absolute;
-      left: 100%;
-      top: 0;
-      background-color: white;
-      min-width: 220px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 0.375rem;
-      overflow: hidden;
-      z-index: 20;
-    }
-    .dropdown-submenu-content a {
-      padding: 10px 16px;
-      font-weight: normal;
-    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
   <!-- Header -->
-  <header class="bg-main text-white p-6 flex items-center gap-4 justify-between">
+  <header class="bg-main text-white p-6 flex items-center gap-4">
     <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
-    <nav class="flex items-center gap-8 text-lg font-semibold">
-
-      <div class="dropdown">
-        <button class="focus:outline-none">Dagens Spil ▼</button>
-        <div class="dropdown-content rounded-md">
-          <a href="#dagens-tip">Dagens tip</a>
-          <a href="#tilbud">Tilbud fra Bookmakere</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <button class="focus:outline-none">Sport ▼</button>
-        <div class="dropdown-content rounded-md">
-          <a href="#sport">Sportsoverblik</a>
-          <a href="#sportsnyheder">Seneste sportsnyheder</a>
-        </div>
-      </div>
-
-      <div class="dropdown dropdown-submenu">
-        <button class="focus:outline-none">Events ▼</button>
-        <div class="dropdown-content rounded-md">
-          <a href="#vm-ishockey">VM Ishockey 2025</a>
-          <a href="#french-open">French Open 2025</a>
-          <a href="#holger-rune">Holger Runes næste kamp</a>
-          <a href="#clara-tauson">Clara Tausons næste kamp</a>
-          <a href="#elmer-moller">Elmer Møllers næste kamp</a>
-          <a href="#alle-events" class="border-t border-gray-300 font-semibold">Se alle events her</a>
-        </div>
-      </div>
-
-    </nav>
+    <div>
+      <h1 class="text-3xl font-bold">Mathi og Geos Betting Tips</h1>
+      <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
+    </div>
   </header>
 
   <!-- Main -->
-  <main class="p-6 space-y-12 max-w-5xl mx-auto">
+  <main class="p-6 space-y-12">
 
     <!-- Dagens Tip -->
-    <section id="dagens-tip">
+    <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Dagens Tip</h2>
       <div class="bg-white shadow-md rounded-lg p-4">
         <h3 class="text-xl font-bold">⚽ FC København vs Brøndby</h3>
@@ -125,7 +43,7 @@
     </section>
 
     <!-- Sportsnyheder -->
-    <section id="sportsnyheder">
+    <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Seneste Sportsnyheder</h2>
       <div class="grid md:grid-cols-2 gap-6">
 
@@ -135,7 +53,7 @@
           <div class="p-4">
             <h3 class="text-lg font-bold">French Open: Kan Holger Rune levere på Grand Slam-gruset?</h3>
             <p class="text-sm text-gray-600">23. maj 2025 kl. 14:34</p>
-            <p class="mt-2">French Open starter søndag d. 25. maj... <a href="#french-open" class="text-main font-semibold">Læs mere</a></p>
+            <p class="mt-2">French Open starter søndag d. 25. maj... <a href="#" class="text-main font-semibold">Læs mere</a></p>
           </div>
         </div>
 
@@ -153,7 +71,7 @@
     </section>
 
     <!-- Tilbud -->
-    <section id="tilbud">
+    <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Tilbud fra Bookmakere</h2>
       <div class="grid md:grid-cols-2 gap-4">
         <div class="bg-white p-4 shadow rounded">
@@ -184,37 +102,6 @@
         <textarea placeholder="Din besked..." class="w-full p-2 border rounded" rows="4" required></textarea>
         <button type="submit" class="btn-main px-4 py-2 rounded">Send</button>
       </form>
-    </section>
-
-    <!-- Events detaljer -->
-    <section id="vm-ishockey" class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-xl font-bold mb-2 text-main">VM Ishockey 2025</h3>
-      <p>Det internationale ishockey-VM i 2025 byder på intens konkurrence mellem verdens bedste hold, der kæmper om titlen som verdensmester. Følg med i alle kampe, analyser og tips her på siden.</p>
-    </section>
-
-    <section id="french-open" class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-xl font-bold mb-2 text-main">French Open 2025</h3>
-      <p>French Open, en af tennisens fire Grand Slam-turneringer, starter i maj 2025 på Roland Garros’ grusbaner. Vi følger især danske stjerner som Holger Rune tæt og giver dig indsigt i kampe og odds.</p>
-    </section>
-
-    <section id="holger-rune" class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-xl font-bold mb-2 text-main">Holger Runes næste kamp</h3>
-      <p>Holger Rune er i stærk form og forventes at levere toppræstationer i sine kommende kampe. Vi holder dig opdateret med hans næste modstander, kampdato og spilforslag til hans kampe.</p>
-    </section>
-
-    <section id="clara-tauson" class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-xl font-bold mb-2 text-main">Clara Tausons næste kamp</h3>
-      <p>Clara Tauson er en af Danmarks mest lovende tennisspillere. Vi følger hendes næste kamp tæt og giver dig analyser og spilforslag til hendes opgør.</p>
-    </section>
-
-    <section id="elmer-moller" class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-xl font-bold mb-2 text-main">Elmer Møllers næste kamp</h3>
-      <p>Elmer Møller er en spændende dansk tennistalent, og vi bringer dig opdateringer på hans næste kamp samt tips og odds, der kan være værd at følge med i.</p>
-    </section>
-
-    <section id="alle-events" class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-xl font-bold mb-2 text-main">Se alle events her</h3>
-      <p>Her samler vi alle kommende sportsbegivenheder og events, så du nemt kan holde overblik over hvad der sker inden for sport og betting.</p>
     </section>
 
   </main>
