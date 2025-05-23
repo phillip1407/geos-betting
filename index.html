@@ -146,62 +146,101 @@
 
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
-    <!-- Nederste fanebaserede sektion -->
-    <section class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-12">
-      <div class="flex border-b border-gray-300 mb-4">
-        <button id="btn-seneste" 
-                class="px-4 py-2 font-semibold text-main border-b-2 border-main focus:outline-none"
-                onclick="showTab('seneste')">Seneste</button>
-        <button id="btn-tilbud" 
-                class="px-4 py-2 font-semibold text-gray-500 hover:text-main focus:outline-none"
-                onclick="showTab('tilbud')">Tilbud</button>
-      </div>
+<!-- Nederste fanebaserede sektion -->
+<section class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-12">
+  <div class="flex border-b border-gray-300 mb-4 relative">
+    <button id="btn-seneste" 
+            class="px-4 py-2 font-semibold text-main border-b-2 border-main focus:outline-none"
+            onclick="showTab('seneste')">Seneste</button>
+    <button id="btn-tilbud" 
+            class="ml-6 px-4 py-2 font-semibold text-gray-500 hover:text-main focus:outline-none"
+            onclick="showTab('tilbud')">Tilbud</button>
+  </div>
 
-      <div id="content-seneste" class="tab-content">
-        <p class="text-gray-700">Her vises det seneste indhold. Fx seneste spil, nyheder eller tips...</p>
-      </div>
+  <!-- Seneste indhold -->
+  <div id="content-seneste" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Boks 1 -->
+    <div class="bg-gray-50 rounded-lg p-4 shadow box-hover">
+      <h3 class="font-bold text-main mb-2">Seneste Boks 1</h3>
+      <p>Her kan du tilføje info om seneste spil eller tips...</p>
+    </div>
+    <!-- Boks 2 -->
+    <div class="bg-gray-50 rounded-lg p-4 shadow box-hover">
+      <h3 class="font-bold text-main mb-2">Seneste Boks 2</h3>
+      <p>Plads til mere tekst eller grafik.</p>
+    </div>
+    <!-- Boks 3 -->
+    <div class="bg-gray-50 rounded-lg p-4 shadow box-hover">
+      <h3 class="font-bold text-main mb-2">Seneste Boks 3</h3>
+      <p>Tilføj odds, analyser eller links.</p>
+    </div>
+    <!-- Boks 4 -->
+    <div class="bg-gray-50 rounded-lg p-4 shadow box-hover">
+      <h3 class="font-bold text-main mb-2">Seneste Boks 4</h3>
+      <p>Du kan tilpasse efter behov.</p>
+    </div>
+  </div>
 
-      <div id="content-tilbud" class="tab-content hidden">
-        <p class="text-gray-700">Her vises de aktuelle tilbud. Fx eksklusive odds, kampagner osv.</p>
-      </div>
-    </section>
+  <!-- Tilbud indhold -->
+  <div id="content-tilbud" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Boks 1 -->
+    <div class="bg-yellow-50 rounded-lg p-4 shadow box-hover border border-yellow-300">
+      <h3 class="font-bold text-main mb-2">Tilbud Boks 1</h3>
+      <p>Her kan du vise aktuelle kampagner eller odds tilbud.</p>
+    </div>
+    <!-- Boks 2 -->
+    <div class="bg-yellow-50 rounded-lg p-4 shadow box-hover border border-yellow-300">
+      <h3 class="font-bold text-main mb-2">Tilbud Boks 2</h3>
+      <p>Fremhæv eksklusive bonusser eller rabatter.</p>
+    </div>
+    <!-- Boks 3 -->
+    <div class="bg-yellow-50 rounded-lg p-4 shadow box-hover border border-yellow-300">
+      <h3 class="font-bold text-main mb-2">Tilbud Boks 3</h3>
+      <p>Plads til billeder, koder eller links.</p>
+    </div>
+    <!-- Boks 4 -->
+    <div class="bg-yellow-50 rounded-lg p-4 shadow box-hover border border-yellow-300">
+      <h3 class="font-bold text-main mb-2">Tilbud Boks 4</h3>
+      <p>Tilpas designet som du ønsker.</p>
+    </div>
+  </div>
+</section>
 
-  </main>
+<script>
+  function showTab(tab) {
+    const senesteContent = document.getElementById('content-seneste');
+    const tilbudContent = document.getElementById('content-tilbud');
 
-  <script>
-    function showTab(tab) {
-      const senesteContent = document.getElementById('content-seneste');
-      const tilbudContent = document.getElementById('content-tilbud');
+    const btnSeneste = document.getElementById('btn-seneste');
+    const btnTilbud = document.getElementById('btn-tilbud');
 
-      const btnSeneste = document.getElementById('btn-seneste');
-      const btnTilbud = document.getElementById('btn-tilbud');
+    if (tab === 'seneste') {
+      senesteContent.classList.remove('hidden');
+      tilbudContent.classList.add('hidden');
 
-      if (tab === 'seneste') {
-        senesteContent.classList.remove('hidden');
-        tilbudContent.classList.add('hidden');
+      btnSeneste.classList.add('border-main', 'text-main');
+      btnSeneste.classList.remove('text-gray-500');
+      btnSeneste.style.borderBottomWidth = '2px';
 
-        btnSeneste.classList.add('border-main', 'text-main');
-        btnSeneste.classList.remove('text-gray-500');
+      btnTilbud.classList.remove('border-main', 'text-main');
+      btnTilbud.classList.add('text-gray-500');
+      btnTilbud.style.borderBottomWidth = '0px';
+    } else if (tab === 'tilbud') {
+      tilbudContent.classList.remove('hidden');
+      senesteContent.classList.add('hidden');
 
-        btnTilbud.classList.remove('border-main', 'text-main');
-        btnTilbud.classList.add('text-gray-500');
-      } else if (tab === 'tilbud') {
-        tilbudContent.classList.remove('hidden');
-        senesteContent.classList.add('hidden');
+      btnTilbud.classList.add('border-main', 'text-main');
+      btnTilbud.classList.remove('text-gray-500');
+      btnTilbud.style.borderBottomWidth = '2px';
 
-        btnTilbud.classList.add('border-main', 'text-main');
-        btnTilbud.classList.remove('text-gray-500');
-
-        btnSeneste.classList.remove('border-main', 'text-main');
-        btnSeneste.classList.add('text-gray-500');
-      }
+      btnSeneste.classList.remove('border-main', 'text-main');
+      btnSeneste.classList.add('text-gray-500');
+      btnSeneste.style.borderBottomWidth = '0px';
     }
+  }
 
-    // Sæt "Seneste" som standard aktiv fane
-    document.addEventListener('DOMContentLoaded', () => {
-      showTab('seneste');
-    });
-  </script>
-
-</body>
-</html>
+  // Sæt "Seneste" som standard aktiv fane ved sideindlæsning
+  document.addEventListener('DOMContentLoaded', () => {
+    showTab('seneste');
+  });
+</script>
