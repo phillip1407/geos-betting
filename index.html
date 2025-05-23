@@ -16,18 +16,33 @@
       color: white;
     }
     .btn-main:hover { background-color: #0f1d33; }
+
+    .pattern-bg {
+      background: radial-gradient(circle at 1px 1px, rgba(20, 37, 65, 0.3) 1px, transparent 0);
+      background-size: 20px 20px;
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
   <!-- Header -->
-  <header class="bg-main text-white p-6 flex items-center gap-4">
-    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?format=webp&quality=lossless&width=70" alt="Logo" class="h-12 w-auto" />
+  <header class="bg-main pattern-bg text-white p-6 flex items-center gap-4">
+    <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
     <div>
       <h1 class="text-3xl font-bold">Geo Betting Tips</h1>
       <p class="text-sm">Dagens bedste spil – analyseret og anbefalet</p>
     </div>
   </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex gap-6">
+      <a href="index.html" class="text-main font-semibold hover:underline">Forside</a>
+      <a href="dagens-spil.html" class="text-main font-semibold hover:underline">Dagens Spil</a>
+      <a href="events.html" class="text-main font-semibold hover:underline">Events</a>
+      <a href="sport.html" class="text-main font-semibold hover:underline">Sport</a>
+    </div>
+  </nav>
 
   <!-- Main -->
   <main class="p-6 space-y-12">
@@ -63,7 +78,7 @@
           <div class="p-4">
             <h3 class="text-lg font-bold">Real Madrid – Real Sociedad 1 (2-0)</h3>
             <p class="text-sm text-gray-600">Lørdag d. 24. maj kl. 16:15</p>
-            <p class="mt-2">Det er tid til sidste runde i La Liga... <a href="#" class="text-main font-semibold">Læs hele optakten</a></p>
+            <p class="mt-2">Det er tid til sidste runde i La Liga. Mbappé mangler ét mål for den gyldne støvle! <a href="#" class="text-main font-semibold">Læs hele optakten</a></p>
           </div>
         </div>
 
@@ -87,7 +102,7 @@
       </div>
     </section>
 
-    <!-- Om siden -->
+    <!-- Om -->
     <section>
       <h2 class="text-2xl font-semibold mb-4 text-main">Om siden</h2>
       <p>Velkommen til Geo Betting Tips – hvor vi deler vores bedste spilforslag og analyser. Erfaring, passion og værdi samlet ét sted.</p>
