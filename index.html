@@ -83,31 +83,33 @@
       margin: 0;
       padding: 0;
     }
-    
+
     .nav-links li a {
-      position: relative;  /* Tilføj dette, hvis ikke allerede til stede */
       color: white;
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
+      position: relative;
+      padding-bottom: 5px;
       transition: color 0.3s ease;
     }
-    
+
+    /* Lille streg under ved hover */
     .nav-links li a::after {
-      content: "";
+      content: '';
       position: absolute;
+      left: 0;
+      bottom: 0;
       width: 0%;
       height: 2px;
-      bottom: -4px;
-      left: 0;
       background-color: #e0e7f6;
       transition: width 0.3s ease;
     }
-    
+
     .nav-links li a:hover::after {
       width: 100%;
     }
-    
+
     .nav-links li a:hover {
       color: #e0e7f6;
     }
