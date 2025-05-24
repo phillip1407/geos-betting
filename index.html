@@ -300,59 +300,16 @@
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
     <!-- nyhed sektion -->
-<section class="nyheder-sektion">
-  <h2>Nyheder</h2>
-  <div class="nyheds-grid">
-    <div class="nyheds-kort">
-      <img src="https://www.spilxperten.com/wp-content/uploads/2025/05/AGF-x-Ritzau-x-Alamy-Live-News-360x228.jpeg" alt="Nyhedsbillede 1" />
-      <div class="nyheds-tekst">
-        <h3>Nyhedstitel 1</h3>
-        <p>AGF og Brøndby kan ikke hitte ud af at vinde.</p>
-        <span class="dato">24. maj 2025 KL. 11.00</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://www.spilxperten.com/wp-content/uploads/2025/05/FCK_Delaney-x-Ritzau-x-Alamy-Live-News-360x240.jpeg" alt="Nyhedsbillede 2" />
-      <div class="nyheds-tekst">
-        <h3>Nyhedstitel 2</h3>
-        <p>FC København på guldjagt mod FC Nordsjælland.</p>
-        <span class="dato">24. maj 2025 KL. 10.30</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn.discordapp.com/attachments/807154074893549599/1375604527738130493/image.png" alt="Nyhedsbillede 3" />
-      <div class="nyheds-tekst">
-        <h3>Nyhedstitel 3</h3>
-        <p>Endnu en nyhed, der er værd at læse om.</p>
-        <span class="dato">22. maj 2025</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn.discordapp.com/attachments/807154074893549599/1375604527738130493/image.png" alt="Nyhedsbillede 4" />
-      <div class="nyheds-tekst">
-        <h3>Nyhedstitel 4</h3>
-        <p>Nyhedstekst nummer fire.</p>
-        <span class="dato">21. maj 2025</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn.discordapp.com/attachments/807154074893549599/1375604527738130493/image.png" alt="Nyhedsbillede 5" />
-      <div class="nyheds-tekst">
-        <h3>Nyhedstitel 5</h3>
-        <p>Endnu mere spændende indhold her.</p>
-        <span class="dato">20. maj 2025</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn.discordapp.com/attachments/807154074893549599/1375604527738130493/image.png" alt="Nyhedsbillede 6" />
-      <div class="nyheds-tekst">
-        <h3>Nyhedstitel 6</h3>
-        <p>Sidste nyhed i denne sektion.</p>
-        <span class="dato">19. maj 2025</span>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="nyheder-container"></div>
+
+<script>
+  fetch('nyheder.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('nyheder-container').innerHTML = data;
+    })
+    .catch(error => console.error('Kunne ikke hente nyheder:', error));
+</script>
 
   <style>
 .nyheder-sektion {
