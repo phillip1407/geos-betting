@@ -37,7 +37,11 @@
   
 <body>
   <header class="navbar">
-    <nav>
+    <div class="logo-container">
+      <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
+      <h1 class="site-name">Geo Betting Tips</h1>
+    </div>
+    <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="events.html">Events</a></li>
         <li><a href="sportsmaker.html">Sportsmaker</a></li>
@@ -52,14 +56,35 @@
   background-color: #142541;
   padding: 15px 30px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Logo til venstre, menu til højre */
   align-items: center;
 }
 
+/* Logo + navn */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.site-name {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Menu links */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li a {
