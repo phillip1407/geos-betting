@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tilbud - Geo Betting Tips</title>
   <style>
-    /* Header styling */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -13,77 +12,54 @@
       color: #333;
     }
 
-    .site-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background-color: #142541; /* mørk blå farve */
+    /* Header med logo, titel og slogan */
+    header.site-header {
+      background-color: #142541;
       color: white;
-    }
-
-    .logo-container {
       display: flex;
       align-items: center;
+      padding: 0 30px;
+      height: 80px;
+      border-bottom: 3px solid #ffb300; /* fx gul/orange linje */
     }
 
     .logo {
       height: 50px;
-      margin-right: 15px;
+      margin-right: 20px;
     }
 
-    .site-title-slogan h1 {
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .header-text h1 {
       margin: 0;
-      font-size: 24px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
     }
 
-    .site-title-slogan p {
+    .header-text p {
       margin: 0;
       font-size: 14px;
-      font-style: italic;
+      font-weight: 400;
       color: #a0b9d6;
+      margin-top: 3px;
     }
 
-    .main-nav ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-    }
-
-    .main-nav li {
-      margin-left: 20px;
-    }
-
-    .main-nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    .main-nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* Tilbud sektion */
-    .tilbud-section {
+    /* Tilbud-sektion under header */
+    main {
       max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .tilbud-section h2 {
-      margin-top: 0;
-      color: #142541;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
     .tilbud-list {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     .tilbud-list li {
@@ -99,33 +75,20 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="logo-container">
-      <img src="logo.png" alt="Geo Betting Tips Logo" class="logo" />
-      <div class="site-title-slogan">
-        <h1>Geo Betting Tips</h1>
-        <p>De bedste betting tips samlet ét sted</p>
-      </div>
+    <img src="logo.png" alt="Geo Betting Tips Logo" class="logo" />
+    <div class="header-text">
+      <h1>Tilbud</h1>
+      <p>De bedste tilbud samlet ét sted</p>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Forside</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
-        <li><a href="dagsenspil.html">Dagens Spil</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-      </ul>
-    </nav>
   </header>
 
   <main>
-    <section class="tilbud-section">
-      <h2>Aktuelle Tilbud</h2>
-      <ul class="tilbud-list">
-        <li>Bonus 100% op til 500 kr. hos Bet365</li>
-        <li>Gratis indsats på op til 200 kr. hos Unibet</li>
-        <li>Cashback tilbud hver weekend hos Danske Spil</li>
-        <li>Eksklusiv oddsboost på Premier League kampe</li>
-      </ul>
-    </section>
+    <ul class="tilbud-list">
+      <li>Bonus 100% op til 500 kr. hos Bet365</li>
+      <li>Gratis indsats på op til 200 kr. hos Unibet</li>
+      <li>Cashback tilbud hver weekend hos Danske Spil</li>
+      <li>Eksklusiv oddsboost på Premier League kampe</li>
+    </ul>
   </main>
 </body>
 </html>
