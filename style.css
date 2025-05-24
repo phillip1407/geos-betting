@@ -1,3 +1,4 @@
+/* Lodret dato boks */
 .date-vertical-box {
   background-color: #142541;
   color: white;
@@ -11,7 +12,7 @@
   font-weight: bold;
   font-size: 20px;
   user-select: none;
-  text-transform: lowercase; /* så 'maj' bliver småt */
+  text-transform: lowercase; /* fx maj */
   letter-spacing: 2px;
   line-height: 1.2;
 }
@@ -22,29 +23,47 @@
   padding: 0;
   line-height: 1.2;
 }
+
+/* Liga navn øverst i kortet */
 .league-name {
   font-weight: 700;
   font-size: 1.125rem; /* samme som holdenes tekst */
-  margin-bottom: 10px;
+  margin-bottom: 0.75rem;
   color: #142541;
 }
+
+/* Hold logoer */
 .team-logo {
   width: 30px;
   height: 30px;
   object-fit: contain;
 }
+
+/* Box styling og hover effekt */
+.box-hover {
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
 .box-hover:hover {
   box-shadow: 0 0 10px #142541cc;
 }
 
-
-
+/* Fleksbox helpers */
 .flex {
   display: flex;
 }
 
 .items-start {
   align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .gap-6 {
@@ -59,10 +78,16 @@
   overflow-x: auto;
 }
 
+.flex-shrink-0 {
+  flex-shrink: 0; /* Forhindrer kortene i at krympe i rækken */
+}
+
+/* Bredde på spil kort */
 .w-60 {
   width: 15rem;
 }
 
+/* Box baggrund og runde hjørner */
 .bg-white {
   background-color: white;
 }
@@ -75,15 +100,12 @@
   overflow: hidden;
 }
 
+/* Skygge under kort */
 .shadow {
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.box-hover:hover {
-  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-  transition: box-shadow 0.3s ease;
-}
-
+/* Padding og tekst justering */
 .p-4 {
   padding: 1rem;
 }
@@ -92,34 +114,27 @@
   text-align: center;
 }
 
-.flex-shrink-0 {
-  flex-shrink: 0; /* forhindrer kortet i at krympe i række */
-}
-
+/* Tekst og font vægt */
 .font-semibold {
   font-weight: 600;
 }
 
-.text-white {
-  color: white;
+.font-bold {
+  font-weight: 700;
 }
 
 .text-sm {
   font-size: 0.875rem;
 }
 
-.justify-center {
-  justify-content: center;
-}
-
-.items-center {
+/* Baggrundsfarve på bunden af kort (odds og ekspert) */
+.odds-expert-container {
+  background-color: #142541;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-}
-
-
-.league-name {
-  font-weight: 700;
-  font-size: 1.125rem; /* lidt mindre end holdenes 1.25rem, men kan justeres */
-  margin-bottom: 0.75rem;
-  color: #000; /* sort eller anden farve efter behov */
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
 }
