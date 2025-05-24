@@ -183,6 +183,7 @@
     display: flex;
     gap: 1rem;
     align-items: flex-start;
+    padding-top: 2rem; /* Mere luft til toppen */
   }
 
   .date-vertical-box {
@@ -257,15 +258,20 @@
   }
 
   .kamp-bund {
-    background-color: #e0e7f6;
-    color: #142541;
+    background-color: #142541; /* Din ønskede farve */
+    color: white; /* Ekspert og odds er hvide */
     padding: 0.5rem 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: bold;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+  }
+
+  .kamp-bund .ekspert,
+  .kamp-bund .odds {
+    color: white;
+    font-weight: bold;
   }
 </style>
 
