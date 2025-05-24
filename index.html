@@ -44,7 +44,8 @@
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-  <!-- Header -->
+
+<!-- Header HTML -->
 <header>
   <img src="https://media.discordapp.net/attachments/1029078951873761491/1318675741038215188/fox_logo_done.png?ex=6832d43c&is=683182bc&hm=b7eed740041a034f93dd833d10b9cf26e516f1b75acceec7252c19d398a9b9ba&=&format=webp&quality=lossless&width=960&height=960" alt="Logo" />
   <div>
@@ -52,9 +53,36 @@
     <p>Dagens bedste spil – analyseret og anbefalet</p>
   </div>
 </header>
-
-
   
+/* Header CSS */
+header {
+  background-color: white;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #142541;
+  position: relative;
+  z-index: 10;
+}
+
+header img {
+  height: 48px;
+  width: auto;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+header p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #142541;
+}
+
   <!-- Navigation -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex gap-6">
