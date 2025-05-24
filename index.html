@@ -4,39 +4,173 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Geo Betting Tips</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Montserrat', sans-serif;
     }
+
+    body {
+      background-color: #f5f7fa;
     }
-    .header {
+
+    .navbar {
       background-color: #142541;
-      height: 240px;
-      width: 100%;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
       display: flex;
       align-items: center;
-      padding: 0 20px;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-name {
       color: white;
+      font-size: 24px;
+      font-weight: bold;
     }
-    .header img {
-      height: 100px;
-      margin-right: 20px;
+
+    .slogan {
+      color: #e0e7f6;
+      font-size: 14px;
+      margin-top: 2px;
     }
-    .header h1 {
-      margin: 0;
-      font-size: 2rem;
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
     }
-    .header p {
-      margin: 0;
-      font-size: 1rem;
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #e0e7f6;
+    }
+
+    /* Dagens Spil Styles */
+    #dagens-spil {
+      padding: 20px;
+    }
+
+    #dagens-spil h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #142541;
+    }
+
+    .spil-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .spil-kort {
+      position: relative;
+      background: #f5f7fa;
+      border-radius: 12px;
+      width: 280px;
+      padding: 15px 15px 45px 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-højre {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #f0ab4c;
+    }
+
+    .liga {
+      font-weight: 600;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .hold-liste {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hold {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hold img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .hold span {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .bund-bjælke {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #142541;
+      border-radius: 0 0 12px 12px;
+      padding: 8px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 14px;
+    }
+
+    .odds {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .ekspert {
+      font-weight: normal;
+      font-style: italic;
     }
   </style>
 </head>
+
 <body>
 
-  
-<body>
   <header class="navbar">
     <div class="logo-container">
       <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
@@ -45,7 +179,7 @@
         <p class="slogan">Ekspertanalyser til din betting</p>
       </div>
     </div>
-    <nav class="nav-container">
+    <nav>
       <ul class="nav-links">
         <li><a href="nyheder.html">Events</a></li>
         <li><a href="events.html">Sportsmaker</a></li>
@@ -54,92 +188,6 @@
       </ul>
     </nav>
   </header>
-<style>
-/* Navbar */
-.navbar {
-  background-color: #142541;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between; /* Logo til venstre, menu til højre */
-  align-items: center;
-}
-
-/* Logo + navn + slogan */
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo {
-  width: 40px;
-  height: 40px;
-}
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.site-name {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.slogan {
-  color: #e0e7f6;
-  font-size: 14px;
-  margin: 0;
-  margin-top: 2px;
-}
-
-/* Menu links */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
-  transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-  color: #e0e7f6;
-}
-
-
-  
-  
-<header class="header">
-  <img src="https://media.discordapp.net/attachments/1029078951873761491/1318675741038215188/fox_logo_done.png?ex=6832d43c&is=683182bc&hm=b7eed740041a034f93dd833d10b9cf26e516f1b75acceec7252c19d398a9b9ba&=&format=webp&quality=lossless&width=960&height=960" alt="Logo" />
-  <div>
-    <h1>Geo Betting Tips</h1>
-    <p>Dagens bedste spil – analyseret og anbefalet</p>
-  </div>
-</header>
-
-</body>
-</html>
-
-
-  <!-- Navigation -->
-  <nav class="bg-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex gap-6">
-      <a href="index.html" class="text-main font-semibold hover:underline">Forside</a>
-      <a href="dagens-spil.html" class="text-main font-semibold hover:underline">Dagens Spil</a>
-      <a href="events.html" class="text-main font-semibold hover:underline">Events</a>
-      <a href="sport.html" class="text-main font-semibold hover:underline">Sport</a>
-    </div>
-  </nav>
 
 <!-- Dagens Spil Sektion -->
 <style>
