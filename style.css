@@ -4,3 +4,13 @@
   padding: 1rem;
   border-radius: 0.5rem; /* Kan tilpasses */
 }
+
+.date-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #142541;
+  margin-right: 1rem;
+  user-select: none;
+}
