@@ -85,3 +85,11 @@
 .items-center {
   align-items: center;
 }
+
+
+.league-name {
+  font-weight: 700;
+  font-size: 1.125rem; /* lidt mindre end holdenes 1.25rem, men kan justeres */
+  margin-bottom: 0.75rem;
+  color: #000; /* sort eller anden farve efter behov */
+}
