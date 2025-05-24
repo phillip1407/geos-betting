@@ -160,22 +160,22 @@
   <!-- Seneste indhold -->
   <div id="content-seneste" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6">
     <!-- Boks 1 -->
-    <div class="bg-gray-50 rounded-lg p-4 shadow box-hover">
+    <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
       <h3 class="font-bold text-main mb-2">Seneste Boks 1</h3>
       <p>Her kan du tilføje info om seneste spil eller tips...</p>
     </div>
     <!-- Boks 2 -->
-    <div class="bg-gray-50 rounded-lg p-4 shadow box-hover">
+    <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
       <h3 class="font-bold text-main mb-2">Seneste Boks 2</h3>
       <p>Plads til mere tekst eller grafik.</p>
     </div>
     <!-- Boks 3 -->
-    <div class="bg-gray-50 rounded-lg p-4 shadow box-hover">
+    <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
       <h3 class="font-bold text-main mb-2">Seneste Boks 3</h3>
       <p>Tilføj odds, analyser eller links.</p>
     </div>
     <!-- Boks 4 -->
-    <div class="bg-gray-50 rounded-lg p-4 shadow box-hover">
+    <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
       <h3 class="font-bold text-main mb-2">Seneste Boks 4</h3>
       <p>Du kan tilpasse efter behov.</p>
     </div>
@@ -242,5 +242,33 @@
   // Sæt "Seneste" som standard aktiv fane ved sideindlæsning
   document.addEventListener('DOMContentLoaded', () => {
     showTab('seneste');
+  });
+</script>
+
+
+    <!-- Pop-up Modal -->
+<div id="newsletterModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center">
+    <h2 class="text-2xl font-bold mb-4">Vil du modtage vores nyhedsbrev?</h2>
+    <p class="mb-6 text-gray-600">Få de bedste bettingtips og eksklusive tilbud direkte i din indbakke!</p>
+    <div class="flex justify-center gap-4">
+      <button id="yesBtn" class="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 hover:scale-105 transition-transform">Ja tak!</button>
+      <button id="noBtn" class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 hover:scale-105 transition-transform">Nej tak</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const newsletterModal = document.getElementById('newsletterModal');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+
+  yesBtn.addEventListener('click', () => {
+    alert("Tak for tilmeldingen! 💌");
+    newsletterModal.style.display = 'none';
+  });
+
+  noBtn.addEventListener('click', () => {
+    newsletterModal.style.display = 'none';
   });
 </script>
