@@ -64,12 +64,29 @@
       padding: 0;
     }
 
+    /* Opdateret navigation hover med underline effekt */
     .nav-links li a {
-      color: white;
+      position: relative;
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
+      color: white;
       transition: color 0.3s ease;
+    }
+
+    .nav-links li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #e0e7f6;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
     }
 
     .nav-links li a:hover {
@@ -87,96 +104,79 @@
       box-sizing: border-box;
     }
 
-    .info-box {
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 30px;
-      max-width: 875px;  /* 2.5 gange bredere */
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      color: #142541;
-      font-size: 16px;
-      line-height: 1.5;
-      text-align: center;
-    }
-
-    .info-box strong {
-      font-size: 24px;   /* Samme som overskrifter på tilbud */
-      display: block;
-      margin-bottom: 15px;
-    }
-
     .offers-container {
       display: flex;
-      flex-direction: column;  /* stacked lodret */
-      gap: 40px;
+      gap: 50px;
       justify-content: center;
-      align-items: center;
+      flex-wrap: wrap;
       margin-top: 30px;
     }
+
     .offer-card {
       background-color: white;
       border: 1px solid #ccc;
       border-radius: 10px;
-      width: 875px;  /* 2.5 gange bredere */
+      width: 350px;
       padding: 20px;
       text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      display: flex;
-      gap: 20px;
-      align-items: center;
     }
+
     .offer-card img {
-      width: 300px;
-      height: 200px;  /* Mere firkantet */
+      width: 100%;
+      height: 200px;
       object-fit: cover;
       border-radius: 8px;
-      flex-shrink: 0;
+      margin-bottom: 15px;
     }
-    .offer-text {
-      flex: 1;
-      text-align: left;
-    }
+
     .offer-card h3 {
       color: #142541;
-      font-size: 24px;
+      font-size: 20px;
       margin-bottom: 10px;
     }
     
     .offer-card p {
-      font-size: 18px;
+      font-size: 16px;
       margin-bottom: 15px;
     }
+
     .offer-card a {
       display: inline-block;
       background-color: #142541;
       color: white;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
+
     .offer-card a:hover {
       background-color: #0f1d35;
     }
 
-    /* Responsive: på små skærme bliver det lodret igen */
-    @media (max-width: 960px) {
-      .offer-card {
-        flex-direction: column;
-        width: 100%;
-      }
-      .offer-card img {
-        width: 100%;
-        height: auto;
-      }
-      .offer-text {
-        text-align: center;
-      }
+    .purpose-box {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 875px; /* ca. 2.5 gange 350px */
+      padding: 20px;
+      margin: 30px auto 0 auto;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .purpose-box h2 {
+      font-size: 20px;
+      color: #142541;
+      margin-bottom: 15px;
+    }
+
+    .purpose-box p {
+      font-size: 16px;
+      color: #142541;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -196,7 +196,7 @@
     <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="nyheder.html">Events</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
+        <li><a href="Eksperttips.html">Eksperttips</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
       </ul>
@@ -208,39 +208,41 @@
     18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
   </p>
 
-  <!-- Informationsboks med formålet -->
-  <div class="info-box">
-    <strong>Formålet med vores betting-partnere</strong>
-    Vi samarbejder med udvalgte betting-partnere for at kunne tilbyde dig eksklusive bonusser og tilbud. Når du anvender vores links, støtter du samtidig vores arbejde, så vi kan blive ved med at levere gratis analyser og betting tips af høj kvalitet. Din støtte hjælper os med at holde siden opdateret og forbedre vores indhold – tak fordi du er med til at gøre det muligt!
+  <!-- Boks med formål -->
+  <div class="purpose-box">
+    <h2>Formålet med vores betting-partnere</h2>
+    <p>
+      Ved at anvende vores betting-partnere støtter du os, så vi kan fortsætte med at levere gratis analyser og betting tips. Det giver dig samtidig adgang til eksklusive tilbud og velkomstbonuser, som hjælper dig godt i gang.
+    </p>
   </div>
 
   <!-- Tilbud -->
   <div class="offers-container">
     <div class="offer-card">
-      <img src="https://www.betano.bar/wp-content/uploads/2024/12/betano_banner.jpg" alt="Betano Tilbud">
-      <div class="offer-text">
+      <a href="https://www.betano.dk" target="_blank" rel="noopener noreferrer">
+        <img src="https://www.betano.bar/wp-content/uploads/2024/12/betano_banner.jpg" alt="Betano Tilbud">
         <h3>Betano Velkomstbonus</h3>
         <p>Få en stor velkomstbonus som ny kunde hos Betano. Opret dig via vores link og få adgang til eksklusive fordele.</p>
-        <a href="https://www.betano.dk" target="_blank" rel="noopener noreferrer">Hent tilbud hos Betano</a>
-      </div>
+      </a>
+      <a href="https://www.betano.dk" target="_blank" rel="noopener noreferrer">Hent tilbud hos Betano</a>
     </div>
 
     <div class="offer-card">
-      <img src="https://www.bet365.dk/hub/focalimage/4lICckbU8RnfaUbcb59AzQ/e71e47c9b33086ca15178e97b4401805/GenericNoLogo_Desktop-1440-2x/jpg/focaly-594/imgWidth-2880/imgHeight-1500/targetWidth-1200/targetHeight-1500/focalx-1761" alt="Bet365 Tilbud">
-      <div class="offer-text">
+      <a href="https://www.bet365.dk" target="_blank" rel="noopener noreferrer">
+        <img src="https://www.bet365.dk/hub/focalimage/4lICckbU8RnfaUbcb59AzQ/e71e47c9b33086ca15178e97b4401805/GenericNoLogo_Desktop-1440-2x/jpg/focaly-594/imgWidth-2880/imgHeight-1500/targetWidth-1200/targetHeight-1500/focalx-1761" alt="Bet365 Tilbud">
         <h3>Bet365 Velkomstbonus</h3>
         <p>Start din bettingrejse hos Bet365 med en velkomstbonus. Klik her for at læse mere og oprette dig i dag.</p>
-        <a href="https://www.bet365.dk" target="_blank" rel="noopener noreferrer">Hent tilbud hos Bet365</a>
-      </div>
+      </a>
+      <a href="https://www.bet365.dk" target="_blank" rel="noopener noreferrer">Hent tilbud hos Bet365</a>
     </div>
 
     <div class="offer-card">
-      <img src="https://www.comeonbonus.se/wp-content/uploads/2023/12/comeon-betting-casino-1703082624.png" alt="ComeOn Tilbud">
-      <div class="offer-text">
+      <a href="https://www.comeon.dk" target="_blank" rel="noopener noreferrer">
+        <img src="https://www.comeonbonus.se/wp-content/uploads/2023/12/comeon-betting-casino-1703082624.png" alt="ComeOn Tilbud">
         <h3>ComeOn Velkomstbonus</h3>
-        <p>Oplev spænding og store bonusser hos ComeOn. Tilmeld dig via vores link og få de bedste velkomsttilbud.</p>
-        <a href="https://www.comeon.com" target="_blank" rel="noopener noreferrer">Hent tilbud hos ComeOn</a>
-      </div>
+        <p>Få en attraktiv velkomstbonus hos ComeOn. Opret dig via vores link og få adgang til eksklusive betting og casino tilbud.</p>
+      </a>
+      <a href="https://www.comeon.dk" target="_blank" rel="noopener noreferrer">Hent tilbud hos ComeOn</a>
     </div>
   </div>
 
