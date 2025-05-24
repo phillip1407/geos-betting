@@ -246,29 +246,56 @@
 </script>
 
 
-    <!-- Pop-up Modal -->
-<div id="newsletterModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center">
-    <h2 class="text-2xl font-bold mb-4">Vil du modtage vores nyhedsbrev?</h2>
-    <p class="mb-6 text-gray-600">Få de bedste bettingtips og eksklusive tilbud direkte i din indbakke!</p>
-    <div class="flex justify-center gap-4">
-      <button id="yesBtn" class="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 hover:scale-105 transition-transform">Ja tak!</button>
-      <button id="noBtn" class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 hover:scale-105 transition-transform">Nej tak</button>
+<!-- Pop-up til nyhedsbrev -->
+<div id="popup-box" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 1px solid #ccc; border-radius: 8px; padding: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 1000; display: none; max-width: 300px;">
+  <p class="font-semibold mb-2">Tilmeld vores nyhedsbrev</p>
+  <form id="signup-form" class="space-y-2">
+    <input id="email-input" type="email" placeholder="Din email" required class="w-full border px-3 py-2 rounded">
+    <div class="flex justify-between mt-2">
+      <button type="submit" class="btn-yes bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition">Ja tak</button>
+      <button type="button" id="close-btn" class="btn-no bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">Nej tak</button>
     </div>
-  </div>
+  </form>
 </div>
 
+<!-- Supabase og pop-up script -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const newsletterModal = document.getElementById('newsletterModal');
-  const yesBtn = document.getElementById('yesBtn');
-  const noBtn = document.getElementById('noBtn');
+  const supabaseUrl = "https://iwbvimwodjlbtxtmfqra.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo";
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-  yesBtn.addEventListener('click', () => {
-    alert("Tak for tilmeldingen! 💌");
-    newsletterModal.style.display = 'none';
-  });
+  document.addEventListener("DOMContentLoaded", () => {
+    const popupBox = document.getElementById("popup-box");
+    const emailInput = document.getElementById("email-input");
+    const signupForm = document.getElementById("signup-form");
+    const closeBtn = document.getElementById("close-btn");
 
-  noBtn.addEventListener('click', () => {
-    newsletterModal.style.display = 'none';
+    // Check localStorage
+    const newsletterSignedUp = localStorage.getItem("newsletterSignedUp");
+    if (!newsletterSignedUp) {
+      popupBox.style.display = "block";
+    }
+
+    closeBtn.addEventListener("click", () => {
+      popupBox.style.display = "none";
+    });
+
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (email) {
+        const { data, error } = await supabase.from("nyhedsbrev").insert([{ email }]);
+        if (error) {
+          alert("Der opstod en fejl. Prøv igen.");
+        } else {
+          localStorage.setItem("newsletterSignedUp", "true");
+          popupBox.innerHTML = "<p class='text-green-600 font-semibold'>Tak for din tilmelding!</p>";
+          setTimeout(() => {
+            popupBox.style.display = "none";
+          }, 3000);
+        }
+      }
+    });
   });
 </script>
