@@ -30,187 +30,129 @@
       margin: 0;
       font-size: 1rem;
     }
-
-    /* Navigation */
-    nav.bg-white {
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    nav .max-w-7xl {
-      max-width: 112rem;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    nav a {
-      color: #142541; /* brug samme blå farve */
-      font-weight: 600;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* Dagens Spil Sektion */
-    #dagens-spil {
-      padding: 20px;
-    }
-    #dagens-spil h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #142541;
-    }
-    .spil-container {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .spil-kort {
-      position: relative;
-      background: #f5f7fa;
-      border-radius: 12px;
-      width: 280px;
-      padding: 15px 15px 45px 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .info-højre {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-weight: 700;
-      font-size: 16px;
-      color: #f0ab4c;
-    }
-    .liga {
-      font-weight: 600;
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 8px;
-      text-align: left;
-    }
-    .hold-liste {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .hold {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .hold img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-    }
-    .hold span {
-      font-weight: 600;
-      font-size: 14px;
-      color: #333;
-    }
-    .bund-bjælke {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #142541;
-      border-radius: 0 0 12px 12px;
-      padding: 8px 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      font-size: 14px;
-    }
-    .odds {
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-    .ekspert {
-      font-weight: normal;
-      font-style: italic;
-    }
-
-    /* Knapper for Seneste og Tilbud */
-    .btn-main {
-      background-color: #142541;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .btn-main:hover {
-      background-color: #0f1e34;
-    }
-    .hidden {
-      display: none;
-    }
   </style>
 </head>
 <body>
 
 <header class="header">
-  <img src="https://media.discordapp.net/attachments/1029078951873761491/1318675741038215188/fox_logo_done.png" alt="Logo" />
+  <img src="https://media.discordapp.net/attachments/1029078951873761491/1318675741038215188/fox_logo_done.png?ex=6832d43c&is=683182bc&hm=b7eed740041a034f93dd833d10b9cf26e516f1b75acceec7252c19d398a9b9ba&=&format=webp&quality=lossless&width=960&height=960" alt="Logo" />
   <div>
     <h1>Geo Betting Tips</h1>
     <p>Dagens bedste spil – analyseret og anbefalet</p>
   </div>
 </header>
 
-<nav class="bg-white shadow-md">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex gap-6">
-    <a href="index.html" class="text-main font-semibold hover:underline">Forside</a>
-    <a href="dagens-spil.html" class="text-main font-semibold hover:underline">Dagens Spil</a>
-    <a href="events.html" class="text-main font-semibold hover:underline">Events</a>
-    <a href="sport.html" class="text-main font-semibold hover:underline">Sport</a>
-  </div>
-</nav>
-
-<section id="dagens-spil">
-  <h2>Dagens Spil</h2>
-  <div class="spil-container">
-    <!-- spil-kort elementer her -->
-  </div>
-</section>
-
-<!-- Seneste / Tilbud sektion -->
-<section class="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow">
-  <div class="flex space-x-6 mb-4">
-    <button id="btnSeneste" class="btn-main px-4 py-2 rounded font-semibold">Seneste</button>
-    <button id="btnTilbud" class="btn-main px-4 py-2 rounded font-semibold">Tilbud</button>
-  </div>
-  <div id="seneste" class="space-y-4">
-    <p>Seneste bettingtips kommer her…</p>
-  </div>
-  <div id="tilbud" class="hidden space-y-4">
-    <p>Tilbudssektionen kommer her…</p>
-  </div>
-</section>
-
-<script>
-  // Fanebytte funktion for Seneste / Tilbud
-  const btnSeneste = document.getElementById('btnSeneste');
-  const btnTilbud = document.getElementById('btnTilbud');
-  const seneste = document.getElementById('seneste');
-  const tilbud = document.getElementById('tilbud');
-
-  btnSeneste.addEventListener('click', () => {
-    seneste.classList.remove('hidden');
-    tilbud.classList.add('hidden');
-  });
-
-  btnTilbud.addEventListener('click', () => {
-    tilbud.classList.remove('hidden');
-    seneste.classList.add('hidden');
-  });
-</script>
-
 </body>
 </html>
+
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex gap-6">
+      <a href="index.html" class="text-main font-semibold hover:underline">Forside</a>
+      <a href="dagens-spil.html" class="text-main font-semibold hover:underline">Dagens Spil</a>
+      <a href="events.html" class="text-main font-semibold hover:underline">Events</a>
+      <a href="sport.html" class="text-main font-semibold hover:underline">Sport</a>
+    </div>
+  </nav>
+
+<!-- Dagens Spil Sektion -->
+<style>
+  #dagens-spil {
+    padding: 20px;
+  }
+
+  #dagens-spil h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #142541;
+  }
+
+  .spil-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .spil-kort {
+    position: relative;
+    background: #f5f7fa;
+    border-radius: 12px;
+    width: 280px;
+    padding: 15px 15px 45px 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info-højre {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #f0ab4c;
+  }
+
+  .liga {
+    font-weight: 600;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+
+  .hold-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hold {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hold img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .hold span {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .bund-bjælke {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #142541;
+    border-radius: 0 0 12px 12px;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+  }
+
+  .odds {
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .ekspert {
+    font-weight: normal;
+    font-style: italic;
+  }
+</style>
 
 <section id="dagens-spil">
   <h2>Dagens Spil</h2>
