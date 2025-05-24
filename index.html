@@ -79,70 +79,81 @@
       color: #142541;
     }
 
-.spil-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: flex-start;
-}
+    .spil-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-.spil-kort {
-  width: 300px; /* Juster så det passer med nyhedskort */
-  height: 160px; /* Tilpas højden så den matcher */
-  background: #f7f9fc;
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    .spil-kort {
+      position: relative;
+      background: #f5f7fa;
+      border-radius: 12px;
+      width: 280px;
+      padding: 15px 15px 45px 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.hold-liste {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+    .info-højre {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #f0ab4c;
+    }
 
-.hold {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+    .liga {
+      font-weight: 600;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+      text-align: left;
+    }
 
-.hold img {
-  width: 20px;
-  height: 20px;
-}
+    .hold-liste {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.bund-bjælke {
-  background-color: #142541;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-weight: bold;
-}
+    .hold {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.info-højre {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  color: #e0934a;
-  font-weight: bold;
-}
+    .hold img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
 
-.liga {
-  font-size: 14px;
-  color: #333;
-  font-weight: 600;
-}
+    .hold span {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+    }
 
-/* Hvis du vil have en fast højde på alle kort */
-.spil-kort {
-  min-height: 160px;
-} 
+    .bund-bjælke {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #142541;
+      border-radius: 0 0 12px 12px;
+      padding: 8px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 14px;
+    }
+
     .odds {
       font-weight: 700;
       letter-spacing: 1px;
@@ -155,7 +166,6 @@
   </style>
 </head>
 <body>
-
 
  <!-- Navigations bar -->
 
