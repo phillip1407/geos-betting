@@ -18,7 +18,6 @@
       color: #142541;
     }
 
-    /* Navbar */
     .navbar {
       background-color: #142541;
       padding: 15px 30px;
@@ -94,7 +93,6 @@
       color: #e0e7f6;
     }
 
-    /* Disclaimer */
     .disclaimer {
       font-size: 14px;
       color: #142541;
@@ -106,9 +104,8 @@
       box-sizing: border-box;
     }
 
-    /* Nyheder */
     .news {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 40px auto;
       padding: 0 20px;
     }
@@ -118,29 +115,45 @@
       color: #142541;
       margin-bottom: 20px;
       text-align: center;
+      border-bottom: 2px solid #142541;
+      padding-bottom: 5px;
     }
 
     .news-article {
       background: white;
-      padding: 20px;
+      padding: 15px;
       margin-bottom: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .news-article img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .news-article-content {
+      flex: 1;
     }
 
     .news-article h3 {
-      margin-top: 0;
+      margin: 0 0 5px;
       color: #142541;
     }
 
     .news-meta {
       font-size: 14px;
       color: #666;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .news-article p {
-      margin-bottom: 10px;
+      margin: 0 0 8px;
     }
 
     .news-article a {
@@ -149,7 +162,6 @@
       font-weight: bold;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       font-size: 12px;
@@ -185,27 +197,51 @@
   </p>
 
   <section class="news">
-    <h2>Seneste Nyheder</h2>
+    <h2>Fodbold Nyheder</h2>
 
     <article class="news-article">
-      <h3>Premier League - Store opgør i weekenden</h3>
-      <p class="news-meta">24. maj 2025 | Ekspert: Loso</p>
-      <p>Manchester City og Arsenal mødes i en kamp, der kan afgøre mesterskabet. Vi ser nærmere på, hvad du kan forvente – og hvor du kan finde værdi i markedet.</p>
-      <a href="#">Læs mere</a>
+      <img src="https://source.unsplash.com/featured/football" alt="Fodbold billede">
+      <div class="news-article-content">
+        <h3>Premier League - Store opgør i weekenden</h3>
+        <p class="news-meta">24. maj 2025 | Ekspert: Loso</p>
+        <p>Manchester City og Arsenal mødes i en kamp, der kan afgøre mesterskabet. Vi ser nærmere på, hvad du kan forvente – og hvor du kan finde værdi i markedet.</p>
+        <a href="#">Læs mere</a>
+      </div>
     </article>
 
     <article class="news-article">
-      <h3>Betting Tips: Superligaens sidste runde</h3>
-      <p class="news-meta">23. maj 2025 | Ekspert: Far</p>
-      <p>Superligaen afsluttes med spænding i både toppen og bunden. Her er vores bud på weekendens kampe og hvor du kan finde de bedste odds.</p>
-      <a href="#">Læs mere</a>
+      <img src="https://source.unsplash.com/featured/soccer" alt="Superliga billede">
+      <div class="news-article-content">
+        <h3>Superligaens sidste runde</h3>
+        <p class="news-meta">23. maj 2025 | Ekspert: Far</p>
+        <p>Superligaen afsluttes med spænding i både toppen og bunden. Her er vores bud på weekendens kampe og hvor du kan finde de bedste odds.</p>
+        <a href="#">Læs mere</a>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="news">
+    <h2>Transfer Nyheder</h2>
+
+    <article class="news-article">
+      <img src="https://source.unsplash.com/featured/transfer" alt="Transfer billede">
+      <div class="news-article-content">
+        <h3>Transfer-nyt: Hvem skifter til Real Madrid?</h3>
+        <p class="news-meta">22. maj 2025 | Ekspert: Geo</p>
+        <p>Real Madrid er på udkig efter forstærkninger til næste sæson. Vi ser nærmere på de varmeste rygter og potentielle transfers.</p>
+        <a href="#">Læs mere</a>
+      </div>
     </article>
 
     <article class="news-article">
-      <h3>LaLiga: Barcelona jagter sejren mod Sevilla</h3>
-      <p class="news-meta">22. maj 2025 | Ekspert: Geo</p>
-      <p>Barcelona er favoritter mod Sevilla, men kan andalusierne skabe en overraskelse? Vi analyserer kampen og finder værdi-spil.</p>
-      <a href="#">Læs mere</a>
+      <img src="https://source.unsplash.com/featured/sports" alt="Transfer billede">
+      <div class="news-article-content">
+        <h3>Messi til Saudi Arabien?</h3>
+        <p class="news-meta">21. maj 2025 | Ekspert: Far</p>
+        <p>Der er rygter om, at Messi kan være på vej til Saudi Arabien. Vi gennemgår de seneste spekulationer og vurderer sandsynligheden.</p>
+        <a href="#">Læs mere</a>
+      </div>
     </article>
 
   </section>
