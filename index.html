@@ -147,152 +147,101 @@
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
     <!-- Nederste fanebaserede sektion -->
-    <section class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-12">
-      <div class="flex border-b border-gray-300 mb-4 relative">
-        <button id="btn-seneste" 
-                class="px-4 py-2 font-semibold text-main border-b-2 border-main focus:outline-none"
-                onclick="showTab('seneste')">Seneste</button>
-        <button id="btn-tilbud" 
-                class="ml-6 px-4 py-2 font-semibold text-gray-500 hover:text-main focus:outline-none"
-                onclick="showTab('tilbud')">Tilbud</button>
+    <section class="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow">
+      <div class="flex space-x-6 mb-4">
+        <button id="btnSeneste" class="btn-main px-4 py-2 rounded font-semibold">Seneste</button>
+        <button id="btnTilbud" class="btn-main px-4 py-2 rounded font-semibold">Tilbud</button>
       </div>
-
-      <!-- Seneste indhold -->
-      <div id="content-seneste" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Boks 1 -->
-        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
-          <h3 class="font-bold text-main mb-2">Seneste Boks 1</h3>
-          <p>Her kan du tilføje info om seneste spil eller tips...</p>
-        </div>
-        <!-- Boks 2 -->
-        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
-          <h3 class="font-bold text-main mb-2">Seneste Boks 2</h3>
-          <p>Plads til mere tekst eller grafik.</p>
-        </div>
-        <!-- Boks 3 -->
-        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
-          <h3 class="font-bold text-main mb-2">Seneste Boks 3</h3>
-          <p>Tilføj odds, analyser eller links.</p>
-        </div>
-        <!-- Boks 4 -->
-        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
-          <h3 class="font-bold text-main mb-2">Seneste Boks 4</h3>
-          <p>Du kan tilpasse efter behov.</p>
-        </div>
+      <div id="seneste" class="space-y-4">
+        <p>Seneste bettingtips kommer her…</p>
       </div>
-
-      <!-- Tilbud indhold -->
-      <div id="content-tilbud" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Boks 1 -->
-        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
-          <h3 class="font-bold text-main mb-2">Tilbud Boks 1</h3>
-          <p>Her er et specialtilbud fra bookmaker...</p>
-        </div>
-        <!-- Boks 2 -->
-        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
-          <h3 class="font-bold text-main mb-2">Tilbud Boks 2</h3>
-          <p>Bonuskode og kampagneinfo.</p>
-        </div>
-        <!-- Boks 3 -->
-        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
-          <h3 class="font-bold text-main mb-2">Tilbud Boks 3</h3>
-          <p>Unikke odds og ekstra gevinster.</p>
-        </div>
-        <!-- Boks 4 -->
-        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
-          <h3 class="font-bold text-main mb-2">Tilbud Boks 4</h3>
-          <p>Læs mere og tilmeld dig nu.</p>
-        </div>
+      <div id="tilbud" class="hidden space-y-4">
+        <p>Tilbudssektionen kommer her…</p>
       </div>
     </section>
   </main>
 
-<!-- Nyhedsbrev Pop-up -->
-<div id="newsletter-popup" 
-     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-  <div class="bg-white rounded-lg p-8 max-w-md w-full relative shadow-lg">
-    <button id="close-popup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-900 font-bold text-xl">&times;</button>
-    <h2 class="text-2xl font-bold mb-4 text-main">Tilmeld dig vores nyhedsbrev</h2>
-    <form id="newsletter-form" class="space-y-4">
-      <input type="email" id="email" name="email" placeholder="Din email" required
-             class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-main" />
-      <button type="submit" 
-              class="w-full btn-main py-3 rounded font-semibold hover:bg-blue-900 transition">
-        Tilmeld
-      </button>
-    </form>
-    <p id="form-message" class="mt-3 text-sm text-green-600 hidden"></p>
+  <!-- Nyhedsbrev Pop-up -->
+  <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white p-8 rounded shadow-lg max-w-md w-full relative">
+      <button id="closePopup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">&times;</button>
+      <h2 class="text-2xl font-bold mb-4 text-main">Tilmeld dig vores nyhedsbrev</h2>
+      <p class="mb-4">Få de bedste bettingtips direkte i din inbox.</p>
+      <form id="newsletterForm" class="flex flex-col gap-4">
+        <input type="email" id="emailInput" placeholder="Din email" required class="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-main" />
+        <button type="submit" class="btn-main py-2 rounded font-semibold">Tilmeld</button>
+      </form>
+      <p id="formMessage" class="mt-3 text-green-600 hidden"></p>
+    </div>
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
-<script>
-  // Supabase konfiguration - indsæt dine egne nøgler her
-  const supabaseUrl = 'https://YOUR_SUPABASE_PROJECT.supabase.co';
-  const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  <script>
+    // Popup og localStorage kontrol
+    const popup = document.getElementById('popup');
+    const closePopupBtn = document.getElementById('closePopup');
+    const newsletterForm = document.getElementById('newsletterForm');
+    const emailInput = document.getElementById('emailInput');
+    const formMessage = document.getElementById('formMessage');
 
-  const popup = document.getElementById('newsletter-popup');
-  const closeBtn = document.getElementById('close-popup');
-  const form = document.getElementById('newsletter-form');
-  const formMessage = document.getElementById('form-message');
-
-  // --- NYT: Funktion til at tjekke om pop-up allerede er vist ---
-  function hasSeenPopup() {
-    return localStorage.getItem('newsletterPopupShown') === 'true';
-  }
-
-  // --- NYT: Funktion til at sætte pop-up som vist ---
-  function markPopupAsShown() {
-    localStorage.setItem('newsletterPopupShown', 'true');
-  }
-
-  // Vis pop-up EFTER 5 sekunder, hvis ikke allerede vist
-  window.addEventListener('load', () => {
-    if (!hasSeenPopup()) {
-      setTimeout(() => {
+    // Vis popup kun hvis ikke tidligere vist
+    window.addEventListener('load', () => {
+      const popupSeen = localStorage.getItem('popupSeen');
+      if (!popupSeen) {
         popup.classList.remove('hidden');
-        markPopupAsShown(); // Sæt som vist, så den ikke kommer igen
-      }, 5000);
-    }
-  });
+      }
+    });
 
-  // Luk pop-up ved klik på kryds
-  closeBtn.addEventListener('click', () => {
-    popup.classList.add('hidden');
-    markPopupAsShown(); // også gem, hvis bruger lukker pop-up manuelt
-  });
-
-  // Håndter tilmelding
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    formMessage.classList.add('hidden');
-    const email = form.email.value.trim();
-
-    if(!email) {
-      alert('Indtast venligst en gyldig emailadresse.');
-      return;
+    // Luk popup og sæt flag i localStorage
+    function closePopup() {
+      popup.classList.add('hidden');
+      localStorage.setItem('popupSeen', 'true');
     }
 
-    const { data, error } = await supabase
-      .from('newsletter')
-      .insert([{ email: email }]);
+    closePopupBtn.addEventListener('click', closePopup);
 
-    if(error) {
-      formMessage.textContent = 'Noget gik galt, prøv igen senere.';
-      formMessage.classList.remove('hidden');
-      formMessage.classList.remove('text-green-600');
-      formMessage.classList.add('text-red-600');
-    } else {
+    // Formular håndtering
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        alert('Indtast venligst en gyldig email.');
+        return;
+      }
+
+      // Her indsæt din Supabase API-kald eller fetch til din backend for at gemme email
+      // Eksempel: 
+      // await supabase.from('nyhedsbrev').insert([{ email }]);
+
+      // For demo viser vi kun succes besked og lukker popup
       formMessage.textContent = 'Tak for din tilmelding!';
       formMessage.classList.remove('hidden');
-      formMessage.classList.remove('text-red-600');
-      formMessage.classList.add('text-green-600');
-      form.email.value = '';
-      // Luk pop-up efter 3 sekunder
+
+      // Gem at popup er set (så den ikke vises igen)
+      localStorage.setItem('popupSeen', 'true');
+
+      // Luk popup efter 2 sekunder
       setTimeout(() => {
-        popup.classList.add('hidden');
-      }, 3000);
-    }
-  });
-</script>
+        closePopup();
+      }, 2000);
+    });
+
+    // Fanebytte funktion for Seneste / Tilbud
+    const btnSeneste = document.getElementById('btnSeneste');
+    const btnTilbud = document.getElementById('btnTilbud');
+    const seneste = document.getElementById('seneste');
+    const tilbud = document.getElementById('tilbud');
+
+    btnSeneste.addEventListener('click', () => {
+      seneste.classList.remove('hidden');
+      tilbud.classList.add('hidden');
+    });
+
+    btnTilbud.addEventListener('click', () => {
+      tilbud.classList.remove('hidden');
+      seneste.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
