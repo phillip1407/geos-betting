@@ -146,156 +146,172 @@
 
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
-<!-- Nederste fanebaserede sektion -->
-<section class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-12">
-  <div class="flex border-b border-gray-300 mb-4 relative">
-    <button id="btn-seneste" 
-            class="px-4 py-2 font-semibold text-main border-b-2 border-main focus:outline-none"
-            onclick="showTab('seneste')">Seneste</button>
-    <button id="btn-tilbud" 
-            class="ml-6 px-4 py-2 font-semibold text-gray-500 hover:text-main focus:outline-none"
-            onclick="showTab('tilbud')">Tilbud</button>
-  </div>
+    <!-- Nederste fanebaserede sektion -->
+    <section class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-12">
+      <div class="flex border-b border-gray-300 mb-4 relative">
+        <button id="btn-seneste" 
+                class="px-4 py-2 font-semibold text-main border-b-2 border-main focus:outline-none"
+                onclick="showTab('seneste')">Seneste</button>
+        <button id="btn-tilbud" 
+                class="ml-6 px-4 py-2 font-semibold text-gray-500 hover:text-main focus:outline-none"
+                onclick="showTab('tilbud')">Tilbud</button>
+      </div>
 
-  <!-- Seneste indhold -->
-  <div id="content-seneste" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6">
-    <!-- Boks 1 -->
-    <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
-      <h3 class="font-bold text-main mb-2">Seneste Boks 1</h3>
-      <p>Her kan du tilføje info om seneste spil eller tips...</p>
+      <!-- Seneste indhold -->
+      <div id="content-seneste" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Boks 1 -->
+        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
+          <h3 class="font-bold text-main mb-2">Seneste Boks 1</h3>
+          <p>Her kan du tilføje info om seneste spil eller tips...</p>
+        </div>
+        <!-- Boks 2 -->
+        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
+          <h3 class="font-bold text-main mb-2">Seneste Boks 2</h3>
+          <p>Plads til mere tekst eller grafik.</p>
+        </div>
+        <!-- Boks 3 -->
+        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
+          <h3 class="font-bold text-main mb-2">Seneste Boks 3</h3>
+          <p>Tilføj odds, analyser eller links.</p>
+        </div>
+        <!-- Boks 4 -->
+        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
+          <h3 class="font-bold text-main mb-2">Seneste Boks 4</h3>
+          <p>Du kan tilpasse efter behov.</p>
+        </div>
+      </div>
+
+      <!-- Tilbud indhold -->
+      <div id="content-tilbud" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Boks 1 -->
+        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
+          <h3 class="font-bold text-main mb-2">Tilbud Boks 1</h3>
+          <p>Her er et specialtilbud fra bookmaker...</p>
+        </div>
+        <!-- Boks 2 -->
+        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
+          <h3 class="font-bold text-main mb-2">Tilbud Boks 2</h3>
+          <p>Bonuskode og kampagneinfo.</p>
+        </div>
+        <!-- Boks 3 -->
+        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
+          <h3 class="font-bold text-main mb-2">Tilbud Boks 3</h3>
+          <p>Unikke odds og ekstra gevinster.</p>
+        </div>
+        <!-- Boks 4 -->
+        <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
+          <h3 class="font-bold text-main mb-2">Tilbud Boks 4</h3>
+          <p>Læs mere og tilmeld dig nu.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Nyhedsbrev Pop-up -->
+  <div id="newsletter-popup" 
+       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg p-8 max-w-md w-full relative shadow-lg">
+      <button id="close-popup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-900 font-bold text-xl">&times;</button>
+      <h2 class="text-2xl font-bold mb-4 text-main">Tilmeld dig vores nyhedsbrev</h2>
+      <form id="newsletter-form" class="space-y-4">
+        <input type="email" id="email" name="email" placeholder="Din email" required
+               class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-main" />
+        <button type="submit" 
+                class="w-full btn-main py-3 rounded font-semibold hover:bg-blue-900 transition">
+          Tilmeld
+        </button>
+      </form>
+      <p id="form-message" class="mt-3 text-sm text-green-600 hidden"></p>
     </div>
-    <!-- Boks 2 -->
-    <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
-      <h3 class="font-bold text-main mb-2">Seneste Boks 2</h3>
-      <p>Plads til mere tekst eller grafik.</p>
-    </div>
-    <!-- Boks 3 -->
-    <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
-      <h3 class="font-bold text-main mb-2">Seneste Boks 3</h3>
-      <p>Tilføj odds, analyser eller links.</p>
-    </div>
-    <!-- Boks 4 -->
-    <div class="bg-gray-100 rounded-lg p-4 shadow box-hover">
-      <h3 class="font-bold text-main mb-2">Seneste Boks 4</h3>
-      <p>Du kan tilpasse efter behov.</p>
-    </div>
   </div>
 
-<!-- Tilbud indhold -->
-<div id="content-tilbud" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
-  <!-- Boks 1 -->
-  <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
-    <h3 class="font-bold text-main mb-2">Tilbud Boks 1</h3>
-    <p>Her kan du vise aktuelle kampagner eller odds tilbud.</p>
-  </div>
-  <!-- Boks 2 -->
-  <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
-    <h3 class="font-bold text-main mb-2">Tilbud Boks 2</h3>
-    <p>Fremhæv eksklusive bonusser eller rabatter.</p>
-  </div>
-  <!-- Boks 3 -->
-  <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
-    <h3 class="font-bold text-main mb-2">Tilbud Boks 3</h3>
-    <p>Plads til billeder, koder eller links.</p>
-  </div>
-  <!-- Boks 4 -->
-  <div class="bg-gray-100 rounded-lg p-4 shadow box-hover border border-gray-300">
-    <h3 class="font-bold text-main mb-2">Tilbud Boks 4</h3>
-    <p>Tilpas designet som du ønsker.</p>
-  </div>
-</div>
-</section>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+  <script>
+    // Skift mellem Seneste og Tilbud sektioner
+    function showTab(tab) {
+      const senesteBtn = document.getElementById('btn-seneste');
+      const tilbudBtn = document.getElementById('btn-tilbud');
+      const senesteContent = document.getElementById('content-seneste');
+      const tilbudContent = document.getElementById('content-tilbud');
 
-<script>
-  function showTab(tab) {
-    const senesteContent = document.getElementById('content-seneste');
-    const tilbudContent = document.getElementById('content-tilbud');
-
-    const btnSeneste = document.getElementById('btn-seneste');
-    const btnTilbud = document.getElementById('btn-tilbud');
-
-    if (tab === 'seneste') {
-      senesteContent.classList.remove('hidden');
-      tilbudContent.classList.add('hidden');
-
-      btnSeneste.classList.add('border-main', 'text-main');
-      btnSeneste.classList.remove('text-gray-500');
-      btnSeneste.style.borderBottomWidth = '2px';
-
-      btnTilbud.classList.remove('border-main', 'text-main');
-      btnTilbud.classList.add('text-gray-500');
-      btnTilbud.style.borderBottomWidth = '0px';
-    } else if (tab === 'tilbud') {
-      tilbudContent.classList.remove('hidden');
-      senesteContent.classList.add('hidden');
-
-      btnTilbud.classList.add('border-main', 'text-main');
-      btnTilbud.classList.remove('text-gray-500');
-      btnTilbud.style.borderBottomWidth = '2px';
-
-      btnSeneste.classList.remove('border-main', 'text-main');
-      btnSeneste.classList.add('text-gray-500');
-      btnSeneste.style.borderBottomWidth = '0px';
+      if(tab === 'seneste') {
+        senesteContent.classList.remove('hidden');
+        tilbudContent.classList.add('hidden');
+        senesteBtn.classList.add('border-main', 'text-main');
+        tilbudBtn.classList.remove('border-main', 'text-main');
+        tilbudBtn.classList.add('text-gray-500');
+      } else {
+        tilbudContent.classList.remove('hidden');
+        senesteContent.classList.add('hidden');
+        tilbudBtn.classList.add('border-main', 'text-main');
+        senesteBtn.classList.remove('border-main', 'text-main');
+        senesteBtn.classList.add('text-gray-500');
+      }
     }
-  }
 
-  // Sæt "Seneste" som standard aktiv fane ved sideindlæsning
-  document.addEventListener('DOMContentLoaded', () => {
+    // Init default tab
     showTab('seneste');
-  });
-</script>
 
+    // --- Nyhedsbrev Pop-up Script ---
 
-<!-- Pop-up til nyhedsbrev -->
-<div id="popup-box" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 1px solid #ccc; border-radius: 8px; padding: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 1000; display: none; max-width: 300px;">
-  <p class="font-semibold mb-2">Tilmeld vores nyhedsbrev</p>
-  <form id="signup-form" class="space-y-2">
-    <input id="email-input" type="email" placeholder="Din email" required class="w-full border px-3 py-2 rounded">
-    <div class="flex justify-between mt-2">
-      <button type="submit" class="btn-yes bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition">Ja tak</button>
-      <button type="button" id="close-btn" class="btn-no bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">Nej tak</button>
-    </div>
-  </form>
-</div>
+    // Supabase konfiguration - indsæt dine egne nøgler her
+    const supabaseUrl = 'https://YOUR_SUPABASE_PROJECT.supabase.co';
+    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-<!-- Supabase og pop-up script -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const supabaseUrl = "https://iwbvimwodjlbtxtmfqra.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo";
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    const popup = document.getElementById('newsletter-popup');
+    const closeBtn = document.getElementById('close-popup');
+    const form = document.getElementById('newsletter-form');
+    const formMessage = document.getElementById('form-message');
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const popupBox = document.getElementById("popup-box");
-    const emailInput = document.getElementById("email-input");
-    const signupForm = document.getElementById("signup-form");
-    const closeBtn = document.getElementById("close-btn");
-
-    // Check localStorage
-    const newsletterSignedUp = localStorage.getItem("newsletterSignedUp");
-    if (!newsletterSignedUp) {
-      popupBox.style.display = "block";
-    }
-
-    closeBtn.addEventListener("click", () => {
-      popupBox.style.display = "none";
+    // Vis pop-up efter 5 sekunder
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        popup.classList.remove('hidden');
+      }, 5000);
     });
 
-    signupForm.addEventListener("submit", async (e) => {
+    // Luk pop-up
+    closeBtn.addEventListener('click', () => {
+      popup.classList.add('hidden');
+    });
+
+    // Håndter tilmelding
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = emailInput.value.trim();
-      if (email) {
-        const { data, error } = await supabase.from("nyhedsbrev").insert([{ email }]);
-        if (error) {
-          alert("Der opstod en fejl. Prøv igen.");
-        } else {
-          localStorage.setItem("newsletterSignedUp", "true");
-          popupBox.innerHTML = "<p class='text-green-600 font-semibold'>Tak for din tilmelding!</p>";
-          setTimeout(() => {
-            popupBox.style.display = "none";
-          }, 3000);
-        }
+      formMessage.classList.add('hidden');
+      const email = form.email.value.trim();
+
+      if(!email) {
+        alert('Indtast venligst en gyldig emailadresse.');
+        return;
+      }
+
+      // Indsæt i Supabase
+      const { data, error } = await supabase
+        .from('newsletter')
+        .insert([{ email: email }]);
+
+      if(error) {
+        formMessage.textContent = 'Noget gik galt, prøv igen senere.';
+        formMessage.classList.remove('hidden');
+        formMessage.classList.remove('text-green-600');
+        formMessage.classList.add('text-red-600');
+      } else {
+        formMessage.textContent = 'Tak for din tilmelding!';
+        formMessage.classList.remove('hidden');
+        formMessage.classList.remove('text-red-600');
+        formMessage.classList.add('text-green-600');
+        form.email.value = '';
+        // Luk pop-up efter 3 sekunder
+        setTimeout(() => {
+          popup.classList.add('hidden');
+          formMessage.classList.add('hidden');
+        }, 3000);
       }
     });
-  });
-</script>
+  </script>
+
+</body>
+</html>
