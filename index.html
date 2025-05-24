@@ -79,10 +79,10 @@
       justify-content: center;
       align-items: center;
       border-radius: 12px;
-      font-weight: bold;
+      font-weight: normal;      /* IKKE fed */
       font-size: 20px;
       user-select: none;
-      text-transform: lowercase; /* småt 'maj' */
+      text-transform: lowercase; /* 'maj' med små bogstaver */
       letter-spacing: 2px;
       line-height: 1.2;
       flex-shrink: 0;
@@ -94,6 +94,25 @@
       padding: 0;
       line-height: 1.2;
     }
+
+    /* Rest af CSS som før... */
+  </style>
+
+  <div class="dagens-spil-wrapper flex items-start gap-6 overflow-x-auto">
+
+    <!-- Lodret dato boks -->
+    <div class="date-vertical-box flex-shrink-0">
+      <span>2</span>
+      <span>4</span>
+      <span>.</span>
+      <span>m</span>
+      <span>a</span>
+      <span>j</span>
+    </div>
+
+    <!-- resten af dagens spil... -->
+  </div>
+</section>
 
     .league-name {
       font-weight: 700;
