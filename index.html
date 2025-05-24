@@ -298,8 +298,85 @@
 
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
-    <!-- Nederste fanebaserede sektion -->
+    <!-- Seneste sektion -->
+<section class="nyheds-sektion">
+  <h2>Seneste Nyheder</h2>
 
+  <div class="nyheds-kort">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Arsenal_FC.svg" alt="Arsenal" />
+    <div class="nyheds-tekst">
+      <h3>Arsenal vinder stort i Premier League</h3>
+      <p>Arsenal sikrede sig en overbevisende sejr over Chelsea med 3-0 i en spændende kamp søndag aften.</p>
+      <span class="dato">24. maj 2025</span>
+    </div>
+  </div>
+
+  <div class="nyheds-kort">
+    <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/FC_Barcelona_logo.svg" alt="Barcelona" />
+    <div class="nyheds-tekst">
+      <h3>Barcelona gør klar til sæsonfinalen</h3>
+      <p>Med en tæt kamp mod Real Madrid forbereder Barcelona sig til den afgørende kamp i LaLiga.</p>
+      <span class="dato">23. maj 2025</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nyheds-sektion {
+    margin: 40px 20px;
+  }
+  .nyheds-sektion h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #142541;
+    margin-bottom: 25px;
+  }
+
+  .nyheds-kort {
+    display: flex;
+    background: white;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    max-width: 700px;
+  }
+
+  .nyheds-kort img {
+    width: 130px;
+    object-fit: contain;
+    background: #f0f2f5;
+    padding: 15px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  .nyheds-tekst {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nyheds-tekst h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: #142541;
+  }
+
+  .nyheds-tekst p {
+    margin: 0 0 10px 0;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  .dato {
+    font-size: 14px;
+    color: #999;
+  }
+</style>
+
+  
 
   <!-- Nyhedsbrev Pop-up -->
   <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
