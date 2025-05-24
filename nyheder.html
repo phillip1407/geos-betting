@@ -115,145 +115,139 @@
       color: #e0e7f6;
     }
 
-
     body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f9f9f9;
       margin: 20px;
-      background-color: #f9f9f9;
       color: #142541;
     }
-
-    h2 {
+    .news-section {
+      max-width: 900px;
+      margin: auto 0 50px 0;
+    }
+    h2.section-title {
       font-weight: 700;
       margin-bottom: 10px;
+      font-size: 28px;
+      border-bottom: 1px solid #142541;
+      padding-bottom: 5px;
     }
-
-    .section-separator {
+    hr.divider {
+      border: none;
       height: 2px;
-      background-color: #142541;
-      max-width: 200px;
-      margin: 20px 0;
-    }
-
-    .news-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .news-item {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-      max-width: 320px;
-      flex: 1 1 300px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-
-    .news-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgb(0 0 0 / 0.15);
-    }
-
-    .news-image {
+      background: #142541;
+      margin-bottom: 30px;
       width: 100%;
-      height: 180px;
-      object-fit: cover;
     }
-
+    .news-item {
+      display: flex;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
+      margin-bottom: 20px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      max-height: 150px; /* collapsed height */
+    }
+    .news-item.expanded {
+      max-height: 600px; /* expanded height */
+    }
+    .news-image {
+      flex-shrink: 0;
+      width: 180px;
+      height: 150px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
     .news-content {
-      padding: 15px;
+      padding: 15px 20px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
-
     .news-title {
-      font-weight: 600;
+      font-size: 22px;
+      font-weight: 700;
       margin: 0 0 8px 0;
-      font-size: 18px;
-      color: #142541;
+      line-height: 1.2;
+      max-width: 600px;
     }
-
-    .news-text {
-      font-size: 14px;
+    .news-short-text {
+      font-size: 16px;
       color: #444;
-      flex-grow: 1;
+    }
+    .news-full-text {
+      font-size: 15px;
+      margin-top: 10px;
+      color: #333;
+      display: none;
+      line-height: 1.4;
+    }
+    .news-item.expanded .news-full-text {
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <h2>Fodbold Nyheder</h2>
-  <div class="news-container" id="fodbold-nyheder"></div>
+  <div class="news-section" id="fodbold-news">
+    <h2 class="section-title">Fodbold Nyheder</h2>
+    <hr class="divider" />
+  </div>
 
-  <div class="section-separator"></div>
-
-  <h2>Transfer Nyheder</h2>
-  <div class="news-container" id="transfer-nyheder"></div>
+  <div class="news-section" id="transfer-news">
+    <h2 class="section-title">Transfer Nyheder</h2>
+    <hr class="divider" />
+  </div>
 
   <script>
     async function loadNews() {
-      try {
-        const response = await fetch('news.json');
-        if (!response.ok) {
-          throw new Error('Kunne ikke hente nyheder');
-        }
-        const data = await response.json();
+      const response = await fetch('news.json');
+      const data = await response.json();
 
-        const fodboldContainer = document.getElementById('fodbold-nyheder');
-        const transferContainer = document.getElementById('transfer-nyheder');
+      function createNewsItem(news) {
+        const container = document.createElement('div');
+        container.classList.add('news-item');
+        container.onclick = () => {
+          // Luk andre
+          document.querySelectorAll('.news-item').forEach(item => {
+            if(item !== container) item.classList.remove('expanded');
+          });
+          container.classList.toggle('expanded');
+        };
 
-        function createNewsItem(news) {
-          const div = document.createElement('div');
-          div.className = 'news-item';
+        const img = document.createElement('img');
+        img.src = news.image;
+        img.alt = news.title;
+        img.className = 'news-image';
 
-          const img = document.createElement('img');
-          img.className = 'news-image';
-          img.src = news.image;
-          img.alt = news.title;
+        const content = document.createElement('div');
+        content.className = 'news-content';
 
-          const content = document.createElement('div');
-          content.className = 'news-content';
+        const title = document.createElement('h3');
+        title.className = 'news-title';
+        title.textContent = news.title;
 
-          const title = document.createElement('h3');
-          title.className = 'news-title';
-          title.textContent = news.title;
+        const shortText = document.createElement('p');
+        shortText.className = 'news-short-text';
+        shortText.textContent = news.text;
 
-          const text = document.createElement('p');
-          text.className = 'news-text';
-          text.textContent = news.text;
+        const fullText = document.createElement('p');
+        fullText.className = 'news-full-text';
+        fullText.textContent = news.fullText || '';
 
-          content.appendChild(title);
-          content.appendChild(text);
+        content.appendChild(title);
+        content.appendChild(shortText);
+        content.appendChild(fullText);
 
-          div.appendChild(img);
-          div.appendChild(content);
+        container.appendChild(img);
+        container.appendChild(content);
 
-          return div;
-        }
-
-        // Tilføj fodbold nyheder
-        data.fodbold.forEach(nyhed => {
-          const item = createNewsItem(nyhed);
-          fodboldContainer.appendChild(item);
-        });
-
-        // Tilføj transfer nyheder
-        data.transfer.forEach(nyhed => {
-          const item = createNewsItem(nyhed);
-          transferContainer.appendChild(item);
-        });
-
-      } catch (error) {
-        console.error('Fejl:', error);
+        return container;
       }
-    }
 
-    loadNews();
-  </script>
+      const
 
-</body>
-</html>
