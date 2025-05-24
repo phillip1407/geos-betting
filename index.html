@@ -207,111 +207,92 @@
     </section>
   </main>
 
-  <!-- Nyhedsbrev Pop-up -->
-  <div id="newsletter-popup" 
-       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-    <div class="bg-white rounded-lg p-8 max-w-md w-full relative shadow-lg">
-      <button id="close-popup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-900 font-bold text-xl">&times;</button>
-      <h2 class="text-2xl font-bold mb-4 text-main">Tilmeld dig vores nyhedsbrev</h2>
-      <form id="newsletter-form" class="space-y-4">
-        <input type="email" id="email" name="email" placeholder="Din email" required
-               class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-main" />
-        <button type="submit" 
-                class="w-full btn-main py-3 rounded font-semibold hover:bg-blue-900 transition">
-          Tilmeld
-        </button>
-      </form>
-      <p id="form-message" class="mt-3 text-sm text-green-600 hidden"></p>
-    </div>
+<!-- Nyhedsbrev Pop-up -->
+<div id="newsletter-popup" 
+     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-lg p-8 max-w-md w-full relative shadow-lg">
+    <button id="close-popup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-900 font-bold text-xl">&times;</button>
+    <h2 class="text-2xl font-bold mb-4 text-main">Tilmeld dig vores nyhedsbrev</h2>
+    <form id="newsletter-form" class="space-y-4">
+      <input type="email" id="email" name="email" placeholder="Din email" required
+             class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-main" />
+      <button type="submit" 
+              class="w-full btn-main py-3 rounded font-semibold hover:bg-blue-900 transition">
+        Tilmeld
+      </button>
+    </form>
+    <p id="form-message" class="mt-3 text-sm text-green-600 hidden"></p>
   </div>
+</div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
-  <script>
-    // Skift mellem Seneste og Tilbud sektioner
-    function showTab(tab) {
-      const senesteBtn = document.getElementById('btn-seneste');
-      const tilbudBtn = document.getElementById('btn-tilbud');
-      const senesteContent = document.getElementById('content-seneste');
-      const tilbudContent = document.getElementById('content-tilbud');
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+<script>
+  // Supabase konfiguration - indsæt dine egne nøgler her
+  const supabaseUrl = 'https://YOUR_SUPABASE_PROJECT.supabase.co';
+  const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-      if(tab === 'seneste') {
-        senesteContent.classList.remove('hidden');
-        tilbudContent.classList.add('hidden');
-        senesteBtn.classList.add('border-main', 'text-main');
-        tilbudBtn.classList.remove('border-main', 'text-main');
-        tilbudBtn.classList.add('text-gray-500');
-      } else {
-        tilbudContent.classList.remove('hidden');
-        senesteContent.classList.add('hidden');
-        tilbudBtn.classList.add('border-main', 'text-main');
-        senesteBtn.classList.remove('border-main', 'text-main');
-        senesteBtn.classList.add('text-gray-500');
-      }
-    }
+  const popup = document.getElementById('newsletter-popup');
+  const closeBtn = document.getElementById('close-popup');
+  const form = document.getElementById('newsletter-form');
+  const formMessage = document.getElementById('form-message');
 
-    // Init default tab
-    showTab('seneste');
+  // --- NYT: Funktion til at tjekke om pop-up allerede er vist ---
+  function hasSeenPopup() {
+    return localStorage.getItem('newsletterPopupShown') === 'true';
+  }
 
-    // --- Nyhedsbrev Pop-up Script ---
+  // --- NYT: Funktion til at sætte pop-up som vist ---
+  function markPopupAsShown() {
+    localStorage.setItem('newsletterPopupShown', 'true');
+  }
 
-    // Supabase konfiguration - indsæt dine egne nøgler her
-    const supabaseUrl = 'https://YOUR_SUPABASE_PROJECT.supabase.co';
-    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-    const popup = document.getElementById('newsletter-popup');
-    const closeBtn = document.getElementById('close-popup');
-    const form = document.getElementById('newsletter-form');
-    const formMessage = document.getElementById('form-message');
-
-    // Vis pop-up efter 5 sekunder
-    window.addEventListener('load', () => {
+  // Vis pop-up EFTER 5 sekunder, hvis ikke allerede vist
+  window.addEventListener('load', () => {
+    if (!hasSeenPopup()) {
       setTimeout(() => {
         popup.classList.remove('hidden');
+        markPopupAsShown(); // Sæt som vist, så den ikke kommer igen
       }, 5000);
-    });
+    }
+  });
 
-    // Luk pop-up
-    closeBtn.addEventListener('click', () => {
-      popup.classList.add('hidden');
-    });
+  // Luk pop-up ved klik på kryds
+  closeBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
+    markPopupAsShown(); // også gem, hvis bruger lukker pop-up manuelt
+  });
 
-    // Håndter tilmelding
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      formMessage.classList.add('hidden');
-      const email = form.email.value.trim();
+  // Håndter tilmelding
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formMessage.classList.add('hidden');
+    const email = form.email.value.trim();
 
-      if(!email) {
-        alert('Indtast venligst en gyldig emailadresse.');
-        return;
-      }
+    if(!email) {
+      alert('Indtast venligst en gyldig emailadresse.');
+      return;
+    }
 
-      // Indsæt i Supabase
-      const { data, error } = await supabase
-        .from('newsletter')
-        .insert([{ email: email }]);
+    const { data, error } = await supabase
+      .from('newsletter')
+      .insert([{ email: email }]);
 
-      if(error) {
-        formMessage.textContent = 'Noget gik galt, prøv igen senere.';
-        formMessage.classList.remove('hidden');
-        formMessage.classList.remove('text-green-600');
-        formMessage.classList.add('text-red-600');
-      } else {
-        formMessage.textContent = 'Tak for din tilmelding!';
-        formMessage.classList.remove('hidden');
-        formMessage.classList.remove('text-red-600');
-        formMessage.classList.add('text-green-600');
-        form.email.value = '';
-        // Luk pop-up efter 3 sekunder
-        setTimeout(() => {
-          popup.classList.add('hidden');
-          formMessage.classList.add('hidden');
-        }, 3000);
-      }
-    });
-  </script>
-
-</body>
-</html>
+    if(error) {
+      formMessage.textContent = 'Noget gik galt, prøv igen senere.';
+      formMessage.classList.remove('hidden');
+      formMessage.classList.remove('text-green-600');
+      formMessage.classList.add('text-red-600');
+    } else {
+      formMessage.textContent = 'Tak for din tilmelding!';
+      formMessage.classList.remove('hidden');
+      formMessage.classList.remove('text-red-600');
+      formMessage.classList.add('text-green-600');
+      form.email.value = '';
+      // Luk pop-up efter 3 sekunder
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 3000);
+    }
+  });
+</script>
