@@ -64,206 +64,133 @@
   </nav>
 
 <!-- Dagens Spil Sektion -->
-<section class="dagensspil-wrapper">
-  <div class="dagensspil-container">
+<section class="dagens-spil">
+  <div class="dagens-spil-wrapper">
     <div class="date-vertical-box">
       <span>24</span>
       <span>maj</span>
     </div>
 
-    <div class="kampkort-container">
+    <div class="games-row">
       <!-- Kamp 1 -->
-      <div class="kampkort">
-        <div class="kampkort-top">
-          <p class="liga">Superliga</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/FC_Copenhagen_logo.svg/1200px-FC_Copenhagen_logo.svg.png" alt="FCK" class="team-logo" />
-            <p>FC København</p>
-          </div>
-          <p class="vs">vs</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Brøndby_IF_logo.svg/1200px-Brøndby_IF_logo.svg.png" alt="Brøndby" class="team-logo" />
-            <p>Brøndby IF</p>
+      <div class="game-card">
+        <div class="game-top">
+          <div class="league-name">Superliga</div>
+          <div class="teams">
+            <div class="team">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXnC2BTDdSQrjR1AFjilIXpuY4ap2xIvsMEA&s" alt="FCK" class="team-logo">
+              <p class="team-name">FC København</p>
+            </div>
+            <p class="vs">vs</p>
+            <div class="team">
+              <img src="https://www.brondbyif.net/media/4410/bif_1964_shadow_box.png" alt="Brøndby" class="team-logo">
+              <p class="team-name">Brøndby</p>
+            </div>
           </div>
         </div>
-        <div class="kampkort-bottom">
-          <span>Odds 1.85</span>
-          <span>Ekspert: Loso</span>
+        <div class="game-bottom">
+          <p class="odds">Odds 1.85</p>
+          <p class="ekspert">Ekspert: Loso</p>
         </div>
       </div>
 
+      <!-- Gentag for flere kampe (til 5) -->
       <!-- Kamp 2 -->
-      <div class="kampkort">
-        <div class="kampkort-top">
-          <p class="liga">LaLiga</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid" class="team-logo" />
-            <p>Real Madrid</p>
-          </div>
-          <p class="vs">vs</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/en/f/f1/Real_Sociedad_logo.svg" alt="Real Sociedad" class="team-logo" />
-            <p>Real Sociedad</p>
-          </div>
-        </div>
-        <div class="kampkort-bottom">
-          <span>Odds 2.10</span>
-          <span>Ekspert: Jonas</span>
-        </div>
-      </div>
-
-      <!-- Kamp 3 -->
-      <div class="kampkort">
-        <div class="kampkort-top">
-          <p class="liga">Premier League</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg" alt="Man City" class="team-logo" />
-            <p>Manchester City</p>
-          </div>
-          <p class="vs">vs</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg" alt="Arsenal" class="team-logo" />
-            <p>Arsenal</p>
+      <div class="game-card">
+        <div class="game-top">
+          <div class="league-name">LaLiga</div>
+          <div class="teams">
+            <div class="team">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Real Madrid" class="team-logo">
+              <p class="team-name">Real Madrid</p>
+            </div>
+            <p class="vs">vs</p>
+            <div class="team">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Real_Sociedad_logo.svg/1200px-Real_Sociedad_logo.svg.png" alt="Real Sociedad" class="team-logo">
+              <p class="team-name">Real Sociedad</p>
+            </div>
           </div>
         </div>
-        <div class="kampkort-bottom">
-          <span>Odds 1.95</span>
-          <span>Ekspert: Mads</span>
+        <div class="game-bottom">
+          <p class="odds">Odds 2.10</p>
+          <p class="ekspert">Ekspert: Loso</p>
         </div>
       </div>
 
-      <!-- Kamp 4 -->
-      <div class="kampkort">
-        <div class="kampkort-top">
-          <p class="liga">Serie A</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Juventus_FC_2017_logo.svg" alt="Juventus" class="team-logo" />
-            <p>Juventus</p>
-          </div>
-          <p class="vs">vs</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/AC_Milan_Logo.svg" alt="AC Milan" class="team-logo" />
-            <p>AC Milan</p>
-          </div>
-        </div>
-        <div class="kampkort-bottom">
-          <span>Odds 2.20</span>
-          <span>Ekspert: Peter</span>
-        </div>
-      </div>
-
-      <!-- Kamp 5 -->
-      <div class="kampkort">
-        <div class="kampkort-top">
-          <p class="liga">Bundesliga</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/FC_Bayern_München_logo_(2024).svg" alt="Bayern" class="team-logo" />
-            <p>Bayern München</p>
-          </div>
-          <p class="vs">vs</p>
-          <div class="hold">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Borussia_Dortmund_logo.svg" alt="Dortmund" class="team-logo" />
-            <p>Dortmund</p>
-          </div>
-        </div>
-        <div class="kampkort-bottom">
-          <span>Odds 2.00</span>
-          <span>Ekspert: Lucas</span>
-        </div>
-      </div>
+      <!-- Gentag for Kamp 3, 4, 5 -->
+      <!-- ... tilføj kampe som ovenfor ... -->
     </div>
   </div>
 </section>
 
 <style>
-.dagensspil-wrapper {
-  padding: 50px 20px;
+.dagens-spil {
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
-.dagensspil-container {
+.dagens-spil-wrapper {
   display: flex;
-  align-items: flex-start;
   gap: 20px;
+  align-items: flex-start;
 }
 
 .date-vertical-box {
   background-color: #142541;
   color: white;
   width: 40px;
-  height: 110px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
   font-size: 18px;
-  font-weight: normal;
-  letter-spacing: 1px;
   text-transform: lowercase;
+  font-weight: normal;
+  line-height: 1.2;
 }
 
 .date-vertical-box span {
-  transform: rotate(0deg);
+  display: block;
 }
 
-.kampkort-container {
+.games-row {
   display: flex;
   gap: 20px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding-bottom: 30px;
 }
 
-.kampkort {
-  width: 180px;
-  background-color: white;
+.game-card {
+  background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 180px;
   flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.kampkort-top {
+.game-top {
+  padding: 10px;
   text-align: center;
-  padding: 15px;
 }
 
-.liga {
+.league-name {
   font-weight: bold;
-  font-size: 1.125rem;
   color: #142541;
   margin-bottom: 10px;
 }
 
-.hold {
+.teams {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 5px;
-  margin-bottom: 5px;
 }
 
-.hold p {
-  font-weight: bold;
-  font-size: 1.125rem;
-  color: #142541;
-}
-
-.vs {
-  font-size: 0.9rem;
-  color: gray;
-}
-
-.kampkort-bottom {
-  background-color: #142541;
-  color: white;
+.team {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 8px 12px;
-  font-size: 0.85rem;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
 }
 
 .team-logo {
@@ -271,7 +198,32 @@
   height: 30px;
   object-fit: contain;
 }
+
+.team-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.vs {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.game-bottom {
+  background-color: #142541;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.odds, .ekspert {
+  margin: 0;
+}
 </style>
+
 
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
