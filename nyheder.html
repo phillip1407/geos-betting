@@ -115,145 +115,100 @@
       color: #e0e7f6;
     }
 
+
     body {
       font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 15px;
-      background: #f5f5f5;
-      color: #222;
+      background-color: #142541;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
     }
-    h1, h2 {
+    h2 {
+      font-size: 24px;
+      margin-top: 40px;
       text-align: center;
-      color: #142541;
     }
-    .news-section {
-      margin-bottom: 40px;
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
     }
-    .news-item {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin: 15px 0;
-      padding: 15px;
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
+    .news-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .news-item img {
-      max-width: 120px;
-      max-height: 80px;
+    .news-card:hover {
+      transform: scale(1.03);
+    }
+    .news-card img {
+      width: 100%;
+      height: 200px;
       object-fit: cover;
-      border-radius: 6px;
-    }
-    .news-text {
-      flex: 1;
     }
     .news-title {
-      font-size: 1.2em;
-      margin-bottom: 6px;
-      color: #142541;
+      position: absolute;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
     }
-    .news-summary {
-      font-size: 0.95em;
-      margin-bottom: 8px;
-      color: #555;
-    }
-    .news-fulltext {
-      font-size: 0.9em;
-      color: #444;
-    }
-    hr {
-      border: none;
-      border-top: 2px solid #142541;
-      margin: 50px 0 20px;
-      width: 80px;
-      margin-left: auto;
-      margin-right: auto;
+    .news-full {
+      display: none;
+      background-color: #0d1b2a;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <h1>Nyheder</h1>
 
-  <section id="fodbold" class="news-section">
-    <h2>Fodbold</h2>
-    <!-- Fodbold-nyheder kommer her -->
-  </section>
+  <h2>Fodbold Nyheder</h2>
+  <div id="fodbold" class="news-grid"></div>
 
-  <hr />
-
-  <section id="transfer" class="news-section">
-    <h2>Transfer</h2>
-    <!-- Transfer-nyheder kommer her -->
-  </section>
+  <h2>Transfer Nyheder</h2>
+  <div id="transfer" class="news-grid"></div>
 
   <script>
-    async function loadNews() {
-      try {
-        // Hent JSON-filen (sørg for at 'news.json' ligger i samme mappe)
-        const response = await fetch('news.json');
-        if (!response.ok) throw new Error('Fejl ved hentning af nyheder.');
+    // Hent JSON-data
+    fetch('nyheder.json')
+      .then(response => response.json())
+      .then(data => {
+        const fodboldContainer = document.getElementById('fodbold');
+        const transferContainer = document.getElementById('transfer');
 
-        const data = await response.json();
+        function createNewsCard(item, container) {
+          const card = document.createElement('div');
+          card.className = 'news-card';
 
-        const fodboldSection = document.getElementById('fodbold');
-        const transferSection = document.getElementById('transfer');
+          card.innerHTML = `
+            <img src="${item.image}" alt="${item.title}">
+            <div class="news-title">${item.title}</div>
+            <div class="news-full">${item.fullText}</div>
+          `;
 
-        function createNewsItem(news) {
-          const container = document.createElement('article');
-          container.className = 'news-item';
+          card.addEventListener('click', () => {
+            const fullText = card.querySelector('.news-full');
+            fullText.style.display = fullText.style.display === 'block' ? 'none' : 'block';
+          });
 
-          const img = document.createElement('img');
-          img.src = news.image;
-          img.alt = news.title;
-
-          const textDiv = document.createElement('div');
-          textDiv.className = 'news-text';
-
-          const title = document.createElement('h3');
-          title.className = 'news-title';
-          title.textContent = news.title;
-
-          const summary = document.createElement('p');
-          summary.className = 'news-summary';
-          summary.textContent = news.text;
-
-          const fullText = document.createElement('p');
-          fullText.className = 'news-fulltext';
-          fullText.textContent = news.fullText;
-
-          textDiv.appendChild(title);
-          textDiv.appendChild(summary);
-          textDiv.appendChild(fullText);
-
-          container.appendChild(img);
-          container.appendChild(textDiv);
-
-          return container;
+          container.appendChild(card);
         }
 
-        // Clear sections if der er indhold
-        fodboldSection.innerHTML = '<h2>Fodbold</h2>';
-        transferSection.innerHTML = '<h2>Transfer</h2>';
-
-        // Tilføj fodbold-nyheder
-        data.fodbold.forEach(news => {
-          fodboldSection.appendChild(createNewsItem(news));
-        });
-
-        // Tilføj transfer-nyheder
-        data.transfer.forEach(news => {
-          transferSection.appendChild(createNewsItem(news));
-        });
-
-      } catch (error) {
-        console.error('Error loading news:', error);
-        alert('Kunne ikke hente nyhederne.');
-      }
-    }
-
-    loadNews();
+        // Vis 5 nyheder for hver kategori
+        data.fodbold.slice(0, 5).forEach(item => createNewsCard(item, fodboldContainer));
+        data.transfer.slice(0, 5).forEach(item => createNewsCard(item, transferContainer));
+      })
+      .catch(error => console.error('Fejl ved indlæsning af data:', error));
   </script>
+
 </body>
 </html>
