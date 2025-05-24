@@ -64,182 +64,57 @@
   </nav>
 
 <!-- Dagens Spil Sektion -->
-<section class="dagens-spil">
-  <h2>Dagens Spil</h2>
-  <div class="spil-container">
-    <div class="dato-lodret">
-      <span class="dag">24</span>
-      <span class="maaned">MAJ</span>
-    </div>
-
-    <!-- Spil-kort 1 -->
-    <div class="spil-kort">
-      <div class="hold-liste">
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Real Madrid logo" />
-          <span>Real Madrid</span>
-        </div>
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png" alt="Manchester United logo" />
-          <span>Man Utd</span>
-        </div>
-      </div>
-      <div class="info-højre">
-        <div class="tidspunkt">20:45</div>
-        <div class="liga">La Liga</div>
-        <div class="bund-info">
-          <span class="odds">1.70</span>
-          <span class="ekspert">Loso</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spil-kort 2 -->
-    <div class="spil-kort">
-      <div class="hold-liste">
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png" alt="Bayern logo" />
-          <span>Bayern</span>
-        </div>
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png" alt="Arsenal logo" />
-          <span>Arsenal</span>
-        </div>
-      </div>
-      <div class="info-højre">
-        <div class="tidspunkt">19:30</div>
-        <div class="liga">Bundesliga</div>
-        <div class="bund-info">
-          <span class="odds">1.55</span>
-          <span class="ekspert">Loso</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spil-kort 3 -->
-    <div class="spil-kort">
-      <div class="hold-liste">
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/1200px-Chelsea_FC.svg.png" alt="Chelsea logo" />
-          <span>Chelsea</span>
-        </div>
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/473px-FC_Barcelona_%28crest%29.svg.png" alt="Barcelona logo" />
-          <span>Barcelona</span>
-        </div>
-      </div>
-      <div class="info-højre">
-        <div class="tidspunkt">21:00</div>
-        <div class="liga">Premier League</div>
-        <div class="bund-info">
-          <span class="odds">2.05</span>
-          <span class="ekspert">Loso</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spil-kort 4 -->
-    <div class="spil-kort">
-      <div class="hold-liste">
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Paris_Saint-Germain_F.C..svg/1200px-Paris_Saint-Germain_F.C..svg.png" alt="PSG logo" />
-          <span>PSG</span>
-        </div>
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Olympique_Lyonnais_logo.svg/800px-Olympique_Lyonnais_logo.svg.png" alt="Lyon logo" />
-          <span>Lyon</span>
-        </div>
-      </div>
-      <div class="info-højre">
-        <div class="tidspunkt">20:00</div>
-        <div class="liga">Ligue 1</div>
-        <div class="bund-info">
-          <span class="odds">1.80</span>
-          <span class="ekspert">Loso</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spil-kort 5 -->
-    <div class="spil-kort">
-      <div class="hold-liste">
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png" alt="AC Milan logo" />
-          <span>AC Milan</span>
-        </div>
-        <div class="hold">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/640px-FC_Internazionale_Milano_2021.svg.png" alt="Inter Milan logo" />
-          <span>Inter Milan</span>
-        </div>
-      </div>
-      <div class="info-højre">
-        <div class="tidspunkt">18:45</div>
-        <div class="liga">Serie A</div>
-        <div class="bund-info">
-          <span class="odds">2.00</span>
-          <span class="ekspert">Loso</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <style>
-  .dagens-spil {
-    font-family: Arial, sans-serif;
+  #dagens-spil {
     padding: 20px;
-    background: #fff;
   }
 
-  .dagens-spil h2 {
-    margin-bottom: 15px;
+  #dagens-spil h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #142541;
   }
 
   .spil-container {
     display: flex;
-    gap: 15px;
-    align-items: flex-start;
-  }
-
-  .dato-lodret {
-    background: #142541;
-    color: white;
-    display: flex;
-    flex-direction: column;
+    gap: 20px;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    padding: 10px 8px;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 20px;
-    min-width: 50px;
-  }
-
-  .dato-lodret .dag {
-    font-size: 28px;
-    line-height: 28px;
-  }
-
-  .dato-lodret .maaned {
-    font-size: 14px;
-    line-height: 14px;
-    margin-top: 2px;
   }
 
   .spil-kort {
+    position: relative;
     background: #f5f7fa;
     border-radius: 12px;
     width: 280px;
-    display: flex;
-    justify-content: space-between;
+    padding: 15px 15px 45px 15px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    padding: 15px 15px 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info-højre {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #f0ab4c;
+  }
+
+  .liga {
+    font-weight: 600;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+    text-align: left;
   }
 
   .hold-liste {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
   .hold {
@@ -260,39 +135,18 @@
     color: #333;
   }
 
-  .info-højre {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    min-width: 90px;
-    height: 100%;
-  }
-
-  .tidspunkt {
-    font-weight: 700;
-    font-size: 16px;
-    color: #f0ab4c;
-    margin-bottom: 6px;
-  }
-
-  .liga {
-    font-size: 13px;
-    font-weight: 600;
-    color: #666;
-    margin-bottom: auto;
-    text-align: right;
-  }
-
-  .bund-info {
-    background: #142541;
-    color: white;
-    border-radius: 8px;
-    padding: 6px 10px;
+  .bund-bjælke {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
+    background: #142541;
+    border-radius: 0 0 12px 12px;
+    padding: 8px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
     font-size: 14px;
   }
 
@@ -307,6 +161,117 @@
   }
 </style>
 
+<section id="dagens-spil">
+  <h2>Dagens Spil</h2>
+  <div class="spil-container">
+
+    <div class="spil-kort">
+      <div class="info-højre">
+        <div class="tidspunkt">20:45</div>
+      </div>
+      <div class="liga">La Liga</div>
+      <div class="hold-liste">
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Real Madrid logo" />
+          <span>Real Madrid</span>
+        </div>
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png" alt="Manchester United logo" />
+          <span>Manchester United</span>
+        </div>
+      </div>
+      <div class="bund-bjælke">
+        <span class="odds">1.70</span>
+        <span class="ekspert">Loso</span>
+      </div>
+    </div>
+
+    <div class="spil-kort">
+      <div class="info-højre">
+        <div class="tidspunkt">18:30</div>
+      </div>
+      <div class="liga">Bundesliga</div>
+      <div class="hold-liste">
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png" alt="Bayern München logo" />
+          <span>Bayern München</span>
+        </div>
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/2048px-Borussia_Dortmund_logo.svg.png" alt="Borussia Dortmund logo" />
+          <span>Borussia Dortmund</span>
+        </div>
+      </div>
+      <div class="bund-bjælke">
+        <span class="odds">2.10</span>
+        <span class="ekspert">Loso</span>
+      </div>
+    </div>
+
+    <div class="spil-kort">
+      <div class="info-højre">
+        <div class="tidspunkt">21:00</div>
+      </div>
+      <div class="liga">Premier League</div>
+      <div class="hold-liste">
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png" alt="Arsenal logo" />
+          <span>Arsenal</span>
+        </div>
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/1200px-Chelsea_FC.svg.png" alt="Chelsea logo" />
+          <span>Chelsea</span>
+        </div>
+      </div>
+      <div class="bund-bjælke">
+        <span class="odds">1.95</span>
+        <span class="ekspert">Loso</span>
+      </div>
+    </div>
+
+    <div class="spil-kort">
+      <div class="info-højre">
+        <div class="tidspunkt">19:45</div>
+      </div>
+      <div class="liga">Ligue 1</div>
+      <div class="hold-liste">
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Paris_Saint-Germain_F.C..svg/1200px-Paris_Saint-Germain_F.C..svg.png" alt="PSG logo" />
+          <span>PSG</span>
+        </div>
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Olympique_Lyonnais_logo.svg/800px-Olympique_Lyonnais_logo.svg.png" alt="Lyon logo" />
+          <span>Lyon</span>
+        </div>
+      </div>
+      <div class="bund-bjælke">
+        <span class="odds">2.00</span>
+        <span class="ekspert">Loso</span>
+      </div>
+    </div>
+
+    <div class="spil-kort">
+      <div class="info-højre">
+        <div class="tidspunkt">20:00</div>
+      </div>
+      <div class="liga">Serie A</div>
+      <div class="hold-liste">
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png" alt="AC Milan logo" />
+          <span>AC Milan</span>
+        </div>
+        <div class="hold">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/640px-FC_Internazionale_Milano_2021.svg.png" alt="Inter Milan logo" />
+          <span>Inter Milan</span>
+        </div>
+      </div>
+      <div class="bund-bjælke">
+        <span class="odds">1.85</span>
+        <span class="ekspert">Loso</span>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
