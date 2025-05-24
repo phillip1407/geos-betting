@@ -1,0 +1,56 @@
+{
+  "fodbold": [
+    {
+      "title": "Topopgør i Premier League",
+      "text": "Manchester City og Arsenal tørner sammen i en nervepirrende kamp om mesterskabet.",
+      "image": "fodbold-nyhed1.jpg"
+    },
+    {
+      "title": "FC København vinder stort",
+      "text": "FC København sikrede sig en vigtig sejr med 3-0 over Brøndby i weekendens derby.",
+      "image": "fodbold-nyhed2.jpg"
+    },
+    {
+      "title": "Europa League klar til kvartfinaler",
+      "text": "De sidste otte hold er fundet i Europa League, og spændingen stiger inden kvartfinalerne.",
+      "image": "fodbold-nyhed3.jpg"
+    },
+    {
+      "title": "Svensk landsholdsspiller skadet",
+      "text": "Svenske stjernespiller ramt af skade og misser resten af sæsonen.",
+      "image": "fodbold-nyhed4.jpg"
+    },
+    {
+      "title": "Ny træner i Superligaen",
+      "text": "En dansk klub har ansat en ny træner med fokus på offensiv fodbold.",
+      "image": "fodbold-nyhed5.jpg"
+    }
+  ],
+  "transfer": [
+    {
+      "title": "Mbappé til Real Madrid?",
+      "text": "Mbappé rygtes til Real Madrid – forhandlingerne er i gang ifølge spanske medier.",
+      "image": "transfer-nyhed1.jpg"
+    },
+    {
+      "title": "Neymar skifter klub",
+      "text": "Neymar forlader PSG til fordel for en ny klub i LaLiga, bekræfter kilder tæt på transferen.",
+      "image": "transfer-nyhed2.jpg"
+    },
+    {
+      "title": "Dansk stjernespiller skifter til Premier League",
+      "text": "En dansk landsholdsspiller har underskrevet kontrakt med en Premier League-klub.",
+      "image": "transfer-nyhed3.jpg"
+    },
+    {
+      "title": "Ajax sælger ung midtbanespiller",
+      "text": "Ajax har solgt en af sine unge talenter til en italiensk klub for en god pris.",
+      "image": "transfer-nyhed4.jpg"
+    },
+    {
+      "title": "Rygter om Messi-retur til Barcelona",
+      "text": "Der går rygter om, at Messi kan vende tilbage til FC Barcelona til næste sæson.",
+      "image": "transfer-nyhed5.jpg"
+    }
+  ]
+}
