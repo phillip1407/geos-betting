@@ -68,14 +68,125 @@
 
 <!-- Dagens Spil Boks -->
 <section>
-  <div class="flex items-start gap-6 overflow-x-auto">
+  <style>
+    .date-vertical-box {
+      background-color: #142541;
+      color: white;
+      width: 40px;
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 20px;
+      user-select: none;
+      text-transform: lowercase; /* småt 'maj' */
+      letter-spacing: 2px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    .date-vertical-box span {
+      display: block;
+      margin: 0;
+      padding: 0;
+      line-height: 1.2;
+    }
+
+    .league-name {
+      font-weight: 700;
+      font-size: 1.25rem; /* samme størrelse som holdnavne */
+      margin-bottom: 10px;
+      color: #142541;
+    }
+
+    .team-logo {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+
+    .box-hover:hover {
+      box-shadow: 0 0 10px #142541cc;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .odds-expert-container {
+      background-color: #142541;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .items-start {
+      align-items: flex-start;
+    }
+
+    .gap-6 {
+      gap: 1.5rem;
+    }
+
+    .flex-nowrap {
+      flex-wrap: nowrap;
+    }
+
+    .overflow-x-auto {
+      overflow-x: auto;
+    }
+
+    .w-60 {
+      width: 15rem;
+    }
+
+    .bg-white {
+      background-color: white;
+    }
+
+    .rounded-lg {
+      border-radius: 0.5rem;
+    }
+
+    .overflow-hidden {
+      overflow: hidden;
+    }
+
+    .shadow {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .p-4 {
+      padding: 1rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .flex-shrink-0 {
+      flex-shrink: 0;
+    }
+  </style>
+
+  <div class="dagens-spil-wrapper flex items-start gap-6 overflow-x-auto">
+
     <!-- Lodret dato boks -->
     <div class="date-vertical-box flex-shrink-0">
       <span>24</span>
       <span>maj</span>
     </div>
 
-    <div class="flex flex-wrap gap-6">
+    <div class="flex flex-nowrap gap-6">
       <!-- FC København vs Brøndby -->
       <div class="bg-white rounded-lg overflow-hidden shadow box-hover w-60 flex-shrink-0">
         <div class="p-4 text-center">
@@ -155,10 +266,10 @@
           <span>Ekspert: Mathi</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
-
 
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
