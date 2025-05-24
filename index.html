@@ -39,7 +39,10 @@
   <header class="navbar">
     <div class="logo-container">
       <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
-      <h1 class="site-name">Geo Betting Tips</h1>
+      <div class="logo-text">
+        <h1 class="site-name">Geo Betting Tips</h1>
+        <p class="slogan">Ekspertanalyser til din betting</p>
+      </div>
     </div>
     <nav class="nav-container">
       <ul class="nav-links">
@@ -60,7 +63,7 @@
   align-items: center;
 }
 
-/* Logo + navn */
+/* Logo + navn + slogan */
 .logo-container {
   display: flex;
   align-items: center;
@@ -72,10 +75,23 @@
   height: 40px;
 }
 
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
 .site-name {
   color: white;
   font-size: 24px;
   font-weight: bold;
+  margin: 0;
+}
+
+.slogan {
+  color: #e0e7f6;
+  font-size: 14px;
+  margin: 0;
+  margin-top: 2px;
 }
 
 /* Menu links */
@@ -98,6 +114,7 @@
 .nav-links li a:hover {
   color: #e0e7f6;
 }
+
 
   
   
