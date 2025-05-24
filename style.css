@@ -1,13 +1,43 @@
-.date-vertical {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #142541;
-  margin-right: 1rem;
+.date-vertical-box {
+  background-color: #142541;
+  color: white;
+  width: 40px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 20px;
   user-select: none;
-  white-space: nowrap;
+  text-transform: lowercase; /* så 'maj' bliver småt */
+  letter-spacing: 2px;
+  line-height: 1.2;
 }
+
+.date-vertical-box span {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+.league-name {
+  font-weight: 700;
+  font-size: 1.125rem; /* samme som holdenes tekst */
+  margin-bottom: 10px;
+  color: #142541;
+}
+.team-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.box-hover:hover {
+  box-shadow: 0 0 10px #142541cc;
+}
+
+
 
 .flex {
   display: flex;
