@@ -116,138 +116,144 @@
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: #f9f9f9;
-      margin: 20px;
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
+      background: #f5f5f5;
+      color: #222;
+    }
+    h1, h2 {
+      text-align: center;
       color: #142541;
     }
     .news-section {
-      max-width: 900px;
-      margin: auto 0 50px 0;
-    }
-    h2.section-title {
-      font-weight: 700;
-      margin-bottom: 10px;
-      font-size: 28px;
-      border-bottom: 1px solid #142541;
-      padding-bottom: 5px;
-    }
-    hr.divider {
-      border: none;
-      height: 2px;
-      background: #142541;
-      margin-bottom: 30px;
-      width: 100%;
+      margin-bottom: 40px;
     }
     .news-item {
-      display: flex;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
-      margin-bottom: 20px;
-      cursor: pointer;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      max-height: 150px; /* collapsed height */
-    }
-    .news-item.expanded {
-      max-height: 600px; /* expanded height */
-    }
-    .news-image {
-      flex-shrink: 0;
-      width: 180px;
-      height: 150px;
-      object-fit: cover;
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
-    }
-    .news-content {
-      padding: 15px 20px;
-      flex-grow: 1;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin: 15px 0;
+      padding: 15px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      gap: 15px;
+      align-items: flex-start;
+    }
+    .news-item img {
+      max-width: 120px;
+      max-height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .news-text {
+      flex: 1;
     }
     .news-title {
-      font-size: 22px;
-      font-weight: 700;
-      margin: 0 0 8px 0;
-      line-height: 1.2;
-      max-width: 600px;
+      font-size: 1.2em;
+      margin-bottom: 6px;
+      color: #142541;
     }
-    .news-short-text {
-      font-size: 16px;
+    .news-summary {
+      font-size: 0.95em;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    .news-fulltext {
+      font-size: 0.9em;
       color: #444;
     }
-    .news-full-text {
-      font-size: 15px;
-      margin-top: 10px;
-      color: #333;
-      display: none;
-      line-height: 1.4;
-    }
-    .news-item.expanded .news-full-text {
-      display: block;
+    hr {
+      border: none;
+      border-top: 2px solid #142541;
+      margin: 50px 0 20px;
+      width: 80px;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
 <body>
+  <h1>Nyheder</h1>
 
-  <div class="news-section" id="fodbold-news">
-    <h2 class="section-title">Fodbold Nyheder</h2>
-    <hr class="divider" />
-  </div>
+  <section id="fodbold" class="news-section">
+    <h2>Fodbold</h2>
+    <!-- Fodbold-nyheder kommer her -->
+  </section>
 
-  <div class="news-section" id="transfer-news">
-    <h2 class="section-title">Transfer Nyheder</h2>
-    <hr class="divider" />
-  </div>
+  <hr />
+
+  <section id="transfer" class="news-section">
+    <h2>Transfer</h2>
+    <!-- Transfer-nyheder kommer her -->
+  </section>
 
   <script>
     async function loadNews() {
-      const response = await fetch('news.json');
-      const data = await response.json();
+      try {
+        // Hent JSON-filen (sørg for at 'news.json' ligger i samme mappe)
+        const response = await fetch('news.json');
+        if (!response.ok) throw new Error('Fejl ved hentning af nyheder.');
 
-      function createNewsItem(news) {
-        const container = document.createElement('div');
-        container.classList.add('news-item');
-        container.onclick = () => {
-          // Luk andre
-          document.querySelectorAll('.news-item').forEach(item => {
-            if(item !== container) item.classList.remove('expanded');
-          });
-          container.classList.toggle('expanded');
-        };
+        const data = await response.json();
 
-        const img = document.createElement('img');
-        img.src = news.image;
-        img.alt = news.title;
-        img.className = 'news-image';
+        const fodboldSection = document.getElementById('fodbold');
+        const transferSection = document.getElementById('transfer');
 
-        const content = document.createElement('div');
-        content.className = 'news-content';
+        function createNewsItem(news) {
+          const container = document.createElement('article');
+          container.className = 'news-item';
 
-        const title = document.createElement('h3');
-        title.className = 'news-title';
-        title.textContent = news.title;
+          const img = document.createElement('img');
+          img.src = news.image;
+          img.alt = news.title;
 
-        const shortText = document.createElement('p');
-        shortText.className = 'news-short-text';
-        shortText.textContent = news.text;
+          const textDiv = document.createElement('div');
+          textDiv.className = 'news-text';
 
-        const fullText = document.createElement('p');
-        fullText.className = 'news-full-text';
-        fullText.textContent = news.fullText || '';
+          const title = document.createElement('h3');
+          title.className = 'news-title';
+          title.textContent = news.title;
 
-        content.appendChild(title);
-        content.appendChild(shortText);
-        content.appendChild(fullText);
+          const summary = document.createElement('p');
+          summary.className = 'news-summary';
+          summary.textContent = news.text;
 
-        container.appendChild(img);
-        container.appendChild(content);
+          const fullText = document.createElement('p');
+          fullText.className = 'news-fulltext';
+          fullText.textContent = news.fullText;
 
-        return container;
+          textDiv.appendChild(title);
+          textDiv.appendChild(summary);
+          textDiv.appendChild(fullText);
+
+          container.appendChild(img);
+          container.appendChild(textDiv);
+
+          return container;
+        }
+
+        // Clear sections if der er indhold
+        fodboldSection.innerHTML = '<h2>Fodbold</h2>';
+        transferSection.innerHTML = '<h2>Transfer</h2>';
+
+        // Tilføj fodbold-nyheder
+        data.fodbold.forEach(news => {
+          fodboldSection.appendChild(createNewsItem(news));
+        });
+
+        // Tilføj transfer-nyheder
+        data.transfer.forEach(news => {
+          transferSection.appendChild(createNewsItem(news));
+        });
+
+      } catch (error) {
+        console.error('Error loading news:', error);
+        alert('Kunne ikke hente nyhederne.');
       }
+    }
 
-      const
-
+    loadNews();
+  </script>
+</body>
+</html>
