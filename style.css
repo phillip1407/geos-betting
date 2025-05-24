@@ -1,0 +1,6 @@
+.bg-dagens-spil {
+  background-color: #142541;
+  color: white; /* Teksten bliver hvid */
+  padding: 1rem;
+  border-radius: 0.5rem; /* Kan tilpasses */
+}
