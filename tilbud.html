@@ -87,49 +87,42 @@
       box-sizing: border-box;
     }
 
-    .intro-box {
-      background-color: #e0e7f6;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 30px auto 40px auto;
-      max-width: 900px;
-      color: #142541;
+  <!-- Alt efter er tilføjet kun til denne site -->
+    
+    .offers-container {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
     }
-
-    .intro-box h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .intro-box p {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .offer-box {
+    .offer-card {
       background-color: white;
       border: 1px solid #ccc;
       border-radius: 10px;
+      width: 350px;
       padding: 20px;
-      margin-bottom: 20px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-
-    .offer-box h3 {
+    .offer-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .offer-card h3 {
+      color: #142541;
       font-size: 20px;
       margin-bottom: 10px;
-      color: #142541;
     }
-
-    .offer-box p {
+    
+    .offer-card p {
       font-size: 16px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
-
-    .offer-box a {
+    .offer-card a {
       display: inline-block;
       background-color: #142541;
       color: white;
@@ -139,16 +132,8 @@
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
-
-    .offer-box a:hover {
+    .offer-card a:hover {
       background-color: #0f1d35;
-    }
-    .offer-img {
-      width: 100%;
-      max-height: 180px; /* Ens højde for alle billeder */
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 10px;
     }
   </style>
 </head>
