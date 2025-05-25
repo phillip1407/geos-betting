@@ -14,8 +14,8 @@
 
     body {
       margin: 0;
-      background-color: #142541;
-      color: white;
+      background-color: #ffffff;
+      color: #000000;
     }
 
     .navbar {
@@ -100,12 +100,9 @@
     }
 
     .news-card {
-      background-color: #0d1b2a;
+      position: relative;
       border-radius: 12px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      height: 320px;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -117,33 +114,74 @@
 
     .news-card img {
       width: 100%;
-      height: 180px;
+      height: 100%;
       object-fit: cover;
-      flex-shrink: 0;
+      display: block;
     }
 
-    .news-bottom {
-      background-color: #142541;
+    .news-overlay {
+      position: absolute;
+      bottom: 0;
+      background: rgba(20, 37, 65, 0.7);
+      width: 100%;
       color: white;
-      padding: 12px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .news-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 0;
+      padding: 10px;
       text-align: center;
     }
 
-    .news-full {
-      margin-top: 8px;
-      font-size: 14px;
+    /* Modal styles */
+    .modal {
       display: none;
-      color: #e0e7f6;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 800px;
+      position: relative;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .modal-content .news-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .modal-content .news-full {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #000000;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      color: #000000;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #ff0000;
     }
   </style>
 </head>
@@ -175,6 +213,16 @@
   <h2>Transfer Nyheder</h2>
   <div id="transfer" class="news-grid"></div>
 
+  <!-- Modal Structure -->
+  <div id="newsModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="modalImage" src="" alt="">
+      <div class="news-title" id="modalTitle"></div>
+      <div class="news-full" id="modalFullText"></div>
+    </div>
+  </div>
+
   <script>
     fetch('nyheder.json')
       .then(response => response.json())
@@ -186,17 +234,23 @@
           const card = document.createElement('div');
           card.className = 'news-card';
 
-          card.innerHTML = `
-            <img src="${item.image}" alt="${item.title}">
-            <div class="news-bottom">
-              <div class="news-title">${item.title}</div>
-              <div class="news-full">${item.fullText}</div>
-            </div>
-          `;
+          const img = document.createElement('img');
+          img.src = item.image;
+          img.alt = item.title;
+
+          const overlay = document.createElement('div');
+          overlay.className = 'news-overlay';
+          overlay.textContent = item.title;
+
+          card.appendChild(img);
+          card.appendChild(overlay);
 
           card.addEventListener('click', () => {
-            const fullText = card.querySelector('.news-full');
-            fullText.style.display = fullText.style.display === 'block' ? 'none' : 'block';
+            document.getElementById('modalImage').src = item.image;
+            document.getElementById('modalImage').alt = item.title;
+            document.getElementById('modalTitle').textContent = item.title;
+            document.getElementById('modalFullText').textContent = item.fullText;
+            document.getElementById('newsModal').style.display = 'block';
           });
 
           container.appendChild(card);
@@ -206,6 +260,20 @@
         data.transfer.slice(0,5).forEach(item => createNewsCard(item, transferContainer));
       })
       .catch(error => console.error('Fejl ved indlæsning af data:', error));
+
+    // Modal functionality
+    const modal = document.getElementById('newsModal');
+    const closeBtn = document.querySelector('.close');
+
+    closeBtn.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
   </script>
 
 </body>
