@@ -1,103 +1,76 @@
-[
-  {
-    "_comment": "Fodbold artikel 1",
-    "id": 1,
-    "title": "Manchester United overrasker med ny signering",
-    "date": "2025-05-24",
-    "category": "Fodbold",
-    "image": "https://images2.minutemediacdn.com/image/upload/c_crop,w_4268,h_2400,x_0,y_431/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/images/GettyImages/mmsport/90min_en_international_web/01jmmpc7fn90vz1e2496.jpg",
-    "summary": "Manchester United har netop hentet en spændende spiller til truppen, der forventes at styrke holdets offensive spil.",
-    "content": "I en overraskende handel har Manchester United sikret sig den talentfulde angriber John Doe fra FC Example. Spilleren forventes at bidrage med fart og teknik, og fansene glæder sig til at se ham i aktion. Overgangssummen er ikke offentliggjort, men rygterne siger, at det er en rekordaftale."
-  },
-  {
-    "_comment": "Fodbold artikel 2",
-    "id": 2,
-    "title": "FC København taber tæt kamp i Superligaen",
-    "date": "2025-05-23",
-    "category": "Fodbold",
-    "image": "https://www.fck.dk/sites/default/files/styles/article_full/public/images/2024-05/240516_fck-fcm-14.jpg?itok=sSB30aSr",
-    "summary": "FC København tabte med 1-2 i en intens kamp mod rivalerne fra Brøndby IF.",
-    "content": "Det blev en hård kamp, hvor FC København kæmpede hårdt, men desværre måtte se sig slået med 1-2. Brøndbys sejrsmål kom i de døende minutter, og stemningen var trykket på stadion."
-  },
-  {
-    "_comment": "Fodbold artikel 3",
-    "id": 3,
-    "title": "Ny stjernespiller til Ajax Amsterdam",
-    "date": "2025-05-22",
-    "category": "Fodbold",
-    "image": "https://example.com/images/ajax-signering.jpg",
-    "summary": "Ajax har sikret sig en lovende midtbanespiller fra Tyskland.",
-    "content": "Den unge midtbanespiller Max Müller skifter til Ajax efter en imponerende sæson i Bundesligaen. Han forventes at bringe kreativitet og energi til holdet."
-  },
-  {
-    "_comment": "Fodbold artikel 4",
-    "id": 4,
-    "title": "Chelsea vinder Champions League-finalen",
-    "date": "2025-05-21",
-    "category": "Fodbold",
-    "image": "https://example.com/images/chelsea-champions.jpg",
-    "summary": "Chelsea sikrede sig pokalen efter en spændende finale mod Real Madrid.",
-    "content": "I en nervepirrende kamp lykkedes det Chelsea at vinde Champions League med 2-1. Holdet fejrede sejren med deres trofaste fans i London."
-  },
-  {
-    "_comment": "Fodbold artikel 5",
-    "id": 5,
-    "title": "Brøndby IF opruster til næste sæson",
-    "date": "2025-05-20",
-    "category": "Fodbold",
-    "image": "https://example.com/images/brondby-oprustning.jpg",
-    "summary": "Brøndby IF har indgået flere nye kontrakter og hentet nye spillere.",
-    "content": "Klubben er klar til at kæmpe om mesterskabet næste sæson med en forstærket trup og en ny træner ved roret."
-  },
-
-  {
-    "_comment": "Nyheder i kategorien Transfer - 5 artikler med samme felter som fodbold",
-    "id": 6,
-    "title": "Transfermarkedet opvarmes med store rygter",
-    "date": "2025-05-22",
-    "category": "Transfer",
-    "image": "https://example.com/images/transfer-rygter.jpg",
-    "summary": "Der florerer rygter om en mulig transfer mellem PSG og Real Madrid.",
-    "content": "Ifølge flere kilder overvejer PSG at sælge deres stjernespiller til Real Madrid i sommerens transfervindue. Forhandlingerne siges at være i en tidlig fase, men fans verden over følger spændt med."
-  },
-  {
-    "_comment": "Transfer artikel 2",
-    "id": 7,
-    "title": "Liverpool forbereder stort transfervindue",
-    "date": "2025-05-21",
-    "category": "Transfer",
-    "image": "https://example.com/images/liverpool-transfer.jpg",
-    "summary": "Liverpool forventes at hente flere spillere for at styrke truppen.",
-    "content": "Manageren har bekræftet, at klubben vil investere i både unge talenter og erfarne spillere for at komme tilbage på toppen."
-  },
-  {
-    "_comment": "Transfer artikel 3",
-    "id": 8,
-    "title": "Real Madrid nærmer sig aftale med ung stjerne",
-    "date": "2025-05-20",
-    "category": "Transfer",
-    "image": "https://example.com/images/realmadrid-transfer.jpg",
-    "summary": "Real Madrid sigter mod at hente en lovende angriber fra La Liga.",
-    "content": "Den unge angriber forventes at blive en nøglespiller i fremtiden, og Madrid-klubben arbejder på at færdiggøre aftalen inden sommeren."
-  },
-  {
-    "_comment": "Transfer artikel 4",
-    "id": 9,
-    "title": "Barcelona sælger veteran til MLS",
-    "date": "2025-05-19",
-    "category": "Transfer",
-    "image": "https://example.com/images/barcelona-mls.jpg",
-    "summary": "Barcelona har solgt deres erfarne midtbanespiller til en klub i USA.",
-    "content": "Den rutinerede spiller tager til MLS for at afslutte sin karriere og bidrage med erfaring i den nordamerikanske liga."
-  },
-  {
-    "_comment": "Transfer artikel 5",
-    "id": 10,
-    "title": "Juventus jagter ny angriber",
-    "date": "2025-05-18",
-    "category": "Transfer",
-    "image": "https://example.com/images/juventus-angriber.jpg",
-    "summary": "Juventus leder efter en angriber, der kan øge måltallet næste sæson.",
-    "content": "Flere kandidater er i spil, og klubben ønsker at styrke holdet for at kunne konkurrere om Serie A-titlen."
-  }
-]
+{
+  "fodbold": [
+    {
+      "title": "Manchester United vinder stort opgør",
+      "date": "25. maj 2025",
+      "summary": "Manchester United slog rivalerne med en overbevisende 3-0 sejr i weekendens kamp.",
+      "image": "images/manu-win.jpg",
+      "fullText": "I en spændende kamp viste Manchester United deres styrke med en 3-0 sejr over rivalerne. Kampen blev domineret af et stærkt offensivt spil..."
+    },
+    {
+      "title": "Real Madrid forbereder sig til Champions League",
+      "date": "24. maj 2025",
+      "summary": "Real Madrid har afsløret deres træningsprogram op til Champions League-finalen.",
+      "image": "images/realmadrid-training.jpg",
+      "fullText": "Real Madrid træner hårdt for at sikre en sejr i den kommende Champions League-finale, med fokus på styrke og taktik..."
+    },
+    {
+      "title": "Barcelona vinder El Clásico",
+      "date": "23. maj 2025",
+      "summary": "Barcelona tog en vigtig sejr i El Clásico med 2-1 over Real Madrid.",
+      "image": "images/barcelona-win.jpg",
+      "fullText": "I en tæt kamp lykkedes det Barcelona at tage sejren med to mål i anden halvleg mod Real Madrid..."
+    },
+    {
+      "title": "Liverpool kæmper for Champions League-plads",
+      "date": "22. maj 2025",
+      "summary": "Liverpool har stadig chancen for at sikre sig en Champions League-plads i sidste spillerunde.",
+      "image": "images/liverpool-champions.jpg",
+      "fullText": "Efter en svær sæson kæmper Liverpool hårdt for at sikre en plads i næste års Champions League..."
+    },
+    {
+      "title": "Chelsea satser stort på ungdommen",
+      "date": "21. maj 2025",
+      "summary": "Chelsea planlægger at give unge talenter flere chancer i førsteholdstruppen næste sæson.",
+      "image": "images/chelsea-youth.jpg",
+      "fullText": "Chelsea ønsker at bygge holdet op omkring unge, lovende spillere for at sikre en bæredygtig succes fremadrettet..."
+    }
+  ],
+  "transfer": [
+    {
+      "title": "Kylian Mbappé rygtes til PSG",
+      "date": "23. maj 2025",
+      "summary": "Der går rygter om, at Mbappé snart forlader PSG til fordel for en ny klub.",
+      "image": "images/mbappe.jpg",
+      "fullText": "Ifølge kilder tæt på transfermarkedet overvejer Kylian Mbappé at skifte klub efter den igangværende sæson..."
+    },
+    {
+      "title": "Liverpool signerer ny midtbanespiller",
+      "date": "22. maj 2025",
+      "summary": "Liverpool har sikret sig en talentfuld midtbanespiller fra Bundesligaen.",
+      "image": "images/liverpool-transfer.jpg",
+      "fullText": "Liverpool har bekræftet overtagelsen af den unge midtbanespiller, der forventes at styrke holdets offensiv betydeligt..."
+    },
+    {
+      "title": "Real Madrid jagter stjernespiller fra Premier League",
+      "date": "21. maj 2025",
+      "summary": "Real Madrid er ifølge medierne i dialoger om en stor transferaftale.",
+      "image": "images/realmadrid-transfer.jpg",
+      "fullText": "Real Madrid har øjnene rettet mod en af Premier Leagues bedste spillere til den kommende transfervindue..."
+    },
+    {
+      "title": "Barcelona lukker aftale med ny angriber",
+      "date": "20. maj 2025",
+      "summary": "Barcelona har underskrevet kontrakt med en ung angriber fra La Liga.",
+      "image": "images/barcelona-transfer.jpg",
+      "fullText": "Den unge angriber skal hjælpe Barcelona med at styrke angrebet i den kommende sæson..."
+    },
+    {
+      "title": "Chelsea forhandler med midtbanespiller fra Serie A",
+      "date": "19. maj 2025",
+      "summary": "Chelsea ønsker at styrke midtbanen med en erfaren spiller fra Italien.",
+      "image": "images/chelsea-transfer.jpg",
+      "fullText": "Chelsea er tæt på at sikre sig en midtbanespiller med stor erfaring fra Serie A..."
+    }
+  ]
+}
