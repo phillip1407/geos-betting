@@ -2,7 +2,7 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Geo Betting Tips</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -86,11 +86,12 @@
       flex-direction: column;
       gap: 20px;
       padding: 20px;
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
     .news-card {
+      display: flex;
       background-color: #e0e7f6;
       border-radius: 12px;
       overflow: hidden;
@@ -102,14 +103,18 @@
       transform: scale(1.02);
     }
 
-    .news-card img {
-      width: 100%;
+    .news-image {
+      flex: 0 0 300px;
       height: 200px;
       object-fit: cover;
     }
 
     .news-content {
       padding: 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .news-title {
@@ -134,8 +139,15 @@
       display: block;
     }
 
-    .news-card.expanded img {
-      height: 300px;
+    @media (max-width: 768px) {
+      .news-card {
+        flex-direction: column;
+      }
+
+      .news-image {
+        width: 100%;
+        height: auto;
+      }
     }
   </style>
 </head>
@@ -143,11 +155,13 @@
 
   <header class="navbar">
     <div class="logo-container">
-      <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
-      <div class="logo-text">
-        <h1 class="site-name">Geo Betting Tips</h1>
-        <p class="slogan">Ekspertanalyser til din betting</p>
-      </div>
+      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
+        <div class="logo-text">
+          <h1 class="site-name">Geo Betting Tips</h1>
+          <p class="slogan">Ekspertanalyser til din betting</p>
+        </div>
+      </a>
     </div>
     <nav>
       <ul class="nav-links">
@@ -177,7 +191,7 @@
           card.className = 'news-card';
 
           card.innerHTML = `
-            <img src="${item.image}" alt="${item.title}">
+            <img src="${item.image}" alt="${item.title}" class="news-image">
             <div class="news-content">
               <h3 class="news-title">${item.title}</h3>
               <p class="news-date">${item.date}</p>
