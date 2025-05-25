@@ -1,66 +1,104 @@
-{
-  "fodbold": [
-    {
-      "title": "Topbrag i Premier League",
-      "date": "25. maj 2025",
-      "image": "https://s3.eu-central-1.amazonaws.com/static.bold.dk/picture/670x440/20250105-185103-7-122099568.jpg",
-      "fullText": "Arsenal og Manchester City spiller topkamp i Premier League. Begge hold jagter mesterskabet med stor intensitet."
-    },
-    {
-      "title": "Superligaen afgøres i sidste spillerunde",
-      "date": "24. maj 2025",
-      "image": "https://photos.watchmedier.dk/Images/16387568/c1zp8h/ALTERNATES/schema-4_3/superliga-fodbold-lyngby-boldklub---randers-fc",
-      "fullText": "Superligaen er tæt i år, og mesterskabet skal findes i den sidste spillerunde, hvor flere hold kæmper om guldet."
-    },
-    {
-      "title": "Mbappé fortsætter målformen",
-      "date": "23. maj 2025",
-      "image": "https://via.placeholder.com/400x200.png?text=Mbapp%C3%A9",
-      "fullText": "Kylian Mbappé har igen scoret og er nu topscorer i Ligue 1. PSG ser stærke ud i deres jagt på titlen."
-    },
-    {
-      "title": "Champions League-finalen er klar",
-      "date": "22. maj 2025",
-      "image": "https://via.placeholder.com/400x200.png?text=Champions+League",
-      "fullText": "Finalen i Champions League står mellem Real Madrid og Bayern München. Fans verden over ser frem til opgøret."
-    },
-    {
-      "title": "Messi afslører fremtiden",
-      "date": "21. maj 2025",
-      "image": "https://via.placeholder.com/400x200.png?text=Messi",
-      "fullText": "Lionel Messi har udtalt sig om sine planer for næste sæson. Bliver han i Inter Miami eller skifter han klub?"
-    }
-  ],
-  "transfer": [
-    {
-      "title": "Ronaldo tilbage til Sporting?",
-      "date": "25. maj 2025",
-      "image": "https://via.placeholder.com/400x200.png?text=Ronaldo",
-      "fullText": "Rygterne svirrer om, at Cristiano Ronaldo overvejer et skifte tilbage til Sporting Lissabon, hvor karrieren startede."
-    },
-    {
-      "title": "Haaland på vej til Real Madrid",
-      "date": "24. maj 2025",
-      "image": "https://via.placeholder.com/400x200.png?text=Haaland",
-      "fullText": "Erling Haaland linkes kraftigt til Real Madrid, som vil styrke angrebet med den norske bomber."
-    },
-    {
-      "title": "Premier League-klub vil have Vlahovic",
-      "date": "23. maj 2025",
-      "image": "https://via.placeholder.com/400x200.png?text=Vlahovic",
-      "fullText": "Dusan Vlahovic er på radaren hos flere Premier League-klubber, herunder Chelsea og Manchester United."
-    },
-    {
-      "title": "Dybala skifter til Serie A-rival",
-      "date": "22. maj 2025",
-      "image": "https://via.placeholder.com/400x200.png?text=Dybala",
-      "fullText": "Paulo Dybala rygtes til at skifte fra AS Roma til Juventus i et opsigtsvækkende bytte."
-    },
-    {
-      "title": "Modric overvejer pension",
-      "date": "21. maj 2025",
-      "image": "https://via.placeholder.com/400x200.png?text=Modric",
-      "fullText": "Luka Modric nærmer sig karrierens afslutning og overvejer at trække sig tilbage efter denne sæson."
-    }
-  ]
-}
+[
+  {
+    "_comment": "Nyheder i kategorien Fodbold - 5 artikler med id, titel, dato, kategori, billede, kort tekst og fuld tekst",
+    "_comment": "Fodbold artikel 1",
+    "id": 1,
+    "title": "Manchester United overrasker med ny signering",
+    "date": "2025-05-24",
+    "category": "Fodbold",
+    "image": "https://example.com/images/manu-signering.jpg",
+    "summary": "Manchester United har netop hentet en spændende spiller til truppen, der forventes at styrke holdets offensive spil.",
+    "content": "I en overraskende handel har Manchester United sikret sig den talentfulde angriber John Doe fra FC Example. Spilleren forventes at bidrage med fart og teknik, og fansene glæder sig til at se ham i aktion. Overgangssummen er ikke offentliggjort, men rygterne siger, at det er en rekordaftale."
+  },
+  {
+    "_comment": "Fodbold artikel 2",
+    "id": 2,
+    "title": "FC København taber tæt kamp i Superligaen",
+    "date": "2025-05-23",
+    "category": "Fodbold",
+    "image": "https://example.com/images/fck-kamp.jpg",
+    "summary": "FC København tabte med 1-2 i en intens kamp mod rivalerne fra Brøndby IF.",
+    "content": "Det blev en hård kamp, hvor FC København kæmpede hårdt, men desværre måtte se sig slået med 1-2. Brøndbys sejrsmål kom i de døende minutter, og stemningen var trykket på stadion."
+  },
+  {
+    "_comment": "Fodbold artikel 3",
+    "id": 3,
+    "title": "Ny stjernespiller til Ajax Amsterdam",
+    "date": "2025-05-22",
+    "category": "Fodbold",
+    "image": "https://example.com/images/ajax-signering.jpg",
+    "summary": "Ajax har sikret sig en lovende midtbanespiller fra Tyskland.",
+    "content": "Den unge midtbanespiller Max Müller skifter til Ajax efter en imponerende sæson i Bundesligaen. Han forventes at bringe kreativitet og energi til holdet."
+  },
+  {
+    "_comment": "Fodbold artikel 4",
+    "id": 4,
+    "title": "Chelsea vinder Champions League-finalen",
+    "date": "2025-05-21",
+    "category": "Fodbold",
+    "image": "https://example.com/images/chelsea-champions.jpg",
+    "summary": "Chelsea sikrede sig pokalen efter en spændende finale mod Real Madrid.",
+    "content": "I en nervepirrende kamp lykkedes det Chelsea at vinde Champions League med 2-1. Holdet fejrede sejren med deres trofaste fans i London."
+  },
+  {
+    "_comment": "Fodbold artikel 5",
+    "id": 5,
+    "title": "Brøndby IF opruster til næste sæson",
+    "date": "2025-05-20",
+    "category": "Fodbold",
+    "image": "https://example.com/images/brondby-oprustning.jpg",
+    "summary": "Brøndby IF har indgået flere nye kontrakter og hentet nye spillere.",
+    "content": "Klubben er klar til at kæmpe om mesterskabet næste sæson med en forstærket trup og en ny træner ved roret."
+  },
+
+  {
+    "_comment": "Nyheder i kategorien Transfer - 5 artikler med samme felter som fodbold",
+    "id": 6,
+    "title": "Transfermarkedet opvarmes med store rygter",
+    "date": "2025-05-22",
+    "category": "Transfer",
+    "image": "https://example.com/images/transfer-rygter.jpg",
+    "summary": "Der florerer rygter om en mulig transfer mellem PSG og Real Madrid.",
+    "content": "Ifølge flere kilder overvejer PSG at sælge deres stjernespiller til Real Madrid i sommerens transfervindue. Forhandlingerne siges at være i en tidlig fase, men fans verden over følger spændt med."
+  },
+  {
+    "_comment": "Transfer artikel 2",
+    "id": 7,
+    "title": "Liverpool forbereder stort transfervindue",
+    "date": "2025-05-21",
+    "category": "Transfer",
+    "image": "https://example.com/images/liverpool-transfer.jpg",
+    "summary": "Liverpool forventes at hente flere spillere for at styrke truppen.",
+    "content": "Manageren har bekræftet, at klubben vil investere i både unge talenter og erfarne spillere for at komme tilbage på toppen."
+  },
+  {
+    "_comment": "Transfer artikel 3",
+    "id": 8,
+    "title": "Real Madrid nærmer sig aftale med ung stjerne",
+    "date": "2025-05-20",
+    "category": "Transfer",
+    "image": "https://example.com/images/realmadrid-transfer.jpg",
+    "summary": "Real Madrid sigter mod at hente en lovende angriber fra La Liga.",
+    "content": "Den unge angriber forventes at blive en nøglespiller i fremtiden, og Madrid-klubben arbejder på at færdiggøre aftalen inden sommeren."
+  },
+  {
+    "_comment": "Transfer artikel 4",
+    "id": 9,
+    "title": "Barcelona sælger veteran til MLS",
+    "date": "2025-05-19",
+    "category": "Transfer",
+    "image": "https://example.com/images/barcelona-mls.jpg",
+    "summary": "Barcelona har solgt deres erfarne midtbanespiller til en klub i USA.",
+    "content": "Den rutinerede spiller tager til MLS for at afslutte sin karriere og bidrage med erfaring i den nordamerikanske liga."
+  },
+  {
+    "_comment": "Transfer artikel 5",
+    "id": 10,
+    "title": "Juventus jagter ny angriber",
+    "date": "2025-05-18",
+    "category": "Transfer",
+    "image": "https://example.com/images/juventus-angriber.jpg",
+    "summary": "Juventus leder efter en angriber, der kan øge måltallet næste sæson.",
+    "content": "Flere kandidater er i spil, og klubben ønsker at styrke holdet for at kunne konkurrere om Serie A-titlen."
+  }
+]
