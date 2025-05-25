@@ -12,12 +12,6 @@
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      background-color: #142541;
-      color: white;
-    }
-
     .navbar {
       background-color: #142541;
       padding: 15px 30px;
@@ -86,116 +80,110 @@
       width: 100%;
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #142541;
+      color: white;
+      padding: 20px;
+    }
+
     h2 {
       text-align: center;
-      margin-top: 40px;
+      margin: 40px 0 20px;
       font-size: 28px;
+      color: #e0e7f6;
     }
 
     .news-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      padding: 20px;
     }
 
     .news-card {
-      background-color: #0d1b2a;
+      position: relative;
       border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
-      position: relative;
       transition: transform 0.3s ease;
-    }
-
-    .news-card:hover {
-      transform: scale(1.02);
+      height: 200px;
     }
 
     .news-card img {
       width: 100%;
-      height: 200px;
+      height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    .news-title {
+    .news-overlay {
       position: absolute;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
+      left: 0;
       width: 100%;
-      text-align: center;
-      font-weight: bold;
-      font-size: 16px;
       padding: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
     }
 
     .news-full {
       display: none;
-      background: #e0e7f6;
-      color: #142541;
-      padding: 10px;
+      background-color: #0d1b2a;
+      padding: 15px;
       font-size: 14px;
     }
-  </style>
-</head>
-<body>
 
-  <header class="navbar">
-    <div class="logo-container">
-      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
-        <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
-        </div>
-      </a>
-    </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-    </nav>
-  </header>
+    .news-card.active {
+      height: auto;
+    }
 
-  <h2>Fodbold Nyheder</h2>
-  <div id="fodbold" class="news-grid"></div>
+    .news-card.active img {
+      height: 200px;
+    }
 
-  <h2>Transfer Nyheder</h2>
-  <div id="transfer" class="news-grid"></div>
+    .news-card.active .news-full {
+      display: block;
+    }
 
-  <script>
-    fetch('nyheder.json')
-      .then(response => response.json())
-      .then(data => {
-        const fodboldContainer = document.getElementById('fodbold');
-        const transferContainer = document.getElementById('transfer');
+    .disclaimer {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 40px;
+      color: #ccc;
+    }
 
-        function createNewsCard(item, container) {
-          const card = document.createElement('div');
-          card.className = 'news-card';
+    // Funktion til at oprette nyhedskort
+    function createNewsCard(item, container) {
+      const card = document.createElement('div');
+      card.className = 'news-card';
 
-          card.innerHTML = `
-            <img src="${item.image}" alt="${item.title}">
-            <div class="news-title">${item.title}</div>
-            <div class="news-full">${item.fullText}</div>
-          `;
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <div class="news-overlay">${item.title}</div>
+        <div class="news-full">${item.fullText}</div>
+      `;
 
-          card.addEventListener('click', () => {
-            const fullText = card.querySelector('.news-full');
-            fullText.style.display = fullText.style.display === 'block' ? 'none' : 'block';
-          });
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
 
-          container.appendChild(card);
-        }
+      container.appendChild(card);
+    }
 
-        data.fodbold.slice(0,5).forEach(item => createNewsCard(item, fodboldContainer));
-        data.transfer.slice(0,5).forEach(item => createNewsCard(item, transferContainer));
-      })
-      .catch(error => console.error('Fejl ved indlæsning af data:', error));
+    // Tilføj nyheder til siden
+    const fodboldContainer = document.getElementById('fodbold');
+    const transferContainer = document.getElementById('transfer');
+
+    data.fodbold.slice(0, 5).forEach(item => createNewsCard(item, fodboldContainer));
+    data.transfer.slice(0, 5).forEach(item => createNewsCard(item, transferContainer));
   </script>
-
 </body>
 </html>
