@@ -2,30 +2,30 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Geo Betting Tips</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
-      font-family: 'Montserrat', sans-serif;
       box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
     }
-
     body {
       margin: 0;
       background-color: white;
       color: #142541;
+      overflow-x: hidden;
     }
-
+    /* NAVBAR */
     .navbar {
       background-color: #142541;
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 1001;
     }
-
     .logo-container a {
       text-decoration: none;
       color: inherit;
@@ -33,30 +33,25 @@
       align-items: center;
       gap: 10px;
     }
-
     .logo {
       width: 40px;
       height: 40px;
     }
-
     .logo-text {
       display: flex;
       flex-direction: column;
     }
-
     .site-name {
       color: white;
       font-size: 24px;
-      font-weight: bold;
+      font-weight: 700;
       margin: 0;
     }
-
     .slogan {
       color: #e0e7f6;
       font-size: 14px;
       margin: 0;
     }
-
     .nav-links {
       list-style: none;
       display: flex;
@@ -64,15 +59,13 @@
       margin: 0;
       padding: 0;
     }
-
     .nav-links li a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 18px;
       position: relative;
     }
-
     .nav-links li a::after {
       content: '';
       position: absolute;
@@ -83,87 +76,212 @@
       background-color: #e0e7f6;
       transition: width 0.3s ease;
     }
-
     .nav-links li a:hover::after {
       width: 100%;
     }
 
+    /* DISCLAIMER */
+    .disclaimer {
+      background-color: #f5f5f5;
+      padding: 8px 30px;
+      font-size: 13px;
+      color: #555;
+      border-bottom: 1px solid #ddd;
+      user-select: none;
+      text-align: center;
+      font-weight: 500;
+      position: relative;
+      z-index: 1000;
+    }
+
+    /* H2 */
     h2 {
       text-align: center;
       margin-top: 40px;
       font-size: 28px;
+      font-weight: 700;
+      color: #142541;
     }
 
+    /* Nyhedsbokse container */
     .news-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      padding: 20px;
       max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .news-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+      margin: 20px auto 60px;
+      padding: 0 15px;
       display: flex;
+      flex-direction: column;
+      gap: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Enkel nyhedsboks */
+    .news-card {
+      background: white;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+      border-radius: 12px;
+      display: flex;
+      overflow: hidden;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: box-shadow 0.3s ease;
+      height: 180px;
     }
-
     .news-card:hover {
-      transform: scale(1.02);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
-
     .news-image {
-      width: 200px;
-      height: 150px;
+      width: 260px;
+      height: 100%;
       object-fit: cover;
       flex-shrink: 0;
     }
-
     .news-content {
-      padding: 15px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      flex-grow: 1;
+      color: #142541;
+      position: relative;
     }
-
     .news-title {
-      font-weight: bold;
-      font-size: 18px;
-      margin: 0 0 5px 0;
+      font-weight: 700;
+      font-size: 22px;
+      margin: 0 0 8px;
+      line-height: 1.2;
     }
-
     .news-date {
       font-size: 14px;
-      color: gray;
-      margin-bottom: 10px;
+      color: #999;
+      margin-bottom: 12px;
+    }
+    .news-summary {
+      font-size: 15px;
+      line-height: 1.4;
+      color: #444;
     }
 
-    .news-full {
-      display: none;
+    /* Udvidet artikel overlay */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(20, 37, 65, 0.7);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      z-index: 1500;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .expanded-article {
+      background: white;
+      border-radius: 16px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+      animation: fadeInScale 0.3s ease forwards;
+      position: relative;
+    }
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .expanded-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+    .expanded-content {
+      padding: 25px 30px 40px;
+      color: #142541;
+    }
+    .expanded-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .expanded-date {
+      color: #999;
       font-size: 14px;
-      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .expanded-text {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #444;
+      white-space: pre-wrap;
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: #142541;
+      border: none;
+      color: white;
+      font-size: 22px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 700;
+      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    .close-btn:hover {
+      background-color: #0f1e36;
     }
 
-    .disclaimer {
-      text-align: center;
-      font-size: 12px;
-      color: gray;
-      padding: 20px;
-      background-color: #f5f5f5;
+    /* Slør baggrund når overlay er aktiv */
+    body.overlay-active > *:not(.overlay) {
+      filter: blur(5px);
+      pointer-events: none;
+      user-select: none;
     }
+
+    /* Responsivt */
+    @media (max-width: 700px) {
+      .news-card {
+        flex-direction: column;
+        height: auto;
+      }
+      .news-image {
+        width: 100%;
+        height: 180px;
+      }
+      .news-content {
+        padding: 15px 20px;
+      }
+    }
+
   </style>
 </head>
 <body>
 
   <header class="navbar">
     <div class="logo-container">
-      <a href="index.html">
-        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
+      <a href="index.html" aria-label="Gå til forsiden">
+        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo" />
         <div class="logo-text">
           <h1 class="site-name">Geo Betting Tips</h1>
           <p class="slogan">Ekspertanalyser til din betting</p>
@@ -171,7 +289,7 @@
       </a>
     </div>
     <nav>
-      <ul class="nav-links">
+      <ul class="nav-links" role="navigation">
         <li><a href="nyheder.html">Nyheder</a></li>
         <li><a href="Analyser.html">Analyser</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
@@ -180,19 +298,69 @@
     </nav>
   </header>
 
+  <div class="disclaimer" role="contentinfo">
+    18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
+  </div>
+
   <h2>Fodbold Nyheder</h2>
-  <div id="fodbold" class="news-grid"></div>
+  <section id="fodbold" class="news-grid" aria-label="Fodbold nyheder"></section>
 
   <h2>Transfer Nyheder</h2>
-  <div id="transfer" class="news-grid"></div>
+  <section id="transfer" class="news-grid" aria-label="Transfer nyheder"></section>
 
-  <footer class="disclaimer">
-    Ansvarsfraskrivelse: Geo Betting Tips er kun til underholdningsformål og tilbyder ikke garantier for resultater. Spil ansvarligt.
-  </footer>
+  <!-- Udvidet artikel overlay -->
+  <div class="overlay" id="overlay" aria-modal="true" role="dialog" aria-hidden="true" aria-labelledby="expanded-title">
+    <article class="expanded-article" role="document">
+      <button class="close-btn" aria-label="Luk artikel" id="closeBtn">&times;</button>
+      <img src="" alt="" class="expanded-image" id="expandedImage" />
+      <div class="expanded-content">
+        <h3 class="expanded-title" id="expanded-title"></h3>
+        <p class="expanded-date" id="expandedDate"></p>
+        <p class="expanded-text" id="expandedText"></p>
+      </div>
+    </article>
+  </div>
 
   <script>
+    const overlay = document.getElementById('overlay');
+    const expandedImage = document.getElementById('expandedImage');
+    const expandedTitle = document.getElementById('expanded-title');
+    const expandedDate = document.getElementById('expandedDate');
+    const expandedText = document.getElementById('expandedText');
+    const closeBtn = document.getElementById('closeBtn');
+
+    function openArticle(article) {
+      expandedImage.src = article.image;
+      expandedImage.alt = article.title;
+      expandedTitle.textContent = article.title;
+      expandedDate.textContent = article.date;
+      expandedText.textContent = article.fullText;
+
+      overlay.setAttribute('aria-hidden', 'false');
+      overlay.classList.add('active');
+      document.body.classList.add('overlay-active');
+
+      // Scroll til toppen af overlay
+      overlay.scrollTop = 0;
+    }
+
+    function closeArticle() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('overlay-active');
+    }
+
+    closeBtn.addEventListener('click', closeArticle);
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeArticle();
+      }
+    });
+
+    // Hent nyheder fra JSON
     fetch('nyheder.json')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
         const fodboldContainer = document.getElementById('fodbold');
         const transferContainer = document.getElementById('transfer');
@@ -200,19 +368,23 @@
         function createNewsCard(item, container) {
           const card = document.createElement('div');
           card.className = 'news-card';
+          card.tabIndex = 0; // keyboard focus
 
           card.innerHTML = `
-            <img src="${item.image}" alt="${item.title}" class="news-image">
+            <img src="${item.image}" alt="${item.title}" class="news-image" />
             <div class="news-content">
-              <div class="news-title">${item.title}</div>
+              <h3 class="news-title">${item.title}</h3>
               <div class="news-date">${item.date}</div>
-              <div class="news-full">${item.fullText}</div>
+              <p class="news-summary">${item.summary}</p>
             </div>
           `;
 
-          card.addEventListener('click', () => {
-            const fullText = card.querySelector('.news-full');
-            fullText.style.display = fullText.style.display === 'block' ? 'none' : 'block';
+          card.addEventListener('click', () => openArticle(item));
+          card.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter' || e.key === ' ') {
+              openArticle(item);
+              e.preventDefault();
+            }
           });
 
           container.appendChild(card);
@@ -221,7 +393,7 @@
         data.fodbold.slice(0,5).forEach(item => createNewsCard(item, fodboldContainer));
         data.transfer.slice(0,5).forEach(item => createNewsCard(item, transferContainer));
       })
-      .catch(error => console.error('Fejl ved indlæsning af data:', error));
+      .catch(err => console.error('Fejl ved indlæsning af nyheder:', err));
   </script>
 
 </body>
