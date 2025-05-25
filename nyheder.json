@@ -1,56 +1,66 @@
 {
   "fodbold": [
     {
-      "title": "Messi med hattrick i sæsonfinalen",
-      "image": "https://r.testifier.nl/Acbs8526SDKI/resizing_type:fill/width:1200/height:675/plain/https://s3-newsifier.ams3.digitaloceanspaces.com/barcafans.dk/images/2024-08/lionel-messi-flag-66acb50e0852c.jpg@webp",
-      "fullText": "Lionel Messi leverede endnu en fænomenal præstation med et hattrick i sæsonens sidste kamp, der sikrede titlen for hans hold."
+      "title": "Topbrag i Premier League",
+      "date": "25. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Premier+League",
+      "fullText": "Arsenal og Manchester City spiller topkamp i Premier League. Begge hold jagter mesterskabet med stor intensitet."
     },
     {
-      "title": "Premier League: Hård kamp om top 4",
-      "image": "https://via.placeholder.com/600x400?text=Premier+League+Top4",
-      "fullText": "Flere hold kæmper om de eftertragtede Champions League-pladser, og spændingen er intens forud for de sidste spillerunder."
+      "title": "Superligaen afgøres i sidste spillerunde",
+      "date": "24. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Superliga",
+      "fullText": "Superligaen er tæt i år, og mesterskabet skal findes i den sidste spillerunde, hvor flere hold kæmper om guldet."
     },
     {
-      "title": "Superligaen: FC København i krise",
-      "image": "https://via.placeholder.com/600x400?text=FCK+Krise",
-      "fullText": "Efter flere skuffende resultater står FC København over for store udfordringer, og fansene kræver ændringer."
+      "title": "Mbappé fortsætter målformen",
+      "date": "23. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Mbapp%C3%A9",
+      "fullText": "Kylian Mbappé har igen scoret og er nu topscorer i Ligue 1. PSG ser stærke ud i deres jagt på titlen."
     },
     {
-      "title": "La Liga: Real Madrid tæt på mesterskabet",
-      "image": "https://via.placeholder.com/600x400?text=Real+Mesterskab",
-      "fullText": "Real Madrid er kun én sejr fra at sikre sig mesterskabet efter en imponerende sæson med mange mål og stærk defensiv."
+      "title": "Champions League-finalen er klar",
+      "date": "22. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Champions+League",
+      "fullText": "Finalen i Champions League står mellem Real Madrid og Bayern München. Fans verden over ser frem til opgøret."
     },
     {
-      "title": "Bundesliga: Dortmund overrasker igen",
-      "image": "https://via.placeholder.com/600x400?text=Dortmund+Overrasker",
-      "fullText": "Borussia Dortmund fortsætter med at overraske og spille flot fodbold, hvilket bringer dem tættere på topplaceringerne."
+      "title": "Messi afslører fremtiden",
+      "date": "21. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Messi",
+      "fullText": "Lionel Messi har udtalt sig om sine planer for næste sæson. Bliver han i Inter Miami eller skifter han klub?"
     }
   ],
   "transfer": [
     {
-      "title": "Mbappé på vej til Real Madrid",
-      "image": "https://via.placeholder.com/600x400?text=Mbappe+Real+Madrid",
-      "fullText": "Efter måneder med spekulationer ser det ud til, at Kylian Mbappé endelig skifter til Real Madrid til sommer."
+      "title": "Ronaldo tilbage til Sporting?",
+      "date": "25. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Ronaldo",
+      "fullText": "Rygterne svirrer om, at Cristiano Ronaldo overvejer et skifte tilbage til Sporting Lissabon, hvor karrieren startede."
     },
     {
-      "title": "Premier League: Manchester United jagter ny angriber",
-      "image": "https://via.placeholder.com/600x400?text=United+Angriber",
-      "fullText": "Manchester United leder efter en ny angriber, og flere navne er på ønskelisten, herunder Harry Kane og Victor Osimhen."
+      "title": "Haaland på vej til Real Madrid",
+      "date": "24. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Haaland",
+      "fullText": "Erling Haaland linkes kraftigt til Real Madrid, som vil styrke angrebet med den norske bomber."
     },
     {
-      "title": "Barça vil forlænge med Gavi",
-      "image": "https://via.placeholder.com/600x400?text=Gavi+Forlaengelse",
-      "fullText": "FC Barcelona ønsker at forlænge kontrakten med det unge talent Gavi, som har imponeret i denne sæson."
+      "title": "Premier League-klub vil have Vlahovic",
+      "date": "23. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Vlahovic",
+      "fullText": "Dusan Vlahovic er på radaren hos flere Premier League-klubber, herunder Chelsea og Manchester United."
     },
     {
-      "title": "Chelsea vil af med Lukaku",
-      "image": "https://via.placeholder.com/600x400?text=Lukaku+Transfer",
-      "fullText": "Chelsea planlægger at sælge Romelu Lukaku i det kommende transfervindue for at frigøre midler til nye spillere."
+      "title": "Dybala skifter til Serie A-rival",
+      "date": "22. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Dybala",
+      "fullText": "Paulo Dybala rygtes til at skifte fra AS Roma til Juventus i et opsigtsvækkende bytte."
     },
     {
-      "title": "Juventus i samtaler med Zaniolo",
-      "image": "https://via.placeholder.com/600x400?text=Zaniolo+Juventus",
-      "fullText": "Juventus har indledt forhandlinger med Zaniolo om en potentiel sommertransfer til Torino-klubben."
+      "title": "Modric overvejer pension",
+      "date": "21. maj 2025",
+      "image": "https://via.placeholder.com/400x200.png?text=Modric",
+      "fullText": "Luka Modric nærmer sig karrierens afslutning og overvejer at trække sig tilbage efter denne sæson."
     }
   ]
 }
