@@ -2,10 +2,9 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Geo Betting Tips</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="logo.png" type="image/png">
   <style>
     * {
       font-family: 'Montserrat', sans-serif;
@@ -14,8 +13,8 @@
 
     body {
       margin: 0;
-      background-color: #ffffff;
-      color: #000000;
+      background-color: white;
+      color: #142541;
     }
 
     .navbar {
@@ -24,6 +23,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: white;
     }
 
     .logo-container {
@@ -71,19 +71,8 @@
       position: relative;
     }
 
-    .nav-links li a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0%;
-      height: 2px;
-      background-color: #e0e7f6;
-      transition: width 0.3s ease;
-    }
-
-    .nav-links li a:hover::after {
-      width: 100%;
+    .nav-links li a:hover {
+      text-decoration: underline;
     }
 
     h2 {
@@ -92,96 +81,61 @@
       font-size: 28px;
     }
 
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    .news-section {
+      display: flex;
+      flex-direction: column;
       gap: 20px;
       padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .news-card {
-      position: relative;
+      background-color: #e0e7f6;
       border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease;
     }
 
     .news-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transform: scale(1.02);
     }
 
     .news-card img {
       width: 100%;
-      height: 100%;
+      height: 200px;
       object-fit: cover;
+    }
+
+    .news-content {
+      padding: 15px;
+    }
+
+    .news-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0 0 10px;
+    }
+
+    .news-date {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .news-full {
+      display: none;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .news-card.expanded .news-full {
       display: block;
     }
 
-    .news-overlay {
-      position: absolute;
-      bottom: 0;
-      background: rgba(20, 37, 65, 0.7);
-      width: 100%;
-      color: white;
-      padding: 10px;
-      text-align: center;
-    }
-
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.5);
-    }
-
-    .modal-content {
-      background-color: #ffffff;
-      margin: 5% auto;
-      padding: 20px;
-      border-radius: 12px;
-      width: 80%;
-      max-width: 800px;
-      position: relative;
-    }
-
-    .modal-content img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-    }
-
-    .modal-content .news-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-
-    .modal-content .news-full {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #000000;
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      color: #000000;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #ff0000;
+    .news-card.expanded img {
+      height: 300px;
     }
   </style>
 </head>
@@ -189,18 +143,16 @@
 
   <header class="navbar">
     <div class="logo-container">
-      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
-        <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
-        </div>
-      </a>
+      <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
+      <div class="logo-text">
+        <h1 class="site-name">Geo Betting Tips</h1>
+        <p class="slogan">Ekspertanalyser til din betting</p>
+      </div>
     </div>
     <nav>
       <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
+        <li><a href="analyser.html">Analyser</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
         <li><a href="faq.html">FAQ</a></li>
       </ul>
@@ -208,20 +160,10 @@
   </header>
 
   <h2>Fodbold Nyheder</h2>
-  <div id="fodbold" class="news-grid"></div>
+  <div id="fodbold" class="news-section"></div>
 
   <h2>Transfer Nyheder</h2>
-  <div id="transfer" class="news-grid"></div>
-
-  <!-- Modal Structure -->
-  <div id="newsModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <img id="modalImage" src="" alt="">
-      <div class="news-title" id="modalTitle"></div>
-      <div class="news-full" id="modalFullText"></div>
-    </div>
-  </div>
+  <div id="transfer" class="news-section"></div>
 
   <script>
     fetch('nyheder.json')
@@ -234,46 +176,26 @@
           const card = document.createElement('div');
           card.className = 'news-card';
 
-          const img = document.createElement('img');
-          img.src = item.image;
-          img.alt = item.title;
-
-          const overlay = document.createElement('div');
-          overlay.className = 'news-overlay';
-          overlay.textContent = item.title;
-
-          card.appendChild(img);
-          card.appendChild(overlay);
+          card.innerHTML = `
+            <img src="${item.image}" alt="${item.title}">
+            <div class="news-content">
+              <h3 class="news-title">${item.title}</h3>
+              <p class="news-date">${item.date}</p>
+              <div class="news-full">${item.fullText}</div>
+            </div>
+          `;
 
           card.addEventListener('click', () => {
-            document.getElementById('modalImage').src = item.image;
-            document.getElementById('modalImage').alt = item.title;
-            document.getElementById('modalTitle').textContent = item.title;
-            document.getElementById('modalFullText').textContent = item.fullText;
-            document.getElementById('newsModal').style.display = 'block';
+            card.classList.toggle('expanded');
           });
 
           container.appendChild(card);
         }
 
-        data.fodbold.slice(0,5).forEach(item => createNewsCard(item, fodboldContainer));
-        data.transfer.slice(0,5).forEach(item => createNewsCard(item, transferContainer));
+        data.fodbold.slice(0, 5).forEach(item => createNewsCard(item, fodboldContainer));
+        data.transfer.slice(0, 5).forEach(item => createNewsCard(item, transferContainer));
       })
       .catch(error => console.error('Fejl ved indlæsning af data:', error));
-
-    // Modal functionality
-    const modal = document.getElementById('newsModal');
-    const closeBtn = document.querySelector('.close');
-
-    closeBtn.onclick = function() {
-      modal.style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = 'none';
-      }
-    }
   </script>
 
 </body>
