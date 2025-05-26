@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Betting Site</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geo Betting Tips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
 </head>
 <body>
-    <header>
-        <h1>Velkommen til BettingSite</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Hjem</a></li>
-                <li><a href="#">Live Betting</a></li>
-                <li><a href="#">Kampagner</a></li>
-                <li><a href="#">Support</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="navbar">
+    <div class="logo-container">
+      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
+        <div class="logo-text">
+          <h1 class="site-name">Geo Betting Tips</h1>
+          <p class="slogan">Ekspertanalyser til din betting</p>
+        </div>
+      </a>
+    </div>
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="nyheder.html">Nyheder</a></li>
+        <li><a href="Analyser.html">Analyser</a></li>
+        <li><a href="tilbud.html">Tilbud</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section class="welcome">
-            <h2>Start din bettingrejse her!</h2>
-            <p>Tilmeld dig nu og få en velkomstbonus på 100% op til 1000 DKK.</p>
-            <a href="#" class="btn-primary">Tilmeld dig</a>
-        </section>
+  <p class="disclaimer">
+    18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
+  </p>
 
-        <section class="features">
-            <h2>Hvorfor vælge os?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Live Odds</h3>
-                    <p>Opdaterede odds på tusindvis af kampe verden over.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Hurtige Udbetalinger</h3>
-                    <p>Vi behandler dine udbetalinger hurtigt og sikkert.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Sikker Platform</h3>
-                    <p>Din sikkerhed er vores højeste prioritet.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+  <section id="dagens-spil">
+    <h2>Dagens Spil</h2>
+    <div class="spil-container">
+      <!-- Her indsætter du dine spil-kort -->
+      <!-- ... eksisterende spil-kort-kode ... -->
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 BettingSite. Alle rettigheder forbeholdes.</p>
-    </footer>
+  <section class="nyheder-sektion">
+    <h2>Nyheder</h2>
+    <div class="nyheds-grid">
+      <!-- Her indsætter du dine nyhedskort -->
+      <!-- ... eksisterende nyhedskort-kode ... -->
+    </div>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
