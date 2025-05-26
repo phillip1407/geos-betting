@@ -1,77 +1,176 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Betting Website</title>
-    <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-    <header>
-        <nav>
-            <ul class="navbar">
-                <li><a href="#">Hjem</a></li>
-                <li><a href="#">Dagens Spil</a></li>
-                <li><a href="#">Nyheder</a></li>
-                <li><a href="#">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geo Betting Tips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
 
-    <main>
-        <section class="hero">
-            <h1>Velkommen til Betting siden</h1>
-            <p>De bedste odds samlet ét sted.</p>
-            <button class="cta">Se Odds</button>
-        </section>
+    /* Navbar */
+    .navbar {
+      background-color: #142541;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        <section class="dagens-spil">
-            <h2>Dagens Spil</h2>
-            <div class="spil-liste">
-                <article>
-                    <h3>Kamp 1</h3>
-                    <p>Detaljer om kampen...</p>
-                </article>
-                <article>
-                    <h3>Kamp 2</h3>
-                    <p>Detaljer om kampen...</p>
-                </article>
-            </div>
-        </section>
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        <section class="nyheder">
-            <h2>Nyheder</h2>
-            <article>
-                <h3>Breaking News 1</h3>
-                <p>Detaljer om nyheden...</p>
-            </article>
-            <article>
-                <h3>Breaking News 2</h3>
-                <p>Detaljer om nyheden...</p>
-            </article>
-        </section>
+    .logo {
+      width: 40px;
+      height: 40px;
+    }
 
-        <section class="statistik">
-            <h2>Statistik & Analyse</h2>
-            <div class="statistik-grid">
-                <div class="kort">
-                    <h3>Top Hold</h3>
-                    <p>Hold A, Hold B, Hold C</p>
-                </div>
-                <div class="kort">
-                    <h3>Top Scorere</h3>
-                    <p>Spiller X, Spiller Y, Spiller Z</p>
-                </div>
-                <div class="kort">
-                    <h3>Seneste Resultater</h3>
-                    <p>Kamp 1: 2-1, Kamp 2: 0-3</p>
-                </div>
-            </div>
-        </section>
-    </main>
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
 
-    <footer>
-        <p>&copy; 2025 Betting Siden</p>
-    </footer>
-</body>
-</html>
+    .site-name {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .slogan {
+      color: #e0e7f6;
+      font-size: 14px;
+      margin: 0;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      position: relative;
+      padding-bottom: 5px;
+      transition: color 0.3s ease;
+    }
+
+    /* Lille streg under ved hover */
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #e0e7f6;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links li a:hover {
+      color: #e0e7f6;
+    }
+
+    /* Design til dagens spil */
+    #dagens-spil {
+      padding: 20px;
+    }
+
+    #dagens-spil h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #142541;
+    }
+
+    .spil-container {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .spil-kort {
+      position: relative;
+      background: #f5f7fa;
+      border-radius: 12px;
+      width: 300px; 
+      height: 90px;
+      padding: 15px 15px 45px 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-højre {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #f0ab4c;
+    }
+
+    .liga {
+      font-weight: 600;
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .hold-liste {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hold {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hold img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .hold span {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .bund-bjælke {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 91.5%;
+      background: #142541;
+      border-radius: 0 0 12px 12px;
+      padding: 8px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 14px;
+    }
