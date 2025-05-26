@@ -2,36 +2,130 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Geo Betting Tips</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo.png" type="image/png">
+
+  
+  <!-- Klik på logo og kom til forsiden og navigations bar --> 
+ <header class="navbar">
+  <div class="logo-container">
+    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+      <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
+      <div class="logo-text">
+        <h1 class="site-name">Geo Betting Tips</h1>
+        <p class="slogan">Ekspertanalyser til din betting</p>
+      </div>
+    </a>
+  </div>
+  <nav class="nav-container">
+    <ul class="nav-links">
+      <li><a href="nyheder.html">Nyheder</a></li>
+      <li><a href="Analyser.html">Analyser</a></li>
+      <li><a href="tilbud.html">Tilbud</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+  
+<p class="disclaimer">
+  18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
+</p>
+  
+  <style>
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #142541;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-name {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .slogan {
+      color: #e0e7f6;
+      font-size: 14px;
+      margin: 0;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      position: relative;
+      padding-bottom: 5px;
+      transition: color 0.3s ease;
+    }
+
+    /* Lille streg under ved hover */
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #e0e7f6;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links li a:hover {
+      color: #e0e7f6;
+    
+    }
+    .disclaimer {
+      font-size: 14px;
+      color: #142541 ;
+      text-align: center;
+      margin: 10px 0 10px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #e0e7f6; /* meget tynd streg */
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+  </style>
 </head>
 <body>
-  <!-- Klik på logo og kom til forsiden og navigations bar --> 
-  <header class="navbar">
-    <div class="logo-container">
-      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo" />
-        <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
-        </div>
-      </a>
-    </div>
-    <nav class="nav-container">
-      <ul class="nav-links">
-        <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <p class="disclaimer">
-    18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
-  </p>
-</body>
-</html>
