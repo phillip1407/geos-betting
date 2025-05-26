@@ -3,104 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- Titel med separator -->
   <title>Betalingstips | Geo Betting Tips</title>
-
-  <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="image/png" sizes="16x16">
-  <!-- Apple touch icon -->
   <link rel="apple-touch-icon" href="favicon.png">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
 
     /* Navbar */
     .navbar {
-      background-color: #142541;
-      padding: 15px 140px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background:#142541;
+      padding:15px 140px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
-    .logo-container { display: flex; align-items: center; gap: 10px; }
-    .logo { width: 40px; height: 40px; }
-    .logo-text { display: flex; flex-direction: column; }
-    .site-name { color: white; font-size: 24px; font-weight: bold; }
-    .slogan { color: #e0e7f6; font-size: 14px; margin-top: 2px; }
+    .logo-container { display:flex; align-items:center; gap:10px; }
+    .logo { width:40px; height:40px; }
+    .logo-text { display:flex; flex-direction:column; }
+    .site-name { color:white; font-size:24px; font-weight:bold; }
+    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
 
-    .nav-container { display: flex; align-items: center; }
+    .nav-container { display:flex; align-items:center; }
     .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      margin-right: 20px;
+      list-style:none;
+      display:flex;
+      gap:30px;
+      margin-right:20px;
     }
     .nav-links li a {
-      color: white; text-decoration: none; font-weight: bold; font-size: 18px;
-      position: relative; padding-bottom: 5px; transition: color 0.3s ease;
+      color:white; text-decoration:none; font-weight:bold; font-size:18px;
+      position:relative; padding-bottom:5px; transition:color 0.3s ease;
     }
     .nav-links li a::after {
-      content: ''; position: absolute; left: 0; bottom: 0;
-      width: 0; height: 3px; background-color: #e0e7f6; transition: width 0.3s ease;
+      content:''; position:absolute; left:0; bottom:0;
+      width:0; height:3px; background:#e0e7f6; transition:width 0.3s ease;
     }
-    .nav-links li a:hover::after { width: 100%; }
-    .nav-links li a:hover      { color: #e0e7f6; }
+    .nav-links li a:hover::after { width:100%; }
+    .nav-links li a:hover      { color:#e0e7f6; }
 
-    .nav-links li.dropdown { position: relative; }
+    .nav-links li.dropdown { position:relative; }
     .nav-links li.dropdown ul {
-      position: absolute; top: 30px; left: 0;
-      background: #142541; padding: 10px 0; list-style: none;
-      display: none; border-radius: 5px; min-width: 160px;
+      position:absolute; top:30px; left:0;
+      background:#142541; padding:10px 0; list-style:none;
+      display:none; border-radius:5px; min-width:160px;
     }
-    .nav-links li.dropdown:hover ul { display: block; }
+    .nav-links li.dropdown:hover ul { display:block; }
     .nav-links li.dropdown ul li a {
-      display: block; padding: 8px 20px; font-size: 16px; color: white;
+      display:block; padding:8px 20px; font-size:16px; color:white;
     }
     .nav-links li.dropdown ul li a:hover {
-      background-color: #1f3a68;
+      background:#1f3a68;
     }
 
+    /* Search form */
+    .search-form {
+      display:flex;
+      align-items:center;
+    }
+    .search-input {
+      padding:6px 10px;
+      border:2px solid #e0e7f6;
+      border-right:none;
+      border-radius:4px 0 0 4px;
+      font-size:16px;
+      width:200px;
+    }
+    .search-input:focus {
+      outline:none;
+      border-color:#1f3a68;
+    }
     .search-button {
-      background-color: #e0e7f6; color: #142541;
-      border: none; padding: 8px 12px; font-size: 16px; font-weight: bold;
-      border-radius: 4px; cursor: pointer;
+      background:#e0e7f6;
+      color:#142541;
+      border:2px solid #e0e7f6;
+      border-radius:0 4px 4px 0;
+      padding:6px 12px;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:background 0.3s ease,color 0.3s ease;
+    }
+    .search-button:hover {
+      background:#1f3a68;
+      color:#e0e7f6;
+      border-color:#1f3a68;
     }
 
-    /* Sub-header: breadcrumb + centered disclaimer */
+    /* Sub-header */
     .sub-header {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      padding: 20px 140px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #e0e7f6;
+      padding:20px 140px;
+      background:#fff;
+      border-bottom:1px solid #e0e7f6;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:8px;
     }
-
     .breadcrumb {
-      font-size: 14px;
-      color: #142541;
+      font-size:14px; color:#142541;
     }
     .breadcrumb a {
-      text-decoration: none;
-      color: #0033cc;
-      font-weight: bold;
+      text-decoration:none; color:#0033cc; font-weight:bold;
     }
-    .breadcrumb a:hover { text-decoration: underline; }
-
+    .breadcrumb a:hover { text-decoration:underline; }
     .disclaimer {
-      grid-column: 2;
-      justify-self: center;
-      font-size: 14px;
-      color: #142541;
+      width:100%; text-align:center; font-size:14px; color:#142541;
     }
   </style>
 </head>
@@ -108,7 +117,7 @@
 
   <header class="navbar">
     <div class="logo-container">
-      <a href="index.html" style="display:flex; gap:10px; text-decoration:none; color:inherit;">
+      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
         <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
         <div class="logo-text">
           <h1 class="site-name">Geo Betting Tips</h1>
@@ -116,6 +125,7 @@
         </div>
       </a>
     </div>
+
     <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
@@ -130,7 +140,11 @@
           </ul>
         </li>
       </ul>
-      <button class="search-button">Søg</button>
+
+      <form class="search-form" action="search.html" method="get">
+        <input type="text" name="q" class="search-input" placeholder="Søg på sitet…" />
+        <button type="submit" class="search-button">Søg</button>
+      </form>
     </nav>
   </header>
 
@@ -139,7 +153,7 @@
       <a href="index.html">Forside</a> &raquo; <span>Betalingstips</span>
     </nav>
     <p class="disclaimer">
-      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
+      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
     </p>
   </div>
 
