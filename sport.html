@@ -2,66 +2,220 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geos Betting Tips</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>FAQ | Geo Betting Tips</title>
+  <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --main-color: #142541;
+    * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
+    body { background:#f9f9f9; }
+
+    .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
+    .logo-container { display:flex; align-items:center; gap:10px; }
+    .logo { width:55px; height:55px; }
+    .logo-text { display:flex; flex-direction:column; }
+    .site-name { color:#fff; font-size:24px; font-weight:bold; }
+    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
+
+    .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
+    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
+    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
+    .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
+    .nav-links li a:hover::after { width:100%; } 
+    .nav-links li a:hover { color:#e0e7f6; }
+
+    .nav-links li.dropdown { position:relative; }
+    .nav-links li.dropdown ul {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: #142541;
+      padding: 10px 0;
+      list-style: none;
+      display: none;
+      border-radius: 5px;
+      min-width: 160px;
+      z-index: 20;
     }
-    .bg-main { background-color: var(--main-color); }
-    .text-main { color: var(--main-color); }
-    .btn-main {
-      background-color: var(--main-color);
-      color: white;
+    
+    
+    .nav-links li.dropdown:hover ul { display:block; }
+    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
+    .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
+
+    /* Search + autocomplete */
+    .search-wrapper { position:relative; }
+    .search-input {
+      padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
     }
-    .btn-main:hover { background-color: #0f1d33; }
+    .search-input:focus { outline:none; border-color:#1f3a68; }
+    .suggestions {
+      position:absolute; top:100%; left:0; right:0; background:#fff;
+      border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto;
+      z-index:10; display:none;
+    }
+    .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
+    .suggestions li:hover { background:#f0f0f0; }
+    
+    
+    .sub-header {
+      padding: 20px 140px;
+      background: #fff;
+      border-bottom: 1px solid #e0e7f6;
+      
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .breadcrumb {
+      font-size: 14px;
+      color: #142541;
+      flex-shrink: 0;
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: #0033cc;
+      font-weight: bold;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    .disclaimer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #142541;
+      white-space: nowrap;
+    }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body>
 
-  <!-- Header + Navigation -->
-  <header class="bg-main text-white p-6 flex items-center justify-between">
-    <div class="flex items-center gap-4">
-      <img src="https://media.discordapp.net/attachments/1029078950443487232/1375519855326924821/gm_logo.png?ex=6831fc31&is=6830aab1&hm=2ccd7d505a9008d044be2595045e55566393ef65f8015e924f99deeea6fb37f4&=&format=webp&quality=lossless&width=889&height=846" alt="Logo" class="h-12 w-auto" />
-      <h1 class="text-3xl font-bold">Mathi og Geos Betting Tips</h1>
+  <header class="navbar">
+    <div class="logo-container">
+      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="logo-text">
+          <h1 class="site-name">Geo Betting Tips</h1>
+          <p class="slogan">Ekspertanalyser til din betting</p>
+        </div>
+      </a>
     </div>
-    <nav class="flex gap-6 text-white font-semibold">
-      <a href="dagensspil.html" class="hover:text-gray-300">Dagens Spil</a>
-      <a href="sport.html" class="underline">Sport</a>
-      <a href="events.html" class="hover:text-gray-300">Events</a>
+
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="nyheder.html">Nyheder</a></li>
+        <li><a href="Analyser.html">Analyser</a></li>
+        <li><a href="tilbud.html">Tilbud</a></li>
+        <li class="dropdown">
+          <a href="#">Mere</a>
+          <ul>
+            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="search-wrapper">
+        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
+        <ul id="suggestions" class="suggestions"></ul>
+      </div>
     </nav>
   </header>
 
-  <main class="p-6 space-y-8 max-w-4xl mx-auto">
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a> &raquo; <span>Betalingstips</span>
+    </nav>
+    <p class="disclaimer">
+      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+    </p>
+  </div>
 
-    <h2 class="text-3xl font-semibold text-main">Sport</h2>
+<script>
+  let items = [];
 
-    <section class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-2xl font-bold mb-2">Tennis</h3>
-      <p>Holger Rune har imponeret i denne sæson og er en favorit til at nå langt i French Open 2025. Hans aggressive spillestil og forbedrede serve gør ham farlig på gruset.</p>
-    </section>
+  // Hent data fra søgefelt.json
+  fetch('søgefelt.json')
+    .then(response => {
+      if (!response.ok) {
+        console.error('Fejl ved hentning af søgefelt.json:', response.status);
+        return [];
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Søge-data hentet:', data);
+      items = data;
+    })
+    .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
 
-    <section class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-2xl font-bold mb-2">Ishockey</h3>
-      <p>VM i ishockey 2025 nærmer sig, og holdene træner hårdt for at få den bedste start. Danmark forventes at gøre en stærk figur i gruppespillet.</p>
-    </section>
+  const input = document.getElementById('search');
+  const suggBox = document.getElementById('suggestions');
 
-    <section class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-2xl font-bold mb-2">Tennis (Kvinder)</h3>
-      <p>Clara Tauson arbejder sig opad på ranglisten og har potentiale til store resultater i kommende turneringer med sin hurtige og tekniske spil.</p>
-    </section>
+  input.addEventListener('input', () => {
+    const val = input.value.trim().toLowerCase();
+    suggBox.innerHTML = '';
+    if (!val) {
+      suggBox.style.display = 'none';
+      return;
+    }
+    // Find matches i items
+    const matches = items.filter(i => i.title.toLowerCase().includes(val));
 
-    <section class="bg-white p-6 rounded shadow-md">
-      <h3 class="text-2xl font-bold mb-2">Golf</h3>
-      <p>Elmer Møller har vist god form i seneste turneringer og kan overraske i de næste events med sit præcise spil og mental styrke.</p>
-    </section>
+    if (!matches.length) {
+      suggBox.style.display = 'none';
+      return;
+    }
 
-  </main>
+    // Juster dropdown bredde til input bredde
+    suggBox.style.width = input.offsetWidth + 'px';
 
-  <footer class="bg-gray-200 text-center p-4 text-sm">
-    © 2025 Mathi og Geos Betting Tips. Alle rettigheder forbeholdes.
-  </footer>
+    // Lav liste af matches i dropdown
+    matches.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.title;
+      li.addEventListener('click', () => {
+        window.location.href = item.url;
+      });
+      suggBox.appendChild(li);
+    });
+
+    suggBox.style.display = 'block';
+  });
+
+  // Luk dropdown hvis klik udenfor søgefeltet
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrapper')) {
+      suggBox.style.display = 'none';
+    }
+  });
+</script>
+
+  <script>
+  // Hent første <h1> på siden
+  const h1 = document.querySelector('h1');
+  const siteName = 'Geo Betting Tips';
+
+  if (h1) {
+    // Sæt titlen til: "Overskrift | Geo Betting Tips"
+    document.title = `${h1.textContent.trim()} | ${siteName}`;
+  } else {
+    // Hvis der ikke er h1, bare standard titel
+    document.title = siteName;
+  }
+</script>
+
 
 </body>
 </html>
