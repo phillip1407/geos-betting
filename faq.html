@@ -6,7 +6,6 @@
   <title>Geo Betting Tips</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="logo.png" type="image/png">
-
   <style>
     * {
       font-family: 'Montserrat', sans-serif;
@@ -24,11 +23,14 @@
     .navbar {
       background-color: #142541;
       padding: 15px 30px;
+    }
+
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
-      z-index: 1000;
     }
 
     .logo-container {
@@ -61,9 +63,7 @@
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 30px;
-      margin: 0;
-      padding: 0;
+      gap: 20px;
     }
 
     .nav-links li {
@@ -76,7 +76,7 @@
       font-weight: bold;
       font-size: 18px;
       position: relative;
-      padding-bottom: 5px;
+      padding: 5px 0;
       transition: color 0.3s ease;
     }
 
@@ -99,17 +99,12 @@
       color: #e0e7f6;
     }
 
-    /* Dropdown styles */
-    .nav-links li:hover .dropdown {
-      display: block;
-    }
-
+    /* Dropdown */
     .dropdown {
       display: none;
       position: absolute;
-      top: 100%; /* Flytter dropdown lige under knappen */
+      top: 100%;
       left: 0;
-      margin-top: 8px; /* Lidt afstand */
       background-color: #142541;
       border-radius: 4px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -130,6 +125,11 @@
       color: #e0e7f6;
     }
 
+    .nav-links li:hover .dropdown {
+      display: block;
+    }
+
+    /* Disclaimer */
     .disclaimer {
       font-size: 14px;
       color: #142541;
@@ -143,30 +143,32 @@
 <body>
 
   <header class="navbar">
-    <div class="logo-container">
-      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
-        <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
-        </div>
-      </a>
+    <div class="navbar-container">
+      <div class="logo-container">
+        <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+          <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
+          <div class="logo-text">
+            <h1 class="site-name">Geo Betting Tips</h1>
+            <p class="slogan">Ekspertanalyser til din betting</p>
+          </div>
+        </a>
+      </div>
+      <nav class="nav-container">
+        <ul class="nav-links">
+          <li><a href="nyheder.html">Nyheder</a></li>
+          <li><a href="Analyser.html">Analyser</a></li>
+          <li><a href="tilbud.html">Tilbud</a></li>
+          <li>
+            <a href="#">Mere</a>
+            <ul class="dropdown">
+              <li><a href="betalingstips.html">Betalingstips</a></li>
+              <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <nav class="nav-container">
-      <ul class="nav-links">
-        <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
-        <li>
-          <a href="#">Mere</a>
-          <ul class="dropdown">
-            <li><a href="betalingstips.html">Betalingstips</a></li>
-            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
   </header>
 
   <p class="disclaimer">
