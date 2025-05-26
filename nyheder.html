@@ -337,27 +337,58 @@
 
   <script>
     // Fetch nyheder.json og indsæt i sections
-    fetch('nyheder.json')
-      .then(response => response.json())
-      .then(data => {
-        const fodboldContainer = document.getElementById('fodbold');
-        const transferContainer = document.getElementById('transfer');
+fetch('nyheder.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP fejl: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    const fodboldContainer = document.getElementById('fodbold');
+    const transferContainer = document.getElementById('transfer');
 
-        data.forEach(nyhed => {
-          const card = document.createElement('article');
-          card.className = 'news-card';
-          card.tabIndex = 0;
-          card.setAttribute('role', 'button');
-          card.setAttribute('aria-pressed', 'false');
+    if (!data || !Array.isArray(data)) {
+      console.error('Ugyldig dataformat i nyheder.json');
+      return;
+    }
 
-          card.innerHTML = `
-            <img src="${nyhed.billede}" alt="${nyhed.altTekst}" class="news-image" loading="lazy" />
-            <div class="news-content">
-              <h3 class="news-title">${nyhed.titel}</h3>
-              <p class="news-date">${nyhed.dato}</p>
-              <p class="news-summary">${nyhed.tekst.substring(0, 110)}...</p>
-            </div>
-          `;
+    data.forEach(nyhed => {
+      const card = document.createElement('article');
+      card.className = 'news-card';
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-pressed', 'false');
+
+      card.innerHTML = `
+        <img src="${nyhed.billede}" alt="${nyhed.altTekst || ''}" class="news-image" loading="lazy" />
+        <div class="news-content">
+          <h3 class="news-title">${nyhed.titel || 'Ingen titel'}</h3>
+          <p class="news-date">${nyhed.dato || ''}</p>
+          <p class="news-summary">${(nyhed.tekst || '').substring(0, 110)}...</p>
+        </div>
+      `;
+
+      card.addEventListener('click', () => visUdvidetArtikel(nyhed));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          visUdvidetArtikel(nyhed);
+        }
+      });
+
+      if (nyhed.kategori === 'fodbold') {
+        fodboldContainer.appendChild(card);
+      } else if (nyhed.kategori === 'transfer') {
+        transferContainer.appendChild(card);
+      } else {
+        console.warn('Ukendt kategori:', nyhed.kategori);
+      }
+    });
+  })
+  .catch(error => {
+    console.error('Fejl ved indlæsning af nyheder:', error);
+  });
 
           // Klik event for at åbne udvidet artikel
           card.addEventListener('click', () => {
