@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Betalingstips | Geo Betting Tips</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
@@ -41,7 +40,6 @@
       z-index: 20;
     }
     
-    
     .nav-links li.dropdown:hover ul { display:block; }
     .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
     .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
@@ -60,12 +58,10 @@
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
     
-    
     .sub-header {
       padding: 20px 140px;
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
-      
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -83,7 +79,6 @@
       color: #0033cc;
       font-weight: bold;
     }
-    
     .breadcrumb a:hover {
       text-decoration: underline;
     }
@@ -102,7 +97,7 @@
       background-color: white;
       border: 1px solid #ccc;
       border-radius: 10px;
-      width: 875px; /* ca. 2,5 gange 350px */
+      width: 875px;
       margin: 40px auto 20px auto;
       padding: 25px 35px;
       text-align: center;
@@ -110,7 +105,7 @@
     }
 
     .purpose-box h2 {
-      font-size: 24px;  /* Samme som offer-card overskrifter */
+      font-size: 24px;
       color: #142541;
       margin-bottom: 15px;
       font-weight: 700;
@@ -149,7 +144,7 @@
       object-fit: cover;
       border-radius: 8px;
       margin-bottom: 15px;
-      aspect-ratio: 4 / 3; /* Gør billedet mere firkantet */
+      aspect-ratio: 4 / 3;
     }
 
     .offer-card h3 {
@@ -252,87 +247,8 @@
     </p>
   </div>
 
-<script>
-  let items = [];
-
-  // Hent data fra søgefelt.json
-  fetch('søgefelt.json')
-    .then(response => {
-      if (!response.ok) {
-        console.error('Fejl ved hentning af søgefelt.json:', response.status);
-        return [];
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Søge-data hentet:', data);
-      items = data;
-    })
-    .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
-
-  const input = document.getElementById('search');
-  const suggBox = document.getElementById('suggestions');
-
-  input.addEventListener('input', () => {
-    const val = input.value.trim().toLowerCase();
-    suggBox.innerHTML = '';
-    if (!val) {
-      suggBox.style.display = 'none';
-      return;
-    }
-    // Find matches i items
-    const matches = items.filter(i => i.title.toLowerCase().includes(val));
-
-    if (!matches.length) {
-      suggBox.style.display = 'none';
-      return;
-    }
-
-    // Juster dropdown bredde til input bredde
-    suggBox.style.width = input.offsetWidth + 'px';
-
-    // Lav liste af matches i dropdown
-    matches.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item.title;
-      li.addEventListener('click', () => {
-        window.location.href = item.url;
-      });
-      suggBox.appendChild(li);
-    });
-
-    suggBox.style.display = 'block';
-  });
-
-  // Luk dropdown hvis klik udenfor søgefeltet
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.search-wrapper')) {
-      suggBox.style.display = 'none';
-    }
-  });
-</script>
-
-  <script>
-  // Hent første <h1> på siden
-  const h1 = document.querySelector('h1');
-  const siteName = 'Geo Betting Tips';
-
-  if (h1) {
-    // Sæt titlen til: "Overskrift | Geo Betting Tips"
-    document.title = `${h1.textContent.trim()} | ${siteName}`;
-  } else {
-    // Hvis der ikke er h1, bare standard titel
-    document.title = siteName;
-  }
-</script>
-
-
-</body>
-</html>
-
-
   <!-- Disclaimer under navbar -->
-  <p class="disclaimer">
+  <p class="disclaimer" style="position:static; text-align:center; margin: 20px 0;">
     18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
   </p>
 
@@ -352,19 +268,62 @@
     </div>
 
     <div class="offer-card">
-      <img src="https://www.bet365.dk/hub/focalimage/4lICckbU8RnfaUbcb59AzQ/e71e47c9b33086ca15178e97b4401805/GenericNoLogo_Desktop-1440-2x/jpg/focaly-594/imgWidth-2880/imgHeight-1500/targetWidth-1200/targetHeight-1500/focalx-1761" alt="Bet365 Tilbud">
-      <h3>Bet365 Velkomstbonus</h3>
-      <p>Start din bettingrejse hos Bet365 med en velkomstbonus. Klik her for at læse mere og oprette dig i dag.</p>
+      <img src="https://www.bet365.dk/hub/focalimage/4lICckbU8RnfaUbcb59AzQ/e71e47c9b33086ca15178e97b4401805/GenericNoLogo_Desktop-1440-2x/jpg/focaly-594/imgWidth-2880/imgHeight-1500/targetWidth-1200/targetHeight-750/fit-crop/cover/fit-quality-100" alt="Bet365">
+      <h3>Bet365 Bonus</h3>
+      <p>Prøv Bet365 med en god bonus til nye spillere. Sikr dig ekstra midler til dine væddemål i dag.</p>
       <a href="https://www.bet365.dk" target="_blank" rel="noopener noreferrer">Hent tilbud hos Bet365</a>
     </div>
 
     <div class="offer-card">
-      <img src="https://www.comeonbonus.se/wp-content/uploads/2023/12/comeon-betting-casino-1703082624.png" alt="ComeOn Tilbud">
-      <h3>ComeOn Velkomstbonus</h3>
-      <p>Få en stærk velkomstbonus hos ComeOn. Opret dig via vores link og oplev gode betting og casino tilbud.</p>
-      <a href="https://www.comeon.se" target="_blank" rel="noopener noreferrer">Hent tilbud hos ComeOn</a>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Unibet_logo.svg/2560px-Unibet_logo.svg.png" alt="Unibet">
+      <h3>Unibet Tilbud</h3>
+      <p>Få en velkomstpakke hos Unibet. Gør brug af tilbuddet og få mere værdi for dine indskud.</p>
+      <a href="https://www.unibet.dk" target="_blank" rel="noopener noreferrer">Hent tilbud hos Unibet</a>
     </div>
   </div>
+
+  <script>
+    // Søgeforslag (dummy eksempel)
+    const searchInput = document.getElementById('search');
+    const suggestions = document.getElementById('suggestions');
+
+    const items = ['Betting tips', 'Analyse', 'Tilbud', 'Betano', 'Bet365', 'Unibet', 'Fodboldtabeller', 'FAQ', 'Betalingstips'];
+
+    searchInput.addEventListener('input', function() {
+      const inputVal = this.value.toLowerCase();
+      suggestions.innerHTML = '';
+      if (!inputVal) {
+        suggestions.style.display = 'none';
+        return;
+      }
+      const filtered = items.filter(item => item.toLowerCase().includes(inputVal));
+      if (filtered.length > 0) {
+        suggestions.style.display = 'block';
+        filtered.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          li.onclick = () => {
+            searchInput.value = item;
+            suggestions.style.display = 'none';
+          };
+          suggestions.appendChild(li);
+        });
+      } else {
+        suggestions.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target)) {
+        suggestions.style.display = 'none';
+      }
+    });
+  </script>
+
+  <script>
+    // Dynamisk titel i top af siden (eksempel)
+    document.title = 'Betalingstips | Geo Betting Tips';
+  </script>
 
 </body>
 </html>
