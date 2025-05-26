@@ -2,159 +2,256 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Betalingstips | Geo Betting Tips</title>
-  <link rel="icon" href="favicon.png" type="image/png" sizes="16x16">
-  <link rel="apple-touch-icon" href="favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <link rel="icon" href="favicon.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
-    body { background:#f9f9f9; }
-
-    .navbar { background:#142541; padding:15px 140px; display:flex; justify-content:space-between; align-items:center; }
-    .logo-container { display:flex; align-items:center; gap:10px; }
-    .logo { width:40px; height:40px; }
-    .logo-text { display:flex; flex-direction:column; }
-    .site-name { color:#fff; font-size:24px; font-weight:bold; }
-    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
-
-    .nav-container { display:flex; align-items:center; }
-    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
-    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
-    .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
-    .nav-links li a:hover::after { width:100%; } 
-    .nav-links li a:hover { color:#e0e7f6; }
-
-    .nav-links li.dropdown { position:relative; }
-    .nav-links li.dropdown ul {
-      position:absolute; top:30px; left:0; background:#142541; padding:10px 0; list-style:none;
-      display:none; border-radius:5px; min-width:160px;
+    /* Reset og grundlæggende */
+    * {
+      box-sizing: border-box;
     }
-    .nav-links li.dropdown:hover ul { display:block; }
-    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
-    .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
-
-    /* Search + autocomplete */
-    .search-wrapper { position:relative; }
-    .search-input {
-      padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #f5f5f5;
+      color: #222;
     }
-    .search-input:focus { outline:none; border-color:#1f3a68; }
-    .suggestions {
-      position:absolute; top:100%; left:0; right:0; background:#fff;
-      border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto;
-      z-index:10; display:none;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
-    .suggestions li:hover { background:#f0f0f0; }
 
+    /* Navbar */
+    header.navbar {
+      background-color: #003366;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      height: 60px;
+    }
+    .navbar .logo {
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      user-select: none;
+    }
+    nav.nav-links {
+      margin-left: 40px;
+      display: flex;
+      gap: 25px;
+      flex-grow: 1;
+    }
+    nav.nav-links a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 8px;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    nav.nav-links a:hover,
+    nav.nav-links a:focus {
+      background-color: #0059b3;
+      outline: none;
+    }
+
+    /* Søgefelt container */
+    .search-wrapper {
+      position: relative;
+      width: 280px;
+    }
+
+    /* Søgeinput */
+    #search {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: none;
+      font-size: 1rem;
+      outline-offset: 2px;
+    }
+
+    /* Dropdown liste */
+    #suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: 220px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 1000;
+    }
+    #suggestions li {
+      list-style: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95rem;
+    }
+    #suggestions li:last-child {
+      border-bottom: none;
+    }
+    #suggestions li:hover,
+    #suggestions li:focus {
+      background-color: #0059b3;
+      color: white;
+      outline: none;
+    }
+
+    /* Sub-header placeholder */
     .sub-header {
-      padding:20px 140px; background:#fff; border-bottom:1px solid #e0e7f6;
-      display:flex; flex-direction:column; align-items:flex-start; gap:8px;
+      background: #e0e0e0;
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      color: #555;
     }
-    .breadcrumb { font-size:14px; color:#142541; }
-    .breadcrumb a { text-decoration:none; color:#0033cc; font-weight:bold; }
-    .breadcrumb a:hover { text-decoration:underline; }
-    .disclaimer { width:100%; text-align:center; font-size:14px; color:#142541; }
   </style>
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="logo-container">
-      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
-        <img src="logo.png" alt="Logo" class="logo">
-        <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
-        </div>
-      </a>
-    </div>
+<header class="navbar" role="banner">
+  <div class="logo" aria-label="Geo Betting Tips logo">Geo Betting Tips</div>
+  <nav class="nav-links" role="navigation" aria-label="Primær navigation">
+    <a href="nyheder.html">Nyheder</a>
+    <a href="analyser.html">Analyser</a>
+    <a href="tilbud.html">Tilbud</a>
+    <a href="mere.html">Mere</a>
+  </nav>
 
-    <nav class="nav-container">
-      <ul class="nav-links">
-        <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
-        <li class="dropdown">
-          <a href="#">Mere</a>
-          <ul>
-            <li><a href="betalingstips.html">Betalingstips</a></li>
-            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <div class="search-wrapper">
-        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
-        <ul id="suggestions" class="suggestions"></ul>
-      </div>
-    </nav>
-  </header>
-
-  <div class="sub-header">
-    <nav class="breadcrumb">
-      <a href="index.html">Forside</a> &raquo; <span>Betalingstips</span>
-    </nav>
-    <p class="disclaimer">
-      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
-    </p>
+  <div class="search-wrapper" role="search">
+    <input
+      type="search"
+      id="search"
+      placeholder="Søg her..."
+      aria-label="Søg"
+      autocomplete="off"
+      aria-autocomplete="list"
+      aria-controls="suggestions"
+      aria-expanded="false"
+    />
+    <ul id="suggestions" role="listbox"></ul>
   </div>
+</header>
 
-  <script>
-    let items = [];
-    // Hent data fra søgefelt.json
-    fetch('søgefelt.json')
-      .then(response => {
-        if (!response.ok) {
-          console.error('Fejl ved hentning af søgefelt.json:', response.status);
-          return [];
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Søge-data hentet:', data);
-        items = data;
-      })
-      .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
+<div class="sub-header">
+  Velkommen til Geo Betting Tips — Din kilde til de bedste betting tips!
+</div>
 
-    const input = document.getElementById('search');
-    const suggBox = document.getElementById('suggestions');
+<!-- JSON data for søgefelt -->
+<script id="søgefelt-data" type="application/json">
+[
+  { "title": "Stor målfest i SønderjyskE vs Vejle", "url": "nyheder.html" },
+  { "title": "AaB rykker ud med et brag", "url": "nyheder.html" },
+  { "title": "Sunderland rykker op i Premier League", "url": "nyheder.html" },
+  { "title": "Asgreen vinder i Giroen", "url": "nyheder.html" },
+  { "title": "Novak Djokovic når 100 ATP-titler", "url": "nyheder.html" },
+  { "title": "Luka Modric takker af i Real Madrid", "url": "nyheder.html" },
+  { "title": "Dagens Spil", "url": "index.html" },
+  { "title": "Tilbud", "url": "tilbud.html" },
+  { "title": "Bet365", "url": "tilbud.html" },
+  { "title": "Betano", "url": "tilbud.html" },
+  { "title": "ComeOn", "url": "tilbud.html" },
+  { "title": "Velkomstbonusser", "url": "tilbud.html" }
+]
+</script>
 
-    input.addEventListener('input', () => {
-      const val = input.value.trim().toLowerCase();
-      console.log('Søgeord:', val);
-      suggBox.innerHTML = '';
-      if (!val) {
-        suggBox.style.display = 'none';
-        return;
-      }
-      const matches = items.filter(i => i.title.toLowerCase().includes(val));
-      console.log('Matches:', matches);
-      if (!matches.length) {
-        suggBox.style.display = 'none';
-        return;
-      }
-      matches.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item.title;
-        li.addEventListener('click', () => {
-          window.location.href = item.url;
-        });
-        suggBox.appendChild(li);
+<script>
+  // Parse JSON data
+  const items = JSON.parse(document.getElementById('søgefelt-data').textContent);
+  const input = document.getElementById('search');
+  const suggBox = document.getElementById('suggestions');
+
+  // Funktion til at vise forslag i dropdown
+  function visForslag(liste) {
+    suggBox.innerHTML = '';
+    if (!liste.length) {
+      suggBox.style.display = 'none';
+      input.setAttribute('aria-expanded', 'false');
+      return;
+    }
+
+    liste.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.textContent = item.title;
+      li.tabIndex = 0; // gør fokusbar for tastaturbrugere
+      li.setAttribute('role', 'option');
+      li.setAttribute('id', 'suggestion-' + index);
+      li.addEventListener('click', () => {
+        window.location.href = item.url;
       });
-      suggBox.style.display = 'block';
+      li.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = item.url;
+        }
+      });
+      suggBox.appendChild(li);
     });
+    suggBox.style.display = 'block';
+    input.setAttribute('aria-expanded', 'true');
+  }
 
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.search-wrapper')) {
-        suggBox.style.display = 'none';
-      }
-    });
-  </script>
+  // Vis alle forslag ved fokus på input (start)
+  input.addEventListener('focus', () => {
+    visForslag(items);
+  });
+
+  // Filter forslag ved input
+  input.addEventListener('input', () => {
+    const val = input.value.trim().toLowerCase();
+    if (val === '') {
+      // Vis alle forslag, hvis input er tomt
+      visForslag(items);
+    } else {
+      // Filter baseret på input
+      const matches = items.filter(i => i.title.toLowerCase().includes(val));
+      visForslag(matches);
+    }
+  });
+
+  // Skjul dropdown hvis klik udenfor søgefeltet
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrapper')) {
+      suggBox.style.display = 'none';
+      input.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Tastaturnavigation (pil op/ned, enter)
+  let selectedIndex = -1;
+  input.addEventListener('keydown', e => {
+    const options = suggBox.querySelectorAll('li');
+    if (!options.length) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selectedIndex = (selectedIndex + 1) % options.length;
+      options[selectedIndex].focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selectedIndex = (selectedIndex - 1 + options.length) % options.length;
+      options[selectedIndex].focus();
+    } else if (e.key === 'Escape') {
+      suggBox.style.display = 'none';
+      input.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Når fokus forlader forslagene, nulstil selectedIndex
+  suggBox.addEventListener('focusout', e => {
+    if (!suggBox.contains(e.relatedTarget)) {
+      selectedIndex = -1;
+    }
+  });
+</script>
 
 </body>
 </html>
