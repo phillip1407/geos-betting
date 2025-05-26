@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mit Betting Site</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Betting Website</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <nav>
-    <div class="logo">Mit Betting Site</div>
-    <ul class="nav-links">
-      <li><a href="#">Forside</a></li>
-      <li><a href="#">Dagens Spil</a></li>
-      <li><a href="#">Nyheder</a></li>
-      <li><a href="#">Kontakt</a></li>
-    </ul>
-  </nav>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="#">Hjem</a></li>
+                <li><a href="#">Dagens Spil</a></li>
+                <li><a href="#">Nyheder</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <header class="hero">
-    <h1>Velkommen til Mit Betting Site</h1>
-    <p>Spil ansvarligt og vind stort!</p>
-  </header>
+    <main>
+        <section class="hero">
+            <h1>Velkommen til Betting siden</h1>
+            <p>De bedste odds samlet ét sted.</p>
+            <button class="cta">Se Odds</button>
+        </section>
 
-  <section class="dagens-spil">
-    <h2>Dagens Spil</h2>
-    <div class="spil-kort">
-      <div class="kort">
-        <h3>FC København vs Brøndby</h3>
-        <p>Odds: 2.5</p>
-        <button>Spil Nu</button>
-      </div>
-      <div class="kort">
-        <h3>Manchester United vs Arsenal</h3>
-        <p>Odds: 3.2</p>
-        <button>Spil Nu</button>
-      </div>
-    </div>
-  </section>
+        <section class="dagens-spil">
+            <h2>Dagens Spil</h2>
+            <div class="spil-liste">
+                <article>
+                    <h3>Kamp 1</h3>
+                    <p>Detaljer om kampen...</p>
+                </article>
+                <article>
+                    <h3>Kamp 2</h3>
+                    <p>Detaljer om kampen...</p>
+                </article>
+            </div>
+        </section>
 
-  <section class="nyheder">
-    <h2>Nyheder</h2>
-    <article>
-      <h3>Ny betting feature lanceret!</h3>
-      <p>Vi har netop lanceret en ny betting feature, der giver dig endnu bedre oplevelser.</p>
-    </article>
-    <article>
-      <h3>Stor gevinst til en heldig spiller!</h3>
-      <p>En spiller vandt over 100.000 kr. på en kombination af fodboldkampe. Læs mere her!</p>
-    </article>
-  </section>
+        <section class="nyheder">
+            <h2>Nyheder</h2>
+            <article>
+                <h3>Breaking News 1</h3>
+                <p>Detaljer om nyheden...</p>
+            </article>
+            <article>
+                <h3>Breaking News 2</h3>
+                <p>Detaljer om nyheden...</p>
+            </article>
+        </section>
+
+        <section class="statistik">
+            <h2>Statistik & Analyse</h2>
+            <div class="statistik-grid">
+                <div class="kort">
+                    <h3>Top Hold</h3>
+                    <p>Hold A, Hold B, Hold C</p>
+                </div>
+                <div class="kort">
+                    <h3>Top Scorere</h3>
+                    <p>Spiller X, Spiller Y, Spiller Z</p>
+                </div>
+                <div class="kort">
+                    <h3>Seneste Resultater</h3>
+                    <p>Kamp 1: 2-1, Kamp 2: 0-3</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Betting Siden</p>
+    </footer>
 </body>
 </html>
