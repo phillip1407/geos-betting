@@ -1,76 +1,20 @@
-{
-  "fodbold": [
-    {
-      "title": "Manchester United vinder stort opgør",
-      "date": "25. maj 2025",
-      "summary": "Manchester United slog rivalerne med en overbevisende 3-0 sejr i weekendens kamp.",
-      "image": "https://imengine.public.mhm.infomaker.io/?uuid=ff8cbd5a-e2a4-5772-92fc-2ed2972f8a2d&function=cropresize&type=preview&source=false&q=60&crop_w=0.99884&crop_h=0.999&width=400&height=267&x=0.00058004640371229&y=0%20400w,%20https://imengine.public.mhm.infomaker.io/?uuid=ff8cbd5a-e2a4-5772-92fc-2ed2972f8a2d&function=cropresize&type=preview&source=false&q=60&crop_w=0.99884&crop_h=0.999&width=930&height=620&x=0.00058004640371229&y=0%20930w,%20https://imengine.public.mhm.infomaker.io/?uuid=ff8cbd5a-e2a4-5772-92fc-2ed2972f8a2d&function=cropresize&type=preview&source=false&q=60&crop_w=0.99884&crop_h=0.999&width=1300&height=867&x=0.00058004640371229&y=0%201300w",
-      "fullText": "I en spændende kamp viste Manchester United deres styrke med en 3-0 sejr over rivalerne. Kampen blev domineret af et stærkt offensivt spil..."
-    },
-    {
-      "title": "Real Madrid forbereder sig til Champions League",
-      "date": "24. maj 2025",
-      "summary": "Real Madrid har afsløret deres træningsprogram op til Champions League-finalen.",
-      "image": "https://siempremadrid.com/wp-content/uploads/2024/12/atalanta-bc-v-real-madrid-cf-uefa-champions-league-2024-25-league-phase-md6.jpg",
-      "fullText": "Real Madrid træner hårdt for at sikre en sejr i den kommende Champions League-finale, med fokus på styrke og taktik..."
-    },
-    {
-      "title": "Barcelona vinder El Clásico",
-      "date": "23. maj 2025",
-      "summary": "Barcelona tog en vigtig sejr i El Clásico med 2-1 over Real Madrid.",
-      "image": "https://www.fcbarcelona.com/photo-resources/2024/08/04/f24ace6d-56a8-4906-9b62-930459de3ebf/_MGA7306.jpg?width=1200&height=750",
-      "fullText": "Magisk El Clásico er slut\nDet slutter her i Barcelona. Hjemmeholdet vinder den vanvittige fodboldkamp mod Real Madrid, hvor der blev scoret syv mål. Seks i første halvleg!\n\nMesterskabet ser ud til at være afgjort nu. Barcelona-spillere og fans fejrer det i hvert fald, som om LaLiga-titlen er hjemme.\n\nBarcelona har syv point ned til Real Madrid med tre kampe tilbage."
-    },
-    {
-      "title": "Liverpool kæmper for Champions League-plads",
-      "date": "22. maj 2025",
-      "summary": "Liverpool har stadig chancen for at sikre sig en Champions League-plads i sidste spillerunde.",
-      "image": "images/liverpool-champions.jpg",
-      "fullText": "Efter en svær sæson kæmper Liverpool hårdt for at sikre en plads i næste års Champions League..."
-    },
-    {
-      "title": "Chelsea satser stort på ungdommen",
-      "date": "21. maj 2025",
-      "summary": "Chelsea planlægger at give unge talenter flere chancer i førsteholdstruppen næste sæson.",
-      "image": "images/chelsea-youth.jpg",
-      "fullText": "Chelsea ønsker at bygge holdet op omkring unge, lovende spillere for at sikre en bæredygtig succes fremadrettet..."
-    }
-  ],
-  "transfer": [
-    {
-      "title": "Kylian Mbappé rygtes til PSG",
-      "date": "23. maj 2025",
-      "summary": "Der går rygter om, at Mbappé snart forlader PSG til fordel for en ny klub.",
-      "image": "images/mbappe.jpg",
-      "fullText": "Ifølge kilder tæt på transfermarkedet overvejer Kylian Mbappé at skifte klub efter den igangværende sæson..."
-    },
-    {
-      "title": "Liverpool signerer ny midtbanespiller",
-      "date": "22. maj 2025",
-      "summary": "Liverpool har sikret sig en talentfuld midtbanespiller fra Bundesligaen.",
-      "image": "images/liverpool-transfer.jpg",
-      "fullText": "Liverpool har bekræftet overtagelsen af den unge midtbanespiller, der forventes at styrke holdets offensiv betydeligt..."
-    },
-    {
-      "title": "Real Madrid jagter stjernespiller fra Premier League",
-      "date": "21. maj 2025",
-      "summary": "Real Madrid er ifølge medierne i dialoger om en stor transferaftale.",
-      "image": "images/realmadrid-transfer.jpg",
-      "fullText": "Real Madrid har øjnene rettet mod en af Premier Leagues bedste spillere til den kommende transfervindue..."
-    },
-    {
-      "title": "Barcelona lukker aftale med ny angriber",
-      "date": "20. maj 2025",
-      "summary": "Barcelona har underskrevet kontrakt med en ung angriber fra La Liga.",
-      "image": "images/barcelona-transfer.jpg",
-      "fullText": "Den unge angriber skal hjælpe Barcelona med at styrke angrebet i den kommende sæson..."
-    },
-    {
-      "title": "Chelsea forhandler med midtbanespiller fra Serie A",
-      "date": "19. maj 2025",
-      "summary": "Chelsea ønsker at styrke midtbanen med en erfaren spiller fra Italien.",
-      "image": "images/chelsea-transfer.jpg",
-      "fullText": "Chelsea er tæt på at sikre sig en midtbanespiller med stor erfaring fra Serie A..."
-    }
-  ]
-}
+[
+  {
+    "titel": "Nye Spilstrategier i 2025",
+    "dato": "2025-05-26",
+    "billede": "billede1.jpg",
+    "indhold": "Vi har analyseret de nyeste trends inden for betting, og her er vores konklusioner..."
+  },
+  {
+    "titel": "Store Gevinster i Ugens Spil",
+    "dato": "2025-05-25",
+    "billede": "billede2.jpg",
+    "indhold": "Flere spillere har i denne uge oplevet store gevinster på kombinationer af live-bets og specialspil..."
+  },
+  {
+    "titel": "Ny Bonus Kampagne til Maj",
+    "dato": "2025-05-27",
+    "billede": "billede3.jpg",
+    "indhold": "Bookmakeren lancerer en ny bonuskampagne med ekstra fordele for nye spillere..."
+  }
+]
