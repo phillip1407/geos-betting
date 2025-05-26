@@ -60,15 +60,17 @@
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
     
+    
     .sub-header {
       padding: 20px 140px;
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
       
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      position: relative;
-      min-height: 24px; /* Sørg for lidt højde så elementerne ikke overlapper */
+      flex-wrap: wrap;
+      gap: 10px;
     }
     
     .breadcrumb {
