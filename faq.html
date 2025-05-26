@@ -164,6 +164,20 @@
   });
 </script>
 
+  <script>
+  // Hent første <h1> på siden
+  const h1 = document.querySelector('h1');
+  const siteName = 'Geo Betting Tips';
+
+  if (h1) {
+    // Sæt titlen til: "Overskrift | Geo Betting Tips"
+    document.title = `${h1.textContent.trim()} | ${siteName}`;
+  } else {
+    // Hvis der ikke er h1, bare standard titel
+    document.title = siteName;
+  }
+</script>
+
 
 </body>
 </html>
