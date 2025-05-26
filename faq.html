@@ -23,49 +23,26 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .logo-container {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
-    .logo {
-      width: 40px;
-      height: 40px;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .site-name {
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .slogan {
-      color: #e0e7f6;
-      font-size: 14px;
-      margin: 0;
-      margin-top: 2px;
-    }
+    .logo { width: 40px; height: 40px; }
+    .logo-text { display: flex; flex-direction: column; }
+    .site-name { color: white; font-size: 24px; font-weight: bold; }
+    .slogan { color: #e0e7f6; font-size: 14px; margin-top: 2px; }
 
     .nav-container {
       display: flex;
       align-items: center;
     }
-
     .nav-links {
       list-style: none;
       display: flex;
       gap: 30px;
       margin-right: 20px;
     }
-
     .nav-links li a {
       color: white;
       text-decoration: none;
@@ -75,58 +52,32 @@
       padding-bottom: 5px;
       transition: color 0.3s ease;
     }
-
     .nav-links li a::after {
       content: '';
       position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      height: 3px;
+      left: 0; bottom: 0;
+      width: 0; height: 3px;
       background-color: #e0e7f6;
       transition: width 0.3s ease;
     }
+    .nav-links li a:hover::after { width: 100%; }
+    .nav-links li a:hover      { color: #e0e7f6; }
 
-    .nav-links li a:hover::after {
-      width: 100%;
-    }
-
-    .nav-links li a:hover {
-      color: #e0e7f6;
-    }
-
-    /* Dropdown menu */
-    .nav-links li.dropdown {
-      position: relative;
-    }
-
+    .nav-links li.dropdown { position: relative; }
     .nav-links li.dropdown ul {
-      position: absolute;
-      top: 30px;
-      left: 0;
-      background-color: #142541;
-      list-style: none;
-      padding: 10px 0;
-      display: none;
-      border-radius: 5px;
-      min-width: 160px;
+      position: absolute; top: 30px; left: 0;
+      background: #142541; padding: 10px 0;
+      list-style: none; display: none;
+      border-radius: 5px; min-width: 160px;
     }
-
-    .nav-links li.dropdown:hover ul {
-      display: block;
-    }
-
+    .nav-links li.dropdown:hover ul { display: block; }
     .nav-links li.dropdown ul li a {
-      padding: 8px 20px;
-      display: block;
-      font-size: 16px;
+      display: block; padding: 8px 20px; font-size: 16px; color: white;
     }
-
     .nav-links li.dropdown ul li a:hover {
       background-color: #1f3a68;
     }
 
-    /* Search button */
     .search-button {
       background-color: #e0e7f6;
       color: #142541;
@@ -138,37 +89,31 @@
       cursor: pointer;
     }
 
-    /* Disclaimer */
-    .disclaimer {
-      font-size: 14px;
-      color: #142541;
-      text-align: center;
-      margin: 10px 140px;
-      padding-bottom: 5px;
+    /* Sub-header: breadcrumb + disclaimer */
+    .sub-header {
+      padding: 15px 140px;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 1px solid #e0e7f6;
-      box-sizing: border-box;
     }
 
-    /* Breadcrumb */
     .breadcrumb {
-      margin: 20px 140px;
       font-size: 14px;
       color: #142541;
     }
-
     .breadcrumb a {
       text-decoration: none;
       color: #0033cc;
       font-weight: bold;
     }
+    .breadcrumb a:hover { text-decoration: underline; }
 
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
-
-    .breadcrumb span {
+    .disclaimer {
+      font-size: 14px;
       color: #142541;
-      font-weight: normal;
+      text-align: right;
     }
   </style>
 </head>
@@ -176,7 +121,7 @@
 
   <header class="navbar">
     <div class="logo-container">
-      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+      <a href="index.html" style="display:flex; gap:10px; text-decoration:none; color:inherit;">
         <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
         <div class="logo-text">
           <h1 class="site-name">Geo Betting Tips</h1>
@@ -203,13 +148,14 @@
     </nav>
   </header>
 
-  <p class="disclaimer">
-    18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
-  </p>
-
-  <nav class="breadcrumb">
-    <a href="index.html">Forside</a> &raquo; <span>Betalingstips</span>
-  </nav>
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a> &raquo; <span>Betalingstips</span>
+    </nav>
+    <p class="disclaimer">
+      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
+    </p>
+  </div>
 
 </body>
 </html>
