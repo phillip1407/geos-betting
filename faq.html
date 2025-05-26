@@ -10,6 +10,9 @@
   <style>
     * {
       font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     /* Navbar */
@@ -41,22 +44,22 @@
       color: white;
       font-size: 24px;
       font-weight: bold;
-      margin: 0;
     }
 
     .slogan {
       color: #e0e7f6;
       font-size: 14px;
-      margin: 0;
-      margin-top: 2px;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
       gap: 30px;
-      margin: 0;
-      padding: 0;
+      position: relative;
+    }
+
+    .nav-links li {
+      position: relative;
     }
 
     .nav-links li a {
@@ -69,7 +72,6 @@
       transition: color 0.3s ease;
     }
 
-    /* Lille streg under ved hover */
     .nav-links li a::after {
       content: '';
       position: absolute;
@@ -89,15 +91,47 @@
       color: #e0e7f6;
     }
 
+    /* Dropdown styles */
+    .nav-links li:hover .dropdown {
+      display: block;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background-color: #142541;
+      border-radius: 4px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      min-width: 180px;
+      z-index: 10;
+    }
+
+    .dropdown li {
+      width: 100%;
+    }
+
+    .dropdown li a {
+      padding: 10px 20px;
+      font-size: 16px;
+      display: block;
+      color: white;
+      text-decoration: none;
+    }
+
+    .dropdown li a:hover {
+      background-color: #1d3557;
+      color: #e0e7f6;
+    }
+
     .disclaimer {
       font-size: 14px;
       color: #142541;
       text-align: center;
-      margin: 10px 0 10px 0;
+      margin: 10px 0;
       padding-bottom: 5px;
       border-bottom: 1px solid #e0e7f6;
-      max-width: 100%;
-      box-sizing: border-box;
     }
   </style>
 </head>
@@ -118,7 +152,14 @@
         <li><a href="nyheder.html">Nyheder</a></li>
         <li><a href="Analyser.html">Analyser</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
-        <li><a href="faq.html">FAQ</a></li>
+        <li>
+          <a href="#">Mere</a>
+          <ul class="dropdown">
+            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </header>
