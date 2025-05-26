@@ -1,169 +1,142 @@
-/* Reset og grundindstillinger */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Grundlæggende styling */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-  line-height: 1.6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #fff;
 }
 
-/* Navbar */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #1e1e1e;
-  padding: 1rem 2rem;
+header {
+    background-color: #1f1f1f;
 }
 
-nav .logo {
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: bold;
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+    margin: 0;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
+.navbar li a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
-.nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s ease;
+.navbar li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -4px;
+    background: #00ffcc;
+    transition: width 0.3s ease;
 }
 
-.nav-links li a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #00bcd4;
-  transition: width 0.3s ease;
+.navbar li a:hover {
+    color: #00ffcc;
 }
 
-.nav-links li a:hover {
-  color: #00bcd4;
+.navbar li a:hover::after {
+    width: 100%;
 }
 
-.nav-links li a:hover::after {
-  width: 100%;
-}
-
-/* Hero sektion */
+/* Hero */
 .hero {
-  background: linear-gradient(135deg, #00bcd4, #1e88e5);
-  color: #fff;
-  text-align: center;
-  padding: 4rem 2rem;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #00ffcc, #0066ff);
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+    font-size: 2.5rem;
 }
 
 .hero p {
-  font-size: 1.2rem;
+    margin: 1rem 0;
 }
 
-/* Dagens Spil */
-.dagens-spil {
-  padding: 2rem;
-  background-color: #fff;
-  text-align: center;
+.cta {
+    background: #00ffcc;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    color: #121212;
+    cursor: pointer;
+    border-radius: 8px;
 }
 
-.dagens-spil h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+.cta:hover {
+    background: #00ccaa;
 }
 
-.spil-kort {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+/* Dagens Spil & Nyheder */
+.dagens-spil, .nyheder {
+    padding: 2rem;
+    background-color: #1f1f1f;
+}
+
+.dagens-spil h2, .nyheder h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.spil-liste {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.spil-liste article, .nyheder article {
+    background: #2a2a2a;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 250px;
+}
+
+.nyheder article h3, .spil-liste article h3 {
+    color: #00ffcc;
+}
+
+/* Statistik & Analyse */
+.statistik {
+    padding: 2rem;
+    background-color: #181818;
+}
+
+.statistik h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.statistik-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .kort {
-  background: #f0f0f0;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  width: 250px;
-  transition: transform 0.3s ease;
-}
-
-.kort:hover {
-  transform: translateY(-5px);
+    background: #2a2a2a;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 250px;
 }
 
 .kort h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+    color: #00ffcc;
 }
 
-.kort p {
-  margin-bottom: 1rem;
-}
-
-.kort button {
-  background: #00bcd4;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.kort button:hover {
-  background: #0097a7;
-}
-
-/* Nyheder */
-.nyheder {
-  padding: 2rem;
-}
-
-.nyheder h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.nyheder article {
-  background: #fff;
-  padding: 1rem;
-  border-left: 4px solid #00bcd4;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.nyheder article h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .spil-kort {
-    flex-direction: column;
-    align-items: center;
-  }
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1f1f1f;
+    font-size: 0.9rem;
 }
