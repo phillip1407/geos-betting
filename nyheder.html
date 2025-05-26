@@ -2,98 +2,95 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geo Betting Tips</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>FAQ | Geo Betting Tips</title>
+  <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* --- DIT EKSISTERENDE CSS, INKLUSIVE .news-card OG RELATEREDE KLASSER --- */
-    * {
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
+    /* Din CSS som før */
+    * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
+    body { background:#f9f9f9; }
+
+    .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
+    .logo-container { display:flex; align-items:center; gap:10px; }
+    .logo { width:55px; height:55px; }
+    .logo-text { display:flex; flex-direction:column; }
+    .site-name { color:#fff; font-size:24px; font-weight:bold; }
+    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
+
+    .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
+    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
+    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
+    .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
+    .nav-links li a:hover::after { width:100%; } 
+    .nav-links li a:hover { color:#e0e7f6; }
+
+    .nav-links li.dropdown { position:relative; }
+    .nav-links li.dropdown ul {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: #142541;
+      padding: 10px 0;
+      list-style: none;
+      display: none;
+      border-radius: 5px;
+      min-width: 160px;
+      z-index: 20;
     }
-    body {
-      margin: 0;
-      background-color: white;
-      color: #142541;
-      overflow-x: hidden;
+    .nav-links li.dropdown:hover ul { display:block; }
+    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
+    .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
+
+    /* Search + autocomplete */
+    .search-wrapper { position:relative; }
+    .search-input {
+      padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
     }
-    /* NAVBAR */
-    .navbar {
-      background-color: #142541;
-      padding: 15px 30px;
+    .search-input:focus { outline:none; border-color:#1f3a68; }
+    .suggestions {
+      position:absolute; top:100%; left:0; right:0; background:#fff;
+      border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto;
+      z-index:10; display:none;
+    }
+    .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
+    .suggestions li:hover { background:#f0f0f0; }
+    
+    .sub-header {
+      padding: 20px 140px;
+      background: #fff;
+      border-bottom: 1px solid #e0e7f6;
+      
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
-      z-index: 1001;
-    }
-    .logo-container a {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 10px;
     }
-    .logo {
-      width: 40px;
-      height: 40px;
-    }
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-    .site-name {
-      color: white;
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0;
-    }
-    .slogan {
-      color: #e0e7f6;
+    
+    .breadcrumb {
       font-size: 14px;
-      margin: 0;
+      color: #142541;
+      flex-shrink: 0;
     }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-links li a {
-      color: white;
+    .breadcrumb a {
       text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
-      position: relative;
+      color: #0033cc;
+      font-weight: bold;
     }
-    .nav-links li a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0%;
-      height: 2px;
-      background-color: #e0e7f6;
-      transition: width 0.3s ease;
+    .breadcrumb a:hover {
+      text-decoration: underline;
     }
-    .nav-links li a:hover::after {
-      width: 100%;
-    }
-
-    /* DISCLAIMER */
     .disclaimer {
-      background-color: #f5f5f5;
-      padding: 8px 30px;
-      font-size: 13px;
-      color: #555;
-      border-bottom: 1px solid #ddd;
-      user-select: none;
-      text-align: center;
-      font-weight: 500;
-      position: relative;
-      z-index: 1000;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #142541;
+      white-space: nowrap;
     }
 
     /* H2 */
@@ -281,27 +278,56 @@
 
   <header class="navbar">
     <div class="logo-container">
-      <a href="index.html" aria-label="Gå til forsiden">
-        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo" />
+      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+        <img src="logo.png" alt="Logo" class="logo">
         <div class="logo-text">
           <h1 class="site-name">Geo Betting Tips</h1>
           <p class="slogan">Ekspertanalyser til din betting</p>
         </div>
       </a>
     </div>
-    <nav>
-      <ul class="nav-links" role="navigation">
+
+    <nav class="nav-container">
+      <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
+        <li><a href="analyser.html">Analyser</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
-        <li><a href="faq.html">FAQ</a></li>
+        <li class="dropdown">
+          <a href="javascript:void(0)">Mere</a>
+          <ul>
+            <li><a href="tips.html">Tips</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </li>
       </ul>
+      <div class="search-wrapper">
+        <input type="search" class="search-input" placeholder="Søg nyheder..." aria-label="Søg nyheder" />
+        <ul class="suggestions" role="listbox" aria-label="Forslag til søgning"></ul>
+      </div>
     </nav>
   </header>
 
-  <div class="disclaimer" role="contentinfo">
-    18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
+  <div class="sub-header">
+    <nav class="breadcrumb" aria-label="Brødkrummesti">
+      <a href="index.html">Forside</a> &gt; <span>FAQ</span>
+    </nav>
+    <p class="disclaimer">18+ | Spil ansvarligt</p>
   </div>
+
+  <script>
+    // Hent første <h1> på siden
+    const h1 = document.querySelector('h1');
+    const siteName = 'Geo Betting Tips';
+
+    if (h1) {
+      // Sæt titlen til: "Overskrift | Geo Betting Tips"
+      document.title = `${h1.textContent.trim()} | ${siteName}`;
+    } else {
+      // Hvis der ikke er h1, bare standard titel
+      document.title = siteName;
+    }
+  </script>
 
   <h2>Fodbold Nyheder</h2>
   <section id="fodbold" class="news-grid" aria-label="Fodbold nyheder"></section>
@@ -309,110 +335,93 @@
   <h2>Transfer Nyheder</h2>
   <section id="transfer" class="news-grid" aria-label="Transfer nyheder"></section>
 
-  <!-- Udvidet artikel overlay -->
-  <div class="overlay" id="overlay" aria-modal="true" role="dialog" aria-hidden="true" aria-labelledby="expanded-title">
-    <article class="expanded-article" role="document">
-      <button class="close-btn" aria-label="Luk artikel" id="closeBtn">&times;</button>
-      <img src="" alt="" class="expanded-image" id="expandedImage" />
-      <div class="expanded-content">
-        <h3 class="expanded-title" id="expanded-title"></h3>
-        <p class="expanded-date" id="expandedDate"></p>
-        <p class="expanded-text" id="expandedText"></p>
-      </div>
-    </article>
-  </div>
-
   <script>
-    const overlay = document.getElementById('overlay');
-    const expandedImage = document.getElementById('expandedImage');
-    const expandedTitle = document.getElementById('expanded-title');
-    const expandedDate = document.getElementById('expandedDate');
-    const expandedText = document.getElementById('expandedText');
-    const closeBtn = document.getElementById('closeBtn');
+    // Fetch nyheder.json og indsæt i sections
+    fetch('nyheder.json')
+      .then(response => response.json())
+      .then(data => {
+        const fodboldContainer = document.getElementById('fodbold');
+        const transferContainer = document.getElementById('transfer');
 
-    function openArticle(article) {
-      expandedImage.src = article.billede;
-      expandedImage.alt = article.titel;
-      expandedTitle.textContent = article.titel;
-      expandedDate.textContent = article.dato;
-      expandedText.textContent = article.tekst;
+        data.forEach(nyhed => {
+          const card = document.createElement('article');
+          card.className = 'news-card';
+          card.tabIndex = 0;
+          card.setAttribute('role', 'button');
+          card.setAttribute('aria-pressed', 'false');
 
-      overlay.setAttribute('aria-hidden', 'false');
-      overlay.classList.add('active');
-      document.body.classList.add('overlay-active');
-      closeBtn.focus();
-    }
+          card.innerHTML = `
+            <img src="${nyhed.billede}" alt="${nyhed.altTekst}" class="news-image" loading="lazy" />
+            <div class="news-content">
+              <h3 class="news-title">${nyhed.titel}</h3>
+              <p class="news-date">${nyhed.dato}</p>
+              <p class="news-summary">${nyhed.tekst.substring(0, 110)}...</p>
+            </div>
+          `;
 
-    function closeArticle() {
-      overlay.setAttribute('aria-hidden', 'true');
-      overlay.classList.remove('active');
-      document.body.classList.remove('overlay-active');
-    }
+          // Klik event for at åbne udvidet artikel
+          card.addEventListener('click', () => {
+            visUdvidetArtikel(nyhed);
+          });
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              visUdvidetArtikel(nyhed);
+            }
+          });
 
-    closeBtn.addEventListener('click', closeArticle);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        closeArticle();
-      }
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && overlay.classList.contains('active')) {
-        closeArticle();
-      }
-    });
+          if (nyhed.kategori === 'fodbold') {
+            fodboldContainer.appendChild(card);
+          } else if (nyhed.kategori === 'transfer') {
+            transferContainer.appendChild(card);
+          }
+        });
+      });
 
-    // Funktion til at lave nyhedsboks ud fra data
-    function createNewsCard(article) {
-      const card = document.createElement('div');
-      card.className = 'news-card';
-      card.tabIndex = 0; // For tastaturnavigation
+    // Funktion til at vise udvidet artikel
+    function visUdvidetArtikel(nyhed) {
+      // Hvis overlay findes, fjern først
+      const eksisterende = document.querySelector('.overlay');
+      if (eksisterende) eksisterende.remove();
 
-      card.innerHTML = `
-        <img src="${article.billede}" alt="${article.titel}" class="news-image" />
-        <div class="news-content">
-          <h3 class="news-title">${article.titel}</h3>
-          <p class="news-date">${article.dato}</p>
-          <p class="news-summary">${article.tekst.length > 140 ? article.tekst.slice(0,140) + '…' : article.tekst}</p>
-        </div>
+      const overlay = document.createElement('div');
+      overlay.className = 'overlay active';
+      overlay.tabIndex = -1;
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+
+      overlay.innerHTML = `
+        <article class="expanded-article">
+          <button class="close-btn" aria-label="Luk artikel">×</button>
+          <img src="${nyhed.billede}" alt="${nyhed.altTekst}" class="expanded-image" />
+          <div class="expanded-content">
+            <h2 class="expanded-title">${nyhed.titel}</h2>
+            <p class="expanded-date">${nyhed.dato}</p>
+            <p class="expanded-text">${nyhed.tekst}</p>
+          </div>
+        </article>
       `;
 
-      // Åben artikel ved klik eller Enter
-      card.addEventListener('click', () => openArticle(article));
-      card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openArticle(article);
+      document.body.appendChild(overlay);
+      document.body.classList.add('overlay-active');
+
+      // Luk knap
+      const closeBtn = overlay.querySelector('.close-btn');
+      closeBtn.addEventListener('click', () => {
+        overlay.remove();
+        document.body.classList.remove('overlay-active');
+      });
+
+      // Luk på ESC
+      overlay.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          overlay.remove();
+          document.body.classList.remove('overlay-active');
         }
       });
 
-      return card;
+      closeBtn.focus();
     }
-
-    // Load JSON og indsæt i sektioner
-    async function loadNews() {
-      try {
-        const response = await fetch('dagensspil.json');
-        if (!response.ok) throw new Error('Fejl ved hentning af data');
-        const data = await response.json();
-
-        const fodboldSection = document.getElementById('fodbold');
-        const transferSection = document.getElementById('transfer');
-
-        data.forEach(article => {
-          const card = createNewsCard(article);
-          if (article.kategori === 'fodbold') {
-            fodboldSection.appendChild(card);
-          } else if (article.kategori === 'transfer') {
-            transferSection.appendChild(card);
-          }
-        });
-      } catch (error) {
-        console.error('Kan ikke hente nyheder:', error);
-      }
-    }
-
-    loadNews();
   </script>
-
 </body>
 </html>
