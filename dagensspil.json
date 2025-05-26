@@ -1,0 +1,52 @@
+[
+  {
+    "tidspunkt": "20:45",
+    "liga": "La Liga",
+    "hjemmehold": "Real Madrid",
+    "udehold": "Manchester United",
+    "hjemme_logo": "https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg",
+    "ude_logo": "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+    "odds": "1.70",
+    "ekspert": "Loso"
+  },
+  {
+    "tidspunkt": "18:30",
+    "liga": "Bundesliga",
+    "hjemmehold": "Bayern München",
+    "udehold": "Borussia Dortmund",
+    "hjemme_logo": "https://upload.wikimedia.org/wikipedia/commons/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg",
+    "ude_logo": "https://upload.wikimedia.org/wikipedia/commons/6/67/Borussia_Dortmund_logo.svg",
+    "odds": "2.10",
+    "ekspert": "Loso"
+  },
+  {
+    "tidspunkt": "21:00",
+    "liga": "Premier League",
+    "hjemmehold": "Arsenal",
+    "udehold": "Chelsea",
+    "hjemme_logo": "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg",
+    "ude_logo": "https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg",
+    "odds": "1.95",
+    "ekspert": "Loso"
+  },
+  {
+    "tidspunkt": "19:45",
+    "liga": "Ligue 1",
+    "hjemmehold": "PSG",
+    "udehold": "Lyon",
+    "hjemme_logo": "https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg",
+    "ude_logo": "https://upload.wikimedia.org/wikipedia/en/1/1c/Olympique_Lyonnais_logo.svg",
+    "odds": "2.00",
+    "ekspert": "Loso"
+  },
+  {
+    "tidspunkt": "20:00",
+    "liga": "Serie A",
+    "hjemmehold": "AC Milan",
+    "udehold": "Inter Milan",
+    "hjemme_logo": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Logo_of_AC_Milan.svg",
+    "ude_logo": "https://upload.wikimedia.org/wikipedia/commons/0/05/FC_Internazionale_Milano_2021.svg",
+    "odds": "1.85",
+    "ekspert": "Loso"
+  }
+]
