@@ -326,45 +326,87 @@
   }
 </script>
 
-
-</body>
-</html>
-
-
-  <!-- Disclaimer under navbar -->
-  <p class="disclaimer">
-    18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
-  </p>
-
   <!-- Formål med betting-partnere -->
   <div class="purpose-box">
     <h2>Formålet med vores betting-partnere</h2>
-    <p>Vi anvender betting-partnere, fordi det støtter os økonomisk, så vi kan blive ved med at levere gratis analyser og betting tips til vores brugere. Når du benytter vores links og tilbud, hjælper du os med at opretholde og forbedre siden.</p>
+    <p>Vi anvender betting-partnere, fordi det støtter os økonomisk, så vi kan blive ved med at levere gratis analyser og betting tips til vores brugere. Når du benytter vores links og tilbud, hjælper du os samtidig med at kunne udvikle og forbedre siden.</p>
   </div>
 
-  <!-- Tilbud -->
-  <div class="offers-container">
-    <div class="offer-card">
-      <img src="https://www.betano.bar/wp-content/uploads/2024/12/betano_banner.jpg" alt="Betano Tilbud">
-      <h3>Betano Velkomstbonus</h3>
-      <p>Få en stor velkomstbonus som ny kunde hos Betano. Opret dig via vores link og få adgang til eksklusive fordele.</p>
-      <a href="https://www.betano.bar" target="_blank" rel="noopener noreferrer">Hent tilbud hos Betano</a>
-    </div>
+  <!-- Tilbud container -->
+  <section class="offers-container" id="offers-container">
+    <!-- Dynamiske tilbud vil blive loadet her -->
+  </section>
 
-    <div class="offer-card">
-      <img src="https://www.bet365.dk/hub/focalimage/4lICckbU8RnfaUbcb59AzQ/e71e47c9b33086ca15178e97b4401805/GenericNoLogo_Desktop-1440-2x/jpg/focaly-594/imgWidth-2880/imgHeight-1500/targetWidth-1200/targetHeight-1500/focalx-1761" alt="Bet365 Tilbud">
-      <h3>Bet365 Velkomstbonus</h3>
-      <p>Start din bettingrejse hos Bet365 med en velkomstbonus. Klik her for at læse mere og oprette dig i dag.</p>
-      <a href="https://www.bet365.dk" target="_blank" rel="noopener noreferrer">Hent tilbud hos Bet365</a>
-    </div>
+  <script>
+    // Eksempel JSON data for tilbud (kun til demo - skift til fetch fra tilbud.json ved rigtigt setup)
+    const offersData = [
+      {
+        title: "Betano Bonus",
+        description: "Få 100% bonus op til 500 kr. på dit første indskud.",
+        image: "betano.png",
+        url: "https://betano.dk"
+      },
+      {
+        title: "Bet365 Tilbud",
+        description: "Eksklusivt tilbud på live betting.",
+        image: "bet365.png",
+        url: "https://bet365.com"
+      },
+      {
+        title: "Unibet Kampagne",
+        description: "Gratis spil og cashback til nye brugere.",
+        image: "unibet.png",
+        url: "https://unibet.dk"
+      },
+      {
+        title: "LeoVegas Velkomstbonus",
+        description: "Op til 2000 kr. bonus ved tilmelding.",
+        image: "leovegas.png",
+        url: "https://leovegas.dk"
+      },
+      {
+        title: "NordicBet Freebet",
+        description: "Gratis freebet på 100 kr. til alle nye kunder.",
+        image: "nordicbet.png",
+        url: "https://nordicbet.dk"
+      }
+    ];
 
-    <div class="offer-card">
-      <img src="https://www.comeonbonus.se/wp-content/uploads/2023/12/comeon-betting-casino-1703082624.png" alt="ComeOn Tilbud">
-      <h3>ComeOn Velkomstbonus</h3>
-      <p>Få en stærk velkomstbonus hos ComeOn. Opret dig via vores link og oplev gode betting og casino tilbud.</p>
-      <a href="https://www.comeon.se" target="_blank" rel="noopener noreferrer">Hent tilbud hos ComeOn</a>
-    </div>
-  </div>
+    const offersContainer = document.getElementById('offers-container');
+
+    function createOfferCard(offer) {
+      const card = document.createElement('div');
+      card.className = 'offer-card';
+
+      const img = document.createElement('img');
+      img.src = offer.image;
+      img.alt = offer.title;
+
+      const title = document.createElement('h3');
+      title.textContent = offer.title;
+
+      const desc = document.createElement('p');
+      desc.textContent = offer.description;
+
+      const link = document.createElement('a');
+      link.href = offer.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = 'Se tilbud';
+
+      card.appendChild(img);
+      card.appendChild(title);
+      card.appendChild(desc);
+      card.appendChild(link);
+
+      return card;
+    }
+
+    // Load tilbud i container
+    offersData.forEach(offer => {
+      offersContainer.appendChild(createOfferCard(offer));
+    });
+  </script>
 
 </body>
 </html>
