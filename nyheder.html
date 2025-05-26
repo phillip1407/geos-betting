@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* Din CSS som før */
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
 
@@ -40,8 +41,6 @@
       min-width: 160px;
       z-index: 20;
     }
-    
-    
     .nav-links li.dropdown:hover ul { display:block; }
     .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
     .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
@@ -59,7 +58,6 @@
     }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
-    
     
     .sub-header {
       padding: 20px 140px;
@@ -83,11 +81,9 @@
       color: #0033cc;
       font-weight: bold;
     }
-    
     .breadcrumb a:hover {
       text-decoration: underline;
     }
-    
     .disclaimer {
       position: absolute;
       left: 50%;
@@ -96,7 +92,6 @@
       color: #142541;
       white-space: nowrap;
     }
-        }
 
     /* H2 */
     h2 {
@@ -295,108 +290,44 @@
     <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
+        <li><a href="analyser.html">Analyser</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
         <li class="dropdown">
-          <a href="#">Mere</a>
+          <a href="javascript:void(0)">Mere</a>
           <ul>
-            <li><a href="betalingstips.html">Betalingstips</a></li>
-            <li><a href="Sport.html">Sport</a></li>
-            <li><a href="faq.html">FAQ</a></li>  
+            <li><a href="tips.html">Tips</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
           </ul>
         </li>
       </ul>
-
       <div class="search-wrapper">
-        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
-        <ul id="suggestions" class="suggestions"></ul>
+        <input type="search" class="search-input" placeholder="Søg nyheder..." aria-label="Søg nyheder" />
+        <ul class="suggestions" role="listbox" aria-label="Forslag til søgning"></ul>
       </div>
     </nav>
   </header>
 
   <div class="sub-header">
-    <nav class="breadcrumb">
-      <a href="index.html">Forside</a> &raquo; <span>FAQ</span>
+    <nav class="breadcrumb" aria-label="Brødkrummesti">
+      <a href="index.html">Forside</a> &gt; <span>FAQ</span>
     </nav>
-    <p class="disclaimer">
-      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
-    </p>
+    <p class="disclaimer">18+ | Spil ansvarligt</p>
   </div>
 
-<script>
-  let items = [];
-
-  // Hent data fra søgefelt.json
-  fetch('søgefelt.json')
-    .then(response => {
-      if (!response.ok) {
-        console.error('Fejl ved hentning af søgefelt.json:', response.status);
-        return [];
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Søge-data hentet:', data);
-      items = data;
-    })
-    .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
-
-  const input = document.getElementById('search');
-  const suggBox = document.getElementById('suggestions');
-
-  input.addEventListener('input', () => {
-    const val = input.value.trim().toLowerCase();
-    suggBox.innerHTML = '';
-    if (!val) {
-      suggBox.style.display = 'none';
-      return;
-    }
-    // Find matches i items
-    const matches = items.filter(i => i.title.toLowerCase().includes(val));
-
-    if (!matches.length) {
-      suggBox.style.display = 'none';
-      return;
-    }
-
-    // Juster dropdown bredde til input bredde
-    suggBox.style.width = input.offsetWidth + 'px';
-
-    // Lav liste af matches i dropdown
-    matches.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item.title;
-      li.addEventListener('click', () => {
-        window.location.href = item.url;
-      });
-      suggBox.appendChild(li);
-    });
-
-    suggBox.style.display = 'block';
-  });
-
-  // Luk dropdown hvis klik udenfor søgefeltet
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.search-wrapper')) {
-      suggBox.style.display = 'none';
-    }
-  });
-</script>
-
   <script>
-  // Hent første <h1> på siden
-  const h1 = document.querySelector('h1');
-  const siteName = 'Geo Betting Tips';
+    // Hent første <h1> på siden
+    const h1 = document.querySelector('h1');
+    const siteName = 'Geo Betting Tips';
 
-  if (h1) {
-    // Sæt titlen til: "Overskrift | Geo Betting Tips"
-    document.title = `${h1.textContent.trim()} | ${siteName}`;
-  } else {
-    // Hvis der ikke er h1, bare standard titel
-    document.title = siteName;
-  }
-
-
+    if (h1) {
+      // Sæt titlen til: "Overskrift | Geo Betting Tips"
+      document.title = `${h1.textContent.trim()} | ${siteName}`;
+    } else {
+      // Hvis der ikke er h1, bare standard titel
+      document.title = siteName;
+    }
+  </script>
 
   <h2>Fodbold Nyheder</h2>
   <section id="fodbold" class="news-grid" aria-label="Fodbold nyheder"></section>
@@ -404,93 +335,93 @@
   <h2>Transfer Nyheder</h2>
   <section id="transfer" class="news-grid" aria-label="Transfer nyheder"></section>
 
-  <!-- Udvidet artikel overlay -->
-  <div class="overlay" id="overlay" aria-modal="true" role="dialog" aria-hidden="true" aria-labelledby="expanded-title">
-    <article class="expanded-article" role="document">
-      <button class="close-btn" aria-label="Luk artikel" id="closeBtn">&times;</button>
-      <img src="" alt="" class="expanded-image" id="expandedImage" />
-      <div class="expanded-content">
-        <h3 class="expanded-title" id="expanded-title"></h3>
-        <p class="expanded-date" id="expandedDate"></p>
-        <p class="expanded-text" id="expandedText"></p>
-      </div>
-    </article>
-  </div>
-
   <script>
-    const overlay = document.getElementById('overlay');
-    const expandedImage = document.getElementById('expandedImage');
-    const expandedTitle = document.getElementById('expanded-title');
-    const expandedDate = document.getElementById('expandedDate');
-    const expandedText = document.getElementById('expandedText');
-    const closeBtn = document.getElementById('closeBtn');
-
-    function openArticle(article) {
-      expandedImage.src = article.image;
-      expandedImage.alt = article.title;
-      expandedTitle.textContent = article.title;
-      expandedDate.textContent = article.date;
-      expandedText.textContent = article.fullText;
-
-      overlay.setAttribute('aria-hidden', 'false');
-      overlay.classList.add('active');
-      document.body.classList.add('overlay-active');
-
-      // Scroll til toppen af overlay
-      overlay.scrollTop = 0;
-    }
-
-    function closeArticle() {
-      overlay.classList.remove('active');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('overlay-active');
-    }
-
-    closeBtn.addEventListener('click', closeArticle);
-
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        closeArticle();
-      }
-    });
-
-    // Hent nyheder fra JSON
+    // Fetch nyheder.json og indsæt i sections
     fetch('nyheder.json')
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         const fodboldContainer = document.getElementById('fodbold');
         const transferContainer = document.getElementById('transfer');
 
-        function createNewsCard(item, container) {
-          const card = document.createElement('div');
+        data.forEach(nyhed => {
+          const card = document.createElement('article');
           card.className = 'news-card';
-          card.tabIndex = 0; // keyboard focus
+          card.tabIndex = 0;
+          card.setAttribute('role', 'button');
+          card.setAttribute('aria-pressed', 'false');
 
           card.innerHTML = `
-            <img src="${item.image}" alt="${item.title}" class="news-image" />
+            <img src="${nyhed.billede}" alt="${nyhed.altTekst}" class="news-image" loading="lazy" />
             <div class="news-content">
-              <h3 class="news-title">${item.title}</h3>
-              <div class="news-date">${item.date}</div>
-              <p class="news-summary">${item.summary}</p>
+              <h3 class="news-title">${nyhed.titel}</h3>
+              <p class="news-date">${nyhed.dato}</p>
+              <p class="news-summary">${nyhed.tekst.substring(0, 110)}...</p>
             </div>
           `;
 
-          card.addEventListener('click', () => openArticle(item));
-          card.addEventListener('keypress', (e) => {
-            if(e.key === 'Enter' || e.key === ' ') {
-              openArticle(item);
+          // Klik event for at åbne udvidet artikel
+          card.addEventListener('click', () => {
+            visUdvidetArtikel(nyhed);
+          });
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
+              visUdvidetArtikel(nyhed);
             }
           });
 
-          container.appendChild(card);
+          if (nyhed.kategori === 'fodbold') {
+            fodboldContainer.appendChild(card);
+          } else if (nyhed.kategori === 'transfer') {
+            transferContainer.appendChild(card);
+          }
+        });
+      });
+
+    // Funktion til at vise udvidet artikel
+    function visUdvidetArtikel(nyhed) {
+      // Hvis overlay findes, fjern først
+      const eksisterende = document.querySelector('.overlay');
+      if (eksisterende) eksisterende.remove();
+
+      const overlay = document.createElement('div');
+      overlay.className = 'overlay active';
+      overlay.tabIndex = -1;
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+
+      overlay.innerHTML = `
+        <article class="expanded-article">
+          <button class="close-btn" aria-label="Luk artikel">×</button>
+          <img src="${nyhed.billede}" alt="${nyhed.altTekst}" class="expanded-image" />
+          <div class="expanded-content">
+            <h2 class="expanded-title">${nyhed.titel}</h2>
+            <p class="expanded-date">${nyhed.dato}</p>
+            <p class="expanded-text">${nyhed.tekst}</p>
+          </div>
+        </article>
+      `;
+
+      document.body.appendChild(overlay);
+      document.body.classList.add('overlay-active');
+
+      // Luk knap
+      const closeBtn = overlay.querySelector('.close-btn');
+      closeBtn.addEventListener('click', () => {
+        overlay.remove();
+        document.body.classList.remove('overlay-active');
+      });
+
+      // Luk på ESC
+      overlay.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          overlay.remove();
+          document.body.classList.remove('overlay-active');
         }
+      });
 
-        data.fodbold.slice(0,5).forEach(item => createNewsCard(item, fodboldContainer));
-        data.transfer.slice(0,5).forEach(item => createNewsCard(item, transferContainer));
-      })
-      .catch(err => console.error('Fejl ved indlæsning af nyheder:', err));
+      closeBtn.focus();
+    }
   </script>
-
 </body>
 </html>
