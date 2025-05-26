@@ -338,39 +338,52 @@
   </section>
 
   <script>
-    // Eksempel JSON data for tilbud (kun til demo - skift til fetch fra tilbud.json ved rigtigt setup)
-    const offersData = [
-      {
-        title: "Betano Bonus",
-        description: "Få 100% bonus op til 500 kr. på dit første indskud.",
-        image: "betano.png",
-        url: "https://betano.dk"
-      },
-      {
-        title: "Bet365 Tilbud",
-        description: "Eksklusivt tilbud på live betting.",
-        image: "bet365.png",
-        url: "https://bet365.com"
-      },
-      {
-        title: "Unibet Kampagne",
-        description: "Gratis spil og cashback til nye brugere.",
-        image: "unibet.png",
-        url: "https://unibet.dk"
-      },
-      {
-        title: "LeoVegas Velkomstbonus",
-        description: "Op til 2000 kr. bonus ved tilmelding.",
-        image: "leovegas.png",
-        url: "https://leovegas.dk"
-      },
-      {
-        title: "NordicBet Freebet",
-        description: "Gratis freebet på 100 kr. til alle nye kunder.",
-        image: "nordicbet.png",
-        url: "https://nordicbet.dk"
+<script>
+  const offersContainer = document.getElementById('offers-container');
+
+  function createOfferCard(offer) {
+    const card = document.createElement('div');
+    card.className = 'offer-card';
+
+    const img = document.createElement('img');
+    img.src = offer.image;
+    img.alt = offer.title;
+
+    const title = document.createElement('h3');
+    title.textContent = offer.title;
+
+    const desc = document.createElement('p');
+    desc.textContent = offer.description;
+
+    const link = document.createElement('a');
+    link.href = offer.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'Se tilbud';
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(desc);
+    card.appendChild(link);
+
+    return card;
+  }
+
+  fetch('tilbud.json')
+    .then(response => {
+      if (!response.ok) {
+        console.error('Kunne ikke hente tilbud.json:', response.status);
+        return [];
       }
-    ];
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(offer => {
+        offersContainer.appendChild(createOfferCard(offer));
+      });
+    })
+    .catch(err => console.error('Fejl ved hentning af tilbud.json', err));
+
 
     const offersContainer = document.getElementById('offers-container');
 
