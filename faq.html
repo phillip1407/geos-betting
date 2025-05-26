@@ -104,57 +104,66 @@
     </p>
   </div>
 
-  <script>
-    let items = [];
-    // Hent data fra søgefelt.json
-    fetch('søgefelt.json')
-      .then(response => {
-        if (!response.ok) {
-          console.error('Fejl ved hentning af søgefelt.json:', response.status);
-          return [];
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Søge-data hentet:', data);
-        items = data;
-      })
-      .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
+<script>
+  let items = [];
 
-    const input = document.getElementById('search');
-    const suggBox = document.getElementById('suggestions');
+  // Hent data fra søgefelt.json
+  fetch('søgefelt.json')
+    .then(response => {
+      if (!response.ok) {
+        console.error('Fejl ved hentning af søgefelt.json:', response.status);
+        return [];
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Søge-data hentet:', data);
+      items = data;
+    })
+    .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
 
-    input.addEventListener('input', () => {
-      const val = input.value.trim().toLowerCase();
-      console.log('Søgeord:', val);
-      suggBox.innerHTML = '';
-      if (!val) {
-        suggBox.style.display = 'none';
-        return;
-      }
-      const matches = items.filter(i => i.title.toLowerCase().includes(val));
-      console.log('Matches:', matches);
-      if (!matches.length) {
-        suggBox.style.display = 'none';
-        return;
-      }
-      matches.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item.title;
-        li.addEventListener('click', () => {
-          window.location.href = item.url;
-        });
-        suggBox.appendChild(li);
+  const input = document.getElementById('search');
+  const suggBox = document.getElementById('suggestions');
+
+  input.addEventListener('input', () => {
+    const val = input.value.trim().toLowerCase();
+    suggBox.innerHTML = '';
+    if (!val) {
+      suggBox.style.display = 'none';
+      return;
+    }
+    // Find matches i items
+    const matches = items.filter(i => i.title.toLowerCase().includes(val));
+
+    if (!matches.length) {
+      suggBox.style.display = 'none';
+      return;
+    }
+
+    // Juster dropdown bredde til input bredde
+    suggBox.style.width = input.offsetWidth + 'px';
+
+    // Lav liste af matches i dropdown
+    matches.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.title;
+      li.addEventListener('click', () => {
+        window.location.href = item.url;
       });
-      suggBox.style.display = 'block';
+      suggBox.appendChild(li);
     });
 
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.search-wrapper')) {
-        suggBox.style.display = 'none';
-      }
-    });
-  </script>
+    suggBox.style.display = 'block';
+  });
+
+  // Luk dropdown hvis klik udenfor søgefeltet
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrapper')) {
+      suggBox.style.display = 'none';
+    }
+  });
+</script>
+
 
 </body>
 </html>
