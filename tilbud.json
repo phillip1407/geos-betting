@@ -1,1 +1,38 @@
-
+[
+  {
+    "title": "Betano Bonus",
+    "description": "Få 100% bonus op til 500 kr. på dit første indskud.",
+    "image": "https://www.betano.bar/wp-content/uploads/2024/12/betano_banner.jpg",
+    "url": "https://betano.dk"
+  },
+  {
+    "title": "Bet365 Tilbud",
+    "description": "Eksklusivt tilbud på live betting.",
+    "image": "https://www.bet365.dk/hub/focalimage/4lICckbU8RnfaUbcb59AzQ/e71e47c9b33086ca15178e97b4401805/GenericNoLogo_Desktop-1440-2x/jpg/focaly-594/imgWidth-2880/imgHeight-1500/targetWidth-1200/targetHeight-1500/focalx-1761",
+    "url": "https://bet365.com"
+  },
+  {
+    "title": "ComeOn Tilbud",
+    "description": "Få bonus og gratis spins hos ComeOn.",
+    "image": "https://www.comeonbonus.se/wp-content/uploads/2023/12/comeon-betting-casino-1703082624.png",
+    "url": "https://comeon.com"
+  },
+  {
+    "title": "Unibet Kampagne",
+    "description": "Gratis spil og cashback til nye brugere.",
+    "image": "https://www.justpushstart.com/wp-content/uploads/2024/09/unibet-in-social.webp",
+    "url": "https://unibet.dk"
+  },
+  {
+    "title": "LeoVegas Velkomstbonus",
+    "description": "Op til 2000 kr. bonus ved tilmelding.",
+    "image": "https://d2csxpduxe849s.cloudfront.net/media/0F761720-670F-4352-9E8055C6446868B5/DA3949A3-BB74-4AF3-A1849F0BC25A7E9E/webimage-E4DDD0E8-9A70-40F1-93B63D025408EFA6.png",
+    "url": "https://leovegas.dk"
+  },
+  {
+    "title": "NordicBet Freebet",
+    "description": "Gratis freebet på 100 kr. til alle nye kunder.",
+    "image": "https://casinokampanj.se/wp-content/uploads/2021/03/Nordicbet-1.jpg",
+    "url": "https://nordicbet.dk"
+  }
+]
