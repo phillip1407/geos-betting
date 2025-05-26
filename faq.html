@@ -13,14 +13,14 @@
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
 
-    .navbar { background:#142541; padding:15px 140px; display:flex; justify-content:space-between; align-items:center; }
+    .navbar { background:#142541; padding:15px 140px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
     .logo-container { display:flex; align-items:center; gap:10px; }
     .logo { width:40px; height:40px; }
     .logo-text { display:flex; flex-direction:column; }
     .site-name { color:#fff; font-size:24px; font-weight:bold; }
     .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
 
-    .nav-container { display:flex; align-items:center; }
+    .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
     .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
     .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
     .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
