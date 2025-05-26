@@ -2,32 +2,98 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FAQ | Geo Betting Tips</title>
-  <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
-  <link rel="apple-touch-icon" href="logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nyheder | Geo Betting Tips</title>
+  <link rel="icon" href="logo.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
-    /* Din CSS som før - uændret */
-    * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
-    body { background:#f9f9f9; }
-
-    .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
-    .logo-container { display:flex; align-items:center; gap:10px; }
-    .logo { width:55px; height:55px; }
-    .logo-text { display:flex; flex-direction:column; }
-    .site-name { color:#fff; font-size:24px; font-weight:bold; }
-    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
-
-    .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
-    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
-    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
-    .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
-    .nav-links li a:hover::after { width:100%; } 
-    .nav-links li a:hover { color:#e0e7f6; }
-
-    .nav-links li.dropdown { position:relative; }
+    * {
+      font-family: "Montserrat", sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #f9f9f9;
+      padding: 0 140px;
+    }
+    /* Behold navbar som du havde */
+    .navbar {
+      background: #142541;
+      padding: 15px 220px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo {
+      width: 55px;
+      height: 55px;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .site-name {
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .slogan {
+      color: #e0e7f6;
+      font-size: 14px;
+      margin-top: 2px;
+    }
+    .nav-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin-right: 20px;
+    }
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      position: relative;
+      padding-bottom: 5px;
+      transition: color 0.3s;
+    }
+    .nav-links li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 3px;
+      background: #e0e7f6;
+      transition: width 0.3s;
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    .nav-links li a:hover {
+      color: #e0e7f6;
+    }
+    .nav-links li.dropdown {
+      position: relative;
+    }
     .nav-links li.dropdown ul {
       position: absolute;
       top: 30px;
@@ -40,199 +106,92 @@
       min-width: 160px;
       z-index: 20;
     }
-    .nav-links li.dropdown:hover ul { display:block; }
-    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
-    .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
-
-    .search-wrapper { position:relative; }
+    .nav-links li.dropdown:hover ul {
+      display: block;
+    }
+    .nav-links li.dropdown ul li a {
+      display: block;
+      padding: 8px 20px;
+      font-size: 16px;
+      color: #fff;
+    }
+    .nav-links li.dropdown ul li a:hover {
+      background: #1f3a68;
+    }
+    .search-wrapper {
+      position: relative;
+    }
     .search-input {
-      padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
+      padding: 6px 10px;
+      border: 2px solid #e0e7f6;
+      border-radius: 4px;
+      font-size: 16px;
+      width: 200px;
     }
-    .search-input:focus { outline:none; border-color:#1f3a68; }
+    .search-input:focus {
+      outline: none;
+      border-color: #1f3a68;
+    }
     .suggestions {
-      position:absolute; top:100%; left:0; right:0; background:#fff;
-      border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto;
-      z-index:10; display:none;
-    }
-    .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
-    .suggestions li:hover { background:#f0f0f0; }
-
-    .sub-header {
-      padding: 20px 140px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
       background: #fff;
-      border-bottom: 1px solid #e0e7f6;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .breadcrumb {
-      font-size: 14px;
-      color: #142541;
-      flex-shrink: 0;
-    }
-    .breadcrumb a {
-      text-decoration: none;
-      color: #0033cc;
-      font-weight: bold;
-    }
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
-    .disclaimer {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 14px;
-      color: #142541;
-      white-space: nowrap;
-    }
-
-    h2 {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 28px;
-      font-weight: 700;
-      color: #142541;
-    }
-
-    .news-grid {
-      max-width: 900px;
-      margin: 20px auto 60px;
-      padding: 0 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .news-card {
-      background: white;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-      border-radius: 12px;
-      display: flex;
-      overflow: hidden;
-      cursor: pointer;
-      transition: box-shadow 0.3s ease;
-      height: 180px;
-    }
-    .news-card:hover {
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    }
-    .news-image {
-      width: 260px;
-      height: 100%;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    .news-content {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex-grow: 1;
-      color: #142541;
-    }
-    .news-title {
-      font-weight: 700;
-      font-size: 22px;
-      margin: 0 0 8px;
-      line-height: 1.2;
-    }
-    .news-date {
-      font-size: 14px;
-      color: #999;
-      margin-bottom: 12px;
-    }
-    .news-summary {
-      font-size: 15px;
-      line-height: 1.4;
-      color: #444;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(20, 37, 65, 0.7);
-      backdrop-filter: blur(6px);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 40px 20px;
-      z-index: 1500;
+      border: 1px solid #ccc;
+      border-top: none;
+      max-height: 200px;
       overflow-y: auto;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
+      z-index: 10;
+      display: none;
     }
-    .overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .expanded-article {
-      background: white;
-      border-radius: 16px;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.3);
-      animation: fadeInScale 0.3s ease forwards;
-      position: relative;
-    }
-    @keyframes fadeInScale {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .expanded-image {
-      width: 100%;
-      height: 450px;
-      object-fit: cover;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-    }
-    .expanded-content {
-      padding: 25px 30px 40px;
-      color: #142541;
-    }
-    .expanded-title { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
-    .expanded-date { color: #999; font-size: 14px; margin-bottom: 20px; }
-    .expanded-text { font-size: 16px; line-height: 1.5; color: #444; white-space: pre-wrap; }
-
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      background: #142541;
-      border: none;
-      color: white;
-      font-size: 22px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+    .suggestions li {
+      list-style: none;
+      padding: 8px 10px;
       cursor: pointer;
+    }
+    .suggestions li:hover {
+      background: #f0f0f0;
+    }
+
+    /* Nyheder container */
+    main.nyheder-container {
+      background: #fff;
+      padding: 30px 40px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+      border-radius: 8px;
+      max-width: 900px;
+      margin: 0 auto 60px;
+    }
+    article.nyhed {
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+    }
+    article.nyhed:last-child {
+      border-bottom: none;
+    }
+    article.nyhed h2 {
       font-weight: 700;
-      line-height: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: background-color 0.3s ease;
+      color: #142541;
+      margin-bottom: 8px;
+      font-size: 28px;
     }
-    .close-btn:hover { background-color: #0f1e36; }
-
-    body.overlay-active > *:not(.overlay) {
-      filter: blur(5px);
-      pointer-events: none;
-      user-select: none;
+    article.nyhed .dato {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 15px;
     }
-
-    @media (max-width: 700px) {
-      .news-card { flex-direction: column; height: auto; }
-      .news-image { width: 100%; height: 180px; }
-      .news-content { padding: 15px 20px; }
+    article.nyhed img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+    article.nyhed p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
     }
   </style>
 </head>
@@ -240,98 +199,72 @@
   <header class="navbar">
     <div class="logo-container">
       <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="logo.png" alt="Logo" class="logo" />
         <div class="logo-text">
           <h1 class="site-name">Geo Betting Tips</h1>
           <p class="slogan">Ekspertanalyser til din betting</p>
         </div>
       </a>
     </div>
+
     <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="analyser.html">Analyser</a></li>
+        <li><a href="Analyser.html">Analyser</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
         <li class="dropdown">
-          <a href="javascript:void(0)">Mere</a>
+          <a href="#">Mere</a>
           <ul>
-            <li><a href="tips.html">Tips</a></li>
+            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
           </ul>
         </li>
       </ul>
+
       <div class="search-wrapper">
-        <input type="search" class="search-input" placeholder="Søg nyheder..." aria-label="Søg nyheder" />
-        <ul class="suggestions" role="listbox" aria-label="Forslag til søgning"></ul>
+        <input
+          type="text"
+          id="search"
+          class="search-input"
+          placeholder="Søg på sitet…"
+        />
+        <ul id="suggestions" class="suggestions"></ul>
       </div>
     </nav>
   </header>
 
-  <div class="sub-header">
-    <nav class="breadcrumb" aria-label="Brødkrummesti">
-      <a href="index.html">Forside</a> &gt; <span>FAQ</span>
-    </nav>
-    <p class="disclaimer">18+ | Spil ansvarligt</p>
-  </div>
-
-  <h2>Fodbold Nyheder</h2>
-  <section id="fodbold" class="news-grid" aria-label="Fodbold nyheder"></section>
-
-  <h2>Transfer Nyheder</h2>
-  <section id="transfer" class="news-grid" aria-label="Transfer nyheder"></section>
+  <main class="nyheder-container" id="nyheder"></main>
 
   <script>
-    const siteName = 'Geo Betting Tips';
-    const h1 = document.querySelector('h1');
-    if (h1) document.title = `${h1.textContent.trim()} | ${siteName}`;
+    async function hentNyheder() {
+      try {
+        const response = await fetch("nyheder.json");
+        if (!response.ok) {
+          throw new Error("Kan ikke hente nyheder.json");
+        }
+        const nyheder = await response.json();
 
-    fetch('nyheder.json')
-      .then(res => res.json())
-      .then(data => {
-        const fodbold = document.getElementById('fodbold');
-        const transfer = document.getElementById('transfer');
-        data.forEach(nyhed => {
-          const card = document.createElement('article');
-          card.className = 'news-card';
-          card.tabIndex = 0;
-          card.setAttribute('role', 'button');
-          card.setAttribute('aria-pressed', 'false');
-          card.innerHTML = `
-            <img src="${nyhed.billede}" alt="${nyhed.altTekst || ''}" class="news-image" loading="lazy" />
-            <div class="news-content">
-              <h3 class="news-title">${nyhed.titel || 'Ingen titel'}</h3>
-              <p class="news-date">${nyhed.dato || ''}</p>
-              <p class="news-summary">${(nyhed.tekst || '').substring(0, 110)}...</p>
-            </div>`;
-          card.addEventListener('click', () => visUdvidetArtikel(nyhed));
-          card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); visUdvidetArtikel(nyhed); }});
-          if (nyhed.kategori === 'fodbold') fodbold.appendChild(card);
-          else if (nyhed.kategori === 'transfer') transfer.appendChild(card);
-        });
-      })
-      .catch(err => console.error('Fejl ved indlæsning af nyheder:', err));
+        const container = document.getElementById("nyheder");
+        container.innerHTML = "";
 
-    function visUdvidetArtikel(nyhed) {
-      document.querySelector('.overlay')?.remove();
-      const overlay = document.createElement('div');
-      overlay.className = 'overlay active';
-      overlay.innerHTML = `
-        <article class="expanded-article">
-          <button class="close-btn" aria-label="Luk artikel">×</button>
-          <img src="${nyhed.billede}" alt="${nyhed.altTekst || ''}" class="expanded-image" />
-          <div class="expanded-content">
-            <h2 class="expanded-title">${nyhed.titel}</h2>
-            <p class="expanded-date">${nyhed.dato}</p>
-            <p class="expanded-text">${nyhed.tekst}</p>
-          </div>
-        </article>`;
-      document.body.appendChild(overlay);
-      document.body.classList.add('overlay-active');
-      overlay.querySelector('.close-btn').addEventListener('click', () => { overlay.remove(); document.body.classList.remove('overlay-active'); });
-      overlay.addEventListener('keydown', e => { if (e.key === 'Escape') { overlay.remove(); document.body.classList.remove('overlay-active'); }});
-      overlay.querySelector('.close-btn').focus();
-    }
-  </script>
-</body>
-</html>
+        // Sorter nyheder efter dato, nyeste først
+        nyheder.sort((a, b) => new Date(b.dato) - new Date(a.dato));
+
+        nyheder.forEach((nyhed) => {
+          const art = document.createElement("article");
+          art.classList.add("nyhed");
+
+          art.innerHTML = `
+            <h2>${nyhed.titel}</h2>
+            <p class="dato">${new Date(nyhed.dato).toLocaleDateString("da-DK", {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            })}</p>
+            ${
+              nyhed.billede
+                ? `<img src="${nyhed.billede}" alt="${nyhed.titel} billede" />`
+                : ""
+            }
+            <p>${nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indhold || nyhed.indh
