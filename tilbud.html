@@ -385,34 +385,11 @@
     .catch(err => console.error('Fejl ved hentning af tilbud.json', err));
 
 
-    const offersContainer = document.getElementById('offers-container');
+  const offersContainer = document.getElementById('offers-container');
 
-    function createOfferCard(offer) {
-      const card = document.createElement('div');
-      card.className = 'offer-card';
-
-      const img = document.createElement('img');
-      img.src = offer.image;
-      img.alt = offer.title;
-
-      const title = document.createElement('h3');
-      title.textContent = offer.title;
-
-      const desc = document.createElement('p');
-      desc.textContent = offer.description;
-
-      const link = document.createElement('a');
-      link.href = offer.url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = 'Se tilbud';
-
-      card.appendChild(img);
-      card.appendChild(title);
-      card.appendChild(desc);
-      card.appendChild(link);
-
-      return card;
+  function createOfferCard(offer) { ... }
+  // Load tilbud i container
+  offersData.forEach(offer => { offersContainer.appendChild(createOfferCard(offer)); });
     }
 
     // Load tilbud i container
