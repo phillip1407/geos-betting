@@ -15,6 +15,11 @@
       box-sizing: border-box;
     }
 
+    body {
+      min-height: 100vh;
+      background-color: #f0f4f8;
+    }
+
     /* Navbar */
     .navbar {
       background-color: #142541;
@@ -22,6 +27,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 1000;
     }
 
     .logo-container {
@@ -55,7 +62,8 @@
       list-style: none;
       display: flex;
       gap: 30px;
-      position: relative;
+      margin: 0;
+      padding: 0;
     }
 
     .nav-links li {
@@ -99,17 +107,14 @@
     .dropdown {
       display: none;
       position: absolute;
-      top: 30px;
+      top: 100%; /* Flytter dropdown lige under knappen */
       left: 0;
+      margin-top: 8px; /* Lidt afstand */
       background-color: #142541;
       border-radius: 4px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       min-width: 180px;
-      z-index: 10;
-    }
-
-    .dropdown li {
-      width: 100%;
+      z-index: 999;
     }
 
     .dropdown li a {
