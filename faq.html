@@ -9,51 +9,28 @@
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
       font-family: 'Montserrat', sans-serif;
     }
 
     body {
-      background-color: #f5f7fa;
+      background-color: #f4f4f4;
     }
 
-    /* Navbar */
     .navbar {
       background-color: #142541;
-      padding: 15px 30px;
+      padding: 15px 40px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-    }
-
-    .left-section, .center-section, .right-section {
-      display: flex;
       align-items: center;
     }
 
-    .left-section {
-      gap: 30px;
-      margin-left: 40px;
-    }
-
-    .center-section {
-      flex: 1;
-      justify-content: center;
-    }
-
-    .right-section {
-      margin-right: 40px;
-    }
-
-    /* Logo */
     .logo-container {
       display: flex;
       align-items: center;
       gap: 10px;
-      text-decoration: none;
-      color: white;
     }
 
     .logo {
@@ -61,22 +38,40 @@
       height: 40px;
     }
 
-    .logo-text h1 {
-      font-size: 24px;
-      font-weight: bold;
+    .logo-text {
+      display: flex;
+      flex-direction: column;
     }
 
-    .logo-text p {
-      font-size: 14px;
+    .site-name {
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .slogan {
       color: #e0e7f6;
+      font-size: 14px;
+      margin: 0;
       margin-top: 2px;
     }
 
-    /* Nav links */
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 25px;
+      gap: 30px;
+      margin-right: 30px; /* Træk lidt ind fra højre */
+    }
+
+    .nav-links li {
+      position: relative;
     }
 
     .nav-links li a {
@@ -108,59 +103,92 @@
       color: #e0e7f6;
     }
 
-    /* Search button */
-    .search-button {
-      background: none;
-      border: 2px solid #e0e7f6;
-      color: white;
-      padding: 6px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s ease;
+    /* Dropdown */
+    .nav-links li ul {
+      display: none;
+      position: absolute;
+      top: 120%;
+      left: 0;
+      background-color: #1b365a;
+      list-style: none;
+      padding: 10px 0;
+      border-radius: 6px;
+      min-width: 180px;
     }
 
-    .search-button:hover {
+    .nav-links li:hover ul {
+      display: block;
+    }
+
+    .nav-links li ul li a {
+      padding: 10px 20px;
+      display: block;
+      color: white;
+      font-size: 16px;
+    }
+
+    .nav-links li ul li a:hover {
+      background-color: #25476a;
+    }
+
+    .search-btn {
+      background-color: transparent;
+      border: 2px solid #e0e7f6;
+      border-radius: 6px;
+      color: #e0e7f6;
+      font-size: 16px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .search-btn:hover {
       background-color: #e0e7f6;
       color: #142541;
     }
 
-    /* Disclaimer */
     .disclaimer {
       font-size: 14px;
       color: #142541;
       text-align: center;
-      margin: 20px 0;
+      margin: 10px 0 10px 0;
       padding-bottom: 5px;
       border-bottom: 1px solid #e0e7f6;
+      max-width: 100%;
+      box-sizing: border-box;
     }
   </style>
 </head>
 <body>
 
   <header class="navbar">
-    <div class="left-section">
-      <ul class="nav-links">
-        <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
-        <li><a href="faq.html">Mere</a></li>
-      </ul>
-    </div>
-
-    <div class="center-section">
-      <a href="index.html" class="logo-container">
+    <div class="logo-container">
+      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
         <img src="logo.png" alt="Geo Betting Tips Logo" class="logo">
         <div class="logo-text">
-          <h1>Geo Betting Tips</h1>
-          <p>Ekspertanalyser til din betting</p>
+          <h1 class="site-name">Geo Betting Tips</h1>
+          <p class="slogan">Ekspertanalyser til din betting</p>
         </div>
       </a>
     </div>
 
-    <div class="right-section">
-      <button class="search-button">Søg</button>
-    </div>
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="nyheder.html">Nyheder</a></li>
+        <li><a href="Analyser.html">Analyser</a></li>
+        <li><a href="tilbud.html">Tilbud</a></li>
+        <li>
+          <a href="#">Mere</a>
+          <ul>
+            <li><a href="#">Betalingstips</a></li>
+            <li><a href="#">Fodboldtabeller</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <button class="search-btn">Søg</button>
+    </nav>
   </header>
 
   <p class="disclaimer">
