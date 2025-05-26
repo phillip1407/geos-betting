@@ -15,13 +15,10 @@
       box-sizing: border-box;
     }
 
-    body {
-      background-color: #f9f9f9;
-    }
-
+    /* Navbar */
     .navbar {
       background-color: #142541;
-      padding: 15px 85px;
+      padding: 15px 140px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -54,22 +51,19 @@
       color: #e0e7f6;
       font-size: 14px;
       margin: 0;
+      margin-top: 2px;
     }
 
     .nav-container {
       display: flex;
       align-items: center;
-      gap: 40px;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
       gap: 30px;
-    }
-
-    .nav-links li {
-      position: relative;
+      margin-right: 20px;
     }
 
     .nav-links li a {
@@ -101,65 +95,84 @@
       color: #e0e7f6;
     }
 
-    .dropdown {
+    /* Dropdown menu */
+    .nav-links li.dropdown {
       position: relative;
     }
 
-    .dropdown-content {
-      display: none;
+    .nav-links li.dropdown ul {
       position: absolute;
       top: 30px;
       left: 0;
       background-color: #142541;
-      min-width: 180px;
-      z-index: 1;
+      list-style: none;
       padding: 10px 0;
-      border-radius: 6px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: none;
+      border-radius: 5px;
+      min-width: 160px;
     }
 
-    .dropdown-content a {
-      color: white;
-      padding: 8px 16px;
+    .nav-links li.dropdown:hover ul {
       display: block;
-      text-decoration: none;
+    }
+
+    .nav-links li.dropdown ul li a {
+      padding: 8px 20px;
+      display: block;
       font-size: 16px;
-      transition: background 0.3s ease;
     }
 
-    .dropdown-content a:hover {
-      background-color: #1c3666;
+    .nav-links li.dropdown ul li a:hover {
+      background-color: #1f3a68;
     }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
+    /* Search button */
     .search-button {
-      background-color: transparent;
+      background-color: #e0e7f6;
+      color: #142541;
       border: none;
+      padding: 8px 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
       cursor: pointer;
-      color: white;
-      font-size: 20px;
-      margin-left: 20px;
     }
 
-    .search-button:hover {
-      color: #e0e7f6;
+    /* Breadcrumb */
+    .breadcrumb {
+      margin: 20px 140px;
+      font-size: 14px;
+      color: #142541;
     }
 
+    .breadcrumb a {
+      text-decoration: none;
+      color: #0033cc;
+      font-weight: bold;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb span {
+      color: #142541;
+      font-weight: normal;
+    }
+
+    /* Disclaimer */
     .disclaimer {
       font-size: 14px;
       color: #142541;
       text-align: center;
-      margin: 20px auto;
-      max-width: 90%;
+      margin: 10px 0 10px 0;
       padding-bottom: 5px;
       border-bottom: 1px solid #e0e7f6;
+      max-width: 100%;
+      box-sizing: border-box;
     }
   </style>
 </head>
-
 <body>
 
   <header class="navbar">
@@ -173,25 +186,27 @@
       </a>
     </div>
 
-    <div class="nav-container">
+    <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
         <li><a href="Analyser.html">Analyser</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
         <li class="dropdown">
-          <a href="#">Mere ▾</a>
-          <div class="dropdown-content">
-            <a href="#">Betalingstips</a>
-            <a href="#">Fodboldtabeller</a>
-            <a href="faq.html">FAQ</a>
-          </div>
+          <a href="#">Mere</a>
+          <ul>
+            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
         </li>
       </ul>
-      <button class="search-button" title="Søg">
-        🔍
-      </button>
-    </div>
+      <button class="search-button">Søg</button>
+    </nav>
   </header>
+
+  <nav class="breadcrumb">
+    <a href="index.html">Forside</a> &raquo; <span>Betalingstips</span>
+  </nav>
 
   <p class="disclaimer">
     18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet - 70 22 28 25 | Udeluk dig via ROFUS | Alle links, med symbolet *, er reklamelinks, der kan bidrage til sidens indtjening.
@@ -199,4 +214,3 @@
 
 </body>
 </html>
-
