@@ -1,142 +1,77 @@
-/* Grundlæggende styling */
-body {
-    font-family: Arial, sans-serif;
+/* Reset */
+* {
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: #fff;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
 }
 
 header {
-    background-color: #1f1f1f;
-}
-
-.navbar {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1rem;
-    margin: 0;
-}
-
-.navbar li a {
+    background-color: #0077cc;
     color: #fff;
-    text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.navbar li a::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    left: 0;
-    bottom: -4px;
-    background: #00ffcc;
-    transition: width 0.3s ease;
-}
-
-.navbar li a:hover {
-    color: #00ffcc;
-}
-
-.navbar li a:hover::after {
-    width: 100%;
-}
-
-/* Hero */
-.hero {
+    padding: 20px;
     text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, #00ffcc, #0066ff);
 }
 
-.hero h1 {
+header h1 {
     font-size: 2.5rem;
 }
 
-.hero p {
-    margin: 1rem 0;
-}
-
-.cta {
-    background: #00ffcc;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    color: #121212;
-    cursor: pointer;
-    border-radius: 8px;
-}
-
-.cta:hover {
-    background: #00ccaa;
-}
-
-/* Dagens Spil & Nyheder */
-.dagens-spil, .nyheder {
-    padding: 2rem;
-    background-color: #1f1f1f;
-}
-
-.dagens-spil h2, .nyheder h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.spil-liste {
+nav ul {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
     justify-content: center;
+    list-style: none;
+    margin-top: 10px;
 }
 
-.spil-liste article, .nyheder article {
-    background: #2a2a2a;
-    padding: 1rem;
-    border-radius: 8px;
-    width: 250px;
+nav li {
+    margin: 0 15px;
 }
 
-.nyheder article h3, .spil-liste article h3 {
-    color: #00ffcc;
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-/* Statistik & Analyse */
-.statistik {
-    padding: 2rem;
-    background-color: #181818;
+main {
+    padding: 20px;
 }
 
-.statistik h2 {
+.intro {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 30px;
 }
 
-.statistik-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+.featured {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-.kort {
-    background: #2a2a2a;
-    padding: 1rem;
+.card {
+    background-color: #fff;
+    padding: 15px;
     border-radius: 8px;
-    width: 250px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-.kort h3 {
-    color: #00ffcc;
+.card h3 {
+    margin-bottom: 10px;
+    color: #0077cc;
 }
 
-/* Footer */
 footer {
     text-align: center;
-    padding: 1rem;
-    background-color: #1f1f1f;
-    font-size: 0.9rem;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    margin-top: 40px;
 }
