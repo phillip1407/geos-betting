@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>FAQ | Geo Betting Tips</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Din CSS som før */
+    /* Din CSS som før - uændret */
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
 
@@ -45,7 +44,6 @@
     .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
     .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
 
-    /* Search + autocomplete */
     .search-wrapper { position:relative; }
     .search-input {
       padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
@@ -58,19 +56,18 @@
     }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
-    
+
     .sub-header {
       padding: 20px 140px;
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
-      
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
     }
-    
+
     .breadcrumb {
       font-size: 14px;
       color: #142541;
@@ -93,7 +90,6 @@
       white-space: nowrap;
     }
 
-    /* H2 */
     h2 {
       text-align: center;
       margin-top: 40px;
@@ -102,7 +98,6 @@
       color: #142541;
     }
 
-    /* Nyhedsbokse container */
     .news-grid {
       max-width: 900px;
       margin: 20px auto 60px;
@@ -114,7 +109,6 @@
       z-index: 1;
     }
 
-    /* Enkel nyhedsboks */
     .news-card {
       background: white;
       box-shadow: 0 6px 14px rgba(0,0,0,0.12);
@@ -141,7 +135,6 @@
       justify-content: center;
       flex-grow: 1;
       color: #142541;
-      position: relative;
     }
     .news-title {
       font-weight: 700;
@@ -160,7 +153,6 @@
       color: #444;
     }
 
-    /* Udvidet artikel overlay */
     .overlay {
       position: fixed;
       top: 0; left: 0;
@@ -192,14 +184,8 @@
       position: relative;
     }
     @keyframes fadeInScale {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
     .expanded-image {
       width: 100%;
@@ -212,22 +198,10 @@
       padding: 25px 30px 40px;
       color: #142541;
     }
-    .expanded-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-    .expanded-date {
-      color: #999;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    .expanded-text {
-      font-size: 16px;
-      line-height: 1.5;
-      color: #444;
-      white-space: pre-wrap;
-    }
+    .expanded-title { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
+    .expanded-date { color: #999; font-size: 14px; margin-bottom: 20px; }
+    .expanded-text { font-size: 16px; line-height: 1.5; color: #444; white-space: pre-wrap; }
+
     .close-btn {
       position: absolute;
       top: 15px;
@@ -247,35 +221,22 @@
       align-items: center;
       transition: background-color 0.3s ease;
     }
-    .close-btn:hover {
-      background-color: #0f1e36;
-    }
+    .close-btn:hover { background-color: #0f1e36; }
 
-    /* Slør baggrund når overlay er aktiv */
     body.overlay-active > *:not(.overlay) {
       filter: blur(5px);
       pointer-events: none;
       user-select: none;
     }
 
-    /* Responsivt */
     @media (max-width: 700px) {
-      .news-card {
-        flex-direction: column;
-        height: auto;
-      }
-      .news-image {
-        width: 100%;
-        height: 180px;
-      }
-      .news-content {
-        padding: 15px 20px;
-      }
+      .news-card { flex-direction: column; height: auto; }
+      .news-image { width: 100%; height: 180px; }
+      .news-content { padding: 15px 20px; }
     }
   </style>
 </head>
 <body>
-
   <header class="navbar">
     <div class="logo-container">
       <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
@@ -286,7 +247,6 @@
         </div>
       </a>
     </div>
-
     <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
@@ -315,20 +275,6 @@
     <p class="disclaimer">18+ | Spil ansvarligt</p>
   </div>
 
-  <script>
-    // Hent første <h1> på siden
-    const h1 = document.querySelector('h1');
-    const siteName = 'Geo Betting Tips';
-
-    if (h1) {
-      // Sæt titlen til: "Overskrift | Geo Betting Tips"
-      document.title = `${h1.textContent.trim()} | ${siteName}`;
-    } else {
-      // Hvis der ikke er h1, bare standard titel
-      document.title = siteName;
-    }
-  </script>
-
   <h2>Fodbold Nyheder</h2>
   <section id="fodbold" class="news-grid" aria-label="Fodbold nyheder"></section>
 
@@ -336,122 +282,55 @@
   <section id="transfer" class="news-grid" aria-label="Transfer nyheder"></section>
 
   <script>
-    // Fetch nyheder.json og indsæt i sections
-fetch('nyheder.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP fejl: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    const fodboldContainer = document.getElementById('fodbold');
-    const transferContainer = document.getElementById('transfer');
+    const siteName = 'Geo Betting Tips';
+    const h1 = document.querySelector('h1');
+    if (h1) document.title = `${h1.textContent.trim()} | ${siteName}`;
 
-    if (!data || !Array.isArray(data)) {
-      console.error('Ugyldig dataformat i nyheder.json');
-      return;
-    }
-
-    data.forEach(nyhed => {
-      const card = document.createElement('article');
-      card.className = 'news-card';
-      card.tabIndex = 0;
-      card.setAttribute('role', 'button');
-      card.setAttribute('aria-pressed', 'false');
-
-      card.innerHTML = `
-        <img src="${nyhed.billede}" alt="${nyhed.altTekst || ''}" class="news-image" loading="lazy" />
-        <div class="news-content">
-          <h3 class="news-title">${nyhed.titel || 'Ingen titel'}</h3>
-          <p class="news-date">${nyhed.dato || ''}</p>
-          <p class="news-summary">${(nyhed.tekst || '').substring(0, 110)}...</p>
-        </div>
-      `;
-
-      card.addEventListener('click', () => visUdvidetArtikel(nyhed));
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          visUdvidetArtikel(nyhed);
-        }
-      });
-
-      if (nyhed.kategori === 'fodbold') {
-        fodboldContainer.appendChild(card);
-      } else if (nyhed.kategori === 'transfer') {
-        transferContainer.appendChild(card);
-      } else {
-        console.warn('Ukendt kategori:', nyhed.kategori);
-      }
-    });
-  })
-  .catch(error => {
-    console.error('Fejl ved indlæsning af nyheder:', error);
-  });
-
-          // Klik event for at åbne udvidet artikel
-          card.addEventListener('click', () => {
-            visUdvidetArtikel(nyhed);
-          });
-          card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              visUdvidetArtikel(nyhed);
-            }
-          });
-
-          if (nyhed.kategori === 'fodbold') {
-            fodboldContainer.appendChild(card);
-          } else if (nyhed.kategori === 'transfer') {
-            transferContainer.appendChild(card);
-          }
+    fetch('nyheder.json')
+      .then(res => res.json())
+      .then(data => {
+        const fodbold = document.getElementById('fodbold');
+        const transfer = document.getElementById('transfer');
+        data.forEach(nyhed => {
+          const card = document.createElement('article');
+          card.className = 'news-card';
+          card.tabIndex = 0;
+          card.setAttribute('role', 'button');
+          card.setAttribute('aria-pressed', 'false');
+          card.innerHTML = `
+            <img src="${nyhed.billede}" alt="${nyhed.altTekst || ''}" class="news-image" loading="lazy" />
+            <div class="news-content">
+              <h3 class="news-title">${nyhed.titel || 'Ingen titel'}</h3>
+              <p class="news-date">${nyhed.dato || ''}</p>
+              <p class="news-summary">${(nyhed.tekst || '').substring(0, 110)}...</p>
+            </div>`;
+          card.addEventListener('click', () => visUdvidetArtikel(nyhed));
+          card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); visUdvidetArtikel(nyhed); }});
+          if (nyhed.kategori === 'fodbold') fodbold.appendChild(card);
+          else if (nyhed.kategori === 'transfer') transfer.appendChild(card);
         });
-      });
+      })
+      .catch(err => console.error('Fejl ved indlæsning af nyheder:', err));
 
-    // Funktion til at vise udvidet artikel
     function visUdvidetArtikel(nyhed) {
-      // Hvis overlay findes, fjern først
-      const eksisterende = document.querySelector('.overlay');
-      if (eksisterende) eksisterende.remove();
-
+      document.querySelector('.overlay')?.remove();
       const overlay = document.createElement('div');
       overlay.className = 'overlay active';
-      overlay.tabIndex = -1;
-      overlay.setAttribute('role', 'dialog');
-      overlay.setAttribute('aria-modal', 'true');
-
       overlay.innerHTML = `
         <article class="expanded-article">
           <button class="close-btn" aria-label="Luk artikel">×</button>
-          <img src="${nyhed.billede}" alt="${nyhed.altTekst}" class="expanded-image" />
+          <img src="${nyhed.billede}" alt="${nyhed.altTekst || ''}" class="expanded-image" />
           <div class="expanded-content">
             <h2 class="expanded-title">${nyhed.titel}</h2>
             <p class="expanded-date">${nyhed.dato}</p>
             <p class="expanded-text">${nyhed.tekst}</p>
           </div>
-        </article>
-      `;
-
+        </article>`;
       document.body.appendChild(overlay);
       document.body.classList.add('overlay-active');
-
-      // Luk knap
-      const closeBtn = overlay.querySelector('.close-btn');
-      closeBtn.addEventListener('click', () => {
-        overlay.remove();
-        document.body.classList.remove('overlay-active');
-      });
-
-      // Luk på ESC
-      overlay.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          overlay.remove();
-          document.body.classList.remove('overlay-active');
-        }
-      });
-
-      closeBtn.focus();
+      overlay.querySelector('.close-btn').addEventListener('click', () => { overlay.remove(); document.body.classList.remove('overlay-active'); });
+      overlay.addEventListener('keydown', e => { if (e.key === 'Escape') { overlay.remove(); document.body.classList.remove('overlay-active'); }});
+      overlay.querySelector('.close-btn').focus();
     }
   </script>
 </body>
