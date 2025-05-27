@@ -4,21 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin - Geo Betting Tips</title>
+  <link rel="icon" href="logo.png" type="image/png">
   <style>
     body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; padding: 20px; background: #f4f6f8; }
-    h1 { color: #142541; }
+    h1 { color: #142541; display: flex; align-items: center; gap: 10px; }
+    h1::before { content: ""; width: 24px; height: 24px; background: url('logo.png') no-repeat center/contain; display: inline-block; }
+    
     label { display: block; margin-top: 10px; }
-    input, textarea, select, button { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
-    button { background: #142541; color: white; border: none; cursor: pointer; margin-top: 15px; }
-    button:hover { background: #0f1e38; }
-    .hidden { display: none; }
-    .error { color: red; margin-top: 10px; }
-    nav { margin-bottom: 20px; }
-    nav button { width: auto; margin-right: 10px; }
-    section { background: white; padding: 15px; border-radius: 6px; box-shadow: 0 0 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    input, textarea, select, button { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; }
+    
+    button { 
+      background: #142541; color: white; border: none; cursor: pointer; margin-top: 15px; 
+      transition: background 0.3s ease, transform 0.2s ease; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    button:hover { 
+      background: #0f1e38; 
+      transform: scale(1.05); 
+    }
+
+    nav { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+    nav button { width: auto; padding: 10px 20px; }
+
+    section { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
     th { background: #142541; color: white; }
+    
+    .hidden { display: none; }
+    .error { color: red; margin-top: 10px; }
+    
     .toggle-link { cursor: pointer; color: #142541; text-decoration: underline; margin-top: 10px; display: inline-block; }
   </style>
 </head>
@@ -88,6 +106,11 @@
       </table>
     </section>
   </div>
+  
+  <script type="module">
+  </script>
+</body>
+</html>
 
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
