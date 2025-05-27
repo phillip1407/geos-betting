@@ -1,59 +1,125 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin|Geo Betting Tips</title>
-  <link rel="icon" href="logo.png" type="image/png">
+  <title>Admin | Geo Betting Tips</title>
+  <link rel="icon" href="logo.png" type="image/png" />
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; padding: 20px; background: #f4f6f8; }
-    
-    h1 { 
-      color: #142541; 
-      display: flex; 
-      align-items: center; 
-      gap: 10px; 
-      padding-bottom: 10px; 
-      border-bottom: 1px solid #ccc; 
-      margin-bottom: 20px; 
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background: #f4f6f8;
     }
 
-    h1::before { 
-      content: ""; 
-      width: 40px; 
-      height: 40px; 
-      background: url('logo.png') no-repeat center/contain; 
-      display: inline-block; 
-    }
-    
-    label { display: block; margin-top: 10px; }
-    input, textarea, select, button { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; }
-    
-    button { 
-      background: #142541; color: white; border: none; cursor: pointer; margin-top: 15px; 
-      transition: background 0.3s ease, transform 0.2s ease; 
-      border-radius: 8px; 
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    h1 {
+      color: #142541;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
     }
 
-    button:hover { 
-      background: #0f1e38; 
-      transform: scale(1.05); 
+    h1::before {
+      content: "";
+      width: 40px;
+      height: 40px;
+      background: url("logo.png") no-repeat center/contain;
+      display: inline-block;
     }
 
-    nav { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-    nav button { width: auto; padding: 10px 20px; }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
 
-    section { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
-    
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background: #142541; color: white; }
-    
-    .hidden { display: none; }
-    .error { color: red; margin-top: 10px; }
-    
-    .toggle-link { cursor: pointer; color: #142541; text-decoration: underline; margin-top: 10px; display: inline-block; }
+    input,
+    textarea,
+    select,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #142541;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s ease, transform 0.2s ease;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background: #0f1e38;
+      transform: scale(1.05);
+    }
+
+    nav {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      width: auto;
+      padding: 10px 20px;
+    }
+
+    section {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background: #142541;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .toggle-link {
+      cursor: pointer;
+      color: #142541;
+      text-decoration: underline;
+      margin-top: 10px;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
@@ -75,7 +141,7 @@
     <nav>
       <button id="logout-btn">Log ud</button>
       <button id="show-news-btn">Nyheder</button>
-      <button id="show-dagensspil-btn">dagensspil</button>
+      <button id="show-dagensspil-btn">Dagensspil</button>
     </nav>
 
     <section id="news-section" class="hidden">
@@ -94,7 +160,12 @@
       <h3>Eksisterende nyheder</h3>
       <table id="news-table">
         <thead>
-          <tr><th>ID</th><th>Titel</th><th>Dator</th><th>Handling</th></tr>
+          <tr>
+            <th>ID</th>
+            <th>Titel</th>
+            <th>Dato</th>
+            <th>Handling</th>
+          </tr>
         </thead>
         <tbody></tbody>
       </table>
@@ -116,147 +187,152 @@
       <h3>Eksisterende dagensspil</h3>
       <table id="dagensspil-table">
         <thead>
-          <tr><th>ID</th><th>Navn</th><th>Odds</th><th>Ekspert</th><th>Handling</th></tr>
+          <tr>
+            <th>ID</th>
+            <th>Navn</th>
+            <th>Odds</th>
+            <th>Ekspert</th>
+            <th>Handling</th>
+          </tr>
         </thead>
         <tbody></tbody>
       </table>
     </section>
   </div>
 
-  <!-- DIT SUPABASE SCRIPT HER (ikke ændret) -->
   <script type="module">
-    // Din eksisterende Supabase JavaScript kode...
-  </script>
-</body>
-</html>
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-    const SUPABASE_URL = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
+    const SUPABASE_URL = "https://iwbvimwodjlbtxtmfqra.supabase.co";
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo";
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // Elementer
-    const loginSection = document.getElementById('login-section');
-    const adminSection = document.getElementById('admin-section');
+    const loginSection = document.getElementById("login-section");
+    const adminSection = document.getElementById("admin-section");
 
-    const loginBtn = document.getElementById('login-btn');
-    const logoutBtn = document.getElementById('logout-btn');
-    const loginError = document.getElementById('login-error');
+    const loginBtn = document.getElementById("login-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+    const loginError = document.getElementById("login-error");
 
-    const showNewsBtn = document.getElementById('show-news-btn');
-    const showDagensspilBtn = document.getElementById('show-dagensspil-btn');
+    const showNewsBtn = document.getElementById("show-news-btn");
+    const showDagensspilBtn = document.getElementById("show-dagensspil-btn");
 
-    const newsSection = document.getElementById('news-section');
-    const dagensspilSection = document.getElementById('dagensspil-section');
+    const newsSection = document.getElementById("news-section");
+    const dagensspilSection = document.getElementById("dagensspil-section");
 
     // Nyhed inputs
-    const newsTitle = document.getElementById('news-title');
-    const newsDate = document.getElementById('news-date');
-    const newsImage = document.getElementById('news-image');
-    const newsContent = document.getElementById('news-content');
-    const addNewsBtn = document.getElementById('add-news-btn');
-    const newsError = document.getElementById('news-error');
-    const newsTableBody = document.querySelector('#news-table tbody');
+    const newsTitle = document.getElementById("news-title");
+    const newsDate = document.getElementById("news-date");
+    const newsImage = document.getElementById("news-image");
+    const newsContent = document.getElementById("news-content");
+    const addNewsBtn = document.getElementById("add-news-btn");
+    const newsError = document.getElementById("news-error");
+    const newsTableBody = document.querySelector("#news-table tbody");
 
     // Bet inputs
-    const betName = document.getElementById('bet-name');
-    const betOdds = document.getElementById('bet-odds');
-    const betDescription = document.getElementById('bet-description');
-    const betEkspert = document.getElementById('bet-ekspert');
-    const addBetBtn = document.getElementById('add-bet-btn');
-    const betError = document.getElementById('bet-error');
-    const dagensspilTableBody = document.querySelector('#dagensspil-table tbody');
+    const betName = document.getElementById("bet-name");
+    const betOdds = document.getElementById("bet-odds");
+    const betDescription = document.getElementById("bet-description");
+    const betEkspert = document.getElementById("bet-ekspert");
+    const addBetBtn = document.getElementById("add-bet-btn");
+    const betError = document.getElementById("bet-error");
+    const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
 
     // Loginfunktion
-    loginBtn.addEventListener('click', async () => {
-      loginError.textContent = '';
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
+    loginBtn.addEventListener("click", async () => {
+      loginError.textContent = "";
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
 
       if (!email || !password) {
-        loginError.textContent = 'Indtast email og password.';
+        loginError.textContent = "Indtast email og password.";
         return;
       }
 
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
       if (error) {
-        loginError.textContent = 'Fejl: ' + error.message;
+        loginError.textContent = "Fejl ved login: " + error.message;
       } else {
-        showAdmin();
+        loginSection.classList.add("hidden");
+        adminSection.classList.remove("hidden");
+        loadNews();
+        loadDagensspil();
       }
     });
 
-    // Log ud funktion
-    logoutBtn.addEventListener('click', async () => {
+    // Logoutfunktion
+    logoutBtn.addEventListener("click", async () => {
       await supabase.auth.signOut();
-      adminSection.classList.add('hidden');
-      loginSection.classList.remove('hidden');
-      clearForms();
+      adminSection.classList.add("hidden");
+      loginSection.classList.remove("hidden");
+      clearInputs();
     });
 
-    // Vis admin sektion
-    function showAdmin() {
-      loginSection.classList.add('hidden');
-      adminSection.classList.remove('hidden');
-      showNews();
-      loadNews();
-      loadDagensspil();
+    // Funktion til at rydde inputfelter
+    function clearInputs() {
+      newsTitle.value = "";
+      newsDate.value = "";
+      newsImage.value = "";
+      newsContent.value = "";
+
+      betName.value = "";
+      betOdds.value = "";
+      betDescription.value = "";
+      betEkspert.value = "";
+
+      newsError.textContent = "";
+      betError.textContent = "";
     }
 
-    // Skift mellem nyheder og dagensspil sektioner
-    showNewsBtn.addEventListener('click', () => {
-      showNews();
+    // Vis nyheder, skjul dagensspil
+    showNewsBtn.addEventListener("click", () => {
+      newsSection.classList.remove("hidden");
+      dagensspilSection.classList.add("hidden");
     });
 
-    showdagensspilBtn.addEventListener('click', () => {
-      showDagensspil();
+    // Vis dagensspil, skjul nyheder
+    showDagensspilBtn.addEventListener("click", () => {
+      dagensspilSection.classList.remove("hidden");
+      newsSection.classList.add("hidden");
     });
-
-    function showNews() {
-      newsSection.classList.remove('hidden');
-      dagensspilSection.classList.add('hidden');
-    }
-
-    function showdagensspil() {
-      dagensspilSection.classList.remove('hidden');
-      newsSection.classList.add('hidden');
-    }
 
     // Tilføj nyhed
-    addNewsBtn.addEventListener('click', async () => {
-      newsError.textContent = '';
-      const title = newsTitle.value.trim();
-      const date = newsDate.value;
-      const image = newsImage.value.trim();
-      const content = newsContent.value.trim();
-
-      if (!title || !date || !content) {
-        newsError.textContent = 'Titel, dato og indhold er påkrævet.';
+    addNewsBtn.addEventListener("click", async () => {
+      newsError.textContent = "";
+      if (!newsTitle.value || !newsDate.value || !newsContent.value) {
+        newsError.textContent = "Udfyld venligst alle påkrævede felter.";
         return;
       }
-
-      const { data, error } = await supabase.from('news').insert([{ title, date, image, content }]);
+      const { error } = await supabase.from("news").insert([
+        {
+          title: newsTitle.value.trim(),
+          date: newsDate.value,
+          image: newsImage.value.trim(),
+          content: newsContent.value.trim(),
+        },
+      ]);
       if (error) {
-        newsError.textContent = 'Fejl: ' + error.message;
+        newsError.textContent = "Fejl ved tilføjelse: " + error.message;
       } else {
-        clearNewsForm();
+        clearInputs();
         loadNews();
       }
     });
 
     // Load nyheder
     async function loadNews() {
-      const { data, error } = await supabase.from('news').select().order('date', { ascending: false });
+      const { data, error } = await supabase.from("news").select().order("id", { ascending: false });
       if (error) {
-        newsError.textContent = 'Fejl: ' + error.message;
+        newsError.textContent = "Fejl: " + error.message;
         return;
       }
-      newsTableBody.innerHTML = '';
-      data.forEach(item => {
-        const tr = document.createElement('tr');
+      newsTableBody.innerHTML = "";
+      data.forEach((item) => {
+        const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${item.id}</td>
           <td>${item.title}</td>
@@ -266,13 +342,13 @@
         newsTableBody.appendChild(tr);
       });
 
-      // Tilføj slet-event til knapper
-      document.querySelectorAll('.delete-news-btn').forEach(btn => {
-        btn.addEventListener('click', async e => {
-          const id = e.target.getAttribute('data-id');
-          const { error } = await supabase.from('news').delete().eq('id', id);
+      // Tilføj event til slet knapper
+      document.querySelectorAll(".delete-news-btn").forEach((btn) => {
+        btn.addEventListener("click", async (e) => {
+          const id = e.target.getAttribute("data-id");
+          const { error } = await supabase.from("news").delete().eq("id", id);
           if (error) {
-            newsError.textContent = 'Fejl: ' + error.message;
+            newsError.textContent = "Fejl: " + error.message;
           } else {
             loadNews();
           }
@@ -280,38 +356,45 @@
       });
     }
 
-    // Tilføj bet
-    addBetBtn.addEventListener('click', async () => {
-      betError.textContent = '';
-      const name = betName.value.trim();
-      const odds = parseFloat(betOdds.value);
-      const description = betDescription.value.trim();
-      const ekspert = betEkspert.value.trim();
-
-      if (!name || isNaN(odds) || !description || !ekspert) {
-        betError.textContent = 'Alle felter er påkrævet.';
+    // Tilføj bet til dagensspil
+    addBetBtn.addEventListener("click", async () => {
+      betError.textContent = "";
+      if (!betName.value || !betOdds.value || !betEkspert.value) {
+        betError.textContent = "Udfyld venligst navn, odds og ekspert.";
+        return;
+      }
+      const oddsNum = parseFloat(betOdds.value);
+      if (isNaN(oddsNum) || oddsNum <= 0) {
+        betError.textContent = "Indtast et gyldigt odds.";
         return;
       }
 
-      const { data, error } = await supabase.from('dagensspil').insert([{ name, odds, description, ekspert }]);
+      const { error } = await supabase.from("dagensspil").insert([
+        {
+          name: betName.value.trim(),
+          odds: oddsNum,
+          description: betDescription.value.trim(),
+          ekspert: betEkspert.value.trim(),
+        },
+      ]);
       if (error) {
-        betError.textContent = 'Fejl: ' + error.message;
+        betError.textContent = "Fejl ved tilføjelse: " + error.message;
       } else {
-        clearBetForm();
+        clearInputs();
         loadDagensspil();
       }
     });
 
     // Load dagensspil
-    async function loaddagensspil() {
-      const { data, error } = await supabase.from('dagensspil').select().order('id', { ascending: false });
+    async function loadDagensspil() {
+      const { data, error } = await supabase.from("dagensspil").select().order("id", { ascending: false });
       if (error) {
-        betError.textContent = 'Fejl: ' + error.message;
+        betError.textContent = "Fejl: " + error.message;
         return;
       }
-      dagensspilTableBody.innerHTML = '';
-      data.forEach(item => {
-        const tr = document.createElement('tr');
+      dagensspilTableBody.innerHTML = "";
+      data.forEach((item) => {
+        const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${item.id}</td>
           <td>${item.name}</td>
@@ -322,49 +405,33 @@
         dagensspilTableBody.appendChild(tr);
       });
 
-      // Tilføj slet-event til knapper
-      document.querySelectorAll('.delete-bet-btn').forEach(btn => {
-        btn.addEventListener('click', async e => {
-          const id = e.target.getAttribute('data-id');
-          const { error } = await supabase.from('dagensspil').delete().eq('id', id);
+      // Tilføj event til slet knapper
+      document.querySelectorAll(".delete-bet-btn").forEach((btn) => {
+        btn.addEventListener("click", async (e) => {
+          const id = e.target.getAttribute("data-id");
+          const { error } = await supabase.from("dagensspil").delete().eq("id", id);
           if (error) {
-            betError.textContent = 'Fejl: ' + error.message;
+            betError.textContent = "Fejl: " + error.message;
           } else {
-            loaddagensspil();
+            loadDagensspil();
           }
         });
       });
     }
 
-    // Ryd formularer
-    function clearNewsForm() {
-      newsTitle.value = '';
-      newsDate.value = '';
-      newsImage.value = '';
-      newsContent.value = '';
-      newsError.textContent = '';
-    }
-
-    function clearBetForm() {
-      betName.value = '';
-      betOdds.value = '';
-      betDescription.value = '';
-      betEkspert.value = '';
-      betError.textContent = '';
-    }
-
-    function clearForms() {
-      clearNewsForm();
-      clearBetForm();
-      loginError.textContent = '';
-    }
-
-    // Tjek om bruger allerede er logget ind (ved sideindlæsning)
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Tjek om bruger allerede er logget ind ved load
+    async function checkSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (session) {
-        showAdmin();
+        loginSection.classList.add("hidden");
+        adminSection.classList.remove("hidden");
+        loadNews();
+        loadDagensspil();
       }
-    });
+    }
+    checkSession();
   </script>
 </body>
 </html>
