@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Geo Betting Tips</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; padding: 20px; background: #f4f6f8; }
+    h1 { color: #142541; }
+    label { display: block; margin-top: 10px; }
+    input, textarea, select, button { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+    button { background: #142541; color: white; border: none; cursor: pointer; margin-top: 15px; }
+    button:hover { background: #0f1e38; }
+    .hidden { display: none; }
+    .error { color: red; margin-top: 10px; }
+    nav { margin-bottom: 20px; }
+    nav button { width: auto; margin-right: 10px; }
+    section { background: white; padding: 15px; border-radius: 6px; box-shadow: 0 0 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #142541; color: white; }
+  </style>
+</head>
+<body>
+  <h1>Admin Geo Betting Tips</h1>
+
+  <div id="login-section">
+    <h2>Log ind</h2>
+    <label for="email">Email:</label>
+    <input id="email" type="email" placeholder="Din email" />
+    <label for="password">Password:</label>
+    <input id="password" type="password" placeholder="Dit password" />
+    <button id="login-btn">Log ind</button>
+    <p class="error" id="login-error"></p>
+  </div>
+
+  <div id="admin-section" class="hidden">
+    <nav>
+      <button id="logout-btn">Log ud</button>
+      <button id="show-news-btn">Nyheder</button>
+      <button id="show-bets-btn">Bets</button>
+    </nav>
+
+    <section id="news-section" class="hidden">
+      <h2>Opret nyhed</h2>
+      <label for="news-title">Titel</label>
+      <input id="news-title" type="text" placeholder="Nyhedens titel" />
+      <label for="news-date">Dato</label>
+      <input id="news-date" type="date" />
+      <label for="news-image">Billede URL</label>
+      <input id="news-image" type="text" placeholder="URL til billede" />
+      <label for="news-content">Indhold</label>
+      <textarea id="news-content" rows="5" placeholder="Indhold af nyheden"></textarea>
+      <button id="add-news-btn">Tilføj nyhed</button>
+      <p class="error" id="news-error"></p>
+
+      <h3>Eksisterende nyheder</h3>
+      <table id="news-table">
+        <thead>
+          <tr><th>ID</th><th>Titel</th><th>Dato</th><th>Handling</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="bets-section" class="hidden">
+      <h2>Opret bet</h2>
+      <label for="bet-name">Navn</label>
+      <input id="bet-name" type="text" placeholder="Bet navn" />
+      <label for="bet-odds">Odds</label>
+      <input id="bet-odds" type="number" step="0.01" placeholder="Odds" />
+      <label for="bet-description">Beskrivelse</label>
+      <textarea id="bet-description" rows="3" placeholder="Beskrivelse"></textarea>
+      <label for="bet-ekspert">Ekspert</label>
+      <input id="bet-ekspert" type="text" placeholder="Ekspert navn" />
+      <button id="add-bet-btn">Tilføj bet</button>
+      <p class="error" id="bet-error"></p>
+
+      <h3>Eksisterende bets</h3>
+      <table id="bets-table">
+        <thead>
+          <tr><th>ID</th><th>Navn</th><th>Odds</th><th>Ekspert</th><th>Handling</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    // Din Supabase info
+    const SUPABASE_URL = 'https://iwbvimwojdjlbtxtmfqra.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Elementer
+    const loginSection = document.getElementById('login-section');
+    const adminSection = document.getElementById('admin-section');
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const loginError = document.getElementById('login-error');
+
+    const showNewsBtn = document.getElementById('show-news-btn');
+    const showBetsBtn = document.getElementById('show-bets-btn');
+
+    const newsSection = document.getElementById('news-section');
+    const betsSection = document.getElementById('bets-section');
+
+    // Nyhed inputs
+    const newsTitle = document.getElementById('news-title');
+    const newsDate = document.getElementById('news-date');
+    const newsImage = document.getElementById('news-image');
+    const newsContent = document.getElementById('news-content');
+    const addNewsBtn = document.getElementById('add-news-btn');
+    const newsError = document.getElementById('news-error');
+    const newsTableBody = document.querySelector('#news-table tbody');
+
+    // Bet inputs
+    const betName = document.getElementById('bet-name');
+    const betOdds = document.getElementById('bet-odds');
+    const betDescription = document.getElementById('bet-description');
+    const betEkspert = document.getElementById('bet-ekspert');
+    const addBetBtn = document.getElementById('add-bet-btn');
+    const betError = document.getElementById('bet-error');
+    const betsTableBody = document.querySelector('#bets-table tbody');
+
+    // Login funktion
+    loginBtn.addEventListener('click', async () => {
+      loginError.textContent = '';
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if (!email || !password) {
+        loginError.textContent = 'Indtast email og password.';
+        return;
+      }
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        loginError.textContent = error.message;
+      } else {
+        showAdmin();
+      }
+    });
+
+    // Logout funktion
+    logoutBtn.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      showLogin();
+    });
+
+    // Vis admin sektion hvis logged ind
+    async function showAdmin() {
+      const user = supabase.auth.user() || (await supabase.auth.getUser()).data.user;
+      if (!user) {
+        showLogin();
+        return;
+      }
+      loginSection.classList.add('hidden');
+      adminSection.classList.remove('hidden');
+      showNews(); // default vis nyheder
+      loadNews();
+      loadBets();
+    }
+
+    // Vis login sektion
+    function showLogin() {
+      loginSection.classList.remove('hidden');
+      adminSection.classList.add('hidden');
+      clearInputs();
+    }
+
+    // Ryd inputfelter
+    function clearInputs() {
+      newsTitle.value = '';
+      newsDate.value = '';
+      newsImage.value = '';
+      newsContent.value = '';
+      betName.value = '';
+      betOdds.value = '';
+      betDescription.value = '';
+      betEkspert.value = '';
+      newsError.textContent = '';
+      betError.textContent = '';
+    }
+
+    // Skift sektioner
+    showNewsBtn.addEventListener('click', () => {
+      showNews();
+    });
+    showBetsBtn.addEventListener('click', () => {
+      showBets();
+    });
+
+    function showNews() {
+      newsSection.classList.remove('hidden');
+      betsSection.classList.add('hidden');
+    }
+    function showBets() {
+      betsSection.classList.remove('hidden');
+      newsSection.classList.add('hidden');
+    }
+
+    // Tilføj nyhed til Supabase
+    addNewsBtn.addEventListener('click', async () => {
+      newsError.textContent = '';
+      const title = newsTitle.value.trim();
+      const date = newsDate.value;
+      const image = newsImage.value.trim();
+      const content = newsContent.value.trim();
+      if (!title || !date || !content) {
+        newsError.textContent = 'Titel, dato og indhold er påkrævet.';
+        return;
+      }
+      const { error } = await supabase.from('news').insert([{ title, date, image, content }]);
+      if (error) {
+        newsError.textContent = 'Fejl ved indsættelse: ' + error.message;
+      } else {
+        clearInputs();
+        loadNews();
+        alert('Nyhed tilføjet!');
+      }
+    });
+
+    // Tilføj bet til Supabase
+    addBetBtn.addEventListener('click', async () => {
+      betError.textContent = '';
+      const name = betName.value.trim();
+      const odds = parseFloat(betOdds.value);
+      const description = betDescription.value.trim();
+      const ekspert = betEkspert.value.trim();
+      if (!name || isNaN(odds) || !description) {
+        betError.textContent = 'Navn, odds og beskrivelse er påkrævet.';
+        return;
+      }
+      const { error } = await supabase.from('bets').insert([{ name, odds, description, ekspert }]);
+      if (error) {
+        betError.textContent = 'Fejl ved indsættelse: ' + error.message;
+      } else {
+        clearInputs();
+        loadBets();
+        alert('Bet tilføjet!');
+      }
+    });
+
+    // Load nyheder fra Supabase
+    async function loadNews() {
+      newsTableBody.innerHTML = '';
+      const { data, error } = await supabase.from('news').select('*').order('date', { ascending: false });
+      if (error) {
+        newsError.textContent = 'Fejl ved hentning: ' + error.message;
+        return;
+      }
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.id}</td>
+          <td>${item.title}</td>
+          <td>${item.date}</td>
+          <td><button data-id="${item.id}" class="delete-news-btn">Slet</button></td>
+        `;
+        newsTableBody.appendChild(tr);
+      });
+      // Tilføj slet event
+      document.querySelectorAll('.delete-news-btn').forEach(btn => {
+        btn.addEventListener('click', async e => {
+          const id = e.target.dataset.id;
+          if (confirm('Er du sikker på, du vil slette denne nyhed?')) {
+            const { error } = await supabase.from('news').delete().eq('id', id);
+            if (error) {
+              alert('Fejl ved sletning: ' + error.message);
+            } else {
+              loadNews();
+            }
+          }
+        });
+      });
+    }
+
+    // Load bets fra Supabase
+    async function loadBets() {
+      betsTableBody.innerHTML = '';
+      const { data, error } = await supabase.from('bets').select('*').order('id', { ascending: false });
+      if (error) {
+        betError.textContent = 'Fejl ved hentning: ' + error.message;
+        return;
+      }
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.id}</td>
+          <td>${item.name}</td>
+          <td>${item.odds}</td>
+          <td>${item.ekspert ?? ''}</td>
+          <td><button data-id="${item.id}" class="delete-bet-btn">Slet</button></td>
+        `;
+        betsTableBody.appendChild(tr);
+      });
+      // Tilføj slet event
+      document.querySelectorAll('.delete-bet-btn').forEach(btn => {
+        btn.addEventListener('click', async e => {
+          const id = e.target.dataset.id;
+          if (confirm('Er du sikker på, du vil slette dette bet?')) {
+            const { error } = await supabase.from('bets').delete().eq('id', id);
+            if (error) {
+              alert('Fejl ved sletning: ' + error.message);
+            } else {
+              loadBets();
+            }
+          }
+        });
+      });
+    }
+
+    // Check om bruger er logget ind ved load
+    window.addEventListener('load', async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        showAdmin();
+      } else {
+        showLogin();
+      }
+    });
+
+  </script>
+</body>
+</html>
