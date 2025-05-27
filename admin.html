@@ -7,8 +7,24 @@
   <link rel="icon" href="logo.png" type="image/png">
   <style>
     body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; padding: 20px; background: #f4f6f8; }
-    h1 { color: #142541; display: flex; align-items: center; gap: 10px; }
-    h1::before { content: ""; width: 24px; height: 24px; background: url('logo.png') no-repeat center/contain; display: inline-block; }
+    
+    h1 { 
+      color: #142541; 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      padding-bottom: 10px; 
+      border-bottom: 1px solid #ccc; 
+      margin-bottom: 20px; 
+    }
+
+    h1::before { 
+      content: ""; 
+      width: 40px; 
+      height: 40px; 
+      background: url('logo.png') no-repeat center/contain; 
+      display: inline-block; 
+    }
     
     label { display: block; margin-top: 10px; }
     input, textarea, select, button { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; }
@@ -78,7 +94,7 @@
       <h3>Eksisterende nyheder</h3>
       <table id="news-table">
         <thead>
-          <tr><th>ID</th><th>Titel</th><th>Dato</th><th>Handling</th></tr>
+          <tr><th>ID</th><th>Titel</th><th>Dator</th><th>Handling</th></tr>
         </thead>
         <tbody></tbody>
       </table>
@@ -106,8 +122,10 @@
       </table>
     </section>
   </div>
-  
+
+  <!-- DIT SUPABASE SCRIPT HER (ikke ændret) -->
   <script type="module">
+    // Din eksisterende Supabase JavaScript kode...
   </script>
 </body>
 </html>
