@@ -2,130 +2,35 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nyheder | Geo Betting Tips</title>
-  <link rel="icon" href="logo.png" type="image/png" sizes="16x16" />
-  <link rel="apple-touch-icon" href="logo.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>FAQ | Geo Betting Tips</title>
+  <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset og base */
-    * {
-      font-family: "Montserrat", sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: #f9f9f9;
-      color: #333;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
+    body { background:#f9f9f9; }
 
-    /* --- NAVBAR (helt ud) --- */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: #142541;
-      padding: 15px 220px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-sizing: border-box;
-      flex-wrap: wrap;
-    }
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logo-container a {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      text-decoration: none;
-      color: inherit;
-    }
-    .logo {
-      width: 55px;
-      height: 55px;
-      object-fit: contain;
-    }
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-    .site-name {
-      font-size: 24px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .slogan {
-      font-size: 14px;
-      color: #e0e7f6;
-    }
+    .navbar { background:#142541; padding:15px 220px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+    .logo-container { display:flex; align-items:center; gap:10px; }
+    .logo { width:55px; height:55px; }
+    .logo-text { display:flex; flex-direction:column; }
+    .site-name { color:#fff; font-size:24px; font-weight:bold; }
+    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
 
-    /* Navigation */
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      list-style: none;
-      margin-right: 20px;
-    }
-    .nav-links li {
-      position: relative;
-    }
-    .nav-links a {
-      font-weight: 700;
-      font-size: 18px;
-      color: #fff;
-      text-decoration: none;
-      padding-bottom: 5px;
-      transition: color 0.3s;
-      cursor: pointer;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      color: #e0e7f6;
-      outline: none;
-    }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 3px;
-      background: #e0e7f6;
-      transition: width 0.3s;
-    }
-    .nav-links a:hover::after,
-    .nav-links a:focus::after {
-      width: 100%;
-    }
+    .nav-container { display:flex; flex-wrap:wrap; align-items:center; }
+    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
+    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
+    .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
+    .nav-links li a:hover::after { width:100%; }
+    .nav-links li a:hover { color:#e0e7f6; }
 
-    /* Dropdown menu */
-    .nav-links li.dropdown:hover > ul,
-    .nav-links li.dropdown:focus-within > ul {
-      display: block;
-    }
+    .nav-links li.dropdown { position:relative; }
     .nav-links li.dropdown ul {
       position: absolute;
-      top: 32px;
+      top: 30px;
       left: 0;
       background: #142541;
       padding: 10px 0;
@@ -133,213 +38,64 @@
       display: none;
       border-radius: 5px;
       min-width: 160px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      z-index: 1100;
+      z-index: 20;
     }
-    .nav-links li.dropdown ul li a {
-      display: block;
-      padding: 8px 20px;
-      font-size: 16px;
-      color: #fff;
-      white-space: nowrap;
-      transition: background 0.3s;
-    }
-    .nav-links li.dropdown ul li a:hover,
-    .nav-links li.dropdown ul li a:focus {
-      background: #1f3a68;
-      outline: none;
-    }
+    .nav-links li.dropdown:hover ul { display:block; }
+    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
+    .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
 
-    /* Search input */
-    .search-wrapper {
-      position: relative;
-      flex-shrink: 0;
-    }
+    .search-wrapper { position:relative; }
     .search-input {
-      padding: 6px 12px;
-      border-radius: 4px;
-      border: 2px solid #e0e7f6;
-      font-size: 16px;
-      width: 200px;
-      transition: border-color 0.3s;
+      padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
     }
-    .search-input:focus {
-      outline: none;
-      border-color: #1f3a68;
+    .search-input:focus { outline:none; border-color:#1f3a68; }
+    .suggestions {
+      position:absolute; top:100%; left:0; right:0; background:#fff;
+      border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto;
+      z-index:10; display:none;
+    }
+    .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
+    .suggestions li:hover { background:#f0f0f0; }
+
+    .sub-header {
+      background:#f9f9f9;
+      border-bottom:1px solid #dcdcdc;
+      padding:20px 140px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      width:100%;
     }
 
-    /* --- SUB HEADER (breadcrumb + disclaimer) --- */
-    
-    .sub-header {
-      padding: 20px 140px;
-      background: #fff;
-      border-bottom: 1px solid #e0e7f6;
-      
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    
     .breadcrumb {
-      font-size: 14px;
-      color: #142541;
-      flex-shrink: 0;
+      font-size:14px;
+      color:#142541;
+      flex-shrink:0;
     }
     .breadcrumb a {
-      text-decoration: none;
-      color: #0033cc;
-      font-weight: bold;
+      text-decoration:none;
+      color:#0033cc;
+      font-weight:bold;
     }
-    
     .breadcrumb a:hover {
-      text-decoration: underline;
+      text-decoration:underline;
     }
-    
+
     .disclaimer {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 14px;
-      color: #142541;
-      white-space: nowrap;
-    }
-
-
-    /* --- Main nyheder container --- */
-    main {
-      max-width: 900px;
-      margin: 40px auto 100px;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    /* Nyhedsartikler */
-    .news-article {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
-      margin-bottom: 30px;
-      cursor: pointer;
-      transition: box-shadow 0.3s ease;
-      outline-offset: 3px;
-    }
-    .news-article:hover,
-    .news-article:focus {
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);
-      outline: none;
-    }
-    .news-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: #142541;
-      margin-bottom: 8px;
-    }
-    .news-date {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 12px;
-    }
-    .news-content {
-      font-size: 16px;
-      color: #444;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .news-image {
-      max-width: 100%;
-      margin-top: 12px;
-      border-radius: 6px;
-      object-fit: cover;
-      height: auto;
-      max-height: 200px;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* --- POPUP OVERLAY --- */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(20, 37, 65, 0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      padding: 15px;
-    }
-    .overlay.active {
-      visibility: visible;
-      opacity: 1;
-    }
-    .popup {
-      background: white;
-      border-radius: 10px;
-      max-width: 800px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 30px;
-      box-shadow: 0 8px 24px rgb(0 0 0 / 0.25);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .popup img {
-      max-width: 100%;
-      border-radius: 8px;
-      object-fit: contain;
-      max-height: 350px;
-      user-select: none;
-      pointer-events: none;
-    }
-    .popup h2 {
-      color: #142541;
-      font-size: 28px;
-      font-weight: 700;
-      margin: 0;
-    }
-    .popup p {
-      font-size: 18px;
-      color: #444;
-      white-space: pre-wrap;
-      line-height: 1.5;
-      margin: 0;
-    }
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 28px;
-      font-weight: 700;
-      color: #142541;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.2s ease;
-    }
-    .close-btn:hover,
-    .close-btn:focus {
-      color: #1f3a68;
-      outline: none;
+      font-size:14px;
+      color:#142541;
+      white-space:nowrap;
     }
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="navbar" role="banner" aria-label="Hovednavigation">
+
+  <header class="navbar">
     <div class="logo-container">
-      <a href="index.html" aria-label="Geo Betting Tips - Forside">
-        <img src="logo.png" alt="Geo Betting Tips Logo" class="logo" />
+      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+        <img src="logo.png" alt="Logo" class="logo">
         <div class="logo-text">
           <h1 class="site-name">Geo Betting Tips</h1>
           <p class="slogan">Ekspertanalyser til din betting</p>
@@ -347,186 +103,82 @@
       </a>
     </div>
 
-    <nav class="nav-container" role="navigation" aria-label="Primær navigation">
+    <nav class="nav-container">
       <ul class="nav-links">
-        <li><a href="nyheder.html" tabindex="0">Nyheder</a></li>
-        <li><a href="Analyser.html" tabindex="0">Analyser</a></li>
-        <li><a href="tilbud.html" tabindex="0">Tilbud</a></li>
-        <li class="dropdown" tabindex="0" aria-haspopup="true" aria-expanded="false">
-          <a href="#" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">Mere</a>
-          <ul id="dropdown-menu" role="menu" aria-label="Mere undermenu">
-            <li><a href="betalingstips.html" role="menuitem" tabindex="-1">Betalingstips</a></li>
-            <li><a href="fodboldtabeller.html" role="menuitem" tabindex="-1">Fodboldtabeller</a></li>
-            <li><a href="faq.html" role="menuitem" tabindex="-1">FAQ</a></li>
+        <li><a href="nyheder.html">Nyheder</a></li>
+        <li><a href="Analyser.html">Analyser</a></li>
+        <li><a href="tilbud.html">Tilbud</a></li>
+        <li class="dropdown">
+          <a href="#">Mere</a>
+          <ul>
+            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="Sport.html">Sport</a></li>
+            <li><a href="faq.html">FAQ</a></li>
           </ul>
         </li>
       </ul>
 
       <div class="search-wrapper">
-        <input
-          type="text"
-          id="search"
-          class="search-input"
-          placeholder="Søg på sitet…"
-          aria-label="Søg på sitet"
-          autocomplete="off"
-        />
-        <ul id="suggestions" class="suggestions" role="listbox" aria-label="Søgeforslag" hidden></ul>
+        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
+        <ul id="suggestions" class="suggestions"></ul>
       </div>
     </nav>
   </header>
 
-  <!-- SUB HEADER -->
-  <div class="sub-header" role="region" aria-label="Brødkrumme og disclaimer">
-    <nav class="breadcrumb" aria-label="Brødkrumme">
-      <a href="index.html">Forside</a> &raquo; <span>Nyheder</span>
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a> &raquo; <span>FAQ</span>
     </nav>
-    <p class="disclaimer" aria-live="polite">
+    <p class="disclaimer">
       18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
     </p>
   </div>
 
-  <!-- Hovedindhold: Nyheder -->
-  <main id="news-container" role="main" tabindex="-1">
-    <!-- Dynamisk indsatte nyheder via JS -->
-  </main>
+<script>
+  let items = [];
 
-  <!-- POPUP OVERLAY -->
-  <div class="overlay" id="news-popup" role="dialog" aria-modal="true" aria-labelledby="popup-title" tabindex="-1">
-    <div class="popup">
-      <button class="close-btn" id="popup-close" aria-label="Luk nyhed popup">&times;</button>
-      <img src="" alt="" id="popup-image" />
-      <h2 id="popup-title"></h2>
-      <p id="popup-text"></p>
-    </div>
-  </div>
+  fetch('søgefelt.json')
+    .then(response => response.ok ? response.json() : [])
+    .then(data => { items = data; })
+    .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
 
-  <script>
-    // Sample nyheder data
-    const newsData = [
-      {
-        id: 1,
-        title: "Topkamp i Premier League i denne weekend",
-        date: "2025-05-20",
-        content:
-          "Denne weekend mødes de to tophold i Premier League, og eksperterne forventer en tæt kamp. Vi giver dig forudsigelser og analyse af holdenes form.",
-        image: "nyhed1.jpg",
-      },
-      {
-        id: 2,
-        title: "Analyse af Champions League-finalen",
-        date: "2025-05-15",
-        content:
-          "Vi analyserer de taktiske aspekter og nøglespillere i årets Champions League-finale. Få indsigt og betting tips til kampen.",
-        image: "nyhed2.jpg",
-      },
-      {
-        id: 3,
-        title: "Nye bettingstrategier til fodbold",
-        date: "2025-05-10",
-        content:
-          "Opdag de seneste trends inden for bettingstrategier, der kan øge dine vinderchancer betydeligt.",
-        image: "nyhed3.jpg",
-      },
-    ];
+  const input = document.getElementById('search');
+  const suggBox = document.getElementById('suggestions');
 
-    const newsContainer = document.getElementById("news-container");
-    const popup = document.getElementById("news-popup");
-    const popupTitle = document.getElementById("popup-title");
-    const popupText = document.getElementById("popup-text");
-    const popupImage = document.getElementById("popup-image");
-    const popupCloseBtn = document.getElementById("popup-close");
-
-    // Funktion til at formatere dato dansk stil: 2025-05-20 -> 20. maj 2025
-    function formatDate(dateStr) {
-      const months = [
-        "januar",
-        "februar",
-        "marts",
-        "april",
-        "maj",
-        "juni",
-        "juli",
-        "august",
-        "september",
-        "oktober",
-        "november",
-        "december",
-      ];
-      const d = new Date(dateStr);
-      return d.getDate() + ". " + months[d.getMonth()] + " " + d.getFullYear();
+  input.addEventListener('input', () => {
+    const val = input.value.trim().toLowerCase();
+    suggBox.innerHTML = '';
+    if (!val) {
+      suggBox.style.display = 'none';
+      return;
     }
-
-    // Render nyhedsartikler i hovedindholdet
-    function renderNews() {
-      newsContainer.innerHTML = "";
-      newsData.forEach((news) => {
-        const article = document.createElement("article");
-        article.className = "news-article";
-        article.tabIndex = 0;
-        article.setAttribute("role", "button");
-        article.setAttribute("aria-pressed", "false");
-        article.setAttribute("aria-label", `Læs nyhed: ${news.title}`);
-
-        article.innerHTML = `
-          <h2 class="news-title">${news.title}</h2>
-          <time class="news-date" datetime="${news.date}">${formatDate(news.date)}</time>
-          <p class="news-content">${news.content}</p>
-          <img src="${news.image}" alt="Billede til nyhed: ${news.title}" class="news-image" />
-        `;
-
-        article.addEventListener("click", () => openPopup(news));
-        article.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            openPopup(news);
-          }
-        });
-
-        newsContainer.appendChild(article);
-      });
+    const matches = items.filter(i => i.title.toLowerCase().includes(val));
+    if (!matches.length) {
+      suggBox.style.display = 'none';
+      return;
     }
-
-    // Åben popup med nyhedsdetaljer
-    function openPopup(news) {
-      popupTitle.textContent = news.title;
-      popupText.textContent = news.content;
-      popupImage.src = news.image;
-      popupImage.alt = `Billede til nyhed: ${news.title}`;
-      popup.classList.add("active");
-      popup.setAttribute("aria-hidden", "false");
-      popup.focus();
-
-      // Luk popup med ESC
-      document.addEventListener("keydown", escClose);
-    }
-
-    // Luk popup
-    function closePopup() {
-      popup.classList.remove("active");
-      popup.setAttribute("aria-hidden", "true");
-      popupCloseBtn.blur();
-      // Fjern ESC-lytteren
-      document.removeEventListener("keydown", escClose);
-    }
-
-    // Luk popup med ESC tast
-    function escClose(e) {
-      if (e.key === "Escape") {
-        closePopup();
-      }
-    }
-
-    popupCloseBtn.addEventListener("click", closePopup);
-
-    // Luk popup hvis klik udenfor popup (overlay)
-    popup.addEventListener("click", (e) => {
-      if (e.target === popup) {
-        closePopup();
-      }
+    suggBox.style.width = input.offsetWidth + 'px';
+    matches.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.title;
+      li.addEventListener('click', () => { window.location.href = item.url; });
+      suggBox.appendChild(li);
     });
+    suggBox.style.display = 'block';
+  });
 
-    renderNews();
-  </script>
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrapper')) {
+      suggBox.style.display = 'none';
+    }
+  });
+</script>
+
+<script>
+  const h1 = document.querySelector('h1');
+  const siteName = 'Geo Betting Tips';
+  document.title = h1 ? `${h1.textContent.trim()} | ${siteName}` : siteName;
+</script>
+
 </body>
 </html>
