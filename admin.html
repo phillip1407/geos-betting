@@ -75,7 +75,7 @@
     <nav>
       <button id="logout-btn">Log ud</button>
       <button id="show-news-btn">Nyheder</button>
-      <button id="show-bets-btn">Bets</button>
+      <button id="show-dagensspil-btn">dagensspil</button>
     </nav>
 
     <section id="news-section" class="hidden">
@@ -100,7 +100,7 @@
       </table>
     </section>
 
-    <section id="bets-section" class="hidden">
+    <section id="dagensspil-section" class="hidden">
       <h2>Opret bet</h2>
       <label for="bet-name">Navn</label>
       <input id="bet-name" type="text" placeholder="Bet navn" />
@@ -113,8 +113,8 @@
       <button id="add-bet-btn">Tilføj bet</button>
       <p class="error" id="bet-error"></p>
 
-      <h3>Eksisterende bets</h3>
-      <table id="bets-table">
+      <h3>Eksisterende dagensspil</h3>
+      <table id="dagensspil-table">
         <thead>
           <tr><th>ID</th><th>Navn</th><th>Odds</th><th>Ekspert</th><th>Handling</th></tr>
         </thead>
@@ -147,10 +147,10 @@
     const loginError = document.getElementById('login-error');
 
     const showNewsBtn = document.getElementById('show-news-btn');
-    const showBetsBtn = document.getElementById('show-bets-btn');
+    const showDagensspilBtn = document.getElementById('show-dagensspil-btn');
 
     const newsSection = document.getElementById('news-section');
-    const betsSection = document.getElementById('bets-section');
+    const dagensspilSection = document.getElementById('dagensspil-section');
 
     // Nyhed inputs
     const newsTitle = document.getElementById('news-title');
@@ -168,7 +168,7 @@
     const betEkspert = document.getElementById('bet-ekspert');
     const addBetBtn = document.getElementById('add-bet-btn');
     const betError = document.getElementById('bet-error');
-    const betsTableBody = document.querySelector('#bets-table tbody');
+    const dagensspilTableBody = document.querySelector('#dagensspil-table tbody');
 
     // Loginfunktion
     loginBtn.addEventListener('click', async () => {
@@ -203,25 +203,25 @@
       adminSection.classList.remove('hidden');
       showNews();
       loadNews();
-      loadBets();
+      loadDagensspil();
     }
 
-    // Skift mellem nyheder og bets sektioner
+    // Skift mellem nyheder og dagensspil sektioner
     showNewsBtn.addEventListener('click', () => {
       showNews();
     });
 
-    showBetsBtn.addEventListener('click', () => {
-      showBets();
+    showdagensspilBtn.addEventListener('click', () => {
+      showDagensspil();
     });
 
     function showNews() {
       newsSection.classList.remove('hidden');
-      betsSection.classList.add('hidden');
+      dagensspilSection.classList.add('hidden');
     }
 
-    function showBets() {
-      betsSection.classList.remove('hidden');
+    function showdagensspil() {
+      dagensspilSection.classList.remove('hidden');
       newsSection.classList.add('hidden');
     }
 
@@ -293,23 +293,23 @@
         return;
       }
 
-      const { data, error } = await supabase.from('bets').insert([{ name, odds, description, ekspert }]);
+      const { data, error } = await supabase.from('dagensspil').insert([{ name, odds, description, ekspert }]);
       if (error) {
         betError.textContent = 'Fejl: ' + error.message;
       } else {
         clearBetForm();
-        loadBets();
+        loadDagensspil();
       }
     });
 
-    // Load bets
-    async function loadBets() {
-      const { data, error } = await supabase.from('bets').select().order('id', { ascending: false });
+    // Load dagensspil
+    async function loaddagensspil() {
+      const { data, error } = await supabase.from('dagensspil').select().order('id', { ascending: false });
       if (error) {
         betError.textContent = 'Fejl: ' + error.message;
         return;
       }
-      betsTableBody.innerHTML = '';
+      dagensspilTableBody.innerHTML = '';
       data.forEach(item => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -319,18 +319,18 @@
           <td>${item.ekspert}</td>
           <td><button data-id="${item.id}" class="delete-bet-btn">Slet</button></td>
         `;
-        betsTableBody.appendChild(tr);
+        dagensspilTableBody.appendChild(tr);
       });
 
       // Tilføj slet-event til knapper
       document.querySelectorAll('.delete-bet-btn').forEach(btn => {
         btn.addEventListener('click', async e => {
           const id = e.target.getAttribute('data-id');
-          const { error } = await supabase.from('bets').delete().eq('id', id);
+          const { error } = await supabase.from('dagensspil').delete().eq('id', id);
           if (error) {
             betError.textContent = 'Fejl: ' + error.message;
           } else {
-            loadBets();
+            loaddagensspil();
           }
         });
       });
