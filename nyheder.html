@@ -171,33 +171,38 @@
     /* --- SUB HEADER (breadcrumb + disclaimer) --- */
     
     .sub-header {
-      background: #1f3a68; /* Ny farve til disclaimer-bar */
-      color: #fff; /* Tekstfarve */
-      width: 100%;
       padding: 20px 140px;
+      background: #fff;
+      border-bottom: 1px solid #e0e7f6;
+      
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
-      border-bottom: 1px solid #e0e7f6; /* Behold den tynde streg */
     }
+    
     .breadcrumb {
       font-size: 14px;
-      color: #fff;
+      color: #142541;
       flex-shrink: 0;
     }
     .breadcrumb a {
       text-decoration: none;
-      color: #cce0ff; /* Lysere farve til links i disclaimer-bar */
+      color: #0033cc;
       font-weight: bold;
     }
+    
     .breadcrumb a:hover {
       text-decoration: underline;
     }
+    
     .disclaimer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 14px;
-      color: #fff;
+      color: #142541;
       white-space: nowrap;
     }
 
