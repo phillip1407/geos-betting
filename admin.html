@@ -34,19 +34,6 @@
     <input id="password" type="password" placeholder="Dit password" />
     <button id="login-btn">Log ind</button>
     <p class="error" id="login-error"></p>
-    <span class="toggle-link" id="show-signup">Har du ikke en konto? Tilmeld dig her</span>
-  </div>
-
-  <!-- TILMELDINGS SEKTION -->
-  <div id="signup-section" class="hidden">
-    <h2>Tilmeld dig</h2>
-    <label for="signup-email">Email:</label>
-    <input id="signup-email" type="email" placeholder="Din email" />
-    <label for="signup-password">Password:</label>
-    <input id="signup-password" type="password" placeholder="Dit password" />
-    <button id="signup-btn">Tilmeld</button>
-    <p class="error" id="signup-error"></p>
-    <span class="toggle-link" id="show-login">Har du allerede en konto? Log ind her</span>
   </div>
 
   <!-- ADMIN SEKTION -->
@@ -112,18 +99,11 @@
 
     // Elementer
     const loginSection = document.getElementById('login-section');
-    const signupSection = document.getElementById('signup-section');
     const adminSection = document.getElementById('admin-section');
 
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
     const loginError = document.getElementById('login-error');
-
-    const signupBtn = document.getElementById('signup-btn');
-    const signupError = document.getElementById('signup-error');
-
-    const showSignupLink = document.getElementById('show-signup');
-    const showLoginLink = document.getElementById('show-login');
 
     const showNewsBtn = document.getElementById('show-news-btn');
     const showBetsBtn = document.getElementById('show-bets-btn');
@@ -148,43 +128,6 @@
     const addBetBtn = document.getElementById('add-bet-btn');
     const betError = document.getElementById('bet-error');
     const betsTableBody = document.querySelector('#bets-table tbody');
-
-    // Skift til tilmeldingssektion
-    showSignupLink.addEventListener('click', () => {
-      loginSection.classList.add('hidden');
-      signupSection.classList.remove('hidden');
-      loginError.textContent = '';
-      signupError.textContent = '';
-    });
-
-    // Skift til loginsektion
-    showLoginLink.addEventListener('click', () => {
-      signupSection.classList.add('hidden');
-      loginSection.classList.remove('hidden');
-      loginError.textContent = '';
-      signupError.textContent = '';
-    });
-
-    // Tilmeldingsfunktion
-    signupBtn.addEventListener('click', async () => {
-      signupError.textContent = '';
-      const email = document.getElementById('signup-email').value.trim();
-      const password = document.getElementById('signup-password').value.trim();
-
-      if (!email || !password) {
-        signupError.textContent = 'Indtast email og password.';
-        return;
-      }
-
-      const { data, error } = await supabase.auth.signUp({ email, password });
-      if (error) {
-        signupError.textContent = 'Fejl: ' + error.message;
-      } else {
-        alert('Tilmelding lykkedes. Du kan nu logge ind.');
-        signupSection.classList.add('hidden');
-        loginSection.classList.remove('hidden');
-      }
-    });
 
     // Loginfunktion
     loginBtn.addEventListener('click', async () => {
@@ -216,7 +159,6 @@
     // Vis admin sektion
     function showAdmin() {
       loginSection.classList.add('hidden');
-      signupSection.classList.add('hidden');
       adminSection.classList.remove('hidden');
       showNews();
       loadNews();
@@ -268,58 +210,49 @@
     async function loadNews() {
       const { data, error } = await supabase.from('news').select().order('date', { ascending: false });
       if (error) {
-        newsError.textContent = 'Fejl ved hentning: ' + error.message;
+        newsError.textContent = 'Fejl: ' + error.message;
         return;
       }
       newsTableBody.innerHTML = '';
-      data.forEach(nyhed => {
+      data.forEach(item => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${nyhed.id}</td>
-          <td>${nyhed.title}</td>
-          <td>${nyhed.date}</td>
-          <td><button data-id="${nyhed.id}" class="delete-news-btn">Slet</button></td>
+          <td>${item.id}</td>
+          <td>${item.title}</td>
+          <td>${item.date}</td>
+          <td><button data-id="${item.id}" class="delete-news-btn">Slet</button></td>
         `;
         newsTableBody.appendChild(tr);
       });
-      // Slet knap event
+
+      // Tilføj slet-event til knapper
       document.querySelectorAll('.delete-news-btn').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          const id = btn.getAttribute('data-id');
-          if (confirm('Vil du slette denne nyhed?')) {
-            const { error } = await supabase.from('news').delete().eq('id', id);
-            if (error) {
-              alert('Fejl: ' + error.message);
-            } else {
-              loadNews();
-            }
+        btn.addEventListener('click', async e => {
+          const id = e.target.getAttribute('data-id');
+          const { error } = await supabase.from('news').delete().eq('id', id);
+          if (error) {
+            newsError.textContent = 'Fejl: ' + error.message;
+          } else {
+            loadNews();
           }
         });
       });
     }
 
-    function clearNewsForm() {
-      newsTitle.value = '';
-      newsDate.value = '';
-      newsImage.value = '';
-      newsContent.value = '';
-      newsError.textContent = '';
-    }
-
     // Tilføj bet
     addBetBtn.addEventListener('click', async () => {
       betError.textContent = '';
-      const navn = betName.value.trim();
+      const name = betName.value.trim();
       const odds = parseFloat(betOdds.value);
-      const beskrivelse = betDescription.value.trim();
+      const description = betDescription.value.trim();
       const ekspert = betEkspert.value.trim();
 
-      if (!navn || !odds || !beskrivelse || !ekspert) {
+      if (!name || isNaN(odds) || !description || !ekspert) {
         betError.textContent = 'Alle felter er påkrævet.';
         return;
       }
 
-      const { data, error } = await supabase.from('bets').insert([{ navn, odds, beskrivelse, ekspert }]);
+      const { data, error } = await supabase.from('bets').insert([{ name, odds, description, ekspert }]);
       if (error) {
         betError.textContent = 'Fejl: ' + error.message;
       } else {
@@ -332,36 +265,43 @@
     async function loadBets() {
       const { data, error } = await supabase.from('bets').select().order('id', { ascending: false });
       if (error) {
-        betError.textContent = 'Fejl ved hentning: ' + error.message;
+        betError.textContent = 'Fejl: ' + error.message;
         return;
       }
       betsTableBody.innerHTML = '';
-      data.forEach(bet => {
+      data.forEach(item => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${bet.id}</td>
-          <td>${bet.navn}</td>
-          <td>${bet.odds}</td>
-          <td>${bet.ekspert}</td>
-          <td><button data-id="${bet.id}" class="delete-bet-btn">Slet</button></td>
+          <td>${item.id}</td>
+          <td>${item.name}</td>
+          <td>${item.odds.toFixed(2)}</td>
+          <td>${item.ekspert}</td>
+          <td><button data-id="${item.id}" class="delete-bet-btn">Slet</button></td>
         `;
         betsTableBody.appendChild(tr);
       });
 
-      // Slet knap event for bets
+      // Tilføj slet-event til knapper
       document.querySelectorAll('.delete-bet-btn').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          const id = btn.getAttribute('data-id');
-          if (confirm('Vil du slette dette bet?')) {
-            const { error } = await supabase.from('bets').delete().eq('id', id);
-            if (error) {
-              alert('Fejl: ' + error.message);
-            } else {
-              loadBets();
-            }
+        btn.addEventListener('click', async e => {
+          const id = e.target.getAttribute('data-id');
+          const { error } = await supabase.from('bets').delete().eq('id', id);
+          if (error) {
+            betError.textContent = 'Fejl: ' + error.message;
+          } else {
+            loadBets();
           }
         });
       });
+    }
+
+    // Ryd formularer
+    function clearNewsForm() {
+      newsTitle.value = '';
+      newsDate.value = '';
+      newsImage.value = '';
+      newsContent.value = '';
+      newsError.textContent = '';
     }
 
     function clearBetForm() {
@@ -372,16 +312,16 @@
       betError.textContent = '';
     }
 
-    // Check om bruger er logget ind når siden loader
-    window.addEventListener('load', async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+    function clearForms() {
+      clearNewsForm();
+      clearBetForm();
+      loginError.textContent = '';
+    }
 
+    // Tjek om bruger allerede er logget ind (ved sideindlæsning)
+    supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         showAdmin();
-      } else {
-        loginSection.classList.remove('hidden');
       }
     });
   </script>
