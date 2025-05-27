@@ -322,7 +322,13 @@
       } else {
         showLogin();
       }
-    });
+    }); 
+    const { data, error } = await supabase.auth.signUp({
+      email: 'bruger@example.com',
+      password: 'sikkerAdgangskode123'
+});
+
+
 
   </script>
 </body>
