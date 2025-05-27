@@ -105,7 +105,7 @@
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-    const SUPABASE_URL = 'https://iwbvimwojdjlbtxtmfqra.supabase.co';
+    const SUPABASE_URL = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -125,7 +125,6 @@
     const showSignupLink = document.getElementById('show-signup');
     const showLoginLink = document.getElementById('show-login');
 
-    // Andre elementer som i din kode (news, bets, osv) ...
     const showNewsBtn = document.getElementById('show-news-btn');
     const showBetsBtn = document.getElementById('show-bets-btn');
 
@@ -179,85 +178,71 @@
 
       const { data, error } = await supabase.auth.signUp({ email, password });
       if (error) {
-        signupError.textContent = error.message;
+        signupError.textContent = 'Fejl: ' + error.message;
       } else {
-        alert('Tilmelding lykkedes! Tjek din email for bekræftelse, og log ind.');
+        alert('Tilmelding lykkedes. Du kan nu logge ind.');
         signupSection.classList.add('hidden');
         loginSection.classList.remove('hidden');
       }
     });
 
-    // Login funktion
+    // Loginfunktion
     loginBtn.addEventListener('click', async () => {
       loginError.textContent = '';
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value.trim();
+
       if (!email || !password) {
         loginError.textContent = 'Indtast email og password.';
         return;
       }
+
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
-        loginError.textContent = error.message;
+        loginError.textContent = 'Fejl: ' + error.message;
       } else {
         showAdmin();
       }
     });
 
-    // Logout funktion
+    // Log ud funktion
     logoutBtn.addEventListener('click', async () => {
       await supabase.auth.signOut();
-      showLogin();
+      adminSection.classList.add('hidden');
+      loginSection.classList.remove('hidden');
+      clearForms();
     });
 
-    // Vis admin sektion hvis logged ind
-    async function showAdmin() {
-      const user = supabase.auth.user() || (await supabase.auth.getUser()).data.user;
-      if (!user) {
-        showLogin();
-        return;
-      }
+    // Vis admin sektion
+    function showAdmin() {
       loginSection.classList.add('hidden');
       signupSection.classList.add('hidden');
       adminSection.classList.remove('hidden');
-      showNews(); // Start med nyheder
+      showNews();
       loadNews();
       loadBets();
     }
 
-    // Vis login sektion
-    function showLogin() {
-      adminSection.classList.add('hidden');
-      signupSection.classList.add('hidden');
-      loginSection.classList.remove('hidden');
-      loginError.textContent = '';
-      signupError.textContent = '';
-      clearInputs();
-    }
+    // Skift mellem nyheder og bets sektioner
+    showNewsBtn.addEventListener('click', () => {
+      showNews();
+    });
 
-    // Ryd input felter
-    function clearInputs() {
-      document.querySelectorAll('input, textarea').forEach(input => input.value = '');
-      newsError.textContent = '';
-      betError.textContent = '';
-    }
+    showBetsBtn.addEventListener('click', () => {
+      showBets();
+    });
 
-    // Vis nyheder
     function showNews() {
       newsSection.classList.remove('hidden');
       betsSection.classList.add('hidden');
     }
 
-    // Vis bets
     function showBets() {
       betsSection.classList.remove('hidden');
       newsSection.classList.add('hidden');
     }
 
-    showNewsBtn.addEventListener('click', showNews);
-    showBetsBtn.addEventListener('click', showBets);
-
-    // Tilføj nyhed til supabase
+    // Tilføj nyhed
     addNewsBtn.addEventListener('click', async () => {
       newsError.textContent = '';
       const title = newsTitle.value.trim();
@@ -266,25 +251,24 @@
       const content = newsContent.value.trim();
 
       if (!title || !date || !content) {
-        newsError.textContent = 'Titel, dato og indhold skal udfyldes.';
+        newsError.textContent = 'Titel, dato og indhold er påkrævet.';
         return;
       }
 
       const { data, error } = await supabase.from('news').insert([{ title, date, image, content }]);
       if (error) {
-        newsError.textContent = error.message;
+        newsError.textContent = 'Fejl: ' + error.message;
       } else {
-        clearInputs();
+        clearNewsForm();
         loadNews();
-        alert('Nyhed tilføjet.');
       }
     });
 
-    // Load nyheder fra supabase
+    // Load nyheder
     async function loadNews() {
-      const { data, error } = await supabase.from('news').select('*').order('date', { ascending: false });
+      const { data, error } = await supabase.from('news').select().order('date', { ascending: false });
       if (error) {
-        newsError.textContent = error.message;
+        newsError.textContent = 'Fejl ved hentning: ' + error.message;
         return;
       }
       newsTableBody.innerHTML = '';
@@ -298,13 +282,14 @@
         `;
         newsTableBody.appendChild(tr);
       });
+      // Slet knap event
       document.querySelectorAll('.delete-news-btn').forEach(btn => {
-        btn.addEventListener('click', async e => {
-          const id = e.target.dataset.id;
-          if (confirm('Er du sikker på du vil slette denne nyhed?')) {
+        btn.addEventListener('click', async () => {
+          const id = btn.getAttribute('data-id');
+          if (confirm('Vil du slette denne nyhed?')) {
             const { error } = await supabase.from('news').delete().eq('id', id);
             if (error) {
-              newsError.textContent = error.message;
+              alert('Fejl: ' + error.message);
             } else {
               loadNews();
             }
@@ -313,34 +298,41 @@
       });
     }
 
-    // Tilføj bet til supabase
+    function clearNewsForm() {
+      newsTitle.value = '';
+      newsDate.value = '';
+      newsImage.value = '';
+      newsContent.value = '';
+      newsError.textContent = '';
+    }
+
+    // Tilføj bet
     addBetBtn.addEventListener('click', async () => {
       betError.textContent = '';
-      const name = betName.value.trim();
+      const navn = betName.value.trim();
       const odds = parseFloat(betOdds.value);
-      const description = betDescription.value.trim();
+      const beskrivelse = betDescription.value.trim();
       const ekspert = betEkspert.value.trim();
 
-      if (!name || isNaN(odds) || !description || !ekspert) {
-        betError.textContent = 'Alle felter skal udfyldes korrekt.';
+      if (!navn || !odds || !beskrivelse || !ekspert) {
+        betError.textContent = 'Alle felter er påkrævet.';
         return;
       }
 
-      const { data, error } = await supabase.from('bets').insert([{ name, odds, description, ekspert }]);
+      const { data, error } = await supabase.from('bets').insert([{ navn, odds, beskrivelse, ekspert }]);
       if (error) {
-        betError.textContent = error.message;
+        betError.textContent = 'Fejl: ' + error.message;
       } else {
-        clearInputs();
+        clearBetForm();
         loadBets();
-        alert('Bet tilføjet.');
       }
     });
 
-    // Load bets fra supabase
+    // Load bets
     async function loadBets() {
-      const { data, error } = await supabase.from('bets').select('*').order('id', { ascending: false });
+      const { data, error } = await supabase.from('bets').select().order('id', { ascending: false });
       if (error) {
-        betError.textContent = error.message;
+        betError.textContent = 'Fejl ved hentning: ' + error.message;
         return;
       }
       betsTableBody.innerHTML = '';
@@ -348,20 +340,22 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${bet.id}</td>
-          <td>${bet.name}</td>
+          <td>${bet.navn}</td>
           <td>${bet.odds}</td>
           <td>${bet.ekspert}</td>
           <td><button data-id="${bet.id}" class="delete-bet-btn">Slet</button></td>
         `;
         betsTableBody.appendChild(tr);
       });
+
+      // Slet knap event for bets
       document.querySelectorAll('.delete-bet-btn').forEach(btn => {
-        btn.addEventListener('click', async e => {
-          const id = e.target.dataset.id;
-          if (confirm('Er du sikker på du vil slette dette bet?')) {
+        btn.addEventListener('click', async () => {
+          const id = btn.getAttribute('data-id');
+          if (confirm('Vil du slette dette bet?')) {
             const { error } = await supabase.from('bets').delete().eq('id', id);
             if (error) {
-              betError.textContent = error.message;
+              alert('Fejl: ' + error.message);
             } else {
               loadBets();
             }
@@ -370,13 +364,24 @@
       });
     }
 
-    // Tjek om bruger allerede er logget ind ved sideindlæsning
+    function clearBetForm() {
+      betName.value = '';
+      betOdds.value = '';
+      betDescription.value = '';
+      betEkspert.value = '';
+      betError.textContent = '';
+    }
+
+    // Check om bruger er logget ind når siden loader
     window.addEventListener('load', async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (session) {
         showAdmin();
       } else {
-        showLogin();
+        loginSection.classList.remove('hidden');
       }
     });
   </script>
