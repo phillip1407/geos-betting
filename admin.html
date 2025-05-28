@@ -224,8 +224,28 @@
     <button type="submit">Gem Dagens Spil</button>
   </form>
 
-  <h3>Eksisterende Dagens Spil</h3>
-  <ul id="dagensspil-list"></ul>
+
+    <h3>Eksisterende Dagens Spil</h3>
+    <table id="dagensspil-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tidspunkt</th>
+            <th>Hold 1</th>
+            <th>Logo 1</th>
+            <th>Hold 2</th>
+            <th>Logo 2</th>
+            <th>Odds</th>
+            <th>Ekspert</th>
+            <th>Handling</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+
+
 </section>
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
