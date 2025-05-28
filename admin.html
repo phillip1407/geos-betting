@@ -6,140 +6,137 @@
   <title>Admin | Geo Betting Tips</title>
   <link rel="icon" href="logo.png" type="image/png" />
   <style>
-    /* -------------------- START CSS -------------------- */
     body {
-      margin: 0 auto;
-      max-width: 800px;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #050914;
-      color: white;
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background: #f4f6f8;
     }
-
     h1 {
-      font-weight: 600;
-      font-size: 2.5rem;
-      text-align: center;
-      padding: 2rem 1rem 0 1rem;
-    }
-
-    h2 {
-      font-weight: 600;
-      font-size: 1.8rem;
-      margin: 0.5rem 0;
-    }
-
-    h3 {
-      font-weight: 500;
-      font-size: 1.3rem;
-      margin: 1rem 0 0.5rem 0;
-    }
-
-    nav {
+      color: #142541;
       display: flex;
-      justify-content: center;
+      align-items: center;
       gap: 10px;
-      margin: 1rem 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
     }
-
-    button {
-      background-color: #121726;
-      border: none;
-      border-radius: 0.4rem;
-      padding: 0.5rem 1.2rem;
-      font-weight: 500;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
+    h1::before {
+      content: "";
+      width: 40px;
+      height: 40px;
+      background: url("logo.png") no-repeat center/contain;
+      display: inline-block;
     }
-
-    button:hover {
-      background-color: #2b2e44;
-    }
-
-    input,
-    textarea {
-      font-family: inherit;
-      font-weight: 400;
-      font-size: 1rem;
-      color: white;
-      background-color: #121726;
-      border: none;
-      border-radius: 0.4rem;
-      padding: 0.5rem 0.75rem;
-      width: 100%;
-      margin: 0.25rem 0 0.75rem 0;
-      box-sizing: border-box;
-    }
-
     label {
-      font-weight: 500;
-      font-size: 1.1rem;
-      margin-top: 0.5rem;
       display: block;
+      margin-top: 10px;
     }
-
-    textarea {
-      resize: vertical;
+    input,
+    textarea,
+    select,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
-
+    button {
+      background: #142541;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s ease, transform 0.2s ease;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    button:hover {
+      background: #0f1e38;
+      transform: scale(1.05);
+    }
+    nav {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    nav button {
+      width: auto;
+      padding: 10px 20px;
+    }
+    section {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1rem;
+      margin-top: 10px;
     }
-
-    th, td {
-      border: 1px solid #1a1f36;
-      padding: 0.5rem 0.75rem;
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
       text-align: left;
+      vertical-align: middle;
     }
-
     th {
-      background-color: #1a1f36;
-      font-weight: 600;
+      background: #142541;
+      color: white;
     }
-
-    .error {
-      color: #ff4d4d;
-      margin: 0.5rem 0;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    #info-box {
-      background-color: #121726;
-      border-radius: 0.6rem;
-      padding: 1rem 1.2rem;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      line-height: 1.3;
-    }
-
-    #info-box ul {
-      padding-left: 1.2rem;
-    }
-
-    #info-box li {
-      margin-bottom: 0.4rem;
-    }
-
-    nav button {
-      min-width: 100px;
-    }
-
-    img {
+    td img {
       max-height: 40px;
       display: block;
     }
-    /* -------------------- SLUT CSS -------------------- */
+    .hidden {
+      display: none;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    #info-box {
+      background-color: #fff;
+      border: 1px solid #ddd; /* Lys grå kant */
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Let skygge for at løfte boksen lidt */
+    }
+    
+    #info-box h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #333;
+    }
+    
+    #info-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
+    #info-box li {
+      margin-bottom: 8px;
+    }
+    
+    #info-box strong {
+      color: #d32f2f; /* En rød nuance til advarsler */
+    }
+
   </style>
 </head>
 <body>
   <h1>Admin Side | Geo Betting Tips</h1>
 
-  <!-- LOGIN -->
+  <!-- LOGIN SEKTION -->
   <div id="login-section">
     <h2>Log ind</h2>
     <label for="email">Email:</label>
@@ -150,18 +147,17 @@
     <p class="error" id="login-error"></p>
   </div>
 
-  <!-- ADMIN -->
-  <div id="admin-section" class="hidden">
-    <section id="info-box">
-      <h2>Information</h2>
-      <ul>
-        <li>✔  - Du kan tilføje, redigere og slette nyheder og dagens spil.</li>
-        <li>✔  - Husk at udfylde alle påkrævede felter (titel, dato, indhold, odds osv.) før du gemmer.</li>
-        <li>✔  - Billede-URLs skal være gyldige links til billeder (f.eks. .jpg, .png).</li>
-        <li>❌ - Du må <strong>ikke</strong> indsætte skadelige eller upassende data (som kode eller ugyldige links).</li>
-        <li>❌ - Undgå at slette indhold, medmindre du er helt sikker, da data ikke kan gendannes.</li>
-      </ul>
-    </section>
+  <!-- ADMIN SEKTION -->
+<section id="info-box">
+  <h2>Information</h2>
+  <ul>
+    <li>✔  - Du kan tilføje, redigere og slette nyheder og dagens spil.</li>
+    <li>✔  - Husk at udfylde alle påkrævede felter (titel, dato, indhold, odds osv.) før du gemmer.</li>
+    <li>✔  - Billede-URLs skal være gyldige links til billeder (f.eks. .jpg, .png).</li>
+    <li>❌ - Du må <strong>ikke</strong> indsætte skadelige eller upassende data (som kode eller ugyldige links).</li>
+    <li>❌ - Undgå at slette indhold, medmindre du er helt sikker, da data ikke kan gendannes.</li>
+  </ul>
+</section>
 
     <nav>
       <button id="logout-btn">Log ud</button>
@@ -169,7 +165,7 @@
       <button id="show-dagensspil-btn">Dagens Spil</button>
     </nav>
 
-    <!-- NYHEDER -->
+    <!-- Nyheder Sektion -->
     <section id="news-section" class="hidden">
       <h2>Opret nyhed</h2>
       <label for="news-title">Titel</label>
@@ -197,38 +193,25 @@
       </table>
     </section>
 
-    <!-- DAGENS SPIL -->
+    <!-- Dagens Spil Sektion -->
     <section id="dagensspil-section" class="hidden">
-      <h2>Opret Dagens Spil til GeoBet.dk</h2>
-      <form id="dagensspil-form">
-        <label for="dagensspil-tidspunkt">Tidspunkt:</label>
-        <input type="text" id="dagensspil-tidspunkt" name="tidspunkt" placeholder="Tidspunkt (fx 20:45)" required />
-
-        <label for="dagensspil-liga">Liga:</label>
-        <input type="text" id="dagensspil-liga" name="liga" placeholder="Liga (fx Premier League)" required />
-
-        <label for="dagensspil-hjemme-logo">Hjemme_logo:</label>
-        <input type="url" id="dagensspil-hjemme-logo" name="hjemme_logo" placeholder="URL til hjemmeholdets logo" required />
-
-        <label for="dagensspil-hjemmehold">Hjemmehold:</label>
-        <input type="text" id="dagensspil-hjemmehold" name="hjemmehold" placeholder="Hjemmeholdets navn" required />
-
-        <label for="dagensspil-ude-logo">Ude_logo:</label>
-        <input type="url" id="dagensspil-ude-logo" name="ude_logo" placeholder="URL til udeholdets logo" required />
-
-        <label for="dagensspil-udehold">Udehold:</label>
-        <input type="text" id="dagensspil-udehold" name="udehold" placeholder="Udeholdets navn" required />
-
-        <label for="dagensspil-odds">Odds:</label>
-        <input type="text" id="dagensspil-odds" name="odds" placeholder="Odds (fx 2.50)" required />
-
-        <label for="dagensspil-ekspert">Ekspert:</label>
-        <input type="text" id="dagensspil-ekspert" name="ekspert" placeholder="Navn på ekspert" required />
-
-        <button type="submit">Gem Dagens Spil</button>
-      </form>
-
-      <p class="error" id="dagensspil-error"></p>
+      <h2>Opret Dagens Spil</h2>
+      <label for="bet-time">Tidspunkt</label>
+      <input id="bet-time" type="time" />
+      <label for="bet-team1-name">Hold 1 Navn</label>
+      <input id="bet-team1-name" type="text" placeholder="Hold 1 navn" />
+      <label for="bet-team1-logo">Hold 1 Logo URL</label>
+      <input id="bet-team1-logo" type="text" placeholder="Hold 1 logo URL" />
+      <label for="bet-team2-name">Hold 2 Navn</label>
+      <input id="bet-team2-name" type="text" placeholder="Hold 2 navn" />
+      <label for="bet-team2-logo">Hold 2 Logo URL</label>
+      <input id="bet-team2-logo" type="text" placeholder="Hold 2 logo URL" />
+      <label for="bet-odds">Odds</label>
+      <input id="bet-odds" type="number" step="0.01" placeholder="Odds" />
+      <label for="bet-ekspert">Ekspert</label>
+      <input id="bet-ekspert" type="text" placeholder="Ekspert navn" />
+      <button id="add-bet-btn">Tilføj bet</button>
+      <p class="error" id="bet-error"></p>
 
       <h3>Eksisterende Dagens Spil</h3>
       <table id="dagensspil-table">
@@ -236,10 +219,10 @@
           <tr>
             <th>ID</th>
             <th>Tidspunkt</th>
-            <th>Hjemmehold</th>
-            <th>Hjemmehold Logo</th>
-            <th>Udehold</th>
-            <th>Udehold Logo</th>
+            <th>Hold 1</th>
+            <th>Logo 1</th>
+            <th>Hold 2</th>
+            <th>Logo 2</th>
             <th>Odds</th>
             <th>Ekspert</th>
             <th>Handling</th>
@@ -254,7 +237,8 @@
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
     const SUPABASE_URL = "https://iwbvimwodjlbtxtmfqra.supabase.co";
-    const SUPABASE_ANON_KEY = "YOUR_ANON_KEY_HERE";
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo";
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -281,12 +265,19 @@
     const newsError = document.getElementById("news-error");
     const newsTableBody = document.querySelector("#news-table tbody");
 
-    // Dagens Spil inputs
-    const dagensspilForm = document.getElementById("dagensspil-form");
-    const dagensspilError = document.getElementById("dagensspil-error");
+    // Bet inputs
+    const betTime = document.getElementById("bet-time");
+    const betTeam1Name = document.getElementById("bet-team1-name");
+    const betTeam1Logo = document.getElementById("bet-team1-logo");
+    const betTeam2Name = document.getElementById("bet-team2-name");
+    const betTeam2Logo = document.getElementById("bet-team2-logo");
+    const betOdds = document.getElementById("bet-odds");
+    const betEkspert = document.getElementById("bet-ekspert");
+    const addBetBtn = document.getElementById("add-bet-btn");
+    const betError = document.getElementById("bet-error");
     const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
 
-    // LOGIN
+    // Login funktion
     loginBtn.addEventListener("click", async () => {
       loginError.textContent = "";
       const email = document.getElementById("email").value.trim();
@@ -303,13 +294,12 @@
       } else {
         loginSection.classList.add("hidden");
         adminSection.classList.remove("hidden");
-        await loadNews();
-        await loadBets();
-        showNewsBtn.click();
+        loadNews();
+        loadBets();
       }
     });
 
-    // LOGOUT
+    // Logout funktion
     logoutBtn.addEventListener("click", async () => {
       await supabase.auth.signOut();
       adminSection.classList.add("hidden");
@@ -318,15 +308,15 @@
       clearTables();
     });
 
-    // Vis sektioner
+    // Vis / Skjul sektioner
     showNewsBtn.addEventListener("click", () => {
       newsSection.classList.remove("hidden");
       dagensspilSection.classList.add("hidden");
     });
 
     showDagensspilBtn.addEventListener("click", () => {
-      newsSection.classList.add("hidden");
       dagensspilSection.classList.remove("hidden");
+      newsSection.classList.add("hidden");
     });
 
     // Tilføj nyhed
@@ -338,124 +328,125 @@
       const content = newsContent.value.trim();
 
       if (!title || !date || !content) {
-        newsError.textContent = "Titel, dato og indhold skal udfyldes.";
+        newsError.textContent = "Titel, dato og indhold er påkrævet.";
         return;
       }
 
-      const { error } = await supabase.from("news").insert([{ title, date, image, content }]);
+      const { data, error } = await supabase
+        .from("news")
+        .insert([{ title, date, image, content }]);
 
       if (error) {
         newsError.textContent = "Fejl ved tilføjelse: " + error.message;
       } else {
         clearNewsInputs();
-        await loadNews();
+        loadNews();
       }
     });
 
-    // Hent og vis nyheder
+    // Load nyheder
     async function loadNews() {
-      const { data, error } = await supabase.from("news").select("*").order("id", { ascending: false });
+      newsTableBody.innerHTML = "";
+      const { data, error } = await supabase.from("news").select("*").order("date", { ascending: false });
       if (error) {
         newsError.textContent = "Fejl ved hentning af nyheder: " + error.message;
         return;
       }
-
-      newsTableBody.innerHTML = "";
       data.forEach((news) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
           <td>${news.id}</td>
           <td>${news.title}</td>
           <td>${news.date}</td>
           <td><button data-id="${news.id}" class="delete-news-btn">Slet</button></td>
         `;
-        newsTableBody.appendChild(row);
+        newsTableBody.appendChild(tr);
       });
-
-      // Tilføj slet-funktion til knapper
+      // Tilføj slet-eventlisteners
       document.querySelectorAll(".delete-news-btn").forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
-          const id = e.target.dataset.id;
-          await supabase.from("news").delete().eq("id", id);
-          await loadNews();
-        });
+        btn.addEventListener("click", deleteNews);
       });
     }
 
-    // Dagens Spil - Submit event på form
-    dagensspilForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      dagensspilError.textContent = "";
+    // Slet nyhed
+    async function deleteNews(e) {
+      const id = e.target.getAttribute("data-id");
+      const { error } = await supabase.from("news").delete().eq("id", id);
+      if (error) {
+        alert("Fejl ved sletning: " + error.message);
+      } else {
+        loadNews();
+      }
+    }
 
-      const tidspunkt = document.getElementById("dagensspil-tidspunkt").value.trim();
-      const liga = document.getElementById("dagensspil-liga").value.trim();
-      const hjemme_logo = document.getElementById("dagensspil-hjemme-logo").value.trim();
-      const hjemmehold = document.getElementById("dagensspil-hjemmehold").value.trim();
-      const ude_logo = document.getElementById("dagensspil-ude-logo").value.trim();
-      const udehold = document.getElementById("dagensspil-udehold").value.trim();
-      const odds = document.getElementById("dagensspil-odds").value.trim();
-      const ekspert = document.getElementById("dagensspil-ekspert").value.trim();
+    // Tilføj bet
+    addBetBtn.addEventListener("click", async () => {
+      betError.textContent = "";
+      const tidspunkt = betTime.value;
+      const hold1 = betTeam1Name.value.trim();
+      const hold1logo = betTeam1Logo.value.trim();
+      const hold2 = betTeam2Name.value.trim();
+      const hold2logo = betTeam2Logo.value.trim();
+      const odds = parseFloat(betOdds.value);
+      const ekspert = betEkspert.value.trim();
 
-      if (!tidspunkt || !liga || !hjemme_logo || !hjemmehold || !ude_logo || !udehold || !odds || !ekspert) {
-        dagensspilError.textContent = "Alle felter skal udfyldes.";
+      if (!tidspunkt || !hold1 || !hold2 || !odds || !ekspert) {
+        betError.textContent = "Udfyld venligst alle påkrævede felter.";
         return;
       }
 
-      const { error } = await supabase.from("dagensspil").insert([{
-        tidspunkt,
-        liga,
-        hjemme_logo,
-        hjemmehold,
-        ude_logo,
-        udehold,
-        odds,
-        ekspert,
-      }]);
+      const { data, error } = await supabase
+        .from("dagensspil")
+        .insert([{ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert }]);
 
       if (error) {
-        dagensspilError.textContent = "Fejl ved tilføjelse: " + error.message;
+        betError.textContent = "Fejl ved tilføjelse: " + error.message;
       } else {
-        dagensspilForm.reset();
-        await loadBets();
+        clearBetInputs();
+        loadBets();
       }
     });
 
-    // Hent og vis dagens spil
+    // Load dagens spil
     async function loadBets() {
-      const { data, error } = await supabase.from("dagensspil").select("*").order("id", { ascending: false });
+      dagensspilTableBody.innerHTML = "";
+      const { data, error } = await supabase.from("dagensspil").select("*").order("tidspunkt", { ascending: true });
       if (error) {
-        dagensspilError.textContent = "Fejl ved hentning af dagens spil: " + error.message;
+        betError.textContent = "Fejl ved hentning af dagens spil: " + error.message;
         return;
       }
-
-      dagensspilTableBody.innerHTML = "";
       data.forEach((bet) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
           <td>${bet.id}</td>
           <td>${bet.tidspunkt}</td>
-          <td>${bet.hjemmehold}</td>
-          <td><img src="${bet.hjemme_logo}" alt="Hjemmehold logo" /></td>
-          <td>${bet.udehold}</td>
-          <td><img src="${bet.ude_logo}" alt="Udehold logo" /></td>
+          <td>${bet.hold1}</td>
+          <td>${bet.hold1logo ? `<img src="${bet.hold1logo}" alt="${bet.hold1} logo" />` : ""}</td>
+          <td>${bet.hold2}</td>
+          <td>${bet.hold2logo ? `<img src="${bet.hold2logo}" alt="${bet.hold2} logo" />` : ""}</td>
           <td>${bet.odds}</td>
           <td>${bet.ekspert}</td>
           <td><button data-id="${bet.id}" class="delete-bet-btn">Slet</button></td>
         `;
-        dagensspilTableBody.appendChild(row);
+        dagensspilTableBody.appendChild(tr);
       });
-
-      // Slet-funktion for dagens spil
       document.querySelectorAll(".delete-bet-btn").forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
-          const id = e.target.dataset.id;
-          await supabase.from("dagensspil").delete().eq("id", id);
-          await loadBets();
-        });
+        btn.addEventListener("click", deleteBet);
       });
     }
 
-    // Ryd inputs efter tilføjelse
+    // Slet bet
+    async function deleteBet(e) {
+      const id = e.target.getAttribute("data-id");
+      const { error } = await supabase.from("dagensspil").delete().eq("id", id);
+      if (error) {
+        alert("Fejl ved sletning: " + error.message);
+      } else {
+        loadBets();
+      }
+    }
+
+    // Ryd inputs
     function clearNewsInputs() {
       newsTitle.value = "";
       newsDate.value = "";
@@ -463,34 +454,38 @@
       newsContent.value = "";
       newsError.textContent = "";
     }
-
-    // Ryd alle inputs og tabeller ved logout
-    function clearInputs() {
-      document.getElementById("email").value = "";
-      document.getElementById("password").value = "";
-      clearNewsInputs();
-      dagensspilForm.reset();
-      loginError.textContent = "";
-      dagensspilError.textContent = "";
-      newsError.textContent = "";
+    function clearBetInputs() {
+      betTime.value = "";
+      betTeam1Name.value = "";
+      betTeam1Logo.value = "";
+      betTeam2Name.value = "";
+      betTeam2Logo.value = "";
+      betOdds.value = "";
+      betEkspert.value = "";
+      betError.textContent = "";
     }
-
+    function clearInputs() {
+      clearNewsInputs();
+      clearBetInputs();
+      loginError.textContent = "";
+      newsError.textContent = "";
+      betError.textContent = "";
+    }
     function clearTables() {
       newsTableBody.innerHTML = "";
       dagensspilTableBody.innerHTML = "";
     }
 
-    // Auto login check ved sideindlæsning
-    (async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
+    // Tjek om bruger allerede er logget ind ved sideindlæsning
+    window.addEventListener("load", async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
         loginSection.classList.add("hidden");
         adminSection.classList.remove("hidden");
-        await loadNews();
-        await loadBets();
-        showNewsBtn.click();
+        loadNews();
+        loadBets();
       }
-    })();
+    });
   </script>
 </body>
 </html>
