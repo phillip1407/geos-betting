@@ -291,85 +291,57 @@
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo-container">
-      <img src="logo.png" alt="Geo Betting Tips logo" class="logo" />
-      <div class="logo-text">
-        <span class="site-name">Geo Betting Tips</span>
-        <span class="slogan">De bedste betting tips</span>
-      </div>
-    </div>
-    <div class="nav-container">
-      <ul class="nav-links">
-        <li><a href="#">Forside</a></li>
-        <li class="dropdown">
-          <a href="#">Tips</a>
-          <ul>
-            <li><a href="#">Fodbold</a></li>
-            <li><a href="#">Tennis</a></li>
-            <li><a href="#">Basketball</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Statistik</a></li>
-        <li><a href="#">Kontakt</a></li>
-      </ul>
-      <div class="search-wrapper">
-        <input type="search" id="search" class="search-input" placeholder="Søg spil..." autocomplete="off" />
-        <ul id="suggestions" class="suggestions"></ul>
-      </div>
-    </div>
-  </nav>
 
-  <section class="sub-header">
-    <nav class="breadcrumb" aria-label="Du er her:">
-      <a href="#">Forside</a> &gt; Tips &gt; Dagens spil
-    </nav>
-  </section>
 
-  <main>
-    <section id="dagens-spil">
-      <h2>Dagens spil</h2>
-      <div class="spil-container">
-        <div class="spil-kort">
-          <div class="info-højre">Tips af ekspert</div>
-          <div class="liga">Superligaen</div>
-          <div class="hold-liste">
-            <div class="hold">
-              <img src="brondby_logo.png" alt="Brøndby IF logo" />
-              <span>Brøndby IF</span>
-            </div>
-            <div class="hold">
-              <img src="fcm_logo.png" alt="FC Midtjylland logo" />
-              <span>FC Midtjylland</span>
-            </div>
-          </div>
-          <div class="bund-bjælke">
-            <span class="odds">Odds: 1.85</span>
-            <span class="ekspert">Ekspert: Ole Hansen</span>
-          </div>
-        </div>
 
-        <div class="spil-kort">
-          <div class="info-højre">Tips af ekspert</div>
-          <div class="liga">Premier League</div>
-          <div class="hold-liste">
-            <div class="hold">
-              <img src="manu_logo.png" alt="Manchester United logo" />
-              <span>Manchester United</span>
-            </div>
-            <div class="hold">
-              <img src="chelsea_logo.png" alt="Chelsea FC logo" />
-              <span>Chelsea FC</span>
-            </div>
-          </div>
-          <div class="bund-bjælke">
-            <span class="odds">Odds: 2.10</span>
-            <span class="ekspert">Ekspert: Maria Jensen</span>
-          </div>
-        </div>
+  
+<div id="dagensSpil"></div>
 
-      </div>
-    </section>
+<script>
+  async function hentDagensSpil() {
+    try {
+      const response = await fetch('https://dit-api-url.dk/api/dagensspil');
+      const spilListe = await response.json();
+
+      const container = document.getElementById('dagensSpil');
+      container.innerHTML = ''; // ryd tidligere indhold
+
+      if(spilListe.length === 0) {
+        container.innerText = 'Ingen spil i dag.';
+        return;
+      }
+
+      // Vi viser maks 4 spil
+      const spilToShow = spilListe.slice(0, 4);
+
+      spilToShow.forEach(spil => {
+        const spilElement = document.createElement('div');
+        spilElement.style.border = '1px solid #ccc';
+        spilElement.style.padding = '10px';
+        spilElement.style.marginBottom = '10px';
+
+        spilElement.innerHTML = `
+          <p><strong>Tidspunkt:</strong> ${new Date(spil.Tidspunkt).toLocaleString()}</p>
+          <p>
+            <img src="${spil['Hold 1 Logo URL']}" alt="${spil['Hold 1 Navn']}" style="height:40px; vertical-align:middle;">
+            <strong>${spil['Hold 1 Navn']}</strong> vs 
+            <strong>${spil['Hold 2 Navn']}</strong>
+            <img src="${spil['Hold 2 Logo URL']}" alt="${spil['Hold 2 Navn']}" style="height:40px; vertical-align:middle;">
+          </p>
+          <p><strong>Odds:</strong> ${spil.Odds}</p>
+          <p><strong>Ekspert:</strong> ${spil.Ekspert}</p>
+        `;
+
+        container.appendChild(spilElement);
+      });
+    } catch (error) {
+      console.error('Fejl ved hentning af dagens spil:', error);
+      document.getElementById('dagensSpil').innerText = 'Kunne ikke hente spil.';
+    }
+  }
+
+  hentDagensSpil();
+</script>
 
     <section class="welcome-box">
       <h2>Velkommen til Geo Betting Tips</h2>
