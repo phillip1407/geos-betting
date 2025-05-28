@@ -112,20 +112,11 @@
       color: red;
       margin-top: 10px;
     }
-
-    .toggle-link {
-      cursor: pointer;
-      color: #142541;
-      text-decoration: underline;
-      margin-top: 10px;
-      display: inline-block;
-    }
   </style>
 </head>
 <body>
   <h1>Admin Side | Geo Betting Tips</h1>
 
-  <!-- LOGIN SEKTION -->
   <div id="login-section">
     <h2>Log ind</h2>
     <label for="email">Email:</label>
@@ -136,12 +127,11 @@
     <p class="error" id="login-error"></p>
   </div>
 
-  <!-- ADMIN SEKTION -->
   <div id="admin-section" class="hidden">
     <nav>
       <button id="logout-btn">Log ud</button>
       <button id="show-news-btn">Nyheder</button>
-      <button id="show-dagensspil-btn">Dagensspil</button>
+      <button id="show-dagensspil-btn">Dagens Spil</button>
     </nav>
 
     <section id="news-section" class="hidden">
@@ -184,7 +174,7 @@
       <button id="add-bet-btn">Tilføj bet</button>
       <p class="error" id="bet-error"></p>
 
-      <h3>Eksisterende dagensspil</h3>
+      <h3>Eksisterende dagens spil</h3>
       <table id="dagensspil-table">
         <thead>
           <tr>
@@ -203,27 +193,21 @@
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    const SUPABASE_URL = "https://iwbvimwodjlbtxtmfqra.supabase.co";
-    const SUPABASE_ANON_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo";
+    const supabase = createClient(
+      "https://iwbvimwodjlbtxtmfqra.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo"
+    );
 
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // Elementer
     const loginSection = document.getElementById("login-section");
     const adminSection = document.getElementById("admin-section");
-
     const loginBtn = document.getElementById("login-btn");
     const logoutBtn = document.getElementById("logout-btn");
     const loginError = document.getElementById("login-error");
-
     const showNewsBtn = document.getElementById("show-news-btn");
     const showDagensspilBtn = document.getElementById("show-dagensspil-btn");
-
     const newsSection = document.getElementById("news-section");
     const dagensspilSection = document.getElementById("dagensspil-section");
 
-    // Nyhed inputs
     const newsTitle = document.getElementById("news-title");
     const newsDate = document.getElementById("news-date");
     const newsImage = document.getElementById("news-image");
@@ -232,7 +216,6 @@
     const newsError = document.getElementById("news-error");
     const newsTableBody = document.querySelector("#news-table tbody");
 
-    // Bet inputs
     const betName = document.getElementById("bet-name");
     const betOdds = document.getElementById("bet-odds");
     const betDescription = document.getElementById("bet-description");
@@ -241,19 +224,15 @@
     const betError = document.getElementById("bet-error");
     const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
 
-    // Loginfunktion
     loginBtn.addEventListener("click", async () => {
       loginError.textContent = "";
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
-
       if (!email || !password) {
         loginError.textContent = "Indtast email og password.";
         return;
       }
-
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
         loginError.textContent = "Fejl ved login: " + error.message;
       } else {
@@ -264,47 +243,26 @@
       }
     });
 
-    // Logoutfunktion
     logoutBtn.addEventListener("click", async () => {
       await supabase.auth.signOut();
       adminSection.classList.add("hidden");
       loginSection.classList.remove("hidden");
-      clearInputs();
     });
 
-    // Funktion til at rydde inputfelter
-    function clearInputs() {
-      newsTitle.value = "";
-      newsDate.value = "";
-      newsImage.value = "";
-      newsContent.value = "";
-
-      betName.value = "";
-      betOdds.value = "";
-      betDescription.value = "";
-      betEkspert.value = "";
-
-      newsError.textContent = "";
-      betError.textContent = "";
-    }
-
-    // Vis nyheder, skjul dagensspil
     showNewsBtn.addEventListener("click", () => {
       newsSection.classList.remove("hidden");
       dagensspilSection.classList.add("hidden");
     });
 
-    // Vis dagensspil, skjul nyheder
     showDagensspilBtn.addEventListener("click", () => {
       dagensspilSection.classList.remove("hidden");
       newsSection.classList.add("hidden");
     });
 
-    // Tilføj nyhed
     addNewsBtn.addEventListener("click", async () => {
       newsError.textContent = "";
       if (!newsTitle.value || !newsDate.value || !newsContent.value) {
-        newsError.textContent = "Udfyld venligst alle påkrævede felter.";
+        newsError.textContent = "Udfyld alle felter.";
         return;
       }
       const { error } = await supabase.from("news").insert([
@@ -316,14 +274,16 @@
         },
       ]);
       if (error) {
-        newsError.textContent = "Fejl ved tilføjelse: " + error.message;
+        newsError.textContent = "Fejl: " + error.message;
       } else {
-        clearInputs();
         loadNews();
+        newsTitle.value = "";
+        newsDate.value = "";
+        newsImage.value = "";
+        newsContent.value = "";
       }
     });
 
-    // Load nyheder
     async function loadNews() {
       const { data, error } = await supabase.from("news").select().order("id", { ascending: false });
       if (error) {
@@ -333,59 +293,41 @@
       newsTableBody.innerHTML = "";
       data.forEach((item) => {
         const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${item.id}</td>
-          <td>${item.title}</td>
-          <td>${item.date}</td>
-          <td><button data-id="${item.id}" class="delete-news-btn">Slet</button></td>
-        `;
+        tr.innerHTML = `<td>${item.id}</td><td>${item.title}</td><td>${item.date}</td><td><button onclick="deleteNews(${item.id})">Slet</button></td>`;
         newsTableBody.appendChild(tr);
-      });
-
-      // Tilføj event til slet knapper
-      document.querySelectorAll(".delete-news-btn").forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
-          const id = e.target.getAttribute("data-id");
-          const { error } = await supabase.from("news").delete().eq("id", id);
-          if (error) {
-            newsError.textContent = "Fejl: " + error.message;
-          } else {
-            loadNews();
-          }
-        });
       });
     }
 
-    // Tilføj bet til dagensspil
+    async function deleteNews(id) {
+      await supabase.from("news").delete().eq("id", id);
+      loadNews();
+    }
+
     addBetBtn.addEventListener("click", async () => {
       betError.textContent = "";
       if (!betName.value || !betOdds.value || !betEkspert.value) {
-        betError.textContent = "Udfyld venligst navn, odds og ekspert.";
+        betError.textContent = "Udfyld alle felter.";
         return;
       }
-      const oddsNum = parseFloat(betOdds.value);
-      if (isNaN(oddsNum) || oddsNum <= 0) {
-        betError.textContent = "Indtast et gyldigt odds.";
-        return;
-      }
-
       const { error } = await supabase.from("dagensspil").insert([
         {
           name: betName.value.trim(),
-          odds: oddsNum,
+          odds: betOdds.value,
           description: betDescription.value.trim(),
           ekspert: betEkspert.value.trim(),
         },
       ]);
       if (error) {
-        betError.textContent = "Fejl ved tilføjelse: " + error.message;
+        betError.textContent = "Fejl: " + error.message;
       } else {
-        clearInputs();
         loadDagensspil();
+        betName.value = "";
+        betOdds.value = "";
+        betDescription.value = "";
+        betEkspert.value = "";
       }
     });
 
-    // Load dagensspil
     async function loadDagensspil() {
       const { data, error } = await supabase.from("dagensspil").select().order("id", { ascending: false });
       if (error) {
@@ -395,43 +337,15 @@
       dagensspilTableBody.innerHTML = "";
       data.forEach((item) => {
         const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${item.id}</td>
-          <td>${item.name}</td>
-          <td>${item.odds.toFixed(2)}</td>
-          <td>${item.ekspert}</td>
-          <td><button data-id="${item.id}" class="delete-bet-btn">Slet</button></td>
-        `;
+        tr.innerHTML = `<td>${item.id}</td><td>${item.name}</td><td>${item.odds}</td><td>${item.ekspert}</td><td><button onclick="deleteBet(${item.id})">Slet</button></td>`;
         dagensspilTableBody.appendChild(tr);
       });
-
-      // Tilføj event til slet knapper
-      document.querySelectorAll(".delete-bet-btn").forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
-          const id = e.target.getAttribute("data-id");
-          const { error } = await supabase.from("dagensspil").delete().eq("id", id);
-          if (error) {
-            betError.textContent = "Fejl: " + error.message;
-          } else {
-            loadDagensspil();
-          }
-        });
-      });
     }
 
-    // Tjek om bruger allerede er logget ind ved load
-    async function checkSession() {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      if (session) {
-        loginSection.classList.add("hidden");
-        adminSection.classList.remove("hidden");
-        loadNews();
-        loadDagensspil();
-      }
+    async function deleteBet(id) {
+      await supabase.from("dagensspil").delete().eq("id", id);
+      loadDagensspil();
     }
-    checkSession();
   </script>
 </body>
 </html>
