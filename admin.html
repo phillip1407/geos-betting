@@ -13,7 +13,6 @@
       padding: 20px;
       background: #f4f6f8;
     }
-
     h1 {
       color: #142541;
       display: flex;
@@ -23,7 +22,6 @@
       border-bottom: 1px solid #ccc;
       margin-bottom: 20px;
     }
-
     h1::before {
       content: "";
       width: 40px;
@@ -31,12 +29,10 @@
       background: url("logo.png") no-repeat center/contain;
       display: inline-block;
     }
-
     label {
       display: block;
       margin-top: 10px;
     }
-
     input,
     textarea,
     select,
@@ -49,7 +45,6 @@
       border-radius: 6px;
       border: 1px solid #ccc;
     }
-
     button {
       background: #142541;
       color: white;
@@ -60,24 +55,20 @@
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
-
     button:hover {
       background: #0f1e38;
       transform: scale(1.05);
     }
-
     nav {
       margin-bottom: 20px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
-
     nav button {
       width: auto;
       padding: 10px 20px;
     }
-
     section {
       background: white;
       padding: 15px;
@@ -85,29 +76,29 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
     }
-
     th,
     td {
       border: 1px solid #ddd;
       padding: 8px;
       text-align: left;
+      vertical-align: middle;
     }
-
     th {
       background: #142541;
       color: white;
     }
-
+    td img {
+      max-height: 40px;
+      display: block;
+    }
     .hidden {
       display: none;
     }
-
     .error {
       color: red;
       margin-top: 10px;
@@ -117,6 +108,7 @@
 <body>
   <h1>Admin Side | Geo Betting Tips</h1>
 
+  <!-- LOGIN SEKTION -->
   <div id="login-section">
     <h2>Log ind</h2>
     <label for="email">Email:</label>
@@ -127,6 +119,7 @@
     <p class="error" id="login-error"></p>
   </div>
 
+  <!-- ADMIN SEKTION -->
   <div id="admin-section" class="hidden">
     <nav>
       <button id="logout-btn">Log ud</button>
@@ -134,6 +127,7 @@
       <button id="show-dagensspil-btn">Dagens Spil</button>
     </nav>
 
+    <!-- Nyheder Sektion -->
     <section id="news-section" class="hidden">
       <h2>Opret nyhed</h2>
       <label for="news-title">Titel</label>
@@ -161,25 +155,36 @@
       </table>
     </section>
 
+    <!-- Dagens Spil Sektion -->
     <section id="dagensspil-section" class="hidden">
       <h2>Opret Dagens Spil</h2>
-      <label for="bet-name">Navn</label>
-      <input id="bet-name" type="text" placeholder="Bet navn" />
+      <label for="bet-time">Tidspunkt</label>
+      <input id="bet-time" type="time" />
+      <label for="bet-team1-name">Hold 1 Navn</label>
+      <input id="bet-team1-name" type="text" placeholder="Hold 1 navn" />
+      <label for="bet-team1-logo">Hold 1 Logo URL</label>
+      <input id="bet-team1-logo" type="text" placeholder="Hold 1 logo URL" />
+      <label for="bet-team2-name">Hold 2 Navn</label>
+      <input id="bet-team2-name" type="text" placeholder="Hold 2 navn" />
+      <label for="bet-team2-logo">Hold 2 Logo URL</label>
+      <input id="bet-team2-logo" type="text" placeholder="Hold 2 logo URL" />
       <label for="bet-odds">Odds</label>
       <input id="bet-odds" type="number" step="0.01" placeholder="Odds" />
-      <label for="bet-description">Beskrivelse</label>
-      <textarea id="bet-description" rows="3" placeholder="Beskrivelse"></textarea>
       <label for="bet-ekspert">Ekspert</label>
       <input id="bet-ekspert" type="text" placeholder="Ekspert navn" />
       <button id="add-bet-btn">Tilføj bet</button>
       <p class="error" id="bet-error"></p>
 
-      <h3>Eksisterende dagens spil</h3>
+      <h3>Eksisterende Dagens Spil</h3>
       <table id="dagensspil-table">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Navn</th>
+            <th>Tidspunkt</th>
+            <th>Hold 1</th>
+            <th>Logo 1</th>
+            <th>Hold 2</th>
+            <th>Logo 2</th>
             <th>Odds</th>
             <th>Ekspert</th>
             <th>Handling</th>
@@ -193,21 +198,27 @@
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    const supabase = createClient(
-      "https://iwbvimwodjlbtxtmfqra.supabase.co",
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo"
-    );
+    const SUPABASE_URL = "https://iwbvimwodjlbtxtmfqra.supabase.co";
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo";
 
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Elementer
     const loginSection = document.getElementById("login-section");
     const adminSection = document.getElementById("admin-section");
+
     const loginBtn = document.getElementById("login-btn");
     const logoutBtn = document.getElementById("logout-btn");
     const loginError = document.getElementById("login-error");
+
     const showNewsBtn = document.getElementById("show-news-btn");
     const showDagensspilBtn = document.getElementById("show-dagensspil-btn");
+
     const newsSection = document.getElementById("news-section");
     const dagensspilSection = document.getElementById("dagensspil-section");
 
+    // Nyhed inputs
     const newsTitle = document.getElementById("news-title");
     const newsDate = document.getElementById("news-date");
     const newsImage = document.getElementById("news-image");
@@ -216,39 +227,50 @@
     const newsError = document.getElementById("news-error");
     const newsTableBody = document.querySelector("#news-table tbody");
 
-    const betName = document.getElementById("bet-name");
+    // Bet inputs
+    const betTime = document.getElementById("bet-time");
+    const betTeam1Name = document.getElementById("bet-team1-name");
+    const betTeam1Logo = document.getElementById("bet-team1-logo");
+    const betTeam2Name = document.getElementById("bet-team2-name");
+    const betTeam2Logo = document.getElementById("bet-team2-logo");
     const betOdds = document.getElementById("bet-odds");
-    const betDescription = document.getElementById("bet-description");
     const betEkspert = document.getElementById("bet-ekspert");
     const addBetBtn = document.getElementById("add-bet-btn");
     const betError = document.getElementById("bet-error");
     const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
 
+    // Login funktion
     loginBtn.addEventListener("click", async () => {
       loginError.textContent = "";
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
+
       if (!email || !password) {
-        loginError.textContent = "Indtast email og password.";
+        loginError.textContent = "Udfyld både email og password.";
         return;
       }
+
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
-        loginError.textContent = "Fejl ved login: " + error.message;
+        loginError.textContent = "Login fejlede: " + error.message;
       } else {
         loginSection.classList.add("hidden");
         adminSection.classList.remove("hidden");
         loadNews();
-        loadDagensspil();
+        loadBets();
       }
     });
 
+    // Logout funktion
     logoutBtn.addEventListener("click", async () => {
       await supabase.auth.signOut();
       adminSection.classList.add("hidden");
       loginSection.classList.remove("hidden");
+      clearInputs();
+      clearTables();
     });
 
+    // Vis / Skjul sektioner
     showNewsBtn.addEventListener("click", () => {
       newsSection.classList.remove("hidden");
       dagensspilSection.classList.add("hidden");
@@ -259,93 +281,173 @@
       newsSection.classList.add("hidden");
     });
 
+    // Tilføj nyhed
     addNewsBtn.addEventListener("click", async () => {
       newsError.textContent = "";
-      if (!newsTitle.value || !newsDate.value || !newsContent.value) {
-        newsError.textContent = "Udfyld alle felter.";
+      const title = newsTitle.value.trim();
+      const date = newsDate.value;
+      const image = newsImage.value.trim();
+      const content = newsContent.value.trim();
+
+      if (!title || !date || !content) {
+        newsError.textContent = "Titel, dato og indhold er påkrævet.";
         return;
       }
-      const { error } = await supabase.from("news").insert([
-        {
-          title: newsTitle.value.trim(),
-          date: newsDate.value,
-          image: newsImage.value.trim(),
-          content: newsContent.value.trim(),
-        },
-      ]);
+
+      const { data, error } = await supabase
+        .from("news")
+        .insert([{ title, date, image, content }]);
+
       if (error) {
-        newsError.textContent = "Fejl: " + error.message;
+        newsError.textContent = "Fejl ved tilføjelse: " + error.message;
       } else {
+        clearNewsInputs();
         loadNews();
-        newsTitle.value = "";
-        newsDate.value = "";
-        newsImage.value = "";
-        newsContent.value = "";
       }
     });
 
+    // Load nyheder
     async function loadNews() {
-      const { data, error } = await supabase.from("news").select().order("id", { ascending: false });
+      newsTableBody.innerHTML = "";
+      const { data, error } = await supabase.from("news").select("*").order("date", { ascending: false });
       if (error) {
-        newsError.textContent = "Fejl: " + error.message;
+        newsError.textContent = "Fejl ved hentning af nyheder: " + error.message;
         return;
       }
-      newsTableBody.innerHTML = "";
-      data.forEach((item) => {
+      data.forEach((news) => {
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${item.id}</td><td>${item.title}</td><td>${item.date}</td><td><button onclick="deleteNews(${item.id})">Slet</button></td>`;
+        tr.innerHTML = `
+          <td>${news.id}</td>
+          <td>${news.title}</td>
+          <td>${news.date}</td>
+          <td><button data-id="${news.id}" class="delete-news-btn">Slet</button></td>
+        `;
         newsTableBody.appendChild(tr);
       });
-    }
-
-    async function deleteNews(id) {
-      await supabase.from("news").delete().eq("id", id);
-      loadNews();
-    }
-
-    addBetBtn.addEventListener("click", async () => {
-      betError.textContent = "";
-      if (!betName.value || !betOdds.value || !betEkspert.value) {
-        betError.textContent = "Udfyld alle felter.";
-        return;
-      }
-      const { error } = await supabase.from("dagensspil").insert([
-        {
-          name: betName.value.trim(),
-          odds: betOdds.value,
-          description: betDescription.value.trim(),
-          ekspert: betEkspert.value.trim(),
-        },
-      ]);
-      if (error) {
-        betError.textContent = "Fejl: " + error.message;
-      } else {
-        loadDagensspil();
-        betName.value = "";
-        betOdds.value = "";
-        betDescription.value = "";
-        betEkspert.value = "";
-      }
-    });
-
-    async function loadDagensspil() {
-      const { data, error } = await supabase.from("dagensspil").select().order("id", { ascending: false });
-      if (error) {
-        betError.textContent = "Fejl: " + error.message;
-        return;
-      }
-      dagensspilTableBody.innerHTML = "";
-      data.forEach((item) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${item.id}</td><td>${item.name}</td><td>${item.odds}</td><td>${item.ekspert}</td><td><button onclick="deleteBet(${item.id})">Slet</button></td>`;
-        dagensspilTableBody.appendChild(tr);
+      // Tilføj slet-eventlisteners
+      document.querySelectorAll(".delete-news-btn").forEach((btn) => {
+        btn.addEventListener("click", deleteNews);
       });
     }
 
-    async function deleteBet(id) {
-      await supabase.from("dagensspil").delete().eq("id", id);
-      loadDagensspil();
+    // Slet nyhed
+    async function deleteNews(e) {
+      const id = e.target.getAttribute("data-id");
+      const { error } = await supabase.from("news").delete().eq("id", id);
+      if (error) {
+        alert("Fejl ved sletning: " + error.message);
+      } else {
+        loadNews();
+      }
     }
+
+    // Tilføj bet
+    addBetBtn.addEventListener("click", async () => {
+      betError.textContent = "";
+      const tidspunkt = betTime.value;
+      const hold1 = betTeam1Name.value.trim();
+      const hold1logo = betTeam1Logo.value.trim();
+      const hold2 = betTeam2Name.value.trim();
+      const hold2logo = betTeam2Logo.value.trim();
+      const odds = parseFloat(betOdds.value);
+      const ekspert = betEkspert.value.trim();
+
+      if (!tidspunkt || !hold1 || !hold2 || !odds || !ekspert) {
+        betError.textContent = "Udfyld venligst alle påkrævede felter.";
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("dagensspil")
+        .insert([{ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert }]);
+
+      if (error) {
+        betError.textContent = "Fejl ved tilføjelse: " + error.message;
+      } else {
+        clearBetInputs();
+        loadBets();
+      }
+    });
+
+    // Load dagens spil
+    async function loadBets() {
+      dagensspilTableBody.innerHTML = "";
+      const { data, error } = await supabase.from("dagensspil").select("*").order("tidspunkt", { ascending: true });
+      if (error) {
+        betError.textContent = "Fejl ved hentning af dagens spil: " + error.message;
+        return;
+      }
+      data.forEach((bet) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${bet.id}</td>
+          <td>${bet.tidspunkt}</td>
+          <td>${bet.hold1}</td>
+          <td>${bet.hold1logo ? `<img src="${bet.hold1logo}" alt="${bet.hold1} logo" />` : ""}</td>
+          <td>${bet.hold2}</td>
+          <td>${bet.hold2logo ? `<img src="${bet.hold2logo}" alt="${bet.hold2} logo" />` : ""}</td>
+          <td>${bet.odds}</td>
+          <td>${bet.ekspert}</td>
+          <td><button data-id="${bet.id}" class="delete-bet-btn">Slet</button></td>
+        `;
+        dagensspilTableBody.appendChild(tr);
+      });
+      document.querySelectorAll(".delete-bet-btn").forEach((btn) => {
+        btn.addEventListener("click", deleteBet);
+      });
+    }
+
+    // Slet bet
+    async function deleteBet(e) {
+      const id = e.target.getAttribute("data-id");
+      const { error } = await supabase.from("dagensspil").delete().eq("id", id);
+      if (error) {
+        alert("Fejl ved sletning: " + error.message);
+      } else {
+        loadBets();
+      }
+    }
+
+    // Ryd inputs
+    function clearNewsInputs() {
+      newsTitle.value = "";
+      newsDate.value = "";
+      newsImage.value = "";
+      newsContent.value = "";
+      newsError.textContent = "";
+    }
+    function clearBetInputs() {
+      betTime.value = "";
+      betTeam1Name.value = "";
+      betTeam1Logo.value = "";
+      betTeam2Name.value = "";
+      betTeam2Logo.value = "";
+      betOdds.value = "";
+      betEkspert.value = "";
+      betError.textContent = "";
+    }
+    function clearInputs() {
+      clearNewsInputs();
+      clearBetInputs();
+      loginError.textContent = "";
+      newsError.textContent = "";
+      betError.textContent = "";
+    }
+    function clearTables() {
+      newsTableBody.innerHTML = "";
+      dagensspilTableBody.innerHTML = "";
+    }
+
+    // Tjek om bruger allerede er logget ind ved sideindlæsning
+    window.addEventListener("load", async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        loginSection.classList.add("hidden");
+        adminSection.classList.remove("hidden");
+        loadNews();
+        loadBets();
+      }
+    });
   </script>
 </body>
 </html>
