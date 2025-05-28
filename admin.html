@@ -1,484 +1,219 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Admin Geo Betting Tips</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0; padding: 0;
-    background-color: #f5f5f5;
-  }
-  header {
-    background-color: #142541;
-    color: white;
-    padding: 1rem 2rem;
-    text-align: center;
-  }
-  main {
-    max-width: 900px;
-    margin: 1rem auto;
-    padding: 1rem 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
-  }
-  h1, h2 {
-    margin-top: 0;
-  }
-  .hidden {
-    display: none;
-  }
-  nav {
-    margin: 1rem 0;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-  nav button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #142541;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  nav button:hover {
-    background-color: #0f1b34;
-  }
-  .section {
-    margin-top: 1rem;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  table th, table td {
-    border: 1px solid #ddd;
-    padding: 0.5rem;
-    text-align: left;
-  }
-  table th {
-    background-color: #142541;
-    color: white;
-  }
-  button.delete-news-btn, button.delete-bet-btn {
-    background-color: #d9534f;
-    border: none;
-    color: white;
-    padding: 0.3rem 0.6rem;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  button.delete-news-btn:hover, button.delete-bet-btn:hover {
-    background-color: #c9302c;
-  }
-  input, textarea {
-    width: 100%;
-    padding: 0.4rem;
-    margin-top: 0.3rem;
-    margin-bottom: 0.7rem;
-    box-sizing: border-box;
-  }
-  label {
-    font-weight: bold;
-  }
-  #login-section {
-    max-width: 400px;
-    margin: 3rem auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
-  }
-  #login-section input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  #login-section button {
-    width: 100%;
-    padding: 0.7rem;
-    background-color: #142541;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  #login-error, #news-error, #bet-error {
-    color: red;
-    min-height: 1.3rem;
-    margin-bottom: 1rem;
-  }
-  /* Velkomstsektion */
-  #welcome-section {
-    background-color: #e9f0ff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 2px solid #142541;
-  }
-  #welcome-section h2 {
-    color: #142541;
-  }
-  #welcome-section ul {
-    list-style-type: disc;
-    margin-left: 1.5rem;
-  }
-  #welcome-section p {
-    margin: 0.5rem 0 1rem;
-  }
-  #welcome-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-  #welcome-buttons button {
-    background-color: #142541;
-    color: white;
-    border: none;
-    padding: 0.7rem 1.3rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  #welcome-buttons button:hover {
-    background-color: #0f1b34;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Geo Betting Tips</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #142541;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #142541;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section input, .section textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .section button {
+      background-color: #142541;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .section button:hover {
+      background-color: #0f1d30;
+    }
+    .card {
+      background: #f9f9f9;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 4px solid #142541;
+      border-radius: 4px;
+    }
+    .card button {
+      float: right;
+      background-color: crimson;
+      padding: 4px 8px;
+      font-size: 0.9em;
+    }
+    .welcome {
+      background: #e0e7f1;
+      padding: 15px;
+      border-left: 4px solid #142541;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .welcome p {
+      margin: 5px 0;
+    }
+    .logout-btn {
+      background-color: crimson;
+      float: right;
+      margin-top: -40px;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Admin Geo Betting Tips</h1>
-  <button id="logout-btn" style="position: absolute; top: 15px; right: 15px; background:#d9534f; border:none; color:white; padding:0.5rem 1rem; border-radius:5px; cursor:pointer;">Log ud</button>
-</header>
+  <header>
+    <h1>Admin - Geo Betting Tips</h1>
+    <button class="logout-btn" onclick="logout()">Log ud</button>
+  </header>
 
-<section id="login-section">
-  <h2>Log ind som admin</h2>
-  <input type="email" id="email" placeholder="Email" />
-  <input type="password" id="password" placeholder="Password" />
-  <div id="login-error"></div>
-  <button id="login-btn">Log ind</button>
-</section>
-
-<main class="hidden" id="admin-main">
-  <!-- Velkomstsektion -->
-  <section id="welcome-section">
-    <h2>Velkommen til Admin-panelet</h2>
-    <p>Her kan du administrere nyheder og dagens spil for Geo Betting Tips.</p>
-
-    <h3>Hvad må du som admin?</h3>
-    <ul>
-      <li>Oprette, redigere og slette nyheder.</li>
-      <li>Tilføje, redigere og slette dagens spil med odds og ekspertvurderinger.</li>
-      <li>Administrere indholdet så det altid er korrekt og opdateret.</li>
-    </ul>
-
-    <h3>Hvad må du ikke?</h3>
-    <ul>
-      <li>Dele admin-login oplysninger med andre.</li>
-      <li>Oprette indhold, der ikke er relevant eller korrekt.</li>
-      <li>Foretage ændringer uden at tjekke for fejl og kvalitet.</li>
-    </ul>
-
-    <h3>Sådan bruger du admin-panelet</h3>
-    <ul>
-      <li>Tryk på knappen <strong>"Nyheder"</strong> for at administrere nyheder: tilføj nye, slet eller opdater eksisterende.</li>
-      <li>Tryk på knappen <strong>"Dagens Spil"</strong> for at administrere dagens spil med tid, hold, logoer, odds og ekspert.</li>
-      <li>Brug knappen <strong>"Log ud"</strong> øverst til højre for at forlade admin-panelet sikkert.</li>
-    </ul>
-
-    <div id="welcome-buttons">
-      <button id="go-to-news">Nyheder</button>
-      <button id="go-to-dagensspil">Dagens Spil</button>
+  <div class="container">
+    <div class="welcome">
+      <h2>Velkommen til Admin</h2>
+      <p>✅ Som admin kan du:</p>
+      <ul>
+        <li>✔️ Tilføje og slette nyheder</li>
+        <li>✔️ Tilføje og slette dagens spil</li>
+      </ul>
+      <p>❌ Du må ikke:</p>
+      <ul>
+        <li>❌ Bruge upassende sprog</li>
+        <li>❌ Slette alt indhold uden grund</li>
+      </ul>
+      <p>ℹ️ Sådan bruger du admin siden:</p>
+      <ul>
+        <li>📰 Brug Nyheder-sektionen til at tilføje artikler</li>
+        <li>🎯 Brug Dagens Spil til at tilføje daglige spil</li>
+        <li>🗑️ Brug "Slet"-knapperne til at fjerne indhold</li>
+      </ul>
     </div>
-  </section>
 
-  <!-- Nyheder sektion -->
-  <section id="news-section" class="section hidden">
-    <h2>Administrer Nyheder</h2>
-    <label for="news-title">Titel:</label>
-    <input id="news-title" type="text" />
-    <label for="news-date">Dato:</label>
-    <input id="news-date" type="date" />
-    <label for="news-image">Billede URL:</label>
-    <input id="news-image" type="text" />
-    <label for="news-content">Indhold:</label>
-    <textarea id="news-content" rows="5"></textarea>
-    <div id="news-error"></div>
-    <button id="add-news-btn">Tilføj Nyhed</button>
+    <div class="section">
+      <h2>Nyheder</h2>
+      <input type="text" id="news-title" placeholder="Titel" />
+      <input type="text" id="news-date" placeholder="Dato (fx. 28. maj 2025)" />
+      <input type="text" id="news-image" placeholder="Billede URL" />
+      <textarea id="news-content" placeholder="Indhold"></textarea>
+      <button onclick="addNews()">Tilføj Nyhed</button>
+      <div id="news-list"></div>
+    </div>
 
-    <table id="news-table">
-      <thead>
-        <tr><th>ID</th><th>Titel</th><th>Dato</th><th>Handling</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
+    <div class="section">
+      <h2>Dagens Spil</h2>
+      <input type="text" id="bet-title" placeholder="Titel" />
+      <input type="text" id="bet-odds" placeholder="Odds" />
+      <input type="text" id="bet-prediction" placeholder="Forudsigelse" />
+      <button onclick="addBet()">Tilføj Dagens Spil</button>
+      <div id="bets-list"></div>
+    </div>
+  </div>
 
-  <!-- Dagens Spil sektion -->
-  <section id="dagensspil-section" class="section hidden">
-    <h2>Administrer Dagens Spil</h2>
-    <label for="bet-time">Tid (HH:MM):</label>
-    <input id="bet-time" type="time" />
-    <label for="bet-team1-name">Hold 1 navn:</label>
-    <input id="bet-team1-name" type="text" />
-    <label for="bet-team1-logo">Hold 1 logo URL:</label>
-    <input id="bet-team1-logo" type="text" />
-    <label for="bet-team2-name">Hold 2 navn:</label>
-    <input id="bet-team2-name" type="text" />
-    <label for="bet-team2-logo">Hold 2 logo URL:</label>
-    <input id="bet-team2-logo" type="text" />
-    <label for="bet-odds">Odds:</label>
-    <input id="bet-odds" type="number" step="0.01" />
-    <label for="bet-ekspert">Ekspert:</label>
-    <input id="bet-ekspert" type="text" />
-    <div id="bet-error"></div>
-    <button id="add-bet-btn">Tilføj Dagens Spil</button>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = "https://jfzscnbmfjkixwsftmle.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...";
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    <table id="dagensspil-table">
-      <thead>
-        <tr><th>ID</th><th>Tid</th><th>Hold 1</th><th>Logo 1</th><th>Hold 2</th><th>Logo 2</th><th>Odds</th><th>Ekspert</th><th>Handling</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const supabaseUrl = "https://ixmnxrwflpwlmmphkngd.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4bW54cndmbHB3bG1tcGhrbmdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUyNzEyNzIsImV4cCI6MjAwMDIzNzI3Mn0.Px-fP4XLx0akWqnVv52tAJk1rGSlz0gFA-Mz0E_U_XI";
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-  // Elementer
-  const loginSection = document.getElementById("login-section");
-  const adminMain = document.getElementById("admin-main");
-  const logoutBtn = document.getElementById("logout-btn");
-  const loginBtn = document.getElementById("login-btn");
-  const loginError = document.getElementById("login-error");
-
-  const welcomeSection = document.getElementById("welcome-section");
-  const newsSection = document.getElementById("news-section");
-  const dagensspilSection = document.getElementById("dagensspil-section");
-
-  const showNewsBtn = document.getElementById("go-to-news");
-  const showDagensSpilBtn = document.getElementById("go-to-dagensspil");
-
-  // Nyheder inputs og tabel
-  const newsTitle = document.getElementById("news-title");
-  const newsDate = document.getElementById("news-date");
-  const newsImage = document.getElementById("news-image");
-  const newsContent = document.getElementById("news-content");
-  const addNewsBtn = document.getElementById("add-news-btn");
-  const newsError = document.getElementById("news-error");
-  const newsTableBody = document.querySelector("#news-table tbody");
-
-  // Dagens spil inputs og tabel
-  const betTime = document.getElementById("bet-time");
-  const betTeam1Name = document.getElementById("bet-team1-name");
-  const betTeam1Logo = document.getElementById("bet-team1-logo");
-  const betTeam2Name = document.getElementById("bet-team2-name");
-  const betTeam2Logo = document.getElementById("bet-team2-logo");
-  const betOdds = document.getElementById("bet-odds");
-  const betEkspert = document.getElementById("bet-ekspert");
-  const addBetBtn = document.getElementById("add-bet-btn");
-  const betError = document.getElementById("bet-error");
-  const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
-
-  // Vis fejlbesked helper
-  function showError(element, msg) {
-    element.textContent = msg;
-    setTimeout(() => (element.textContent = ""), 4000);
-  }
-
-  // LOGIN
-  loginBtn.addEventListener("click", async () => {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    if (!email || !password) {
-      showError(loginError, "Indtast både email og password.");
-      return;
-    }
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-      showError(loginError, "Login fejlede: " + error.message);
-    } else {
-      loginSection.classList.add("hidden");
-      adminMain.classList.remove("hidden");
-      showWelcome();
-      loadNews();
-      loadDagensSpil();
-    }
-  });
-
-  // LOG UD
-  logoutBtn.addEventListener("click", async () => {
-    await supabase.auth.signOut();
-    adminMain.classList.add("hidden");
-    loginSection.classList.remove("hidden");
-    // Reset visninger
-    welcomeSection.classList.add("hidden");
-    newsSection.classList.add("hidden");
-    dagensspilSection.classList.add("hidden");
-  });
-
-  // Vis velkomstside og skjul andre sektioner
-  function showWelcome() {
-    welcomeSection.classList.remove("hidden");
-    newsSection.classList.add("hidden");
-    dagensspilSection.classList.add("hidden");
-  }
-
-  // Vis nyheder og skjul andre sektioner
-  function showNews() {
-    welcomeSection.classList.add("hidden");
-    newsSection.classList.remove("hidden");
-    dagensspilSection.classList.add("hidden");
-  }
-
-  // Vis dagens spil og skjul andre sektioner
-  function showDagensSpil() {
-    welcomeSection.classList.add("hidden");
-    newsSection.classList.add("hidden");
-    dagensspilSection.classList.remove("hidden");
-  }
-
-  showNewsBtn.addEventListener("click", showNews);
-  showDagensSpilBtn.addEventListener("click", showDagensSpil);
-
-  // Load nyheder fra supabase
-  async function loadNews() {
-    const { data, error } = await supabase.from("news").select("*").order("id", { ascending: true });
-    if (error) {
-      showError(newsError, "Kunne ikke hente nyheder: " + error.message);
-      return;
-    }
-    newsTableBody.innerHTML = "";
-    data.forEach((item) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${item.id}</td>
-        <td>${item.title}</td>
-        <td>${item.date}</td>
-        <td><button class="delete-news-btn" data-id="${item.id}">Slet</button></td>
-      `;
-      newsTableBody.appendChild(tr);
+    // Load data on page load
+    window.addEventListener('load', () => {
+      fetchNews();
+      fetchBets();
     });
 
-    // Slet knapper
-    document.querySelectorAll(".delete-news-btn").forEach((btn) =>
-      btn.addEventListener("click", async (e) => {
+    async function fetchNews() {
+      const { data, error } = await supabase.from("news").select("*");
+      const list = document.getElementById("news-list");
+      list.innerHTML = "";
+      data?.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `<strong>${item.title}</strong> - ${item.date}
+          <button data-id="${item.id}" class="delete-news">Slet</button>`;
+        list.appendChild(div);
+      });
+    }
+
+    async function fetchBets() {
+      const { data, error } = await supabase.from("dagens_spil").select("*");
+      const list = document.getElementById("bets-list");
+      list.innerHTML = "";
+      data?.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `<strong>${item.title}</strong> - Odds: ${item.odds} - ${item.prediction}
+          <button data-id="${item.id}" class="delete-bet">Slet</button>`;
+        list.appendChild(div);
+      });
+    }
+
+    async function addNews() {
+      const title = document.getElementById("news-title").value;
+      const date = document.getElementById("news-date").value;
+      const image = document.getElementById("news-image").value;
+      const content = document.getElementById("news-content").value;
+
+      if (!title || !date || !content) return alert("Udfyld alle felter!");
+
+      await supabase.from("news").insert([{ title, date, image, content }]);
+      fetchNews();
+      document.getElementById("news-title").value = "";
+      document.getElementById("news-date").value = "";
+      document.getElementById("news-image").value = "";
+      document.getElementById("news-content").value = "";
+    }
+
+    async function addBet() {
+      const title = document.getElementById("bet-title").value;
+      const odds = document.getElementById("bet-odds").value;
+      const prediction = document.getElementById("bet-prediction").value;
+
+      if (!title || !odds || !prediction) return alert("Udfyld alle felter!");
+
+      await supabase.from("dagens_spil").insert([{ title, odds, prediction }]);
+      fetchBets();
+      document.getElementById("bet-title").value = "";
+      document.getElementById("bet-odds").value = "";
+      document.getElementById("bet-prediction").value = "";
+    }
+
+    // Event delegation for delete buttons
+    document.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("delete-news")) {
         const id = e.target.dataset.id;
-        if (confirm("Er du sikker på, du vil slette denne nyhed?")) {
-          const { error } = await supabase.from("news").delete().eq("id", id);
-          if (error) {
-            alert("Fejl ved sletning: " + error.message);
-          } else {
-            loadNews();
-          }
-        }
-      })
-    );
-  }
-
-  // Tilføj nyhed
-  addNewsBtn.addEventListener("click", async () => {
-    if (!newsTitle.value || !newsDate.value || !newsImage.value || !newsContent.value) {
-      showError(newsError, "Udfyld alle felter.");
-      return;
-    }
-    const { error } = await supabase.from("news").insert([{
-      title: newsTitle.value,
-      date: newsDate.value,
-      image: newsImage.value,
-      content: newsContent.value
-    }]);
-    if (error) {
-      showError(newsError, "Fejl ved tilføjelse: " + error.message);
-    } else {
-      newsTitle.value = "";
-      newsDate.value = "";
-      newsImage.value = "";
-      newsContent.value = "";
-      loadNews();
-    }
-  });
-
-  // Load dagens spil fra supabase
-  async function loadDagensSpil() {
-    const { data, error } = await supabase.from("dagensspil").select("*").order("id", { ascending: true });
-    if (error) {
-      showError(betError, "Kunne ikke hente dagens spil: " + error.message);
-      return;
-    }
-    dagensspilTableBody.innerHTML = "";
-    data.forEach((item) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${item.id}</td>
-        <td>${item.tid}</td>
-        <td>${item.hold1navn}</td>
-        <td><img src="${item.hold1logo}" alt="${item.hold1navn}" width="40" height="25"></td>
-        <td>${item.hold2navn}</td>
-        <td><img src="${item.hold2logo}" alt="${item.hold2navn}" width="40" height="25"></td>
-        <td>${item.odds}</td>
-        <td>${item.ekspert}</td>
-        <td><button class="delete-bet-btn" data-id="${item.id}">Slet</button></td>
-      `;
-      dagensspilTableBody.appendChild(tr);
+        await supabase.from("news").delete().eq("id", id);
+        fetchNews();
+      }
+      if (e.target.classList.contains("delete-bet")) {
+        const id = e.target.dataset.id;
+        await supabase.from("dagens_spil").delete().eq("id", id);
+        fetchBets();
+      }
     });
 
-    // Slet knapper
-    document.querySelectorAll(".delete-bet-btn").forEach((btn) =>
-      btn.addEventListener("click", async (e) => {
-        const id = e.target.dataset.id;
-        if (confirm("Er du sikker på, du vil slette dette spil?")) {
-          const { error } = await supabase.from("dagensspil").delete().eq("id", id);
-          if (error) {
-            alert("Fejl ved sletning: " + error.message);
-          } else {
-            loadDagensSpil();
-          }
-        }
-      })
-    );
-  }
-
-  // Tilføj dagens spil
-  addBetBtn.addEventListener("click", async () => {
-    if (!betTime.value || !betTeam1Name.value || !betTeam1Logo.value || !betTeam2Name.value || !betTeam2Logo.value || !betOdds.value || !betEkspert.value) {
-      showError(betError, "Udfyld alle felter.");
-      return;
+    function logout() {
+      alert("Du er logget ud!");
+      // Implementer evt. redirect her
     }
-    const { error } = await supabase.from("dagensspil").insert([{
-      tid: betTime.value,
-      hold1navn: betTeam1Name.value,
-      hold1logo: betTeam1Logo.value,
-      hold2navn: betTeam2Name.value,
-      hold2logo: betTeam2Logo.value,
-      odds: betOdds.value,
-      ekspert: betEkspert.value
-    }]);
-    if (error) {
-      showError(betError, "Fejl ved tilføjelse: " + error.message);
-    } else {
-      betTime.value = "";
-      betTeam1Name.value = "";
-      betTeam1Logo.value = "";
-      betTeam2Name.value = "";
-      betTeam2Logo.value = "";
-      betOdds.value = "";
-      betEkspert.value = "";
-      loadDagensSpil();
-    }
-  });
-</script>
+  </script>
 </body>
 </html>
