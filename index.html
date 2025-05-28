@@ -263,364 +263,194 @@
 }
 .nyheds-kort img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 180px;
   object-fit: cover;
-  flex-shrink: 0;
 }
-.nyheds-tekst {
+.nyheds-kort-content {
   padding: 15px;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
-.nyheds-tekst h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.1rem;
+.nyheds-kort-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
   color: #142541;
 }
-.nyheds-tekst p {
-  flex-grow: 1;
-  margin: 0 0 10px 0;
-  font-size: 0.95rem;
+.nyheds-kort-content p {
+  font-size: 1rem;
   color: #555;
-  line-height: 1.4;
+  margin-bottom: 15px;
 }
-.dato {
-  font-size: 0.8rem;
-  color: #999;
-  font-style: italic;
-  text-align: right;
+.nyheds-kort-content a {
+  color: #0033cc;
+  font-weight: bold;
+  text-decoration: none;
 }
-@media (max-width: 600px) {
-  .nyheds-grid {
-    grid-template-columns: 1fr;
-  }
+.nyheds-kort-content a:hover {
+  text-decoration: underline;
 }
   </style>
 </head>
 <body>
-
-  
-  <header class="navbar">
+  <nav class="navbar">
     <div class="logo-container">
-      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
-        <img src="logo.png" alt="Logo" class="logo">
-        <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
-        </div>
-      </a>
+      <img src="logo.png" alt="Geo Betting Tips logo" class="logo" />
+      <div class="logo-text">
+        <span class="site-name">Geo Betting Tips</span>
+        <span class="slogan">De bedste betting tips</span>
+      </div>
     </div>
-
-    <nav class="nav-container">
+    <div class="nav-container">
       <ul class="nav-links">
-        <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
+        <li><a href="#">Forside</a></li>
         <li class="dropdown">
-          <a href="#">Mere</a>
+          <a href="#">Tips</a>
           <ul>
-            <li><a href="betalingstips.html">Betalingstips</a></li>
-            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="#">Fodbold</a></li>
+            <li><a href="#">Tennis</a></li>
+            <li><a href="#">Basketball</a></li>
           </ul>
         </li>
+        <li><a href="#">Statistik</a></li>
+        <li><a href="#">Kontakt</a></li>
       </ul>
-
       <div class="search-wrapper">
-        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
+        <input type="search" id="search" class="search-input" placeholder="Søg spil..." autocomplete="off" />
         <ul id="suggestions" class="suggestions"></ul>
       </div>
+    </div>
+  </nav>
+
+  <section class="sub-header">
+    <nav class="breadcrumb" aria-label="Du er her:">
+      <a href="#">Forside</a> &gt; Tips &gt; Dagens spil
     </nav>
-  </header>
+  </section>
 
-  <div class="sub-header">
-    <nav class="breadcrumb">
-      <a href="index.html">Forside</a> &raquo; <span>Forside</span>
-    </nav>
-    <p class="disclaimer">
-      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
-    </p>
-  </div>
-
-<script>
-  let items = [];
-
-  // Hent data fra søgefelt.json
-  fetch('søgefelt.json')
-    .then(response => {
-      if (!response.ok) {
-        console.error('Fejl ved hentning af søgefelt.json:', response.status);
-        return [];
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Søge-data hentet:', data);
-      items = data;
-    })
-    .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
-
-  const input = document.getElementById('search');
-  const suggBox = document.getElementById('suggestions');
-
-  input.addEventListener('input', () => {
-    const val = input.value.trim().toLowerCase();
-    suggBox.innerHTML = '';
-    if (!val) {
-      suggBox.style.display = 'none';
-      return;
-    }
-    // Find matches i items
-    const matches = items.filter(i => i.title.toLowerCase().includes(val));
-
-    if (!matches.length) {
-      suggBox.style.display = 'none';
-      return;
-    }
-
-    // Juster dropdown bredde til input bredde
-    suggBox.style.width = input.offsetWidth + 'px';
-
-    // Lav liste af matches i dropdown
-    matches.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item.title;
-      li.addEventListener('click', () => {
-        window.location.href = item.url;
-      });
-      suggBox.appendChild(li);
-    });
-
-    suggBox.style.display = 'block';
-  });
-
-  // Luk dropdown hvis klik udenfor søgefeltet
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.search-wrapper')) {
-      suggBox.style.display = 'none';
-    }
-  });
-</script>
-
-  <script>
-  // Hent første <h1> på siden
-  const h1 = document.querySelector('h1');
-  const siteName = 'Geo Betting Tips';
-
-  if (h1) {
-    // Sæt titlen til: "Overskrift | Geo Betting Tips"
-    document.title = `${h1.textContent.trim()} | ${siteName}`;
-  } else {
-    // Hvis der ikke er h1, bare standard titel
-    document.title = siteName;
-  }
-</script>
-
-
-
-
-  <!-- dagens spil sektion -->
-
-<section id="dagens-spil">
-  <h2>Dagens Spil</h2>
-  <div class="spil-container" id="spil-container"></div>
-</section>
-
-<script>
-  fetch('dagensspil.json')
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById('spil-container');
-      data.forEach(spil => {
-        const kort = document.createElement('div');
-        kort.className = 'spil-kort';
-        kort.innerHTML = `
-          <div class="info-højre">
-            <div class="tidspunkt">${spil.tidspunkt}</div>
-          </div>
-          <div class="liga">${spil.liga}</div>
+  <main>
+    <section id="dagens-spil">
+      <h2>Dagens spil</h2>
+      <div class="spil-container">
+        <div class="spil-kort">
+          <div class="info-højre">Tips af ekspert</div>
+          <div class="liga">Superligaen</div>
           <div class="hold-liste">
             <div class="hold">
-              <img src="${spil.hjemme_logo}" alt="${spil.hjemmehold} logo" />
-              <span>${spil.hjemmehold}</span>
+              <img src="brondby_logo.png" alt="Brøndby IF logo" />
+              <span>Brøndby IF</span>
             </div>
             <div class="hold">
-              <img src="${spil.ude_logo}" alt="${spil.udehold} logo" />
-              <span>${spil.udehold}</span>
+              <img src="fcm_logo.png" alt="FC Midtjylland logo" />
+              <span>FC Midtjylland</span>
             </div>
           </div>
           <div class="bund-bjælke">
-            <span class="odds">${spil.odds}</span>
-            <span class="ekspert">${spil.ekspert}</span>
+            <span class="odds">Odds: 1.85</span>
+            <span class="ekspert">Ekspert: Ole Hansen</span>
           </div>
-        `;
-        container.appendChild(kort);
-      });
-    })
-    .catch(error => console.error('Fejl ved indlæsning af dagensspil.json:', error));
-</script>
+        </div>
 
+        <div class="spil-kort">
+          <div class="info-højre">Tips af ekspert</div>
+          <div class="liga">Premier League</div>
+          <div class="hold-liste">
+            <div class="hold">
+              <img src="manu_logo.png" alt="Manchester United logo" />
+              <span>Manchester United</span>
+            </div>
+            <div class="hold">
+              <img src="chelsea_logo.png" alt="Chelsea FC logo" />
+              <span>Chelsea FC</span>
+            </div>
+          </div>
+          <div class="bund-bjælke">
+            <span class="odds">Odds: 2.10</span>
+            <span class="ekspert">Ekspert: Maria Jensen</span>
+          </div>
+        </div>
 
-
-  
-    <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
-
-    <!-- nyhed sektion -->
-<section class="nyheder-sektion">
-  <h2>Nyheder</h2>
-  <div class="nyheds-grid">
-    <div class="nyheds-kort">
-      <img src="https://static1.squarespace.com/static/573c1b7d01dbae9b52cd0936/573d6bdc37013bcc611eefd5/5e3ea63be14ad269a8ca9a24/1581168769757/GettyImages-531367362.jpg?format=1500w" alt="Nyhedsbillede 1" />
-      <div class="nyheds-tekst">
-        <h3>Stor målfest i Sønderjyskes sejr over Vejle</h3>
-        <p>Sønderjyske og Vejle var begge sikret overlevelse inden kampen, og efter en målrig anden halvleg vandt Sønderjyske med 3-2 over hjemmeholdet.</p>
-        <span class="dato">24. maj 2025 KL. 17.00</span>
       </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn-free.tv2i.dk/e/d/i/editorial/2/3/2/232c8cd4-716d-4c83-9a93-6011c6a8c234?ixlib=js-3.8.0&w=624&h=351&q=45&auto=format&fit=crop&rect64=MCw1MDgsNTYxNiwzMTYz&s=b1e789e92a2d99fe88010d66c9f792e5" alt="Nyhedsbillede 2" />
-      <div class="nyheds-tekst">
-        <h3>AaB rykker ud med et brag – rasende fans stjal billedet</h3>
-        <p>De to nedrykkere mødtes i nedrykningsspillets sidste kamp. Her tabte AaB 3-1 til Lyngby, hvorfor AaB ender nederst i tabellen. Undervejs i kampen viste AaB-fansene deres utilfredshed med klubbens tyske ejerskab med massevis af bannere og protester.</p>
-        <span class="dato">23. maj 2025 KL. 17.30</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://bt.bmcdn.dk/users/berlingske/images/127598128.webp?t%5Bcrop%5D%5Bx%5D=0&t%5Bcrop%5D%5By%5D=0&t%5Bcrop%5D%5Bwidth%5D=1920&t%5Bcrop%5D%5Bheight%5D=891&t%5Bquality%5D=85&t%5Bresize%5D%5Bwidth%5D=1376&accessToken=9e4789062b6762adfeefdc1b5f9ef0124e389639b413d21827baac467bdfa7fb" alt="Nyhedsbillede 3" />
-      <div class="nyheds-tekst">
-        <h3>Vanvittige scener i England: Sunderland rykker op i Premier League</h3>
-        <p>Sunderland tager den tredje og sidste billet til Englands bedste fodboldrække.
+    </section>
 
-Med en sejr på 2-1 over Sheffield United på Wembley i London lykkedes det Sunderland at vinde milliardkampen.Det kaldes kampen, fordi det er vurderet, at en oprykker tjener i omegnen af det beløb og måske endnu mere på at rykke op i Premier League.</p>
-        <span class="dato">24. maj 2025 KL. 18.00</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn-free-external.tv2i.dk/https%3A%2F%2Fcf-images.eu-west-1.prod.boltdns.net%2Fv1%2Fjit%2F6293768613001%2F26c02c6c-c014-41a1-9e40-eaf3420e1f9b%2Fmain%2F1280x720%2F20s714ms%2Fmatch%2Fimage.jpg?ixlib=js-3.8.0&w=624&h=351&q=45&auto=format&fit=crop&s=987b96bb05b59840b944d7c51569daef" alt="Nyhedsbillede 4" />
-      <div class="nyheds-tekst">
-        <h3>Utrolig dansk succes – Asgreen vinder i Giroen</h3>
-        <p>Den utrolige danske succes i Giroen fortsatte lørdag på 14. etape, hvor danske Kasper Asgreen vandt efter en lang dag i udbrud. Det er den femte danske etapesejr i årets Giro, efter Mads Pedersen allerede har vundet fire.</p>
-        <span class="dato">24. maj 2025 KL: 18.30</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn-free.tv2i.dk/e/d/i/editorial/6/1/2/612c207b-c477-4f71-9932-394b4bb197cd?ixlib=js-3.8.0&w=624&h=351&q=45&auto=format&fit=crop&rect64=MCwyNDgsNDc0NCwyNjY5&s=d8232b6c425b5ebd1f87f214bea64490" alt="Nyhedsbillede 5" />
-      <div class="nyheds-tekst">
-        <h3>Djokovic når ny milepæl efter maratonfinale</h3>
-        <p>Efter mere end tre timers tennis på gruset i Genève vandt Novak Djokovic ATP-titel nummer 100.</p>
-        <span class="dato">25. maj 2025 KL 19.00</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn-free.tv2i.dk/e/d/i/editorial/6/b/9/6b94853c-2d1c-4e8e-8a6b-610b9474adc5?ixlib=js-3.8.0&w=1280&h=720&q=45&auto=format&fit=crop&rect64=MCw0MDQsNDM1NCwyNDQ3&s=c569aeae4641c0ac85463d73ebb8a271" alt="Nyhedsbillede 6" />
-      <div class="nyheds-tekst">
-        <h3>Nu er det officielt: Legende takker af i Real Madrid</h3>
-        <p>Gennem 13 år har Luka Modric været en af de mest fremtrædende spillere i Real Madrid, men nu slutter det snart.</p>
-        <span class="dato">19. maj 2025</span>
-      </div>
-    </div>
-  </div>
-</section>
+    <section class="welcome-box">
+      <h2>Velkommen til Geo Betting Tips</h2>
+      <p>Her finder du de bedste betting tips og analyser for dagens kampe.</p>
+      <p>Følg vores eksperter og øg dine chancer for gevinst!</p>
+    </section>
 
+    <section class="nyheder-sektion">
+      <h2>Seneste nyheder</h2>
+      <div class="nyheds-grid">
+        <div class="nyheds-kort">
+          <img src="nyhed1.jpg" alt="Nyhed 1" />
+          <div class="nyheds-kort-content">
+            <h3>Fodbold sæsonstart nærmer sig</h3>
+            <p>Vi ser nærmere på de bedste hold til den kommende sæson.</p>
+            <a href="#">Læs mere</a>
+          </div>
+        </div>
 
-    <!-- Velkommen boks sektion -->
-<div class="welcome-box">
-  <h2>Velkommen til Geo Betting Tips – odds, analyser og betting tips</h2>
-  <p>
-    På Geo Betting Tips finder du alle de informationer, du skal bruge for at blive en succesfuld sportsbetter.
-    Hvad skal der til for at slå bookmakerne? Følg vores skarpe eksperter for at få spiltips på sportsgrene og events, de specifikt har specialiseret sig i.
-  </p>
-  <p>
-    Værktøjerne til at vinde på betting tips finder du på Geo Betting Tips.
-  </p>
-</div>
+        <div class="nyheds-kort">
+          <img src="nyhed2.jpg" alt="Nyhed 2" />
+          <div class="nyheds-kort-content">
+            <h3>Tennis: Store turneringer i vente</h3>
+            <p>Analyse af favoritterne i de næste Grand Slam turneringer.</p>
+            <a href="#">Læs mere</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    
-  
-
-  <!-- Nyhedsbrev Pop-up -->
-  <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white p-8 rounded shadow-lg max-w-md w-full relative">
-      <button id="closePopup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">&times;</button>
-      <h2 class="text-2xl font-bold mb-4 text-main">Tilmeld dig vores nyhedsbrev</h2>
-      <p class="mb-4">Få de bedste bettingtips direkte i din inbox.</p>
-      <form id="newsletterForm" class="flex flex-col gap-4">
-        <input type="email" id="emailInput" placeholder="Din email" required class="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-main" />
-        <button type="submit" class="btn-main py-2 rounded font-semibold">Tilmeld</button>
-      </form>
-      <p id="formMessage" class="mt-3 text-green-600 hidden"></p>
-    </div>
-  </div>
+  <div class="disclaimer">Ansvarligt spil anbefales. Du skal være over 18 år.</div>
 
   <script>
-    // Popup og localStorage kontrol
-    const popup = document.getElementById('popup');
-    const closePopupBtn = document.getElementById('closePopup');
-    const newsletterForm = document.getElementById('newsletterForm');
-    const emailInput = document.getElementById('emailInput');
-    const formMessage = document.getElementById('formMessage');
+    const searchInput = document.getElementById('search');
+    const suggestions = document.getElementById('suggestions');
 
-    // Vis popup kun hvis ikke tidligere vist
-    window.addEventListener('load', () => {
-      const popupSeen = localStorage.getItem('popupSeen');
-      if (!popupSeen) {
-        popup.classList.remove('hidden');
-      }
-    });
+    const spilList = [
+      "Brøndby IF vs FC Midtjylland",
+      "Manchester United vs Chelsea FC",
+      "Real Madrid vs Barcelona",
+      "Tennis French Open Finale",
+      "NBA Finals Game 7",
+      "ATP Wimbledon Semifinal",
+      "Liverpool vs Arsenal",
+      "Bayern München vs Borussia Dortmund"
+    ];
 
-    // Luk popup og sæt flag i localStorage
-    function closePopup() {
-      popup.classList.add('hidden');
-      localStorage.setItem('popupSeen', 'true');
-    }
+    searchInput.addEventListener('input', () => {
+      const input = searchInput.value.toLowerCase();
+      suggestions.innerHTML = '';
 
-    closePopupBtn.addEventListener('click', closePopup);
-
-    // Formular håndtering
-    newsletterForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const email = emailInput.value.trim();
-
-      if (!email) {
-        alert('Indtast venligst en gyldig email.');
+      if (!input) {
+        suggestions.style.display = 'none';
         return;
       }
 
-      // Her indsæt din Supabase API-kald eller fetch til din backend for at gemme email
-      // Eksempel: 
-      // await supabase.from('nyhedsbrev').insert([{ email }]);
+      const filtered = spilList.filter(spil => spil.toLowerCase().includes(input));
 
-      // For demo viser vi kun succes besked og lukker popup
-      formMessage.textContent = 'Tak for din tilmelding!';
-      formMessage.classList.remove('hidden');
+      if (filtered.length === 0) {
+        suggestions.style.display = 'none';
+        return;
+      }
 
-      // Gem at popup er set (så den ikke vises igen)
-      localStorage.setItem('popupSeen', 'true');
+      filtered.forEach(spil => {
+        const li = document.createElement('li');
+        li.textContent = spil;
+        li.addEventListener('click', () => {
+          searchInput.value = spil;
+          suggestions.style.display = 'none';
+        });
+        suggestions.appendChild(li);
+      });
 
-      // Luk popup efter 2 sekunder
-      setTimeout(() => {
-        closePopup();
-      }, 2000);
+      suggestions.style.display = 'block';
     });
 
-    // Fanebytte funktion for Seneste / Tilbud
-    const btnSeneste = document.getElementById('btnSeneste');
-    const btnTilbud = document.getElementById('btnTilbud');
-    const seneste = document.getElementById('seneste');
-    const tilbud = document.getElementById('tilbud');
-
-    btnSeneste.addEventListener('click', () => {
-      seneste.classList.remove('hidden');
-      tilbud.classList.add('hidden');
-    });
-
-    btnTilbud.addEventListener('click', () => {
-      tilbud.classList.remove('hidden');
-      seneste.classList.add('hidden');
+    document.addEventListener('click', (e) => {
+      if (!searchInput.contains(e.target)) {
+        suggestions.style.display = 'none';
+      }
     });
   </script>
 </body>
