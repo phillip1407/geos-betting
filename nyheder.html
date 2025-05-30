@@ -33,12 +33,73 @@
     .suggestions { position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto; z-index:10; display:none; }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
+
+    /* --- Breadcrumb & Disclaimer styles --- */
+    .sub-header {
+      padding: 20px 140px;
+      background: #fff;
+      border-bottom: 1px solid #e0e7f6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+    }
+    .breadcrumb {
+      font-size: 14px;
+      color: #142541;
+      flex-shrink: 0;
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: #0033cc;
+      font-weight: bold;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .disclaimer {
+      font-size: 14px;
+      color: #142541 ;
+      text-align: center;
+      margin: 10px 0 10px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #e0e7f6;
+      max-width: 100%;
+      box-sizing: border-box;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    /* Nyheder visning */
     .nyheder-container { max-width:800px; margin:40px auto; padding:0 20px; }
     .nyhed { background:#fff; margin-bottom:30px; padding:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
     .nyhed img { max-width:100%; border-radius:6px; margin-bottom:15px; }
     .nyhed h2 { font-size:24px; color:#142541; margin-bottom:10px; }
     .nyhed .dato { font-size:14px; color:#777; margin-bottom:15px; }
     .nyhed p { font-size:16px; color:#333; line-height:1.6; }
+
+    /* --- Responsivitet --- */
+    @media (max-width: 1200px) {
+      .navbar { padding:15px 30px; }
+      .sub-header { padding: 20px 20px; }
+    }
+    @media (max-width: 900px) {
+      .navbar { padding: 15px 10px; flex-direction: column; gap: 10px; }
+      .sub-header { padding: 20px 10px; flex-direction: column; align-items: flex-start; }
+      .disclaimer { position: static; left: auto; transform: none; white-space: normal; width: 100%; }
+      .logo { width: 38px; height: 38px; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { gap: 10px; font-size: 14px; flex-wrap: wrap; }
+      .logo-text .site-name { font-size: 18px; }
+      .search-input { width: 120px; font-size: 14px; }
+      .nyheder-container { padding: 0 3px; }
+      .nyhed { padding: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -72,6 +133,16 @@
       </div>
     </nav>
   </header>
+
+  <!-- Breadcrumb + Disclaimer -->
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a> &raquo; <span>Nyheder</span>
+    </nav>
+    <p class="disclaimer">
+      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+    </p>
+  </div>
 
   <main class="nyheder-container" id="nyheder">
     <!-- Nyhederne loader her -->
