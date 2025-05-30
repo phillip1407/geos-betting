@@ -82,9 +82,9 @@
       .logo-text .site-name { font-size: 16px; }
       .search-input { width: 90px; font-size: 13px; }
     }
+
     /* Nyheder visning */
     .nyheder-container { max-width:900px; margin:40px auto; padding:0 12px; }
-
     .nyhed-boks {
       background:#fff;
       margin-bottom:22px;
@@ -94,29 +94,35 @@
       transition: box-shadow 0.2s;
       border: 1px solid #e0e7f6;
       display: flex;
-      align-items: stretch;
-      min-height: 160px;
+      align-items: center;
+      min-height: 220px;
       position: relative;
     }
-    .nyhed-boks:hover {
-      box-shadow: 0 6px 15px rgba(20,37,65,0.09);
+    .nyhed-billede-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 320px;
+      max-width: 320px;
+      background: #eee;
+      height: 100%;
     }
     .nyhed-billede {
-      width: 180px;
-      height: 160px;
+      width: 300px;
+      height: 220px;
       object-fit: cover;
       border-radius: 8px 0 0 8px;
-      background: #eee;
       display: block;
-      flex-shrink: 0;
+      background: #eee;
     }
     .nyhed-tekst {
-      padding: 18px 20px 12px 20px;
+      padding: 28px 28px 22px 28px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       flex: 1 1 0%;
       min-width: 0;
+      justify-content: center;
     }
     .nyhed-titel {
       font-size: 1.2rem;
@@ -177,10 +183,14 @@
       0% { box-shadow: 0 0 0 8px #f0ab4cBB; }
       100% { box-shadow: 0 0 0 0px #f0ab4c00; }
     }
-    @media (max-width:700px) {
+    @media (max-width:900px) {
       .nyhed-boks { flex-direction: column; min-height: unset; }
-      .nyhed-billede { width: 100%; height: 160px; border-radius: 8px 8px 0 0; }
-      .nyhed-tekst { padding: 10px 8px 8px 8px; }
+      .nyhed-billede-wrapper, .nyhed-billede { 
+        max-width: 100%; min-width: 0; width: 100%; border-radius: 8px 8px 0 0; 
+        justify-content: flex-start; 
+      }
+      .nyhed-billede { height: 220px; }
+      .nyhed-tekst { padding: 18px 12px 16px 12px; }
     }
   </style>
 </head>
@@ -238,9 +248,8 @@
 
     // Dato-format
     function formatDato(dateStr) {
-      // Hvis din Supabase giver dato+tid, fx "2025-06-01 12:30"
       const d = new Date(dateStr);
-      if (isNaN(d.getTime())) return dateStr; // fallback
+      if (isNaN(d.getTime())) return dateStr;
       const dd = String(d.getDate()).padStart(2, '0');
       const mm = String(d.getMonth()+1).padStart(2, '0');
       const yyyy = d.getFullYear();
@@ -248,8 +257,6 @@
       const min = String(d.getMinutes()).padStart(2, '0');
       return `${dd}-${mm}-${yyyy} ${hh}:${min}`;
     }
-
-    let allNews = [];
 
     // Load all news on page load
     async function loadNews() {
@@ -264,7 +271,6 @@
         nyhederContainer.innerHTML = '<p style="text-align:center;color:#888;">Ingen nyheder fundet.</p>';
         return;
       }
-      allNews = data;
       nyhederContainer.innerHTML = "";
       data.forEach(nyhed => {
         let kortTekst = nyhed.content;
@@ -273,7 +279,9 @@
         boks.className = "nyhed-boks";
         boks.id = "nyhed-" + nyhed.id;
         boks.innerHTML = `
-          ${nyhed.image ? `<img class="nyhed-billede" src="${nyhed.image}" alt="${nyhed.title}" loading="lazy"/>` : `<div class="nyhed-billede" style="background:#ddd"></div>`}
+          <div class="nyhed-billede-wrapper">
+            ${nyhed.image ? `<img class="nyhed-billede" src="${nyhed.image}" alt="${nyhed.title}" loading="lazy"/>` : `<div class="nyhed-billede" style="background:#ddd"></div>`}
+          </div>
           <div class="nyhed-tekst">
             <div class="nyhed-titel">${nyhed.title || ""}</div>
             <div class="nyhed-dato">${formatDato(nyhed.date) || ""}</div>
@@ -289,7 +297,7 @@
           const isOpen = boks.classList.toggle("udfoldet");
           btn.textContent = isOpen ? "Vis mindre" : "Læs mere";
         });
-        boks.querySelector('.nyhed-indhold').style.display = "block"; // For smooth max-height animation
+        boks.querySelector('.nyhed-indhold').style.display = "block";
         boks.classList.remove("udfoldet");
         btn.textContent = "Læs mere";
         nyhederContainer.appendChild(boks);
