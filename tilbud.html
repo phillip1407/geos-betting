@@ -13,15 +13,31 @@
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
 
-    .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
-    .logo-container { display:flex; align-items:center; gap:10px; }
-    .logo { width:50px; height:50px; }
-    .logo-text { display:flex; flex-direction:column; }
-    .site-name { color:#fff; font-size:24px; font-weight:bold; }
-    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
+    .header-wrap {
+      background: #142541;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0;
+    }
 
-    .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
-    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 8vw 8px 8vw;
+      background: transparent;
+    }
+    .logo-container { display:flex; align-items:center; gap:10px; min-width: 0;}
+    .logo { width:50px; height:50px; }
+    .logo-text { display:flex; flex-direction:column; min-width: 0;}
+    .site-name { color:#fff; font-size:24px; font-weight:bold; white-space:nowrap; }
+    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; white-space:nowrap; }
+
+    .nav-container { display:flex; flex-wrap: wrap; align-items:center; min-width:0; }
+    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; flex-wrap: wrap;}
     .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
     .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
     .nav-links li a:hover::after { width:100%; } 
@@ -58,16 +74,24 @@
     .suggestions li:hover { background:#f0f0f0; }
 
     .sub-header {
-      padding: 20px 140px;
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0;
     }
-
+    .breadcrumb-row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px 8vw 0 8vw;
+      box-sizing: border-box;
+      background: #fff;
+    }
     .breadcrumb {
       font-size: 14px;
       color: #142541;
@@ -81,14 +105,21 @@
     .breadcrumb a:hover {
       text-decoration: underline;
     }
-
+    .disclaimer-row {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px 8vw 15px 8vw;
+      box-sizing: border-box;
+      background: #fff;
+    }
     .disclaimer {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       font-size: 14px;
       color: #142541;
       white-space: nowrap;
+      text-align: center;
+      width: 100%;
     }
 
     .purpose-box {
@@ -176,56 +207,80 @@
       .purpose-box { width: 90%; padding: 20px; }
       .offers-container { gap: 30px; }
       .offer-card { width: 300px; }
+      .navbar { padding: 15px 3vw 8px 3vw; }
+      .breadcrumb-row, .disclaimer-row { padding-left: 3vw; padding-right: 3vw;}
+    }
+
+    @media (max-width: 900px) {
+      .navbar, .breadcrumb-row, .disclaimer-row { flex-direction: column; align-items: flex-start;}
+      .navbar { gap: 15px;}
     }
 
     @media (max-width: 768px) {
       .offers-container { flex-direction: column; align-items: center; }
       .offer-card { width: 90%; }
+      .purpose-box { width: 96%; }
+      .navbar { padding: 10px 1vw 6px 1vw; }
+      .breadcrumb-row, .disclaimer-row { padding: 5px 1vw;}
+      .site-name, .slogan { font-size: 18px;}
+      .logo { width:38px; height:38px;}
+      .nav-links { gap:14px; margin-right:0;}
+      .search-input { width:120px; font-size:14px;}
+    }
+
+    @media (max-width: 500px) {
+      .breadcrumb-row, .disclaimer-row { padding-left: 2vw; padding-right: 2vw;}
+      .purpose-box { padding: 12px 5px; }
     }
   </style>
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="logo-container">
-      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
-        <img src="logo.png" alt="Logo" class="logo">
-        <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
-        </div>
-      </a>
-    </div>
-
-    <nav class="nav-container">
-      <ul class="nav-links">
-        <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
-        <li class="dropdown">
-          <a href="#">Mere</a>
-          <ul>
-            <li><a href="betalingstips.html">Betalingstips</a></li>
-            <li><a href="Sport.html">Sport</a></li>
-            <li><a href="faq.html">FAQ</a></li> 
-          </ul>
-        </li>
-      </ul>
-
-      <div class="search-wrapper">
-        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
-        <ul id="suggestions" class="suggestions"></ul>
+  <div class="header-wrap">
+    <div class="navbar">
+      <div class="logo-container">
+        <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+          <img src="logo.png" alt="Logo" class="logo">
+          <div class="logo-text">
+            <h1 class="site-name">Geo Betting Tips</h1>
+            <p class="slogan">Ekspertanalyser til din betting</p>
+          </div>
+        </a>
       </div>
-    </nav>
-  </header>
 
-  <div class="sub-header">
-    <nav class="breadcrumb">
-      <a href="index.html">Forside</a> &raquo; <span>Tilbud</span>
-    </nav>
-    <p class="disclaimer">
-      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
-    </p>
+      <nav class="nav-container">
+        <ul class="nav-links">
+          <li><a href="nyheder.html">Nyheder</a></li>
+          <li><a href="Analyser.html">Analyser</a></li>
+          <li><a href="tilbud.html">Tilbud</a></li>
+          <li class="dropdown">
+            <a href="#">Mere</a>
+            <ul>
+              <li><a href="betalingstips.html">Betalingstips</a></li>
+              <li><a href="Sport.html">Sport</a></li>
+              <li><a href="faq.html">FAQ</a></li> 
+            </ul>
+          </li>
+        </ul>
+
+        <div class="search-wrapper">
+          <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
+          <ul id="suggestions" class="suggestions"></ul>
+        </div>
+      </nav>
+    </div>
+    <div class="sub-header">
+      <div class="breadcrumb-row">
+        <nav class="breadcrumb">
+          <a href="index.html">Forside</a> &raquo; <span>Tilbud</span>
+        </nav>
+      </div>
+      <div class="disclaimer-row">
+        <p class="disclaimer">
+          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        </p>
+      </div>
+    </div>
   </div>
 
   <div class="purpose-box">
@@ -241,8 +296,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script>
     // Erstat med dine egne Supabase project URL og anon key
-    const SUPABASE_URL = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
+    const SUPABASE_URL = 'https://your-project-id.supabase.co';
+    const SUPABASE_KEY = 'your-anon-key';
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     // Søgefelt loader (samme som før)
