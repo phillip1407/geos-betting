@@ -2,619 +2,363 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geo Betting Tips|Admin side</title>
-  <link rel="icon" href="logo.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nyheder | Geo Betting Tips</title>
+  <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      background: #f4f6f8;
+    * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
+    body { background:#f9f9f9; }
+    .navbar { background:#142541; padding:15px 40px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; }
+    .logo-container { display:flex; align-items:center; gap:10px; }
+    .logo { width:38px; height:38px; }
+    .logo-text { display:flex; flex-direction:column; }
+    .site-name { color:#fff; font-size:22px; font-weight:bold; }
+    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
+    .nav-container { display:flex; flex-wrap:wrap; align-items:center; }
+    .nav-links { list-style:none; display:flex; gap:22px; margin-right:10px; }
+    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:16px; position:relative; padding-bottom:5px; transition:color .3s; }
+    .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
+    .nav-links li a:hover::after { width:100%; } 
+    .nav-links li a:hover { color:#e0e7f6; }
+    .nav-links li.dropdown { position:relative; }
+    .nav-links li.dropdown ul { position:absolute; top:30px; left:0; background:#142541; padding:10px 0; list-style:none; display:none; border-radius:5px; min-width:160px; z-index:20; }
+    .nav-links li.dropdown:hover ul { display:block; }
+    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:15px; color:#fff; }
+    .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
+    .search-wrapper { position:relative; }
+    .search-input { padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:15px; width:160px; }
+    .search-input:focus { outline:none; border-color:#1f3a68; }
+    .suggestions { position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-top:none; max-height:220px; overflow-y:auto; z-index:100; display:none; }
+    .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
+    .suggestions li:hover, .suggestions li.selected { background:#e0e7f6; }
+    .sub-header {
+      padding: 20px 40px;
+      background: #fff;
+      border-bottom: 1px solid #e0e7f6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
     }
-    h1 {
+    .breadcrumb {
+      font-size: 14px;
       color: #142541;
+      flex-shrink: 0;
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: #0033cc;
+      font-weight: bold;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .disclaimer {
+      font-size: 14px;
+      color: #142541 ;
+      text-align: center;
+      margin: 10px 0 10px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #e0e7f6;
+      box-sizing: border-box;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+    @media (max-width:900px) {
+      .navbar, .sub-header { padding:15px 5vw; }
+      .disclaimer { position: static; left: auto; transform: none; white-space: normal; width: 100%; }
+      .logo { width: 30px; height: 30px; }
+    }
+    @media (max-width: 600px) {
+      .navbar, .sub-header { padding: 8px 2vw; }
+      .nav-links { gap: 8px; font-size: 13px; }
+      .logo-text .site-name { font-size: 16px; }
+      .search-input { width: 90px; font-size: 13px; }
+    }
+    /* Nyheder visning */
+    .nyheder-container { max-width:900px; margin:40px auto; padding:0 12px; }
+    .nyhed-boks {
+      background:#fff;
+      margin-bottom:22px;
+      border-radius:8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+      border: 1px solid #e0e7f6;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #ccc;
-      margin-bottom: 20px;
+      min-height: 220px;
+      position: relative;
     }
-    h1::before {
-      content: "";
-      width: 40px;
-      height: 40px;
-      background: url("logo.png") no-repeat center/contain;
-      display: inline-block;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-    input, textarea, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      box-sizing: border-box;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #142541;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 15px;
-      transition: background 0.3s ease, transform 0.2s ease;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    button:hover {
-      background: #0f1e38;
-      transform: scale(1.05);
-    }
-    nav {
-      margin-bottom: 20px;
+    .nyhed-billede-wrapper {
+      width: 340px;
+      min-width: 340px;
+      max-width: 340px;
+      height: 220px;
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background: #eee;
+      margin-right: 28px;
     }
-    nav button {
-      width: auto;
-      padding: 10px 20px;
-    }
-    section {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-    table {
+    .nyhed-billede {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-      vertical-align: middle;
-    }
-    th {
-      background: #142541;
-      color: white;
-    }
-    td img {
-      max-height: 40px;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px 0 0 8px;
+      background: #eee;
       display: block;
     }
-    .hidden {
-      display: none;
+    .nyhed-tekst {
+      padding: 28px 0 22px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1 1 0%;
+      min-width: 0;
+      justify-content: center;
     }
-    .error {
-      color: red;
-      margin-top: 10px;
-    }
-    #info-box {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    #info-box h2 {
-      margin-top: 0;
+    .nyhed-titel {
       font-size: 1.2rem;
-      color: #333;
+      font-weight: bold;
+      color: #142541;
+      word-break: break-word;
     }
-    #info-box ul {
-      margin: 0;
-      padding-left: 20px;
+    .nyhed-dato {
+      font-size: 0.93rem;
+      color: #666;
+      font-style: italic;
     }
-    #info-box li {
+    .nyhed-korttekst {
+      margin-top:6px;
+      margin-bottom:6px;
+      color: #222;
+      font-size: 1rem;
+      word-break: break-word;
+    }
+    .nyhed-indhold {
+      font-size: 1rem;
+      color: #222;
+      transition: max-height 0.4s cubic-bezier(.4,2,.4,1), opacity 0.4s;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      will-change: max-height, opacity;
+      margin-bottom: 0;
+    }
+    .nyhed-boks.udfoldet .nyhed-indhold {
+      max-height: 800px;
+      opacity: 1;
+      margin-top: 8px;
       margin-bottom: 8px;
     }
-    #info-box strong {
-      color: #d32f2f;
-    }
-    .rediger-btn {
-      background: #f0ab4c;
-      color: #142541;
-      margin-right: 5px;
-    }
-    .rediger-btn:hover {
-      background: #f9c77e;
-    }
-    .slet-btn {
-      background: #d32f2f;
+    .nyhed-lnk-btn {
+      align-self: flex-end;
+      margin-top: 6px;
+      background: #142541;
       color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      padding: 7px 18px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+      outline: none;
+      display: inline-block;
     }
-    .slet-btn:hover {
-      background: #b71c1c;
+    .nyhed-lnk-btn:hover { background: #1f3a68; }
+    .nyhed-boks.highlight {
+      box-shadow: 0 0 0 4px #f0ab4c88;
+      border-color: #f0ab4c;
+      animation: highlightfade 2s forwards;
+    }
+    @keyframes highlightfade {
+      0% { box-shadow: 0 0 0 8px #f0ab4cBB; }
+      100% { box-shadow: 0 0 0 0px #f0ab4c00; }
+    }
+    @media (max-width:900px) {
+      .nyhed-boks { flex-direction: column; min-height: unset; }
+      .nyhed-billede-wrapper, .nyhed-billede { 
+        max-width: 100%; min-width: 0; width: 100%; border-radius: 8px 8px 0 0;
+        height: 220px; 
+        margin-right: 0;
+      }
+      .nyhed-tekst { padding: 18px 12px 16px 12px; }
     }
   </style>
 </head>
 <body>
-  <h1>Admin Side | Geo Betting Tips</h1>
-
-  <!-- LOGIN SEKTION -->
-  <div id="login-section">
-    <h2>Log ind</h2>
-    <label for="email">Email:</label>
-    <input id="email" type="email" placeholder="Din email" />
-    <label for="password">Password:</label>
-    <input id="password" type="password" placeholder="Dit password" />
-    <button id="login-btn">Log ind</button>
-    <p class="error" id="login-error"></p>
-  </div>
-
-  <!-- ADMIN SEKTION -->
-  <div id="admin-section" class="hidden">
-    <section id="info-box">
-      <h2>Information</h2>
-      <ul>
-        <li>✔  - Du kan tilføje, redigere og slette nyheder og dagens spil.</li>
-        <li>✔  - Husk at udfylde alle påkrævede felter (titel, dato, indhold, odds osv.) før du gemmer.</li>
-        <li>✔  - Billede-URLs skal være gyldige links til billeder (f.eks. .jpg, .png).</li>
-        <li>❌ - Du må <strong>ikke</strong> indsætte skadelige eller upassende data (som kode eller ugyldige links).</li>
-        <li>❌ - Undgå at slette indhold, medmindre du er helt sikker, da data ikke kan gendannes.</li>
+  <header class="navbar">
+    <div class="logo-container">
+      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="logo-text">
+          <span class="site-name">Geo Betting Tips</span>
+          <span class="slogan">Ekspertanalyser til din betting</span>
+        </div>
+      </a>
+    </div>
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="nyheder.html">Nyheder</a></li>
+        <li><a href="analyser.html">Analyser</a></li>
+        <li><a href="tilbud.html">Tilbud</a></li>
+        <li class="dropdown">
+          <a href="#">Mere</a>
+          <ul>
+            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </li>
       </ul>
-    </section>
-
-    <nav>
-      <button id="logout-btn">Log ud</button>
-      <button id="show-news-btn">Nyheder</button>
-      <button id="show-dagensspil-btn">Dagens Spil</button>
+      <div class="search-wrapper">
+        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
+        <ul id="suggestions" class="suggestions"></ul>
+      </div>
     </nav>
+  </header>
 
-    <!-- Nyheder Sektion -->
-    <section id="news-section" class="hidden">
-      <h2 id="news-form-header">Opret nyhed</h2>
-      <label for="news-title">Titel</label>
-      <input id="news-title" type="text" placeholder="Nyhedens titel" />
-      <label for="news-date">Dato</label>
-      <input id="news-date" type="date" />
-      <label for="news-image">Billede URL</label>
-      <input id="news-image" type="text" placeholder="URL til billede" />
-      <label for="news-author">Forfatter</label>
-      <input id="news-author" type="text" placeholder="Skriv navnet på forfatteren" />
-      <label for="news-content">Indhold</label>
-      <textarea id="news-content" rows="5" placeholder="Indhold af nyheden"></textarea>
-      <button id="add-news-btn">Tilføj nyhed</button>
-      <button id="cancel-edit-news-btn" class="hidden" style="background:#aaa;">Annuller redigering</button>
-      <p class="error" id="news-error"></p>
-
-      <h3>Eksisterende nyheder</h3>
-      <table id="news-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Titel</th>
-            <th>Dato</th>
-            <th>Forfatter</th>
-            <th>Handling</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
-    <!-- Dagens Spil Sektion -->
-    <section id="dagensspil-section" class="hidden">
-      <h2>Opret Dagens Spil</h2>
-      <label for="bet-time">Tidspunkt</label>
-      <input id="bet-time" type="text" placeholder="fx 21:00 eller 21.00" />
-      <label for="bet-team1-name">Hold 1 Navn</label>
-      <input id="bet-team1-name" type="text" placeholder="Hold 1 navn" />
-      <label for="bet-team1-logo">Hold 1 Logo URL</label>
-      <input id="bet-team1-logo" type="text" placeholder="Hold 1 logo URL" />
-      <label for="bet-team2-name">Hold 2 Navn</label>
-      <input id="bet-team2-name" type="text" placeholder="Hold 2 navn" />
-      <label for="bet-team2-logo">Hold 2 Logo URL</label>
-      <input id="bet-team2-logo" type="text" placeholder="Hold 2 logo URL" />
-      <label for="bet-odds">Odds</label>
-      <input id="bet-odds" type="number" step="0.01" placeholder="Odds" />
-      <label for="bet-ekspert">Ekspert</label>
-      <input id="bet-ekspert" type="text" placeholder="Ekspert navn" />
-      <label for="bet-liga">Liga</label>
-      <input id="bet-liga" type="text" placeholder="F.eks. Premier League" />
-      <button id="add-bet-btn">Tilføj bet</button>
-      <p class="error" id="bet-error"></p>
-
-      <h3>Eksisterende Dagens Spil</h3>
-      <table id="dagensspil-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Tidspunkt</th>
-            <th>Hold 1</th>
-            <th>Logo 1</th>
-            <th>Hold 2</th>
-            <th>Logo 2</th>
-            <th>Odds</th>
-            <th>Ekspert</th>
-            <th>Liga</th>
-            <th>Handling</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
+  <!-- Breadcrumb + Disclaimer -->
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a> &raquo; <span>Nyheder</span>
+    </nav>
+    <p class="disclaimer">
+      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+    </p>
   </div>
+
+  <main class="nyheder-container" id="nyheder">
+    <!-- Nyhederne loader her -->
+  </main>
 
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    const SUPABASE_URL = "https://iwbvimwodjlbtxtmfqra.supabase.co";
-    const SUPABASE_ANON_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo";
+    // Dato-format
+    function formatDato(dateStr) {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      const dd = String(d.getDate()).padStart(2, '0');
+      const mm = String(d.getMonth()+1).padStart(2, '0');
+      const yyyy = d.getFullYear();
+      const hh = String(d.getHours()).padStart(2, '0');
+      const min = String(d.getMinutes()).padStart(2, '0');
+      return `${dd}-${mm}-${yyyy} ${hh}:${min}`;
+    }
 
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // Elementer
-    const loginSection = document.getElementById("login-section");
-    const adminSection = document.getElementById("admin-section");
-
-    const loginBtn = document.getElementById("login-btn");
-    const logoutBtn = document.getElementById("logout-btn");
-    const loginError = document.getElementById("login-error");
-
-    const showNewsBtn = document.getElementById("show-news-btn");
-    const showDagensspilBtn = document.getElementById("show-dagensspil-btn");
-
-    const newsSection = document.getElementById("news-section");
-    const dagensspilSection = document.getElementById("dagensspil-section");
-
-    // Nyhed inputs
-    const newsTitle = document.getElementById("news-title");
-    const newsDate = document.getElementById("news-date");
-    const newsImage = document.getElementById("news-image");
-    const newsContent = document.getElementById("news-content");
-    const newsAuthor = document.getElementById("news-author");
-    const addNewsBtn = document.getElementById("add-news-btn");
-    const newsError = document.getElementById("news-error");
-    const newsTableBody = document.querySelector("#news-table tbody");
-    const cancelEditNewsBtn = document.getElementById("cancel-edit-news-btn");
-    const newsFormHeader = document.getElementById("news-form-header");
-
-    // Bet inputs
-    const betTime = document.getElementById("bet-time");
-    const betTeam1Name = document.getElementById("bet-team1-name");
-    const betTeam1Logo = document.getElementById("bet-team1-logo");
-    const betTeam2Name = document.getElementById("bet-team2-name");
-    const betTeam2Logo = document.getElementById("bet-team2-logo");
-    const betOdds = document.getElementById("bet-odds");
-    const betEkspert = document.getElementById("bet-ekspert");
-    const betLiga = document.getElementById("bet-liga");
-    const addBetBtn = document.getElementById("add-bet-btn");
-    const betError = document.getElementById("bet-error");
-    const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
-
-    // Redigeringstilstand
-    let editingBetId = null;
-    let editingNewsId = null;
-
-    // Login funktion
-    loginBtn.addEventListener("click", async () => {
-      loginError.textContent = "";
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
-
-      if (!email || !password) {
-        loginError.textContent = "Udfyld både email og password.";
-        return;
-      }
-
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        loginError.textContent = "Login fejlede: " + error.message;
-      } else {
-        loginSection.classList.add("hidden");
-        adminSection.classList.remove("hidden");
-        loadNews();
-        loadBets();
-      }
-    });
-
-    // Logout funktion
-    logoutBtn.addEventListener("click", async () => {
-      await supabase.auth.signOut();
-      adminSection.classList.add("hidden");
-      loginSection.classList.remove("hidden");
-      clearInputs();
-      clearTables();
-    });
-
-    // Vis / Skjul sektioner
-    showNewsBtn.addEventListener("click", () => {
-      newsSection.classList.remove("hidden");
-      dagensspilSection.classList.add("hidden");
-    });
-
-    showDagensspilBtn.addEventListener("click", () => {
-      dagensspilSection.classList.remove("hidden");
-      newsSection.classList.add("hidden");
-    });
-
-    // Tilføj eller opdater nyhed
-    addNewsBtn.addEventListener("click", async () => {
-      newsError.textContent = "";
-      const title = newsTitle.value.trim();
-      const date = newsDate.value;
-      const image = newsImage.value.trim();
-      const content = newsContent.value.trim();
-      const author = newsAuthor.value.trim();
-
-      if (!title || !date || !content) {
-        newsError.textContent = "Titel, dato og indhold er påkrævet.";
-        return;
-      }
-
-      if (editingNewsId) {
-        // Opdater eksisterende nyhed
-        const { error } = await supabase
-          .from("news")
-          .update({ title, date, image, content, author })
-          .eq("id", editingNewsId);
-        if (error) {
-          newsError.textContent = "Fejl ved opdatering: " + error.message;
-          return;
-        }
-        addNewsBtn.textContent = "Tilføj nyhed";
-        newsFormHeader.textContent = "Opret nyhed";
-        cancelEditNewsBtn.classList.add("hidden");
-        editingNewsId = null;
-      } else {
-        // Tilføj ny nyhed
-        const { error } = await supabase
-          .from("news")
-          .insert([{ title, date, image, content, author }]);
-        if (error) {
-          newsError.textContent = "Fejl ved tilføjelse: " + error.message;
-          return;
-        }
-      }
-      clearNewsInputs();
-      loadNews();
-    });
-
-    // Annuller redigering
-    cancelEditNewsBtn.addEventListener("click", () => {
-      clearNewsInputs();
-      addNewsBtn.textContent = "Tilføj nyhed";
-      newsFormHeader.textContent = "Opret nyhed";
-      cancelEditNewsBtn.classList.add("hidden");
-      editingNewsId = null;
-    });
-
-    // Load nyheder
     async function loadNews() {
-      newsTableBody.innerHTML = "";
+      const nyhederContainer = document.getElementById('nyheder');
+      nyhederContainer.innerHTML = '<p style="text-align:center;color:#888;">Indlæser nyheder...</p>';
       const { data, error } = await supabase.from("news").select("*").order("date", { ascending: false });
       if (error) {
-        newsError.textContent = "Fejl ved hentning af nyheder: " + error.message;
+        nyhederContainer.innerHTML = '<p style="color:red">Kunne ikke hente nyheder.</p>';
         return;
       }
-      data.forEach((news) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${news.id}</td>
-          <td>${news.title}</td>
-          <td>${news.date}</td>
-          <td>${news.author || ""}</td>
-          <td>
-            <button data-id="${news.id}" class="edit-news-btn rediger-btn">Rediger</button>
-            <button data-id="${news.id}" class="delete-news-btn slet-btn">Slet</button>
-          </td>
+      if (!data || data.length === 0) {
+        nyhederContainer.innerHTML = '<p style="text-align:center;color:#888;">Ingen nyheder fundet.</p>';
+        return;
+      }
+      nyhederContainer.innerHTML = "";
+      data.forEach(nyhed => {
+        let kortTekst = nyhed.content;
+        if (kortTekst.length > 160) kortTekst = kortTekst.substring(0, 160) + "...";
+        const boks = document.createElement("div");
+        boks.className = "nyhed-boks";
+        boks.id = "nyhed-" + nyhed.id;
+        boks.innerHTML = `
+          <div class="nyhed-billede-wrapper">
+            ${nyhed.image ? `<img class="nyhed-billede" src="${nyhed.image}" alt="${nyhed.title}" loading="lazy"/>` : `<div class="nyhed-billede" style="background:#ddd"></div>`}
+          </div>
+          <div class="nyhed-tekst">
+            <div class="nyhed-titel">${nyhed.title || ""}</div>
+            <div class="nyhed-dato">${formatDato(nyhed.date) || ""}</div>
+            <div class="nyhed-korttekst">${kortTekst}</div>
+            <div class="nyhed-indhold">${nyhed.content}</div>
+            <button class="nyhed-lnk-btn" type="button">Læs mere</button>
+          </div>
         `;
-        newsTableBody.appendChild(tr);
-      });
-      document.querySelectorAll(".delete-news-btn").forEach((btn) => {
-        btn.addEventListener("click", deleteNews);
-      });
-      document.querySelectorAll(".edit-news-btn").forEach((btn) => {
-        btn.addEventListener("click", () => editNews(btn.getAttribute("data-id")));
+        // Expand/collapse on button click
+        const btn = boks.querySelector('.nyhed-lnk-btn');
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = boks.classList.toggle("udfoldet");
+          btn.textContent = isOpen ? "Vis mindre" : "Læs mere";
+        });
+        boks.querySelector('.nyhed-indhold').style.display = "block";
+        boks.classList.remove("udfoldet");
+        btn.textContent = "Læs mere";
+        nyhederContainer.appendChild(boks);
       });
     }
+    loadNews();
 
-    // Slet nyhed
-    async function deleteNews(e) {
-      const id = e.target.getAttribute("data-id");
-      const { error } = await supabase.from("news").delete().eq("id", id);
-      if (error) {
-        alert("Fejl ved sletning: " + error.message);
-      } else {
-        loadNews();
-      }
-    }
+    // SØGEFELT - søg direkte i Supabase (title indeholder)
+    const input = document.getElementById('search');
+    const suggBox = document.getElementById('suggestions');
 
-    // Rediger nyhed
-    async function editNews(id) {
-      const { data, error } = await supabase.from("news").select("*").eq("id", id).single();
-      if (error || !data) {
-        newsError.textContent = "Kunne ikke hente nyheden for redigering.";
+    input.addEventListener('input', async () => {
+      const val = input.value.trim().toLowerCase();
+      suggBox.innerHTML = '';
+      if (!val) {
+        suggBox.style.display = 'none';
         return;
       }
-      newsTitle.value = data.title || "";
-      newsDate.value = data.date || "";
-      newsImage.value = data.image || "";
-      newsContent.value = data.content || "";
-      newsAuthor.value = data.author || "";
-      editingNewsId = id;
-      addNewsBtn.textContent = "Opdater nyhed";
-      newsFormHeader.textContent = "Rediger nyhed";
-      cancelEditNewsBtn.classList.remove("hidden");
-    }
-
-    // Tilføj/Opdater bet
-    addBetBtn.addEventListener("click", async () => {
-      betError.textContent = "";
-      const tidspunkt = betTime.value;
-      const hold1 = betTeam1Name.value.trim();
-      const hold1logo = betTeam1Logo.value.trim();
-      const hold2 = betTeam2Name.value.trim();
-      const hold2logo = betTeam2Logo.value.trim();
-      const odds = parseFloat(betOdds.value);
-      const ekspert = betEkspert.value.trim();
-      const liga = betLiga.value.trim();
-
-      if (!tidspunkt || !hold1 || !hold2 || isNaN(odds) || !ekspert) {
-        betError.textContent = "Udfyld venligst alle påkrævede felter.";
-        return;
-      }
-
-      if (editingBetId) {
-        // OPDATER eksisterende bet
-        const { error } = await supabase
-          .from("dagensspil")
-          .update({ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert, liga })
-          .eq("id", editingBetId);
-
-        if (error) {
-          betError.textContent = "Fejl ved opdatering: " + error.message;
-          return;
-        }
-        addBetBtn.textContent = "Tilføj bet";
-        editingBetId = null;
-      } else {
-        // TILFØJ nyt bet
-        const { error } = await supabase
-          .from("dagensspil")
-          .insert([{ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert, liga }]);
-        if (error) {
-          betError.textContent = "Fejl ved tilføjelse: " + error.message;
-          return;
-        }
-      }
-
-      clearBetInputs();
-      loadBets();
-    });
-
-    // Load dagens spil
-    async function loadBets() {
-      dagensspilTableBody.innerHTML = "";
-      const { data, error } = await supabase.from("dagensspil").select("*").order("tidspunkt", { ascending: true });
-      if (error) {
-        betError.textContent = "Fejl ved hentning af dagens spil: " + error.message;
-        return;
-      }
-      data.forEach((bet) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${bet.id}</td>
-          <td>${bet.tidspunkt}</td>
-          <td>${bet.hold1}</td>
-          <td>${bet.hold1logo ? `<img src="${bet.hold1logo}" alt="${bet.hold1} logo" />` : ""}</td>
-          <td>${bet.hold2}</td>
-          <td>${bet.hold2logo ? `<img src="${bet.hold2logo}" alt="${bet.hold2} logo" />` : ""}</td>
-          <td>${bet.odds}</td>
-          <td>${bet.ekspert}</td>
-          <td>${bet.liga || ""}</td>
-          <td>
-            <button data-id="${bet.id}" class="edit-bet-btn rediger-btn">Rediger</button>
-            <button data-id="${bet.id}" class="delete-bet-btn slet-btn">Slet</button>
-          </td>
-        `;
-        dagensspilTableBody.appendChild(tr);
-      });
-      document.querySelectorAll(".delete-bet-btn").forEach((btn) => {
-        btn.addEventListener("click", deleteBet);
-      });
-      document.querySelectorAll(".edit-bet-btn").forEach((btn) => {
-        btn.addEventListener("click", () => editBet(btn.getAttribute("data-id")));
-      });
-    }
-
-    // Rediger bet-funktion
-    async function editBet(id) {
+      // Søg på nyheder-titel i supabase
       const { data, error } = await supabase
-        .from("dagensspil")
-        .select("*")
-        .eq("id", id)
-        .single();
+        .from('news')
+        .select('id,title')
+        .ilike('title', `%${val}%`)
+        .order("date", { ascending: false })
+        .limit(10);
 
-      if (error || !data) {
-        alert("Kunne ikke hente data for redigering.");
+      if (error || !data || !data.length) {
+        suggBox.style.display = 'none';
         return;
       }
+      data.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.title;
+        li.tabIndex = 0;
+        li.addEventListener('click', () => {
+          input.value = '';
+          suggBox.style.display = 'none';
+          goToNewsBox(item.id);
+        });
+        suggBox.appendChild(li);
+      });
+      suggBox.style.display = 'block';
+    });
 
-      betTime.value = data.tidspunkt;
-      betTeam1Name.value = data.hold1;
-      betTeam1Logo.value = data.hold1logo;
-      betTeam2Name.value = data.hold2;
-      betTeam2Logo.value = data.hold2logo;
-      betOdds.value = data.odds;
-      betEkspert.value = data.ekspert;
-      betLiga.value = data.liga;
-      editingBetId = id;
-      addBetBtn.textContent = "Opdater bet";
-    }
-
-    // Slet bet
-    async function deleteBet(e) {
-      const id = e.target.getAttribute("data-id");
-      const { error } = await supabase.from("dagensspil").delete().eq("id", id);
-      if (error) {
-        alert("Fejl ved sletning: " + error.message);
-      } else {
-        loadBets();
-      }
-    }
-
-    // Ryd inputs
-    function clearNewsInputs() {
-      newsTitle.value = "";
-      newsDate.value = "";
-      newsImage.value = "";
-      newsContent.value = "";
-      newsAuthor.value = "";
-      newsError.textContent = "";
-      addNewsBtn.textContent = "Tilføj nyhed";
-      newsFormHeader.textContent = "Opret nyhed";
-      cancelEditNewsBtn.classList.add("hidden");
-      editingNewsId = null;
-    }
-    function clearBetInputs() {
-      betTime.value = "";
-      betTeam1Name.value = "";
-      betTeam1Logo.value = "";
-      betTeam2Name.value = "";
-      betTeam2Logo.value = "";
-      betOdds.value = "";
-      betEkspert.value = "";
-      betLiga.value = "";
-      betError.textContent = "";
-      addBetBtn.textContent = "Tilføj bet";
-      editingBetId = null;
-    }
-    function clearInputs() {
-      clearNewsInputs();
-      clearBetInputs();
-      loginError.textContent = "";
-      newsError.textContent = "";
-      betError.textContent = "";
-    }
-    function clearTables() {
-      newsTableBody.innerHTML = "";
-      dagensspilTableBody.innerHTML = "";
-    }
-
-    // Tjek om bruger allerede er logget ind ved sideindlæsning
-    window.addEventListener("load", async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        loginSection.classList.add("hidden");
-        adminSection.classList.remove("hidden");
-        loadNews();
-        loadBets();
+    // Klik udenfor suggestions lukker listen
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search-wrapper')) {
+        suggBox.style.display = 'none';
       }
     });
+
+    // Gå til nyhedsboks og highlight den
+    function goToNewsBox(id) {
+      const box = document.getElementById('nyhed-' + id);
+      if (box) {
+        box.scrollIntoView({ behavior: "smooth", block: "center" });
+        box.classList.add('highlight');
+        setTimeout(() => {
+          box.classList.remove('highlight');
+        }, 2000);
+      }
+    }
   </script>
 </body>
 </html>
