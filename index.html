@@ -433,45 +433,52 @@
   <div class="spil-container" id="spil-container"></div>
 </section>
 
-<script>
-  // Initialiser Supabase med din URL og anon key
-  const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';  // <-- Din Supabase URL
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+  const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
   const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
 
-  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
   async function hentDagensSpil() {
     try {
       const { data, error } = await supabase
-        .from('dagensspil')        // <-- Navnet på din tabel i Supabase
-        .select('*')               // Hent alle kolonner
+        .from('dagensspil') // Table name
+        .select('*')
+        .order('tidspunkt', { ascending: true });
 
       if (error) throw error;
 
       const container = document.getElementById('spil-container');
-      container.innerHTML = ''; // ryd tidligere indhold
+      container.innerHTML = ''; // Clear previous content
+
+      if (!data || data.length === 0) {
+        container.innerHTML = '<p>Ingen dagens spil tilgængelig.</p>';
+        return;
+      }
 
       data.forEach(spil => {
         const kort = document.createElement('div');
         kort.className = 'spil-kort';
         kort.innerHTML = `
           <div class="info-højre">
-            <div class="tidspunkt">${new Date(spil.tidspunkt).toLocaleString()}</div>
+            <div class="tidspunkt">${spil.tidspunkt ? spil.tidspunkt : ''}</div>
           </div>
-          <div class="liga">${spil.liga}</div>
+          <div class="liga">${spil.liga ? spil.liga : ''}</div>
           <div class="hold-liste">
             <div class="hold">
-              <img src="${spil.hjemme_logo}" alt="${spil.hjemmehold} logo" />
-              <span>${spil.hjemmehold}</span>
+              ${spil.hold1logo ? `<img src="${spil.hold1logo}" alt="${spil.hold1 || ''} logo" />` : ''}
+              <span>${spil.hold1 ? spil.hold1 : ''}</span>
             </div>
             <div class="hold">
-              <img src="${spil.ude_logo}" alt="${spil.udehold} logo" />
-              <span>${spil.udehold}</span>
+              ${spil.hold2logo ? `<img src="${spil.hold2logo}" alt="${spil.hold2 || ''} logo" />` : ''}
+              <span>${spil.hold2 ? spil.hold2 : ''}</span>
             </div>
           </div>
           <div class="bund-bjælke">
-            <span class="odds">${spil.odds}</span>
-            <span class="ekspert">${spil.ekspert}</span>
+            <span class="odds">${spil.odds != null ? spil.odds : ''}</span>
+            <span class="ekspert">${spil.ekspert ? spil.ekspert : ''}</span>
           </div>
         `;
         container.appendChild(kort);
@@ -482,13 +489,8 @@
     }
   }
 
-  hentDagensSpil();
-</script>
 
 
-
-
-  
     <!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
 
     <!-- nyhed sektion -->
