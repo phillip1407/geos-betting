@@ -33,7 +33,6 @@
     .suggestions { position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-top:none; max-height:220px; overflow-y:auto; z-index:100; display:none; }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover, .suggestions li.selected { background:#e0e7f6; }
-    /* Breadcrumb & Disclaimer */
     .sub-header {
       padding: 20px 40px;
       background: #fff;
@@ -82,7 +81,6 @@
       .logo-text .site-name { font-size: 16px; }
       .search-input { width: 90px; font-size: 13px; }
     }
-
     /* Nyheder visning */
     .nyheder-container { max-width:900px; margin:40px auto; padding:0 12px; }
     .nyhed-boks {
@@ -107,6 +105,7 @@
       align-items: center;
       justify-content: center;
       background: #eee;
+      margin-right: 28px;
     }
     .nyhed-billede {
       width: 100%;
@@ -117,7 +116,7 @@
       display: block;
     }
     .nyhed-tekst {
-      padding: 28px 28px 22px 28px;
+      padding: 28px 0 22px 0;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -189,6 +188,7 @@
       .nyhed-billede-wrapper, .nyhed-billede { 
         max-width: 100%; min-width: 0; width: 100%; border-radius: 8px 8px 0 0;
         height: 220px; 
+        margin-right: 0;
       }
       .nyhed-tekst { padding: 18px 12px 16px 12px; }
     }
