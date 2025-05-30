@@ -3,30 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Geo Betting Tips|Tilbud</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <style>
+    /* ... (samme CSS som før, ikke ændret) ... */
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
-
     .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
     .logo-container { display:flex; align-items:center; gap:10px; }
     .logo { width:50px; height:50px; }
     .logo-text { display:flex; flex-direction:column; }
     .site-name { color:#fff; font-size:24px; font-weight:bold; }
     .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
-
     .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
     .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
     .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
     .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
     .nav-links li a:hover::after { width:100%; } 
     .nav-links li a:hover { color:#e0e7f6; }
-
     .nav-links li.dropdown { position:relative; }
     .nav-links li.dropdown ul {
       position: absolute;
@@ -43,7 +40,6 @@
     .nav-links li.dropdown:hover ul { display:block; }
     .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
     .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
-
     .search-wrapper { position:relative; }
     .search-input {
       padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
@@ -56,7 +52,6 @@
     }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
-
     .sub-header {
       padding: 20px 140px;
       background: #fff;
@@ -67,7 +62,6 @@
       flex-wrap: wrap;
       gap: 10px;
     }
-
     .breadcrumb {
       font-size: 14px;
       color: #142541;
@@ -81,7 +75,6 @@
     .breadcrumb a:hover {
       text-decoration: underline;
     }
-
     .disclaimer {
       position: absolute;
       left: 50%;
@@ -90,7 +83,6 @@
       color: #142541;
       white-space: nowrap;
     }
-
     .purpose-box {
       background-color: white;
       border: 1px solid #ccc;
@@ -101,14 +93,12 @@
       text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-
     .purpose-box h2 {
       font-size: 24px;
       color: #142541;
       margin-bottom: 15px;
       font-weight: 700;
     }
-
     .purpose-box p {
       font-size: 18px;
       line-height: 1.5;
@@ -116,7 +106,6 @@
       margin: 0 auto;
       max-width: 700px;
     }
-
     .offers-container {
       display: flex;
       gap: 50px;
@@ -124,7 +113,6 @@
       flex-wrap: wrap;
       margin-top: 30px;
     }
-
     .offer-card {
       background-color: white;
       border: 1px solid #ccc;
@@ -134,7 +122,6 @@
       text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-
     .offer-card img {
       width: 100%;
       height: 200px;
@@ -143,20 +130,17 @@
       margin-bottom: 15px;
       aspect-ratio: 4 / 3;
     }
-
     .offer-card h3 {
       color: #142541;
       font-size: 24px;
       margin-bottom: 10px;
       font-weight: 700;
     }
-
     .offer-card p {
       font-size: 16px;
       margin-bottom: 15px;
       color: #142541;
     }
-
     .offer-card a {
       display: inline-block;
       background-color: #142541;
@@ -167,17 +151,14 @@
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
-
     .offer-card a:hover {
       background-color: #0f1d35;
     }
-
     @media (max-width: 1200px) {
       .purpose-box { width: 90%; padding: 20px; }
       .offers-container { gap: 30px; }
       .offer-card { width: 300px; }
     }
-
     @media (max-width: 768px) {
       .offers-container { flex-direction: column; align-items: center; }
       .offer-card { width: 90%; }
@@ -185,7 +166,6 @@
   </style>
 </head>
 <body>
-
   <header class="navbar">
     <div class="logo-container">
       <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
@@ -196,7 +176,6 @@
         </div>
       </a>
     </div>
-
     <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
@@ -211,14 +190,12 @@
           </ul>
         </li>
       </ul>
-
       <div class="search-wrapper">
         <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
         <ul id="suggestions" class="suggestions"></ul>
       </div>
     </nav>
   </header>
-
   <div class="sub-header">
     <nav class="breadcrumb">
       <a href="index.html">Forside</a> &raquo; <span>Tilbud</span>
@@ -227,35 +204,49 @@
       18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
     </p>
   </div>
-
   <div class="purpose-box">
     <h2>Formålet med vores betting-partnere</h2>
     <p>Vi anvender betting-partnere, fordi det støtter os økonomisk, så vi kan blive ved med at levere gratis analyser og betting tips til vores brugere. Når du benytter vores links og tilbud, hjælper du os samtidig med at kunne udvikle og forbedre siden.</p>
   </div>
-
   <section class="offers-container" id="offers-container">
     <!-- Dynamiske tilbud vil blive loadet her -->
   </section>
-
   <script>
-    let items = [];
+    // ---------- SUPABASE OPSÆTNING ----------
+    // INDSÆT DINE EGNE NØGLER HER!
+    const supabaseUrl = 'https://YOUR_PROJECT_ID.supabase.co';
+    const supabaseKey = 'YOUR_ANON_KEY';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    fetch('søgefelt.json')
-      .then(response => response.ok ? response.json() : [])
-      .then(data => { items = data; })
-      .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
+    // ---------- SØGEFUNKTION ----------
+    async function searchAllTables(query) {
+      // Tilpas kolonnenavne hvis nødvendigt!
+      const [news, matches, dagensspil, tilbud] = await Promise.all([
+        supabase.from('news').select('id, title, url').ilike('title', `%${query}%`),
+        supabase.from('matches').select('id, title, url').ilike('title', `%${query}%`),
+        supabase.from('dagensspil').select('id, title, url').ilike('title', `%${query}%`),
+        supabase.from('tilbud').select('id, title, url').ilike('title', `%${query}%`)
+      ]);
+      const results = [
+        ...(news.data ?? []).map(i => ({ ...i, type: 'Nyhed' })),
+        ...(matches.data ?? []).map(i => ({ ...i, type: 'Match' })),
+        ...(dagensspil.data ?? []).map(i => ({ ...i, type: 'Dagens Spil' })),
+        ...(tilbud.data ?? []).map(i => ({ ...i, type: 'Tilbud' })),
+      ];
+      return results;
+    }
 
     const input = document.getElementById('search');
     const suggBox = document.getElementById('suggestions');
 
-    input.addEventListener('input', () => {
-      const val = input.value.trim().toLowerCase();
+    input.addEventListener('input', async () => {
+      const val = input.value.trim();
       suggBox.innerHTML = '';
       if (!val) {
         suggBox.style.display = 'none';
         return;
       }
-      const matches = items.filter(i => i.title.toLowerCase().includes(val));
+      const matches = await searchAllTables(val);
       if (!matches.length) {
         suggBox.style.display = 'none';
         return;
@@ -263,7 +254,7 @@
       suggBox.style.width = input.offsetWidth + 'px';
       matches.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = item.title;
+        li.textContent = `[${item.type}] ${item.title}`;
         li.addEventListener('click', () => window.location.href = item.url);
         suggBox.appendChild(li);
       });
@@ -276,7 +267,10 @@
       }
     });
 
-    // Tilbud loader
+    // ---------- TILBUD LOADER ----------
+    // Denne del er uændret, men hvis du også vil hente tilbud fra Supabase,
+    // kan du skrive lignende til ovenstående searchAllTables-metode.
+
     fetch('tilbud.json')
       .then(response => response.ok ? response.json() : [])
       .then(data => {
@@ -284,7 +278,6 @@
         data.forEach(offer => {
           const card = document.createElement('div');
           card.className = 'offer-card';
-
           card.innerHTML = `
             <img src="${offer.image}" alt="${offer.title}">
             <h3>${offer.title}</h3>
@@ -296,6 +289,5 @@
       })
       .catch(err => console.error('Fejl ved hentning af tilbud.json', err));
   </script>
-
 </body>
 </html>
