@@ -10,7 +10,6 @@
   <style>
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
-    /* Stort fleksibelt indryk på navbar og sub-header */
     .navbar, .sub-header {
       padding-left: 13vw;
       padding-right: 13vw;
@@ -29,14 +28,13 @@
       border-bottom: 1px solid #e0e7f6;
       padding-top: 20px;
       padding-bottom: 20px;
-      gap: 10px;
-      position: relative;
-      flex-wrap: wrap;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: relative;
     }
-    /* Responsiv justering på mindre skærme */
     @media (max-width:900px) {
       .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
     }
@@ -79,32 +77,81 @@
     .breadcrumb a:hover {
       text-decoration: underline;
     }
-    /* Disclaimer fix: normal flow, fuld bredde, ingen absolut position */
+    /* Disclaimer nu flex-item, på linje med breadcrumb */
     .disclaimer {
       font-size: 14px;
       color: #142541;
-      text-align: center;
-      margin: 10px 0 0 0;
       padding-bottom: 5px;
       border-bottom: 1px solid #e0e7f6;
-      box-sizing: border-box;
       background: #fff;
-      width: 100%;
-      position: static;
-      transform: none;
-      white-space: normal;
+      white-space: nowrap;
+      margin: 0;
+      box-sizing: border-box;
     }
     @media (max-width:900px) {
       .disclaimer { background: #fff; }
       .logo { width: 30px; height: 30px; }
+    }
+    @media (max-width: 700px) {
+      .sub-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+      .disclaimer {
+        white-space: normal;
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-top: 4px;
+      }
     }
     @media (max-width: 600px) {
       .nav-links { gap: 8px; font-size: 13px; }
       .logo-text .site-name { font-size: 16px; }
       .search-input { width: 90px; font-size: 13px; }
     }
+
+    /* Layout med kommende kampe sidebar */
+    .main-content-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 12px;
+    }
+    .nyheder-container {
+      flex: 3 1 600px;
+      min-width: 0;
+    }
+    .sidebar {
+      flex: 1 1 270px;
+      min-width: 230px;
+      max-width: 320px;
+      margin-top: 0;
+    }
+    @media (max-width: 1200px) {
+      .main-content-wrapper { max-width: 100vw; }
+      .nyhed-boks { max-width: 100vw; }
+    }
+    @media (max-width: 900px) {
+      .main-content-wrapper {
+        flex-direction: column;
+        gap: 24px;
+        max-width: 100vw;
+      }
+      .sidebar {
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+        margin-top: 0;
+      }
+      .nyheder-container {
+        width: 100%;
+      }
+    }
+
     /* Nyheder visning */
-    .nyheder-container { max-width:1100px; margin:40px auto; padding:0 12px; }
     .nyhed-boks {
       background:#fff;
       margin-bottom:28px;
@@ -216,8 +263,6 @@
       100% { box-shadow: 0 0 0 0px #f0ab4c00; }
     }
     @media (max-width:1200px) {
-      .nyheder-container { max-width:100vw; }
-      .nyhed-boks { max-width: 100vw; }
       .nyhed-billede-wrapper {
         width: 260px; min-width: 260px; max-width: 260px; height: 180px; margin-left: 10px; margin-right: 14px;
       }
@@ -231,6 +276,44 @@
       }
       .nyhed-tekst { padding: 18px 12px 16px 12px; }
     }
+
+    /* Sidebar kommende kampe */
+    .sidebar-box {
+      background: #fff;
+      border: 1px solid #e0e7f6;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 18px 20px 12px 20px;
+      margin-bottom: 32px;
+    }
+    .sidebar-title {
+      font-size: 1.12rem;
+      font-weight: bold;
+      color: #142541;
+      margin-bottom: 14px;
+      border-left: 4px solid #142541;
+      padding-left: 12px;
+    }
+    .match-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .match-list li {
+      padding: 9px 0 8px 0;
+      border-bottom: 1px solid #e0e7f6;
+      font-size: 0.98rem;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .match-list li:last-child { border-bottom: none; }
+    .match-date { color: #666; font-size: 0.95em; font-style: italic; }
+    .match-teams { font-weight: 600; color: #142541;}
+    .match-league { color: #888; font-size: 0.96em; }
+    .match-time { font-size: 0.98em; color: #7b6f24; }
+    .empty-matches { color: #888; text-align: center; padding: 18px 0 6px 0; }
   </style>
 </head>
 <body>
@@ -265,7 +348,7 @@
     </nav>
   </header>
 
-  <!-- Breadcrumb + Disclaimer -->
+  <!-- Breadcrumb + Disclaimer på linje -->
   <div class="sub-header">
     <nav class="breadcrumb">
       <a href="index.html">Forside</a> &raquo; <span>Nyheder</span>
@@ -275,9 +358,19 @@
     </p>
   </div>
 
-  <main class="nyheder-container" id="nyheder">
-    <!-- Nyhederne loader her -->
-  </main>
+  <div class="main-content-wrapper">
+    <main class="nyheder-container" id="nyheder">
+      <!-- Nyhederne loader her -->
+    </main>
+    <aside class="sidebar">
+      <div class="sidebar-box" id="matches-box">
+        <div class="sidebar-title">Kommende kampe</div>
+        <ul class="match-list" id="matches-list">
+          <!-- Matcher loader her -->
+        </ul>
+      </div>
+    </aside>
+  </div>
 
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
@@ -285,7 +378,7 @@
     const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    // Dato-format
+    // Dato-format til nyheder
     function formatDato(dateStr) {
       const d = new Date(dateStr);
       if (isNaN(d.getTime())) return dateStr;
@@ -399,6 +492,53 @@
         }, 2000);
       }
     }
+
+    // --------- KOMMENDE KAMPE (sidebar) ---------
+    // Forventet struktur i Supabase "matches": id, home_team, away_team, league, date (ISO), evt. odds, location
+    function formatMatchDate(dateStr) {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      const dd = String(d.getDate()).padStart(2, '0');
+      const mm = String(d.getMonth()+1).padStart(2, '0');
+      const yyyy = d.getFullYear();
+      const hh = String(d.getHours()).padStart(2, '0');
+      const min = String(d.getMinutes()).padStart(2, '0');
+      return `${dd}-${mm} ${hh}:${min}`;
+    }
+
+    async function loadMatches() {
+      const list = document.getElementById('matches-list');
+      list.innerHTML = '<li class="empty-matches">Indlæser kampe…</li>';
+      // Henter kun fremtidige kampe
+      const now = new Date().toISOString();
+      const { data, error } = await supabase
+        .from("matches")
+        .select("*")
+        .gt("date", now)
+        .order("date", { ascending: true })
+        .limit(6);
+
+      if (error || !data) {
+        list.innerHTML = '<li class="empty-matches">Kunne ikke hente kampe.</li>';
+        return;
+      }
+      if (data.length === 0) {
+        list.innerHTML = '<li class="empty-matches">Ingen kommende kampe.</li>';
+        return;
+      }
+      list.innerHTML = "";
+      data.forEach(match => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="match-date">${formatMatchDate(match.date)}</span>
+          <span class="match-teams">${match.home_team || ''} - ${match.away_team || ''}</span>
+          ${match.league ? `<span class="match-league">${match.league}</span>` : ''}
+          ${match.location ? `<span class="match-league">${match.location}</span>` : ''}
+        `;
+        list.appendChild(li);
+      });
+    }
+    loadMatches();
   </script>
 </body>
 </html>
