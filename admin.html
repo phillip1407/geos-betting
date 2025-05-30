@@ -158,8 +158,8 @@
     <section id="info-box">
       <h2>Information</h2>
       <ul>
-        <li>✔  - Du kan tilføje, redigere og slette nyheder og dagens spil.</li>
-        <li>✔  - Husk at udfylde alle påkrævede felter (titel, dato, indhold, odds osv.) før du gemmer.</li>
+        <li>✔  - Du kan tilføje, redigere og slette nyheder, dagens spil <strong>og tilbud</strong> her.</li>
+        <li>✔  - Husk at udfylde alle påkrævede felter før du gemmer.</li>
         <li>✔  - Billede-URLs skal være gyldige links til billeder (f.eks. .jpg, .png).</li>
         <li>❌ - Du må <strong>ikke</strong> indsætte skadelige eller upassende data (som kode eller ugyldige links).</li>
         <li>❌ - Undgå at slette indhold, medmindre du er helt sikker, da data ikke kan gendannes.</li>
@@ -170,6 +170,7 @@
       <button id="logout-btn">Log ud</button>
       <button id="show-news-btn">Nyheder</button>
       <button id="show-dagensspil-btn">Dagens Spil</button>
+      <button id="show-tilbud-btn">Tilbud</button>
     </nav>
 
     <!-- Nyheder Sektion -->
@@ -245,6 +246,36 @@
         <tbody></tbody>
       </table>
     </section>
+
+    <!-- Tilbud Sektion -->
+    <section id="tilbud-section" class="hidden">
+      <h2 id="tilbud-form-header">Opret/Rediger Tilbud</h2>
+      <label for="tilbud-billede-url">Billede URL</label>
+      <input id="tilbud-billede-url" type="text" placeholder="Link til billede (fx https://.../logo.png)" />
+      <label for="tilbud-bettingselvskab">Bettingselskab</label>
+      <input id="tilbud-bettingselvskab" type="text" placeholder="Navn på bettingselskab" />
+      <label for="tilbud-beskrivelse">Beskrivelse</label>
+      <textarea id="tilbud-beskrivelse" rows="3" placeholder="Skriv kort beskrivelse"></textarea>
+      <label for="tilbud-knaplink">Knap link</label>
+      <input id="tilbud-knaplink" type="text" placeholder="Link til tilbud/partner" />
+      <button id="add-tilbud-btn">Tilføj tilbud</button>
+      <button id="cancel-edit-tilbud-btn" class="hidden" style="background:#aaa;">Annuller redigering</button>
+      <p class="error" id="tilbud-error"></p>
+      <h3>Eksisterende tilbud</h3>
+      <table id="tilbud-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Billede</th>
+            <th>Selskab</th>
+            <th>Beskrivelse</th>
+            <th>Knaplink</th>
+            <th>Handling</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
   </div>
 
   <script type="module">
@@ -266,11 +297,13 @@
 
     const showNewsBtn = document.getElementById("show-news-btn");
     const showDagensspilBtn = document.getElementById("show-dagensspil-btn");
+    const showTilbudBtn = document.getElementById("show-tilbud-btn");
 
     const newsSection = document.getElementById("news-section");
     const dagensspilSection = document.getElementById("dagensspil-section");
+    const tilbudSection = document.getElementById("tilbud-section");
 
-    // Nyhed inputs
+    // Nyhed
     const newsTitle = document.getElementById("news-title");
     const newsDate = document.getElementById("news-date");
     const newsImage = document.getElementById("news-image");
@@ -282,7 +315,7 @@
     const cancelEditNewsBtn = document.getElementById("cancel-edit-news-btn");
     const newsFormHeader = document.getElementById("news-form-header");
 
-    // Bet inputs
+    // Bet
     const betTime = document.getElementById("bet-time");
     const betTeam1Name = document.getElementById("bet-team1-name");
     const betTeam1Logo = document.getElementById("bet-team1-logo");
@@ -295,11 +328,23 @@
     const betError = document.getElementById("bet-error");
     const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
 
-    // Redigeringstilstand
+    // Tilbud
+    const tilbudBilledeUrl = document.getElementById("tilbud-billede-url");
+    const tilbudBettingselvskab = document.getElementById("tilbud-bettingselvskab");
+    const tilbudBeskrivelse = document.getElementById("tilbud-beskrivelse");
+    const tilbudKnaplink = document.getElementById("tilbud-knaplink");
+    const addTilbudBtn = document.getElementById("add-tilbud-btn");
+    const tilbudError = document.getElementById("tilbud-error");
+    const tilbudTableBody = document.querySelector("#tilbud-table tbody");
+    const cancelEditTilbudBtn = document.getElementById("cancel-edit-tilbud-btn");
+    const tilbudFormHeader = document.getElementById("tilbud-form-header");
+
+    // Rediger state
     let editingBetId = null;
     let editingNewsId = null;
+    let editingTilbudId = null;
 
-    // Login funktion
+    // --- LOGIN ---
     loginBtn.addEventListener("click", async () => {
       loginError.textContent = "";
       const email = document.getElementById("email").value.trim();
@@ -318,10 +363,11 @@
         adminSection.classList.remove("hidden");
         loadNews();
         loadBets();
+        loadTilbud();
       }
     });
 
-    // Logout funktion
+    // --- LOGOUT ---
     logoutBtn.addEventListener("click", async () => {
       await supabase.auth.signOut();
       adminSection.classList.add("hidden");
@@ -330,18 +376,26 @@
       clearTables();
     });
 
-    // Vis / Skjul sektioner
+    // --- NAVIGATION ---
     showNewsBtn.addEventListener("click", () => {
       newsSection.classList.remove("hidden");
       dagensspilSection.classList.add("hidden");
+      tilbudSection.classList.add("hidden");
     });
 
     showDagensspilBtn.addEventListener("click", () => {
       dagensspilSection.classList.remove("hidden");
       newsSection.classList.add("hidden");
+      tilbudSection.classList.add("hidden");
     });
 
-    // Tilføj eller opdater nyhed
+    showTilbudBtn.addEventListener("click", () => {
+      tilbudSection.classList.remove("hidden");
+      newsSection.classList.add("hidden");
+      dagensspilSection.classList.add("hidden");
+    });
+
+    // --- NYHEDER ---
     addNewsBtn.addEventListener("click", async () => {
       newsError.textContent = "";
       const title = newsTitle.value.trim();
@@ -383,7 +437,6 @@
       loadNews();
     });
 
-    // Annuller redigering
     cancelEditNewsBtn.addEventListener("click", () => {
       clearNewsInputs();
       addNewsBtn.textContent = "Tilføj nyhed";
@@ -392,7 +445,6 @@
       editingNewsId = null;
     });
 
-    // Load nyheder
     async function loadNews() {
       newsTableBody.innerHTML = "";
       const { data, error } = await supabase.from("news").select("*").order("date", { ascending: false });
@@ -422,7 +474,6 @@
       });
     }
 
-    // Slet nyhed
     async function deleteNews(e) {
       const id = e.target.getAttribute("data-id");
       const { error } = await supabase.from("news").delete().eq("id", id);
@@ -433,7 +484,6 @@
       }
     }
 
-    // Rediger nyhed
     async function editNews(id) {
       const { data, error } = await supabase.from("news").select("*").eq("id", id).single();
       if (error || !data) {
@@ -451,7 +501,7 @@
       cancelEditNewsBtn.classList.remove("hidden");
     }
 
-    // Tilføj/Opdater bet
+    // --- DAGENS SPIL ---
     addBetBtn.addEventListener("click", async () => {
       betError.textContent = "";
       const tidspunkt = betTime.value;
@@ -469,7 +519,6 @@
       }
 
       if (editingBetId) {
-        // OPDATER eksisterende bet
         const { error } = await supabase
           .from("dagensspil")
           .update({ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert, liga })
@@ -482,7 +531,6 @@
         addBetBtn.textContent = "Tilføj bet";
         editingBetId = null;
       } else {
-        // TILFØJ nyt bet
         const { error } = await supabase
           .from("dagensspil")
           .insert([{ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert, liga }]);
@@ -491,12 +539,10 @@
           return;
         }
       }
-
       clearBetInputs();
       loadBets();
     });
 
-    // Load dagens spil
     async function loadBets() {
       dagensspilTableBody.innerHTML = "";
       const { data, error } = await supabase.from("dagensspil").select("*").order("tidspunkt", { ascending: true });
@@ -531,7 +577,6 @@
       });
     }
 
-    // Rediger bet-funktion
     async function editBet(id) {
       const { data, error } = await supabase
         .from("dagensspil")
@@ -556,7 +601,6 @@
       addBetBtn.textContent = "Opdater bet";
     }
 
-    // Slet bet
     async function deleteBet(e) {
       const id = e.target.getAttribute("data-id");
       const { error } = await supabase.from("dagensspil").delete().eq("id", id);
@@ -567,7 +611,112 @@
       }
     }
 
-    // Ryd inputs
+    // --- TILBUD ---
+    addTilbudBtn.addEventListener("click", async () => {
+      tilbudError.textContent = "";
+      const billede_url = tilbudBilledeUrl.value.trim();
+      const bettingselvskab = tilbudBettingselvskab.value.trim();
+      const beskrivelse = tilbudBeskrivelse.value.trim();
+      const knaplink = tilbudKnaplink.value.trim();
+
+      if (!billede_url || !bettingselvskab || !beskrivelse || !knaplink) {
+        tilbudError.textContent = "Udfyld alle felter.";
+        return;
+      }
+
+      if (editingTilbudId) {
+        // Opdater eksisterende tilbud
+        const { error } = await supabase
+          .from("tilbud")
+          .update({ billede_url, bettingselvskab, beskrivelse, knaplink })
+          .eq("id", editingTilbudId);
+        if (error) {
+          tilbudError.textContent = "Fejl ved opdatering: " + error.message;
+          return;
+        }
+        addTilbudBtn.textContent = "Tilføj tilbud";
+        tilbudFormHeader.textContent = "Opret/Rediger Tilbud";
+        cancelEditTilbudBtn.classList.add("hidden");
+        editingTilbudId = null;
+      } else {
+        // Tilføj nyt tilbud
+        const { error } = await supabase
+          .from("tilbud")
+          .insert([{ billede_url, bettingselvskab, beskrivelse, knaplink }]);
+        if (error) {
+          tilbudError.textContent = "Fejl ved tilføjelse: " + error.message;
+          return;
+        }
+      }
+      clearTilbudInputs();
+      loadTilbud();
+    });
+
+    cancelEditTilbudBtn.addEventListener("click", () => {
+      clearTilbudInputs();
+      addTilbudBtn.textContent = "Tilføj tilbud";
+      tilbudFormHeader.textContent = "Opret/Rediger Tilbud";
+      cancelEditTilbudBtn.classList.add("hidden");
+      editingTilbudId = null;
+    });
+
+    async function loadTilbud() {
+      tilbudTableBody.innerHTML = "";
+      const { data, error } = await supabase.from("tilbud").select("*").order("id", { ascending: false });
+      if (error) {
+        tilbudError.textContent = "Fejl ved hentning af tilbud: " + error.message;
+        return;
+      }
+      data.forEach((t) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${t.id}</td>
+          <td>${t.billede_url ? `<img src="${t.billede_url}" alt="logo" style="max-width:60px;max-height:40px;">` : ""}</td>
+          <td>${t.bettingselvskab}</td>
+          <td>${t.beskrivelse}</td>
+          <td><a href="${t.knaplink}" target="_blank">${t.knaplink}</a></td>
+          <td>
+            <button data-id="${t.id}" class="edit-tilbud-btn rediger-btn">Rediger</button>
+            <button data-id="${t.id}" class="delete-tilbud-btn slet-btn">Slet</button>
+          </td>
+        `;
+        tilbudTableBody.appendChild(tr);
+      });
+      document.querySelectorAll(".delete-tilbud-btn").forEach((btn) => {
+        btn.addEventListener("click", deleteTilbud);
+      });
+      document.querySelectorAll(".edit-tilbud-btn").forEach((btn) => {
+        btn.addEventListener("click", () => editTilbud(btn.getAttribute("data-id")));
+      });
+    }
+
+    async function deleteTilbud(e) {
+      const id = e.target.getAttribute("data-id");
+      const { error } = await supabase.from("tilbud").delete().eq("id", id);
+      if (error) {
+        alert("Fejl ved sletning: " + error.message);
+      } else {
+        loadTilbud();
+      }
+    }
+
+    async function editTilbud(id) {
+      const { data, error } = await supabase.from("tilbud").select("*").eq("id", id).single();
+      if (error || !data) {
+        tilbudError.textContent = "Kunne ikke hente tilbud til redigering.";
+        return;
+      }
+      tilbudBilledeUrl.value = data.billede_url || "";
+      tilbudBettingselvskab.value = data.bettingselvskab || "";
+      tilbudBeskrivelse.value = data.beskrivelse || "";
+      tilbudKnaplink.value = data.knaplink || "";
+      editingTilbudId = id;
+      addTilbudBtn.textContent = "Opdater tilbud";
+      tilbudFormHeader.textContent = "Rediger Tilbud";
+      cancelEditTilbudBtn.classList.remove("hidden");
+    }
+
+    // --- RYD INPUTS ---
     function clearNewsInputs() {
       newsTitle.value = "";
       newsDate.value = "";
@@ -593,16 +742,30 @@
       addBetBtn.textContent = "Tilføj bet";
       editingBetId = null;
     }
+    function clearTilbudInputs() {
+      tilbudBilledeUrl.value = "";
+      tilbudBettingselvskab.value = "";
+      tilbudBeskrivelse.value = "";
+      tilbudKnaplink.value = "";
+      tilbudError.textContent = "";
+      addTilbudBtn.textContent = "Tilføj tilbud";
+      tilbudFormHeader.textContent = "Opret/Rediger Tilbud";
+      cancelEditTilbudBtn.classList.add("hidden");
+      editingTilbudId = null;
+    }
     function clearInputs() {
       clearNewsInputs();
       clearBetInputs();
+      clearTilbudInputs();
       loginError.textContent = "";
       newsError.textContent = "";
       betError.textContent = "";
+      tilbudError.textContent = "";
     }
     function clearTables() {
       newsTableBody.innerHTML = "";
       dagensspilTableBody.innerHTML = "";
+      tilbudTableBody.innerHTML = "";
     }
 
     // Tjek om bruger allerede er logget ind ved sideindlæsning
@@ -613,6 +776,7 @@
         adminSection.classList.remove("hidden");
         loadNews();
         loadBets();
+        loadTilbud();
       }
     });
   </script>
