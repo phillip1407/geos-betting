@@ -33,10 +33,7 @@
       display: block;
       margin-top: 10px;
     }
-    input,
-    textarea,
-    select,
-    button {
+    input, textarea, select, button {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -81,8 +78,7 @@
       border-collapse: collapse;
       margin-top: 10px;
     }
-    th,
-    td {
+    th, td {
       border: 1px solid #ddd;
       padding: 8px;
       text-align: left;
@@ -157,7 +153,7 @@
     <p class="error" id="login-error"></p>
   </div>
 
-  <!-- ADMIN SEKTION: Alt admin-indhold er nu pakket ind i denne div -->
+  <!-- ADMIN SEKTION -->
   <div id="admin-section" class="hidden">
     <section id="info-box">
       <h2>Information</h2>
@@ -178,16 +174,19 @@
 
     <!-- Nyheder Sektion -->
     <section id="news-section" class="hidden">
-      <h2>Opret nyhed</h2>
+      <h2 id="news-form-header">Opret nyhed</h2>
       <label for="news-title">Titel</label>
       <input id="news-title" type="text" placeholder="Nyhedens titel" />
       <label for="news-date">Dato</label>
       <input id="news-date" type="date" />
       <label for="news-image">Billede URL</label>
       <input id="news-image" type="text" placeholder="URL til billede" />
+      <label for="news-author">Forfatter</label>
+      <input id="news-author" type="text" placeholder="Skriv navnet på forfatteren" />
       <label for="news-content">Indhold</label>
       <textarea id="news-content" rows="5" placeholder="Indhold af nyheden"></textarea>
       <button id="add-news-btn">Tilføj nyhed</button>
+      <button id="cancel-edit-news-btn" class="hidden" style="background:#aaa;">Annuller redigering</button>
       <p class="error" id="news-error"></p>
 
       <h3>Eksisterende nyheder</h3>
@@ -197,6 +196,7 @@
             <th>ID</th>
             <th>Titel</th>
             <th>Dato</th>
+            <th>Forfatter</th>
             <th>Handling</th>
           </tr>
         </thead>
@@ -221,10 +221,8 @@
       <input id="bet-odds" type="number" step="0.01" placeholder="Odds" />
       <label for="bet-ekspert">Ekspert</label>
       <input id="bet-ekspert" type="text" placeholder="Ekspert navn" />
-      <!-- LIGA FELT START -->
       <label for="bet-liga">Liga</label>
       <input id="bet-liga" type="text" placeholder="F.eks. Premier League" />
-      <!-- LIGA FELT SLUT -->
       <button id="add-bet-btn">Tilføj bet</button>
       <p class="error" id="bet-error"></p>
 
@@ -277,9 +275,12 @@
     const newsDate = document.getElementById("news-date");
     const newsImage = document.getElementById("news-image");
     const newsContent = document.getElementById("news-content");
+    const newsAuthor = document.getElementById("news-author");
     const addNewsBtn = document.getElementById("add-news-btn");
     const newsError = document.getElementById("news-error");
     const newsTableBody = document.querySelector("#news-table tbody");
+    const cancelEditNewsBtn = document.getElementById("cancel-edit-news-btn");
+    const newsFormHeader = document.getElementById("news-form-header");
 
     // Bet inputs
     const betTime = document.getElementById("bet-time");
@@ -296,6 +297,7 @@
 
     // Redigeringstilstand
     let editingBetId = null;
+    let editingNewsId = null;
 
     // Login funktion
     loginBtn.addEventListener("click", async () => {
@@ -339,29 +341,55 @@
       newsSection.classList.add("hidden");
     });
 
-    // Tilføj nyhed
+    // Tilføj eller opdater nyhed
     addNewsBtn.addEventListener("click", async () => {
       newsError.textContent = "";
       const title = newsTitle.value.trim();
       const date = newsDate.value;
       const image = newsImage.value.trim();
       const content = newsContent.value.trim();
+      const author = newsAuthor.value.trim();
 
       if (!title || !date || !content) {
         newsError.textContent = "Titel, dato og indhold er påkrævet.";
         return;
       }
 
-      const { data, error } = await supabase
-        .from("news")
-        .insert([{ title, date, image, content }]);
-
-      if (error) {
-        newsError.textContent = "Fejl ved tilføjelse: " + error.message;
+      if (editingNewsId) {
+        // Opdater eksisterende nyhed
+        const { error } = await supabase
+          .from("news")
+          .update({ title, date, image, content, author })
+          .eq("id", editingNewsId);
+        if (error) {
+          newsError.textContent = "Fejl ved opdatering: " + error.message;
+          return;
+        }
+        addNewsBtn.textContent = "Tilføj nyhed";
+        newsFormHeader.textContent = "Opret nyhed";
+        cancelEditNewsBtn.classList.add("hidden");
+        editingNewsId = null;
       } else {
-        clearNewsInputs();
-        loadNews();
+        // Tilføj ny nyhed
+        const { error } = await supabase
+          .from("news")
+          .insert([{ title, date, image, content, author }]);
+        if (error) {
+          newsError.textContent = "Fejl ved tilføjelse: " + error.message;
+          return;
+        }
       }
+      clearNewsInputs();
+      loadNews();
+    });
+
+    // Annuller redigering
+    cancelEditNewsBtn.addEventListener("click", () => {
+      clearNewsInputs();
+      addNewsBtn.textContent = "Tilføj nyhed";
+      newsFormHeader.textContent = "Opret nyhed";
+      cancelEditNewsBtn.classList.add("hidden");
+      editingNewsId = null;
     });
 
     // Load nyheder
@@ -378,12 +406,19 @@
           <td>${news.id}</td>
           <td>${news.title}</td>
           <td>${news.date}</td>
-          <td><button data-id="${news.id}" class="delete-news-btn">Slet</button></td>
+          <td>${news.author || ""}</td>
+          <td>
+            <button data-id="${news.id}" class="edit-news-btn rediger-btn">Rediger</button>
+            <button data-id="${news.id}" class="delete-news-btn slet-btn">Slet</button>
+          </td>
         `;
         newsTableBody.appendChild(tr);
       });
       document.querySelectorAll(".delete-news-btn").forEach((btn) => {
         btn.addEventListener("click", deleteNews);
+      });
+      document.querySelectorAll(".edit-news-btn").forEach((btn) => {
+        btn.addEventListener("click", () => editNews(btn.getAttribute("data-id")));
       });
     }
 
@@ -396,6 +431,24 @@
       } else {
         loadNews();
       }
+    }
+
+    // Rediger nyhed
+    async function editNews(id) {
+      const { data, error } = await supabase.from("news").select("*").eq("id", id).single();
+      if (error || !data) {
+        newsError.textContent = "Kunne ikke hente nyheden for redigering.";
+        return;
+      }
+      newsTitle.value = data.title || "";
+      newsDate.value = data.date || "";
+      newsImage.value = data.image || "";
+      newsContent.value = data.content || "";
+      newsAuthor.value = data.author || "";
+      editingNewsId = id;
+      addNewsBtn.textContent = "Opdater nyhed";
+      newsFormHeader.textContent = "Rediger nyhed";
+      cancelEditNewsBtn.classList.remove("hidden");
     }
 
     // Tilføj/Opdater bet
@@ -520,7 +573,12 @@
       newsDate.value = "";
       newsImage.value = "";
       newsContent.value = "";
+      newsAuthor.value = "";
       newsError.textContent = "";
+      addNewsBtn.textContent = "Tilføj nyhed";
+      newsFormHeader.textContent = "Opret nyhed";
+      cancelEditNewsBtn.classList.add("hidden");
+      editingNewsId = null;
     }
     function clearBetInputs() {
       betTime.value = "";
