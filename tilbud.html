@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <style>
-    /* ... (samme CSS som før, ikke ændret) ... */
+    /* ... din eksisterende CSS ... */
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
     .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
@@ -213,9 +213,8 @@
   </section>
   <script>
     // ---------- SUPABASE OPSÆTNING ----------
-    // INDSÆT DINE EGNE NØGLER HER!
-    const supabaseUrl = 'https://YOUR_PROJECT_ID.supabase.co';
-    const supabaseKey = 'YOUR_ANON_KEY';
+    const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     // ---------- SØGEFUNKTION ----------
@@ -268,9 +267,6 @@
     });
 
     // ---------- TILBUD LOADER ----------
-    // Denne del er uændret, men hvis du også vil hente tilbud fra Supabase,
-    // kan du skrive lignende til ovenstående searchAllTables-metode.
-
     fetch('tilbud.json')
       .then(response => response.ok ? response.json() : [])
       .then(data => {
