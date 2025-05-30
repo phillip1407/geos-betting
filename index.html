@@ -346,64 +346,82 @@
     </p>
   </div>
 
-<script>
-  let items = [];
 
-  // Hent data fra søgefelt.json
-  fetch('søgefelt.json')
-    .then(response => {
-      if (!response.ok) {
-        console.error('Fejl ved hentning af søgefelt.json:', response.status);
-        return [];
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Søge-data hentet:', data);
-      items = data;
-    })
-    .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
 
-  const input = document.getElementById('search');
-  const suggBox = document.getElementById('suggestions');
 
-  input.addEventListener('input', () => {
-    const val = input.value.trim().toLowerCase();
-    suggBox.innerHTML = '';
-    if (!val) {
-      suggBox.style.display = 'none';
-      return;
-    }
-    // Find matches i items
-    const matches = items.filter(i => i.title.toLowerCase().includes(val));
+// Søgefelt script
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    if (!matches.length) {
-      suggBox.style.display = 'none';
-      return;
-    }
+const input = document.getElementById('search');
+const suggBox = document.getElementById('suggestions');
 
-    // Juster dropdown bredde til input bredde
-    suggBox.style.width = input.offsetWidth + 'px';
+input.addEventListener('input', async () => {
+  const val = input.value.trim().toLowerCase();
+  suggBox.innerHTML = '';
+  if (!val) {
+    suggBox.style.display = 'none';
+    return;
+  }
 
-    // Lav liste af matches i dropdown
-    matches.forEach(item => {
+  // Søg i Dagens Spil
+  const { data: spilData, error: spilError } = await supabase
+    .from('dagensspil')
+    .select('id, hold1, hold2, liga')
+    .or(`hold1.ilike.%${val}%,hold2.ilike.%${val}%,liga.ilike.%${val}%`)
+    .limit(5);
+
+  // Søg i Nyheder
+  const { data: nyhedData, error: nyhedError } = await supabase
+    .from('nyheder')
+    .select('id, titel')
+    .or(`titel.ilike.%${val}%`)
+    .limit(5);
+
+  // Ingen resultater i begge
+  if ((!spilData || spilData.length === 0) && (!nyhedData || nyhedData.length === 0)) {
+    suggBox.style.display = 'none';
+    return;
+  }
+
+  suggBox.style.width = input.offsetWidth + 'px';
+
+  // Dagens spil resultater
+  if (spilData && spilData.length > 0) {
+    spilData.forEach(spil => {
       const li = document.createElement('li');
-      li.textContent = item.title;
+      li.textContent = `Dagens Spil: ${spil.hold1 || ''} vs ${spil.hold2 || ''} (${spil.liga || ''})`;
       li.addEventListener('click', () => {
-        window.location.href = item.url;
+        window.location.href = `dagensspil.html?id=${spil.id}`;
       });
       suggBox.appendChild(li);
     });
+  }
 
-    suggBox.style.display = 'block';
-  });
+  // Nyheder resultater
+  if (nyhedData && nyhedData.length > 0) {
+    nyhedData.forEach(nyhed => {
+      const li = document.createElement('li');
+      li.textContent = `Nyhed: ${nyhed.titel}`;
+      li.addEventListener('click', () => {
+        window.location.href = `nyhed.html?id=${nyhed.id}`;
+      });
+      suggBox.appendChild(li);
+    });
+  }
 
-  // Luk dropdown hvis klik udenfor søgefeltet
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.search-wrapper')) {
-      suggBox.style.display = 'none';
-    }
-  });
+  suggBox.style.display = 'block';
+});
+
+// Luk dropdown hvis klik udenfor søgefeltet
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrapper')) {
+    suggBox.style.display = 'none';
+  }
+});
 </script>
 
   <script>
