@@ -84,6 +84,7 @@
     }
     /* Nyheder visning */
     .nyheder-container { max-width:900px; margin:40px auto; padding:0 12px; }
+
     .nyhed-boks {
       background:#fff;
       margin-bottom:22px;
@@ -93,30 +94,35 @@
       transition: box-shadow 0.2s;
       border: 1px solid #e0e7f6;
       display: flex;
-      flex-direction: column;
-      position:relative;
+      align-items: stretch;
+      min-height: 160px;
+      position: relative;
     }
     .nyhed-boks:hover {
       box-shadow: 0 6px 15px rgba(20,37,65,0.09);
     }
     .nyhed-billede {
-      width: 100%;
-      height: 210px;
+      width: 180px;
+      height: 160px;
       object-fit: cover;
-      border-radius: 8px 8px 0 0;
+      border-radius: 8px 0 0 8px;
       background: #eee;
       display: block;
+      flex-shrink: 0;
     }
     .nyhed-tekst {
       padding: 18px 20px 12px 20px;
       display: flex;
       flex-direction: column;
       gap: 6px;
+      flex: 1 1 0%;
+      min-width: 0;
     }
     .nyhed-titel {
       font-size: 1.2rem;
       font-weight: bold;
       color: #142541;
+      word-break: break-word;
     }
     .nyhed-dato {
       font-size: 0.93rem;
@@ -128,6 +134,7 @@
       margin-bottom:6px;
       color: #222;
       font-size: 1rem;
+      word-break: break-word;
     }
     .nyhed-indhold {
       font-size: 1rem;
@@ -145,24 +152,11 @@
       margin-top: 8px;
       margin-bottom: 8px;
     }
-    .nyhed-boks .nyhed-pil {
-      align-self: flex-end;
-      font-size: 20px;
-      color: #f0ab4c;
-      transition: transform 0.3s;
-      user-select: none;
-      margin-bottom: 3px;
-      margin-right: 2px;
-      display: inline-block;
-    }
-    .nyhed-boks.udfoldet .nyhed-pil {
-      transform: rotate(90deg);
-    }
     .nyhed-lnk-btn {
       align-self: flex-end;
       margin-top: 6px;
-      background: #f0ab4c;
-      color: #142541;
+      background: #142541;
+      color: #fff;
       border: none;
       border-radius: 6px;
       font-size: 1rem;
@@ -173,7 +167,7 @@
       outline: none;
       display: inline-block;
     }
-    .nyhed-lnk-btn:hover { background: #ffd380; }
+    .nyhed-lnk-btn:hover { background: #1f3a68; }
     .nyhed-boks.highlight {
       box-shadow: 0 0 0 4px #f0ab4c88;
       border-color: #f0ab4c;
@@ -183,10 +177,10 @@
       0% { box-shadow: 0 0 0 8px #f0ab4cBB; }
       100% { box-shadow: 0 0 0 0px #f0ab4c00; }
     }
-    @media (max-width:600px) {
-      .nyhed-billede { height: 120px; }
+    @media (max-width:700px) {
+      .nyhed-boks { flex-direction: column; min-height: unset; }
+      .nyhed-billede { width: 100%; height: 160px; border-radius: 8px 8px 0 0; }
       .nyhed-tekst { padding: 10px 8px 8px 8px; }
-      .nyheder-container { padding: 0 1vw; }
     }
   </style>
 </head>
@@ -242,6 +236,19 @@
     const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+    // Dato-format
+    function formatDato(dateStr) {
+      // Hvis din Supabase giver dato+tid, fx "2025-06-01 12:30"
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr; // fallback
+      const dd = String(d.getDate()).padStart(2, '0');
+      const mm = String(d.getMonth()+1).padStart(2, '0');
+      const yyyy = d.getFullYear();
+      const hh = String(d.getHours()).padStart(2, '0');
+      const min = String(d.getMinutes()).padStart(2, '0');
+      return `${dd}-${mm}-${yyyy} ${hh}:${min}`;
+    }
+
     let allNews = [];
 
     // Load all news on page load
@@ -266,14 +273,13 @@
         boks.className = "nyhed-boks";
         boks.id = "nyhed-" + nyhed.id;
         boks.innerHTML = `
-          ${nyhed.image ? `<img class="nyhed-billede" src="${nyhed.image}" alt="${nyhed.title}" loading="lazy"/>` : ""}
+          ${nyhed.image ? `<img class="nyhed-billede" src="${nyhed.image}" alt="${nyhed.title}" loading="lazy"/>` : `<div class="nyhed-billede" style="background:#ddd"></div>`}
           <div class="nyhed-tekst">
             <div class="nyhed-titel">${nyhed.title || ""}</div>
-            <div class="nyhed-dato">${nyhed.date || ""}</div>
+            <div class="nyhed-dato">${formatDato(nyhed.date) || ""}</div>
             <div class="nyhed-korttekst">${kortTekst}</div>
             <div class="nyhed-indhold">${nyhed.content}</div>
             <button class="nyhed-lnk-btn" type="button">Læs mere</button>
-            <span class="nyhed-pil">&#9654;</span>
           </div>
         `;
         // Expand/collapse on button click
@@ -284,10 +290,9 @@
           btn.textContent = isOpen ? "Vis mindre" : "Læs mere";
         });
         boks.querySelector('.nyhed-indhold').style.display = "block"; // For smooth max-height animation
-        // Start collapsed
         boks.classList.remove("udfoldet");
-        boks.querySelector('.nyhed-lnk-btn').textContent = "Læs mere";
-        document.getElementById('nyheder').appendChild(boks);
+        btn.textContent = "Læs mere";
+        nyhederContainer.appendChild(boks);
       });
     }
     loadNews();
