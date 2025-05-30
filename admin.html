@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
@@ -206,6 +206,10 @@
       <input id="bet-odds" type="number" step="0.01" placeholder="Odds" />
       <label for="bet-ekspert">Ekspert</label>
       <input id="bet-ekspert" type="text" placeholder="Ekspert navn" />
+      <!-- LIGA FELT START -->
+      <label for="bet-liga">Liga</label>
+      <input id="bet-liga" type="text" placeholder="F.eks. Premier League" />
+      <!-- LIGA FELT SLUT -->
       <button id="add-bet-btn">Tilføj bet</button>
       <p class="error" id="bet-error"></p>
 
@@ -221,6 +225,7 @@
             <th>Logo 2</th>
             <th>Odds</th>
             <th>Ekspert</th>
+            <th>Liga</th>
             <th>Handling</th>
           </tr>
         </thead>
@@ -269,6 +274,9 @@
     const betTeam2Logo = document.getElementById("bet-team2-logo");
     const betOdds = document.getElementById("bet-odds");
     const betEkspert = document.getElementById("bet-ekspert");
+    // LIGA FELT START
+    const betLiga = document.getElementById("bet-liga");
+    // LIGA FELT SLUT
     const addBetBtn = document.getElementById("add-bet-btn");
     const betError = document.getElementById("bet-error");
     const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
@@ -385,6 +393,9 @@
       const hold2logo = betTeam2Logo.value.trim();
       const odds = parseFloat(betOdds.value);
       const ekspert = betEkspert.value.trim();
+      // LIGA FELT START
+      const liga = betLiga.value.trim();
+      // LIGA FELT SLUT
 
       if (!tidspunkt || !hold1 || !hold2 || isNaN(odds) || !ekspert) {
         betError.textContent = "Udfyld venligst alle påkrævede felter.";
@@ -393,7 +404,7 @@
 
       const { data, error } = await supabase
         .from("dagensspil")
-        .insert([{ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert }]);
+        .insert([{ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert, liga }]);
 
       if (error) {
         betError.textContent = "Fejl ved tilføjelse: " + error.message;
@@ -422,6 +433,7 @@
           <td>${bet.hold2logo ? `<img src="${bet.hold2logo}" alt="${bet.hold2} logo" />` : ""}</td>
           <td>${bet.odds}</td>
           <td>${bet.ekspert}</td>
+          <td>${bet.liga || ""}</td>
           <td><button data-id="${bet.id}" class="delete-bet-btn">Slet</button></td>
         `;
         dagensspilTableBody.appendChild(tr);
@@ -458,6 +470,9 @@
       betTeam2Logo.value = "";
       betOdds.value = "";
       betEkspert.value = "";
+      // LIGA FELT START
+      betLiga.value = "";
+      // LIGA FELT SLUT
       betError.textContent = "";
     }
     function clearInputs() {
