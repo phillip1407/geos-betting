@@ -126,6 +126,21 @@
     #info-box strong {
       color: #d32f2f;
     }
+    .rediger-btn {
+      background: #f0ab4c;
+      color: #142541;
+      margin-right: 5px;
+    }
+    .rediger-btn:hover {
+      background: #f9c77e;
+    }
+    .slet-btn {
+      background: #d32f2f;
+      color: #fff;
+    }
+    .slet-btn:hover {
+      background: #b71c1c;
+    }
   </style>
 </head>
 <body>
@@ -274,12 +289,13 @@
     const betTeam2Logo = document.getElementById("bet-team2-logo");
     const betOdds = document.getElementById("bet-odds");
     const betEkspert = document.getElementById("bet-ekspert");
-    // LIGA FELT START
     const betLiga = document.getElementById("bet-liga");
-    // LIGA FELT SLUT
     const addBetBtn = document.getElementById("add-bet-btn");
     const betError = document.getElementById("bet-error");
     const dagensspilTableBody = document.querySelector("#dagensspil-table tbody");
+
+    // Redigeringstilstand
+    let editingBetId = null;
 
     // Login funktion
     loginBtn.addEventListener("click", async () => {
@@ -366,7 +382,6 @@
         `;
         newsTableBody.appendChild(tr);
       });
-      // Tilføj slet-eventlisteners
       document.querySelectorAll(".delete-news-btn").forEach((btn) => {
         btn.addEventListener("click", deleteNews);
       });
@@ -383,7 +398,7 @@
       }
     }
 
-    // Tilføj bet
+    // Tilføj/Opdater bet
     addBetBtn.addEventListener("click", async () => {
       betError.textContent = "";
       const tidspunkt = betTime.value;
@@ -393,25 +408,39 @@
       const hold2logo = betTeam2Logo.value.trim();
       const odds = parseFloat(betOdds.value);
       const ekspert = betEkspert.value.trim();
-      // LIGA FELT START
       const liga = betLiga.value.trim();
-      // LIGA FELT SLUT
 
       if (!tidspunkt || !hold1 || !hold2 || isNaN(odds) || !ekspert) {
         betError.textContent = "Udfyld venligst alle påkrævede felter.";
         return;
       }
 
-      const { data, error } = await supabase
-        .from("dagensspil")
-        .insert([{ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert, liga }]);
+      if (editingBetId) {
+        // OPDATER eksisterende bet
+        const { error } = await supabase
+          .from("dagensspil")
+          .update({ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert, liga })
+          .eq("id", editingBetId);
 
-      if (error) {
-        betError.textContent = "Fejl ved tilføjelse: " + error.message;
+        if (error) {
+          betError.textContent = "Fejl ved opdatering: " + error.message;
+          return;
+        }
+        addBetBtn.textContent = "Tilføj bet";
+        editingBetId = null;
       } else {
-        clearBetInputs();
-        loadBets();
+        // TILFØJ nyt bet
+        const { error } = await supabase
+          .from("dagensspil")
+          .insert([{ tidspunkt, hold1, hold1logo, hold2, hold2logo, odds, ekspert, liga }]);
+        if (error) {
+          betError.textContent = "Fejl ved tilføjelse: " + error.message;
+          return;
+        }
       }
+
+      clearBetInputs();
+      loadBets();
     });
 
     // Load dagens spil
@@ -434,13 +463,44 @@
           <td>${bet.odds}</td>
           <td>${bet.ekspert}</td>
           <td>${bet.liga || ""}</td>
-          <td><button data-id="${bet.id}" class="delete-bet-btn">Slet</button></td>
+          <td>
+            <button data-id="${bet.id}" class="edit-bet-btn rediger-btn">Rediger</button>
+            <button data-id="${bet.id}" class="delete-bet-btn slet-btn">Slet</button>
+          </td>
         `;
         dagensspilTableBody.appendChild(tr);
       });
       document.querySelectorAll(".delete-bet-btn").forEach((btn) => {
         btn.addEventListener("click", deleteBet);
       });
+      document.querySelectorAll(".edit-bet-btn").forEach((btn) => {
+        btn.addEventListener("click", () => editBet(btn.getAttribute("data-id")));
+      });
+    }
+
+    // Rediger bet-funktion
+    async function editBet(id) {
+      const { data, error } = await supabase
+        .from("dagensspil")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+      if (error || !data) {
+        alert("Kunne ikke hente data for redigering.");
+        return;
+      }
+
+      betTime.value = data.tidspunkt;
+      betTeam1Name.value = data.hold1;
+      betTeam1Logo.value = data.hold1logo;
+      betTeam2Name.value = data.hold2;
+      betTeam2Logo.value = data.hold2logo;
+      betOdds.value = data.odds;
+      betEkspert.value = data.ekspert;
+      betLiga.value = data.liga;
+      editingBetId = id;
+      addBetBtn.textContent = "Opdater bet";
     }
 
     // Slet bet
@@ -470,10 +530,10 @@
       betTeam2Logo.value = "";
       betOdds.value = "";
       betEkspert.value = "";
-      // LIGA FELT START
       betLiga.value = "";
-      // LIGA FELT SLUT
       betError.textContent = "";
+      addBetBtn.textContent = "Tilføj bet";
+      editingBetId = null;
     }
     function clearInputs() {
       clearNewsInputs();
