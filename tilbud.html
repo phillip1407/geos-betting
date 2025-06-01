@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Geo Betting Tips | Tilbud</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
@@ -59,19 +58,6 @@
     .nav-links li.dropdown:hover ul { display:block; }
     .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
     .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
-
-    .search-wrapper { position:relative; }
-    .search-input {
-      padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
-    }
-    .search-input:focus { outline:none; border-color:#1f3a68; }
-    .suggestions {
-      position:absolute; top:100%; left:0; right:0; background:#fff;
-      border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto;
-      z-index:10; display:none;
-    }
-    .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
-    .suggestions li:hover { background:#f0f0f0; }
 
     .sub-header {
       background: #fff;
@@ -225,7 +211,6 @@
       .site-name, .slogan { font-size: 18px;}
       .logo { width:38px; height:38px;}
       .nav-links { gap:14px; margin-right:0;}
-      .search-input { width:120px; font-size:14px;}
     }
 
     @media (max-width: 500px) {
@@ -262,11 +247,7 @@
             </ul>
           </li>
         </ul>
-
-        <div class="search-wrapper">
-          <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
-          <ul id="suggestions" class="suggestions"></ul>
-        </div>
+        <!-- SØGEFELTET ER FJERNET HER -->
       </nav>
     </div>
     <div class="sub-header">
@@ -300,49 +281,6 @@
       const SUPABASE_URL = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
       const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
       const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-      // -- Søgefelt loader --
-      let items = [];
-      try {
-        const response = await fetch('søgefelt.json');
-        if (response.ok) {
-          items = await response.json();
-        }
-      } catch (err) {
-        console.error('Kunne ikke hente søgefelt.json', err);
-      }
-
-      const input = document.getElementById('search');
-      const suggBox = document.getElementById('suggestions');
-      if(input) {
-        input.addEventListener('input', () => {
-          const val = input.value.trim().toLowerCase();
-          suggBox.innerHTML = '';
-          if (!val) {
-            suggBox.style.display = 'none';
-            return;
-          }
-          const matches = items.filter(i => i.title.toLowerCase().includes(val));
-          if (!matches.length) {
-            suggBox.style.display = 'none';
-            return;
-          }
-          suggBox.style.width = input.offsetWidth + 'px';
-          matches.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item.title;
-            li.addEventListener('click', () => window.location.href = item.url);
-            suggBox.appendChild(li);
-          });
-          suggBox.style.display = 'block';
-        });
-
-        document.addEventListener('click', e => {
-          if (!e.target.closest('.search-wrapper')) {
-            suggBox.style.display = 'none';
-          }
-        });
-      }
 
       // -- Tilbud loader fra Supabase --
       async function loadOffers() {
