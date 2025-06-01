@@ -362,11 +362,11 @@
           .or(`hold1.ilike.%${val}%,hold2.ilike.%${val}%,liga.ilike.%${val}%`)
           .limit(5);
 
-        // Søg i Nyheder
+        // Søg i Nyheder (titel + indhold)
         const { data: nyhedData } = await supabase
           .from('nyheder')
           .select('id, titel')
-          .or(`titel.ilike.%${val}%`)
+          .or(`titel.ilike.%${val}%,indhold.ilike.%${val}%`)
           .limit(5);
 
         if ((!spilData || spilData.length === 0) && (!nyhedData || nyhedData.length === 0)) {
