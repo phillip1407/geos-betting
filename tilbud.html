@@ -1,10 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Geo Betting Tips|Tilbud</title>
+  <title>Geo Betting Tips | Tilbud</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -295,81 +295,88 @@
   <!-- Supabase JS client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script>
-    // Erstat med dine egne Supabase project URL og anon key
-    const SUPABASE_URL = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    document.addEventListener('DOMContentLoaded', async function() {
+      // -- Supabase setup --
+      const SUPABASE_URL = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
+      const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    // Søgefelt loader (samme som før)
-    let items = [];
-    fetch('søgefelt.json')
-      .then(response => response.ok ? response.json() : [])
-      .then(data => { items = data; })
-      .catch(err => console.error('Kunne ikke hente søgefelt.json', err));
-
-    const input = document.getElementById('search');
-    const suggBox = document.getElementById('suggestions');
-
-    input.addEventListener('input', () => {
-      const val = input.value.trim().toLowerCase();
-      suggBox.innerHTML = '';
-      if (!val) {
-        suggBox.style.display = 'none';
-        return;
+      // -- Søgefelt loader --
+      let items = [];
+      try {
+        const response = await fetch('søgefelt.json');
+        if (response.ok) {
+          items = await response.json();
+        }
+      } catch (err) {
+        console.error('Kunne ikke hente søgefelt.json', err);
       }
-      const matches = items.filter(i => i.title.toLowerCase().includes(val));
-      if (!matches.length) {
-        suggBox.style.display = 'none';
-        return;
+
+      const input = document.getElementById('search');
+      const suggBox = document.getElementById('suggestions');
+      if(input) {
+        input.addEventListener('input', () => {
+          const val = input.value.trim().toLowerCase();
+          suggBox.innerHTML = '';
+          if (!val) {
+            suggBox.style.display = 'none';
+            return;
+          }
+          const matches = items.filter(i => i.title.toLowerCase().includes(val));
+          if (!matches.length) {
+            suggBox.style.display = 'none';
+            return;
+          }
+          suggBox.style.width = input.offsetWidth + 'px';
+          matches.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.title;
+            li.addEventListener('click', () => window.location.href = item.url);
+            suggBox.appendChild(li);
+          });
+          suggBox.style.display = 'block';
+        });
+
+        document.addEventListener('click', e => {
+          if (!e.target.closest('.search-wrapper')) {
+            suggBox.style.display = 'none';
+          }
+        });
       }
-      suggBox.style.width = input.offsetWidth + 'px';
-      matches.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item.title;
-        li.addEventListener('click', () => window.location.href = item.url);
-        suggBox.appendChild(li);
-      });
-      suggBox.style.display = 'block';
+
+      // -- Tilbud loader fra Supabase --
+      async function loadOffers() {
+        const container = document.getElementById('offers-container');
+        container.innerHTML = '';
+        // Hent data fra supabase (tabelnavn: "tilbud")
+        const { data, error } = await supabase
+          .from('tilbud')
+          .select('billede_url, bettingselvskab, beskrivelse, knaplink');
+
+        if (error) {
+          console.error('Fejl ved hentning af tilbud fra Supabase:', error);
+          container.innerHTML = '<p>Kunne ikke hente tilbud.</p>';
+          return;
+        }
+        if (!data || data.length === 0) {
+          container.innerHTML = '<p>Ingen tilbud fundet.</p>';
+          return;
+        }
+        data.forEach(offer => {
+          const card = document.createElement('div');
+          card.className = 'offer-card';
+          card.innerHTML = `
+            <img src="${offer.billede_url || 'logo.png'}" alt="${offer.bettingselvskab || ''}">
+            <h3>${offer.bettingselvskab || 'Ukendt selskab'}</h3>
+            <p>${offer.beskrivelse || ''}</p>
+            <a href="${offer.knaplink || '#'}" target="_blank" rel="noopener noreferrer">Se tilbud</a>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      loadOffers();
     });
-
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.search-wrapper')) {
-        suggBox.style.display = 'none';
-      }
-    });
-
-    // Tilbud loader fra Supabase
-    async function loadOffers() {
-      const container = document.getElementById('offers-container');
-      container.innerHTML = '';
-
-      // Hent data fra supabase (tabelnavn: "tilbud")
-      let { data, error } = await supabase
-        .from('tilbud')
-        .select('billede_url, bettingselvskab, beskrivelse, knaplink');
-
-      if (error) {
-        console.error('Fejl ved hentning af tilbud fra Supabase:', error);
-        container.innerHTML = '<p>Kunne ikke hente tilbud.</p>';
-        return;
-      }
-
-      data.forEach(offer => {
-        const card = document.createElement('div');
-        card.className = 'offer-card';
-
-        card.innerHTML = `
-          <img src="${offer.billede_url}" alt="${offer.bettingselvskab}">
-          <h3>${offer.bettingselvskab}</h3>
-          <p>${offer.beskrivelse}</p>
-          <a href="${offer.knaplink}" target="_blank" rel="noopener noreferrer">Se tilbud</a>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    loadOffers();
   </script>
-
 </body>
 </html>
