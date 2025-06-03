@@ -16,6 +16,35 @@
       padding-top: 15px; padding-bottom: 15px;
       display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
     }
+    .logo { 
+      width: 38px; 
+      height: 38px; 
+      max-width: 38px; 
+      max-height: 38px; 
+      object-fit: contain;
+      display: inline-block;
+    }
+    .logo-container { display:flex; align-items:center; gap:10px; }
+    .logo-text { display:flex; flex-direction:column; }
+    .site-name { color:#fff; font-size:22px; font-weight:bold; }
+    .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
+    .nav-container { display:flex; flex-wrap:wrap; align-items:center; }
+    .nav-links { list-style:none; display:flex; gap:22px; margin-right:10px; }
+    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:16px; position:relative; padding-bottom:5px; transition:color .3s; }
+    .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
+    .nav-links li a:hover::after { width:100%; }
+    .nav-links li a:hover { color:#e0e7f6; }
+    .nav-links li.dropdown { position:relative; }
+    .nav-links li.dropdown ul { position:absolute; top:30px; left:0; background:#142541; padding:10px 0; list-style:none; display:none; border-radius:5px; min-width:160px; z-index:20; }
+    .nav-links li.dropdown:hover ul { display:block; }
+    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:15px; color:#fff; }
+    .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
+    .search-wrapper { position:relative; }
+    .search-input { padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:15px; width:160px; }
+    .search-input:focus { outline:none; border-color:#1f3a68; }
+    .suggestions { position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-top:none; max-height:220px; overflow-y:auto; z-index:100; display:none; }
+    .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
+    .suggestions li:hover, .suggestions li.selected { background:#e0e7f6; }
     .sub-header {
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
@@ -26,6 +55,13 @@
     .breadcrumb { font-size: 14px; color: #142541; flex-shrink: 0; }
     .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
     .breadcrumb a:hover { text-decoration: underline; }
+    /* Disclaimer på linje med breadcrumb, med underline kun under disclaimer */
+    .disclaimer-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      min-width: 0;
+    }
     .disclaimer {
       font-size: 14px;
       color: #142541;
@@ -51,13 +87,7 @@
       padding: 0;
       position: absolute;
       left: 0;
-      bottom: -4px; /* Just under the disclaimer text */
-    }
-    .disclaimer-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-      min-width: 0;
+      bottom: -4px;
     }
     @media (max-width:900px) {
       .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
@@ -331,7 +361,6 @@
           const isOpen = boks.classList.toggle("udfoldet");
           btn.textContent = isOpen ? "Vis mindre" : "Læs mere";
         });
-        // Ikke sæt display via JS - CSS styrer det nu!
         boks.classList.remove("udfoldet");
         btn.textContent = "Læs mere";
         nyhederContainer.appendChild(boks);
@@ -350,7 +379,6 @@
         suggBox.style.display = 'none';
         return;
       }
-      // Søg på nyheder-titel i supabase
       const { data, error } = await supabase
         .from('news')
         .select('id,title')
@@ -376,14 +404,12 @@
       suggBox.style.display = 'block';
     });
 
-    // Klik udenfor suggestions lukker listen
     document.addEventListener('click', e => {
       if (!e.target.closest('.search-wrapper')) {
         suggBox.style.display = 'none';
       }
     });
 
-    // Gå til nyhedsboks og highlight den
     function goToNewsBox(id) {
       const box = document.getElementById('nyhed-' + id);
       if (box) {
