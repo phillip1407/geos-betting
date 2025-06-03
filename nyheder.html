@@ -8,7 +8,6 @@
   <link rel="apple-touch-icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ... din eksisterende CSS forbliver uændret ... */
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
     .navbar, .sub-header { padding-left: 13vw; padding-right: 13vw; }
@@ -56,8 +55,19 @@
     .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
     .breadcrumb a:hover { text-decoration: underline; }
     .disclaimer {
-      font-size: 14px; color: #142541; padding-bottom: 5px; border-bottom: 1px solid #e0e7f6;
-      background: #fff; white-space: nowrap; margin: 0; box-sizing: border-box;
+      font-size: 14px;
+      color: #142541;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #e0e7f6;
+      background: #fff;
+      white-space: nowrap;
+      margin: 0 auto;
+      box-sizing: border-box;
+      text-align: center;
+      flex: 1 1 100%;
+      justify-content: center;
+      align-items: center;
+      display: flex;
     }
     @media (max-width:900px) {
       .disclaimer { background: #fff; }
@@ -65,7 +75,17 @@
     }
     @media (max-width: 700px) {
       .sub-header { flex-direction: column; align-items: flex-start; gap: 2px; }
-      .disclaimer { white-space: normal; border-bottom: none; padding-bottom: 0; margin-top: 4px; }
+      .disclaimer {
+        white-space: normal;
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-top: 4px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        display: flex;
+      }
     }
     @media (max-width: 600px) {
       .nav-links { gap: 8px; font-size: 13px; }
