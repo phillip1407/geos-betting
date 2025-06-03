@@ -1,1 +1,195 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geo Betting Tips|Nyheder</title>
+  <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ... (alt dit CSS er her, uændret) ... */
+    * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
+    /* ... resten af CSS ... */
+    .empty-matches { color: #888; text-align: center; padding: 18px 0 6px 0; }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo-container">
+      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="logo-text">
+          <span class="site-name">Geo Betting Tips</span>
+          <span class="slogan">Ekspertanalyser til din betting</span>
+        </div>
+      </a>
+    </div>
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="nyheder.html">Nyheder</a></li>
+        <li><a href="analyser.html">Analyser</a></li>
+        <li><a href="tilbud.html">Tilbud</a></li>
+        <li class="dropdown">
+          <a href="#">Mere</a>
+          <ul>
+            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="sport.html">Sport</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="search-wrapper">
+        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
+        <ul id="suggestions" class="suggestions"></ul>
+      </div>
+    </nav>
+  </header>
 
+  <!-- Breadcrumb + Disclaimer på linje -->
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a> &raquo; <span>Nyheder</span>
+    </nav>
+    <p class="disclaimer">
+      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+    </p>
+  </div>
+
+  <div class="main-content-wrapper">
+    <!-- Nyheds-delen er fjernet her -->
+    <aside class="sidebar">
+      <div class="sidebar-box" id="matches-box">
+        <div class="sidebar-title">Kommende kampe</div>
+        <ul class="match-list" id="matches-list">
+          <!-- Matcher loader her -->
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    // SØGEFELT - søg direkte i Supabase (title indeholder)
+    const input = document.getElementById('search');
+    const suggBox = document.getElementById('suggestions');
+
+    input.addEventListener('input', async () => {
+      const val = input.value.trim().toLowerCase();
+      suggBox.innerHTML = '';
+      if (!val) {
+        suggBox.style.display = 'none';
+        return;
+      }
+      // Søg på nyheder-titel i supabase
+      const { data, error } = await supabase
+        .from('news')
+        .select('id,title')
+        .ilike('title', `%${val}%`)
+        .order("date", { ascending: false })
+        .limit(10);
+
+      if (error || !data || !data.length) {
+        suggBox.style.display = 'none';
+        return;
+      }
+      data.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.title;
+        li.tabIndex = 0;
+        li.addEventListener('click', () => {
+          input.value = '';
+          suggBox.style.display = 'none';
+          goToNewsBox(item.id);
+        });
+        suggBox.appendChild(li);
+      });
+      suggBox.style.display = 'block';
+    });
+
+    // Klik udenfor suggestions lukker listen
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search-wrapper')) {
+        suggBox.style.display = 'none';
+      }
+    });
+
+    // Gå til nyhedsboks og highlight den (funktion stadig defineret, men ingen bokse at hoppe til)
+    function goToNewsBox(id) {
+      const box = document.getElementById('nyhed-' + id);
+      if (box) {
+        box.scrollIntoView({ behavior: "smooth", block: "center" });
+        box.classList.add('highlight');
+        setTimeout(() => {
+          box.classList.remove('highlight');
+        }, 2000);
+      }
+    }
+
+    // --------- KOMMENDE KAMPE (sidebar) ---------
+    // Forventet struktur i Supabase "matches":
+    // id, home_team, away_team, home_logo, away_logo, league, date, odds_home, odds_draw, odds_away, billede_url
+    function formatMatchDate(dateStr) {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      const dd = String(d.getDate()).padStart(2, '0');
+      const mm = String(d.getMonth()+1).padStart(2, '0');
+      const yyyy = d.getFullYear();
+      const hh = String(d.getHours()).padStart(2, '0');
+      const min = String(d.getMinutes()).padStart(2, '0');
+      return `${dd}-${mm} ${hh}:${min}`;
+    }
+
+    async function loadMatches() {
+      const list = document.getElementById('matches-list');
+      list.innerHTML = '<li class="empty-matches">Indlæser kampe…</li>';
+      const now = new Date().toISOString();
+      const { data, error } = await supabase
+        .from("matches")
+        .select("*")
+        .gt("date", now)
+        .order("date", { ascending: true })
+        .limit(6);
+
+      if (error || !data) {
+        list.innerHTML = '<li class="empty-matches">Kunne ikke hente kampe.</li>';
+        return;
+      }
+      if (data.length === 0) {
+        list.innerHTML = '<li class="empty-matches">Ingen kommende kampe.</li>';
+        return;
+      }
+      list.innerHTML = "";
+      data.forEach(match => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <div class="match-header">
+            <span class="match-league">${match.league || ''}</span>
+            <span class="match-date">${formatMatchDate(match.date)}</span>
+          </div>
+          <div class="match-teams">
+            ${match.home_logo ? `<img src="${match.home_logo}" class="match-logo" alt="Logo ${match.home_team}" />` : ''}
+            <span>${match.home_team || ''}</span>
+            <span style="margin: 0 3px;">-</span>
+            <span>${match.away_team || ''}</span>
+            ${match.away_logo ? `<img src="${match.away_logo}" class="match-logo" alt="Logo ${match.away_team}" />` : ''}
+          </div>
+          <div class="match-odds-row">
+            <span class="match-odds-label">Odds:</span>
+            <span class="match-odd" title="Hjemmehold">${match.odds_home ? match.odds_home : '-'}</span>
+            <span class="match-odd" title="Uafgjort">${match.odds_draw ? match.odds_draw : '-'}</span>
+            <span class="match-odd" title="Udehold">${match.odds_away ? match.odds_away : '-'}</span>
+            ${match.billede_url ? `<img src="${match.billede_url}" class="match-odds-bookmaker-logo" alt="Oddsudbyder" title="Oddsudbyder" />` : ''}
+          </div>
+        `;
+        list.appendChild(li);
+      });
+    }
+    loadMatches();
+  </script>
+</body>
+</html>
