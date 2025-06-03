@@ -26,27 +26,20 @@
     .breadcrumb { font-size: 14px; color: #142541; flex-shrink: 0; }
     .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
     .breadcrumb a:hover { text-decoration: underline; }
-    /* Ny disclaimer-stil */
-    .disclaimer-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1 1 100%;
-      min-width: 0;
-    }
     .disclaimer {
       font-size: 14px;
       color: #142541;
       background: #fff;
       white-space: nowrap;
-      margin: 0 auto 0 auto;
+      margin: 0 0 0 0;
       box-sizing: border-box;
       text-align: center;
       justify-content: center;
       align-items: center;
       display: flex;
-      position: relative;
       padding-bottom: 0;
+      border-bottom: none;
+      position: relative;
     }
     .disclaimer-underline {
       width: 100%;
@@ -56,27 +49,25 @@
       border-bottom: 1.5px solid #e0e7f6;
       height: 0;
       padding: 0;
+      position: absolute;
+      left: 0;
+      bottom: -4px; /* Just under the disclaimer text */
+    }
+    .disclaimer-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-width: 0;
     }
     @media (max-width:900px) {
       .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
-      .disclaimer-wrapper { max-width: 100vw; }
       .logo { width: 30px; height: 30px; }
     }
     @media (max-width: 700px) {
       .sub-header { flex-direction: column; align-items: flex-start; gap: 2px; }
-      .disclaimer-wrapper { width: 100%; align-items: center; }
-      .disclaimer {
-        white-space: normal;
-        margin-top: 4px;
-        text-align: center;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-      }
-      .disclaimer-underline {
-        max-width: 100%;
-      }
+      .disclaimer-container { width: 100%; }
+      .disclaimer { white-space: normal; width: 100%; }
+      .disclaimer-underline { max-width: 100%; }
     }
     @media (max-width: 600px) {
       .nav-links { gap: 8px; font-size: 13px; }
@@ -261,11 +252,11 @@
     <nav class="breadcrumb">
       <a href="index.html">Forside</a> &raquo; <span>Nyheder</span>
     </nav>
-    <div class="disclaimer-wrapper">
+    <div class="disclaimer-container">
       <span class="disclaimer">
         18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        <span class="disclaimer-underline"></span>
       </span>
-      <div class="disclaimer-underline"></div>
     </div>
   </div>
 
