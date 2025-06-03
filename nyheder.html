@@ -52,22 +52,40 @@
       display: flex; justify-content: space-between; align-items: center;
       gap: 10px; flex-wrap: wrap; position: relative;
     }
-    .breadcrumb { font-size: 14px; color: #142541; flex-shrink: 0; }
+    .breadcrumb { 
+      font-size: 14px; 
+      color: #142541; 
+      flex-shrink: 0;
+      flex-grow: 0;
+      /* Sikrer at den ikke tager mere plads end sit indhold */
+      margin-right: 18px;
+    }
     .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
     .breadcrumb a:hover { text-decoration: underline; }
-    /* Disclaimer på linje med breadcrumb, med underline kun under disclaimer */
-    .disclaimer-container {
+    /* Disclaimer centreret på linje, underline kun under teksten */
+    .disclaimer-outer {
+      flex: 1 1 0;
       display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 0;
+      position: relative;
+    }
+    .disclaimer-wrapper {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       position: relative;
       min-width: 0;
+      width: max-content;
+      max-width: 100%;
     }
     .disclaimer {
       font-size: 14px;
       color: #142541;
       background: #fff;
       white-space: nowrap;
-      margin: 0 0 0 0;
+      margin: 0;
       box-sizing: border-box;
       text-align: center;
       justify-content: center;
@@ -76,28 +94,30 @@
       padding-bottom: 0;
       border-bottom: none;
       position: relative;
+      z-index: 1;
+      max-width: 100%;
     }
     .disclaimer-underline {
       width: 100%;
-      max-width: 430px;
-      margin: 2px auto 0 auto;
       border: none;
       border-bottom: 1.5px solid #e0e7f6;
       height: 0;
+      margin: 2px 0 0 0;
       padding: 0;
-      position: absolute;
-      left: 0;
-      bottom: -4px;
+      background: none;
     }
     @media (max-width:900px) {
       .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
       .logo { width: 30px; height: 30px; }
+      .breadcrumb { margin-right: 10px; }
     }
     @media (max-width: 700px) {
-      .sub-header { flex-direction: column; align-items: flex-start; gap: 2px; }
-      .disclaimer-container { width: 100%; }
-      .disclaimer { white-space: normal; width: 100%; }
+      .sub-header { flex-direction: column; align-items: stretch; gap: 2px; }
+      .disclaimer-outer { justify-content: flex-start; }
+      .disclaimer-wrapper { width: 100%; align-items: flex-start; }
+      .disclaimer { white-space: normal; width: 100%; text-align: left; }
       .disclaimer-underline { max-width: 100%; }
+      .breadcrumb { margin-bottom: 8px; }
     }
     @media (max-width: 600px) {
       .nav-links { gap: 8px; font-size: 13px; }
@@ -277,16 +297,17 @@
     </nav>
   </header>
 
-  <!-- Breadcrumb + Disclaimer på linje -->
   <div class="sub-header">
     <nav class="breadcrumb">
       <a href="index.html">Forside</a> &raquo; <span>Nyheder</span>
     </nav>
-    <div class="disclaimer-container">
-      <span class="disclaimer">
-        18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+    <div class="disclaimer-outer">
+      <div class="disclaimer-wrapper">
+        <span class="disclaimer">
+          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        </span>
         <span class="disclaimer-underline"></span>
-      </span>
+      </div>
     </div>
   </div>
 
