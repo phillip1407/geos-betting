@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Geo Betting Tips</title>
+  <title>Geo Betting Tips|Betalingstips</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -141,7 +141,114 @@
       .sidebar { max-width: 100%; min-width: 0; width: 100%; margin-top: 0; }
       .content-container { width: 100%; max-width: 100vw; }
     }
-    /* Kommmende kampe boks */
+
+    /* MAIN BOX STYLES */
+    .main-box {
+      background: #fff;
+      border: 1px solid #e0e7f6;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      max-width: 900px;
+      margin: 0 auto 36px auto;
+      padding: 34px 28px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 22px;
+    }
+    .main-box-title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #142541;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .main-box-desc {
+      font-size: 1.08rem;
+      color: #222;
+      margin-bottom: 0;
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .main-box-leander-section {
+      margin: 0 auto;
+      max-width: 540px;
+      background: #f9f6ea;
+      border: 1px solid #f0e7c7;
+      border-radius: 8px;
+      padding: 16px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+    }
+    .main-box-leander-title {
+      font-size: 1.04rem;
+      font-weight: 600;
+      color: #2d2d15;
+      margin-bottom: 2px;
+      text-align: center;
+    }
+    .main-box-leander-link {
+      font-size: 1.08rem;
+      color: #0033cc;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 2px;
+      border-radius: 4px;
+      padding: 2px 10px;
+      transition: background 0.2s, color 0.2s;
+      background: #f6faff;
+      border: 1px solid #b7d3f0;
+      display: inline-block;
+    }
+    .main-box-leander-link:hover {
+      color: #fff;
+      background: #0033cc;
+      text-decoration: none;
+    }
+    .leander-tip-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .leander-tip-box {
+      background: #fffbe7;
+      border: 1px solid #f0e7c7;
+      border-radius: 7px;
+      padding: 12px 20px;
+      min-width: 170px;
+      max-width: 210px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      box-shadow: 0 1px 5px rgba(224,192,84,0.07);
+    }
+    .leander-tip-title {
+      font-weight: 600;
+      color: #7b6f24;
+      font-size: 1.01em;
+      margin-bottom: 1px;
+    }
+    .leander-tip-link {
+      color: #0033cc;
+      font-size: 0.98em;
+      text-decoration: underline;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .leander-tip-link:hover { color: #1f3a68; }
+    @media (max-width: 600px) {
+      .main-box { padding: 16px 4vw 16px 4vw; }
+      .leander-tip-boxes { gap: 10px; }
+      .leander-tip-box { min-width: 120px; max-width: 100vw; padding: 10px 10px; }
+    }
+    /* Matcher og nyheder genbruges fra tidligere */
     .matches-box {
       background: #fff; border: 1px solid #e0e7f6; border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 18px 20px 12px 20px; margin-bottom: 32px;
@@ -180,8 +287,6 @@
       display: inline-block;
     }
     .empty-matches { color: #888; text-align: center; padding: 18px 0 6px 0; }
-
-    /* Nyheder-listen under kampe */
     .news-box {
       background: #fff;
       border: 1px solid #e0e7f6;
@@ -268,6 +373,35 @@
 
   <div class="main-content-wrapper">
     <main class="content-container">
+      <!-- MAIN BOX START -->
+      <section class="main-box">
+        <div class="main-box-title">Hvad er betalingstips?</div>
+        <div class="main-box-desc">
+          Hos Geo Betting Tips er alt indhold gratis for dig som bruger. Du har dog mulighed for at tilgå ekstra betalingstips fra Benjamin Leander, hvis du ønsker endnu flere spilforslag end dem du finder på siden.
+        </div>
+        <div class="main-box-leander-section">
+          <div class="main-box-leander-title">Se gratis tips fra Benjamin Leander her:</div>
+          <a class="main-box-leander-link" href="https://t.me/LeandersVIP" target="_blank" rel="noopener">
+            Leanders Lukrative – VIP Group @SpilXperten
+          </a>
+          <div class="leander-tip-boxes">
+            <div class="leander-tip-box">
+              <div class="leander-tip-title">Seneste gratis tip</div>
+              <a class="leander-tip-link" href="https://t.me/LeandersVIP/123" target="_blank" rel="noopener">Se tip #123</a>
+            </div>
+            <div class="leander-tip-box">
+              <div class="leander-tip-title">Få adgang til flere tips</div>
+              <a class="leander-tip-link" href="betalingstips.html">Læs om betalingstips</a>
+            </div>
+            <div class="leander-tip-box">
+              <div class="leander-tip-title">Hvem er Benjamin Leander?</div>
+              <a class="leander-tip-link" href="https://www.spilxperten.com/eksperter/benjamin-leander/" target="_blank" rel="noopener">Læs mere</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- MAIN BOX SLUT -->
+
       <section class="matches-box">
         <div class="matches-title">Kommende kampe</div>
         <ul class="match-list" id="matches-list">
