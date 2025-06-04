@@ -49,12 +49,8 @@
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
       padding-top: 20px; padding-bottom: 20px;
-      display: flex; flex-wrap: nowrap; 
-      justify-content: space-between; 
-      align-items: center;
-      gap: 10px; 
-      position: relative;
-      transition: flex-direction 0.2s;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 10px; flex-wrap: wrap; position: relative;
     }
     .breadcrumb { 
       font-size: 14px; 
@@ -62,12 +58,6 @@
       flex-shrink: 0;
       flex-grow: 0;
       margin-right: 18px;
-      margin-bottom: 0;
-      z-index: 2;
-      background: #fff;
-      position: relative;
-      padding-top: 2px;
-      text-align: left;
     }
     .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
     .breadcrumb a:hover { text-decoration: underline; }
@@ -76,10 +66,9 @@
       flex: 1 1 0;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-width: 0;
       position: relative;
-      margin-top: 0;
     }
     .disclaimer-wrapper {
       display: flex;
@@ -87,7 +76,7 @@
       align-items: center;
       position: relative;
       min-width: 0;
-      width: 100%;
+      width: max-content;
       max-width: 100%;
     }
     .disclaimer {
@@ -106,7 +95,6 @@
       position: relative;
       z-index: 1;
       max-width: 100%;
-      margin-left: 0;
     }
     .disclaimer-underline {
       width: 100%;
@@ -117,43 +105,18 @@
       padding: 0;
       background: none;
     }
-
-    /* Mobilvisning: Breadcrumb over disclaimer */
-    @media (max-width: 900px) {
+    @media (max-width:900px) {
       .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
       .logo { width: 30px; height: 30px; }
-      .breadcrumb { margin-right: 0; }
+      .breadcrumb { margin-right: 10px; }
     }
     @media (max-width: 700px) {
-      .sub-header { 
-        flex-direction: column; 
-        align-items: stretch; 
-        gap: 0;
-      }
-      .breadcrumb { 
-        margin-right: 0; 
-        margin-bottom: 10px; 
-        width: 100%;
-        text-align: left;
-        order: 0;
-      }
-      .disclaimer-outer { 
-        justify-content: center; 
-        margin-top: 0; 
-        width: 100%;
-        order: 1;
-      }
-      .disclaimer-wrapper { 
-        width: 100%; 
-        align-items: center;
-      }
-      .disclaimer { 
-        white-space: normal; 
-        width: 100%; 
-        text-align: center; 
-        justify-content: center;
-      }
+      .sub-header { flex-direction: column; align-items: stretch; gap: 2px; }
+      .disclaimer-outer { justify-content: flex-start; }
+      .disclaimer-wrapper { width: 100%; align-items: flex-start; }
+      .disclaimer { white-space: normal; width: 100%; text-align: left; }
       .disclaimer-underline { max-width: 100%; }
+      .breadcrumb { margin-bottom: 8px; }
     }
     @media (max-width: 600px) {
       .nav-links { gap: 8px; font-size: 13px; }
