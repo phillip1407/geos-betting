@@ -136,36 +136,68 @@
     @media (max-width:600px) {
       .faq-shell-wrap { padding-left: 2vw; padding-right: 2vw; }
     }
-    .faq-welcome {
-      text-align: center;
-      font-weight: 700;
-      font-size: 2.1rem;
-      color: #142541;
-      margin-bottom: 16px;
-      letter-spacing: 0.2px;
+    .faq-top-row {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: stretch;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
     }
-    .contact-us-box {
-      max-width: 540px;
-      margin: 0 auto 35px auto;
+    .faq-top-box {
+      flex: 1 1 0;
+      min-width: 270px;
+      max-width: 340px;
       background: #f3f7ff;
       border: 1.5px solid #d3e1fa;
       border-radius: 14px;
       box-shadow: 0 2px 12px rgba(20,37,65,0.10);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
       padding: 28px 22px 20px 22px;
-      text-align: center;
+      /* equal height for all */
+      height: 220px;
+      box-sizing: border-box;
       position: relative;
-      z-index: 2;
     }
-    .contact-us-title {
-      font-size: 1.23rem;
+    @media (max-width:1050px) {
+      .faq-top-row { gap: 18px; }
+      .faq-top-box { max-width: 100%; min-width: 200px; }
+    }
+    @media (max-width:900px) {
+      .faq-top-row { flex-direction: column; align-items: center; gap: 22px; }
+      .faq-top-box { width: 100%; max-width: 500px; min-width: 0; }
+    }
+    .faq-welcome {
+      font-size: 1.2rem;
       font-weight: 700;
       color: #142541;
       margin-bottom: 7px;
+      text-align: center;
+      width: 100%;
+    }
+    .faq-welcome-text {
+      color: #1c2743;
+      font-size: 1.05rem;
+      text-align: center;
+      margin-top: 4px;
+      margin-bottom: 0;
+    }
+    .contact-us-title {
+      font-size: 1.11rem;
+      font-weight: 700;
+      color: #142541;
+      margin-bottom: 7px;
+      text-align: center;
+      width: 100%;
     }
     .contact-us-text {
-      font-size: 1.06rem;
+      font-size: 1.01rem;
       color: #1c2743;
-      margin-bottom: 14px;
+      margin-bottom: 17px;
+      text-align: center;
     }
     .contact-us-btn {
       display: inline-block;
@@ -173,7 +205,7 @@
       font-size: 1.08rem;
       font-weight: 600;
       color: #fff;
-      background: #0033cc;
+      background: #142541;
       border: none;
       border-radius: 6px;
       cursor: pointer;
@@ -182,6 +214,21 @@
     }
     .contact-us-btn:hover {
       background: #1a4dc4;
+    }
+    .faq-info-title {
+      font-size: 1.11rem;
+      font-weight: 700;
+      color: #142541;
+      margin-bottom: 7px;
+      text-align: center;
+      width: 100%;
+    }
+    .faq-info-text {
+      color: #1c2743;
+      font-size: 1.02rem;
+      text-align: center;
+      margin-top: 4px;
+      margin-bottom: 0;
     }
 
     .faq-section {
@@ -308,8 +355,8 @@
       .faq-title { font-size: 1.07rem; letter-spacing: 1.2px;}
       .faq-dropdown-header { padding: 12px 9px 12px 9px; font-size: 1em; }
       .faq-dropdown-content { padding: 0 9px 11px 9px; }
-      .faq-welcome { font-size: 1.25rem; }
-      .contact-us-box { padding: 18px 6vw 13px 6vw;}
+      .faq-welcome { font-size: 1.09rem; }
+      .faq-top-row { gap: 9px; }
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -344,152 +391,4 @@
       </ul>
       <div class="search-wrapper">
         <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
-        <ul id="suggestions" class="suggestions"></ul>
-      </div>
-    </nav>
-  </header>
-
-  <div class="sub-header">
-    <nav class="breadcrumb">
-      <a href="index.html">Forside</a> &raquo; <span>FAQ</span>
-    </nav>
-    <div class="disclaimer-outer">
-      <div class="disclaimer-wrapper">
-        <span class="disclaimer">
-          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
-        </span>
-        <span class="disclaimer-underline"></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="faq-shell-wrap">
-    <div class="faq-welcome">Velkommen til Geo's Betting FAQ (Frequently Asked Questions)</div>
-    <div class="contact-us-box">
-      <div class="contact-us-title">Har du stadig spørgsmål?</div>
-      <div class="contact-us-text">
-        Vi sidder klar til at hjælpe dig – kontakt vores support hvis du ikke finder svar nedenfor.
-      </div>
-      <a class="contact-us-btn" href="mailto:support@geobettingtips.dk">Kontakt os</a>
-    </div>
-    <section class="faq-section">
-      <div class="faq-title">FAQ OVERSIGT</div>
-      <nav class="faq-overview">
-        <button class="faq-overview-btn" data-faq="A–C">A – C</button>
-        <button class="faq-overview-btn" data-faq="D–F">D – F</button>
-        <button class="faq-overview-btn" data-faq="G–I">G – I</button>
-        <button class="faq-overview-btn" data-faq="J–L">J – L</button>
-        <button class="faq-overview-btn" data-faq="M–O">M – O</button>
-        <button class="faq-overview-btn" data-faq="P–R">P – R</button>
-        <button class="faq-overview-btn" data-faq="S–U">S – U</button>
-        <button class="faq-overview-btn" data-faq="V–Å">V – Å</button>
-        <button class="faq-overview-btn" data-faq="spilleloven">FAQ om Spilleloven</button>
-        <button class="faq-overview-btn" data-faq="spilxperten">FAQ om SpilXperten.com</button>
-      </nav>
-      <div id="faq-dropdowns"></div>
-    </section>
-  </div>
-
-  <script>
-    // Hent FAQ-data fra ekstern JSON-fil
-    let faqs = {};
-    fetch('faq.json')
-      .then(res => res.json())
-      .then(json => {
-        faqs = json;
-        initFaq();
-      })
-      .catch(() => {
-        // fallback eksempel hvis JSON ikke findes
-        faqs = {
-          "A–C": [
-            { q: "Abonnement – Hvordan opsiger jeg mit abonnement?", a: "Du kan opsige dit abonnement direkte via din profilside under 'Mine abonnementer'." },
-            { q: "Betaling – Hvilke betalingsmetoder accepteres?", a: "Vi accepterer Visa, MasterCard og MobilePay." },
-            { q: "Bonus – Hvordan får jeg en velkomstbonus?", a: "Du skal oprette en konto og følge instruktionerne for at modtage din bonus." }
-          ],
-          "D–F": [
-            { q: "Depositum – Er der et minimumsbeløb?", a: "Minimumsbeløbet for indbetaling er 100 kr." }
-          ],
-          "G–I": [
-            { q: "Indbetaling – Hvordan indbetaler jeg penge?", a: "Gå til din profil og vælg 'Indbetaling'." }
-          ],
-          "J–L": [
-            { q: "Livebet – Er live betting muligt?", a: "Ja, live betting er tilgængeligt på udvalgte kampe." }
-          ],
-          "M–O": [
-            { q: "Mobil – Findes der en app?", a: "Vores hjemmeside er mobilvenlig, men vi har ikke en dedikeret app endnu." },
-            { q: "Odds – Hvor ofte opdateres oddsene?", a: "Odds opdateres løbende og kan ændres før kampstart." }
-          ],
-          "P–R": [
-            { q: "Registrering – Hvor gammel skal jeg være for at spille?", a: "Du skal være minimum 18 år for at oprette en konto." }
-          ],
-          "S–U": [
-            { q: "Support – Hvordan kontakter jeg kundeservice?", a: "Kontakt os via chat eller e-mail på support@geobettingtips.dk." },
-            { q: "Udbetaling – Hvor lang tid tager en udbetaling?", a: "Udbetalinger behandles normalt inden for 1-2 bankdage." }
-          ],
-          "V–Å": [
-            { q: "Verificering – Hvorfor skal jeg verificere min konto?", a: "For at overholde lovgivningen og forhindre svindel." }
-          ],
-          "spilleloven": [
-            { q: "Hvad er Spilleloven?", a: "Spilleloven regulerer alt spil i Danmark for at beskytte spillere og sikre ansvarligt spil." },
-            { q: "Hvor gammel skal man være for at spille?", a: "Du skal være fyldt 18 år." }
-          ],
-          "spilxperten": [
-            { q: "Hvem står bag SpilXperten.com?", a: "SpilXperten.com drives af et dedikeret team af betting-eksperter." },
-            { q: "Hvordan bliver jeg ekspert på SpilXperten.com?", a: "Kontakt os via vores kontaktformular for mere information." }
-          ]
-        };
-        initFaq();
-      });
-
-    function initFaq() {
-      const btns = Array.from(document.querySelectorAll('.faq-overview-btn'));
-      const dropdownsDiv = document.getElementById('faq-dropdowns');
-      function renderFaqDropdown(section) {
-        dropdownsDiv.innerHTML = "";
-        const sectionFaqs = faqs[section] || [];
-        if (sectionFaqs.length === 0) {
-          dropdownsDiv.innerHTML = `<div style="text-align:center;color:#8a94ae;font-size:1.06em;padding:30px 0 0 0;">Der er ingen spørgsmål i denne kategori endnu.</div>`;
-          return;
-        }
-        const dropdown = document.createElement('div');
-        dropdown.className = "faq-dropdown open";
-        dropdown.innerHTML = `
-          <button class="faq-dropdown-header" aria-expanded="true">
-            ${section.replace(/spilleloven/i, "FAQ om Spilleloven").replace(/spilxperten/i, "FAQ om SpilXperten.com")}
-            <span class="arrow">&#9654;</span>
-          </button>
-          <div class="faq-dropdown-content">
-            <ul class="faq-qalist">
-              ${sectionFaqs.map(faq => `
-                <li>
-                  <div class="faq-question">${faq.q}</div>
-                  <div class="faq-answer">${faq.a}</div>
-                </li>
-              `).join("")}
-            </ul>
-          </div>
-        `;
-        dropdownsDiv.appendChild(dropdown);
-        dropdown.querySelector('.faq-dropdown-header').onclick = function() {
-          if (dropdown.classList.contains('open')) {
-            dropdown.classList.remove('open');
-            this.setAttribute('aria-expanded', 'false');
-          } else {
-            dropdown.classList.add('open');
-            this.setAttribute('aria-expanded', 'true');
-          }
-        };
-      }
-      function setActive(section) {
-        btns.forEach(btn => btn.classList.toggle('active', btn.dataset.faq === section));
-        renderFaqDropdown(section);
-      }
-      btns.forEach(btn => {
-        btn.onclick = () => setActive(btn.dataset.faq);
-      });
-      setActive('A–C');
-    }
-  </script>
-</body>
-</html>
+        <ul id="suggestions" class="suggestions"></
