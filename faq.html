@@ -3,42 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Geo Betting Tips|FAQ</title>
+  <title>Geo Betting Tips|Nyheder</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
-    .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; }
+    .navbar, .sub-header { padding-left: 13vw; padding-right: 13vw; }
+    .navbar {
+      background:#142541;
+      padding-top: 15px; padding-bottom: 15px;
+      display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
+    }
+    .logo { 
+      width: 38px; 
+      height: 38px; 
+      max-width: 38px; 
+      max-height: 38px; 
+      object-fit: contain;
+      display: inline-block;
+    }
     .logo-container { display:flex; align-items:center; gap:10px; }
-    .logo { width:55px; height:55px; }
     .logo-text { display:flex; flex-direction:column; }
-    .site-name { color:#fff; font-size:24px; font-weight:bold; }
+    .site-name { color:#fff; font-size:22px; font-weight:bold; }
     .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
     .nav-container { display:flex; flex-wrap:wrap; align-items:center; }
-    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
-    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
+    .nav-links { list-style:none; display:flex; gap:22px; margin-right:10px; }
+    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:16px; position:relative; padding-bottom:5px; transition:color .3s; }
     .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
-    .nav-links li a:hover::after { width:100%; } 
+    .nav-links li a:hover::after { width:100%; }
     .nav-links li a:hover { color:#e0e7f6; }
     .nav-links li.dropdown { position:relative; }
     .nav-links li.dropdown ul { position:absolute; top:30px; left:0; background:#142541; padding:10px 0; list-style:none; display:none; border-radius:5px; min-width:160px; z-index:20; }
     .nav-links li.dropdown:hover ul { display:block; }
-    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
+    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:15px; color:#fff; }
     .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
     .search-wrapper { position:relative; }
-    .search-input { padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px; }
+    .search-input { padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:15px; width:160px; }
     .search-input:focus { outline:none; border-color:#1f3a68; }
-    .suggestions { position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto; z-index:10; display:none; }
+    .suggestions { position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-top:none; max-height:220px; overflow-y:auto; z-index:100; display:none; }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
-    .suggestions li:hover { background:#f0f0f0; }
-    .nyheder-container { max-width:800px; margin:40px auto; padding:0 20px; }
-    .nyhed { background:#fff; margin-bottom:30px; padding:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-    .nyhed img { max-width:100%; border-radius:6px; margin-bottom:15px; }
-    .nyhed h2 { font-size:24px; color:#142541; margin-bottom:10px; }
-    .nyhed .dato { font-size:14px; color:#777; margin-bottom:15px; }
-    .nyhed p { font-size:16px; color:#333; line-height:1.6; }
+    .suggestions li:hover, .suggestions li.selected { background:#e0e7f6; }
+    .sub-header {
+      background: #fff;
+      border-bottom: 1px solid #e0e7f6;
+      padding-top: 20px; padding-bottom: 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 10px; flex-wrap: wrap; position: relative;
+    }
+    .breadcrumb { 
+      font-size: 14px; 
+      color: #142541; 
+      flex-shrink: 0;
+      flex-grow: 0;
+      /* Sikrer at den ikke tager mere plads end sit indhold */
+      margin-right: 18px;
+    }
+    .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    /* Disclaimer centreret på linje, underline kun under teksten */
+    .disclaimer-outer {
+      flex: 1 1 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 0;
+      position: relative;
+    }
+    .disclaimer-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      min-width: 0;
+      width: max-content;
+      max-width: 100%;
+    }
+    .disclaimer {
+      font-size: 14px;
+      color: #142541;
+      background: #fff;
+      white-space: nowrap;
+      margin: 0;
+      box-sizing: border-box;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      padding-bottom: 0;
+      border-bottom: none;
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+    }
+    .disclaimer-underline {
+      width: 100%;
+      border: none;
+      border-bottom: 1.5px solid #e0e7f6;
+      height: 0;
+      margin: 2px 0 0 0;
+      padding: 0;
+      background: none;
+    }
+    @media (max-width:900px) {
+      .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
+      .logo { width: 30px; height: 30px; }
+      .breadcrumb { margin-right: 10px; }
+    }
+    @media (max-width: 700px) {
+      .sub-header { flex-direction: column; align-items: stretch; gap: 2px; }
+      .disclaimer-outer { justify-content: flex-start; }
+      .disclaimer-wrapper { width: 100%; align-items: flex-start; }
+      .disclaimer { white-space: normal; width: 100%; text-align: left; }
+      .disclaimer-underline { max-width: 100%; }
+      .breadcrumb { margin-bottom: 8px; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { gap: 8px; font-size: 13px; }
+      .logo-text .site-name { font-size: 16px; }
+      .search-input { width: 90px; font-size: 13px; }
+    }
   </style>
 </head>
 <body>
@@ -47,8 +132,8 @@
       <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
         <img src="logo.png" alt="Logo" class="logo">
         <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
+          <span class="site-name">Geo Betting Tips</span>
+          <span class="slogan">Ekspertanalyser til din betting</span>
         </div>
       </a>
     </div>
@@ -73,29 +158,18 @@
     </nav>
   </header>
 
-  <main class="nyheder-container" id="nyheder">
-    <!-- Nyhederne loader her -->
-  </main>
-
-  <script>
-    // Load nyheder fra JSON
-    fetch('nyheder.json')
-      .then(response => response.json())
-      .then(data => {
-        const nyhederContainer = document.getElementById('nyheder');
-        data.forEach(nyhed => {
-          const div = document.createElement('div');
-          div.classList.add('nyhed');
-          div.innerHTML = `
-            <img src="${nyhed.billede}" alt="${nyhed.titel}">
-            <h2>${nyhed.titel}</h2>
-            <p class="dato">${nyhed.dato}</p>
-            <p>${nyhed.indhold}</p>
-          `;
-          nyhederContainer.appendChild(div);
-        });
-      })
-      .catch(err => console.error('Fejl ved indlæsning af nyheder.json', err));
-  </script>
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a> &raquo; <span>Nyheder</span>
+    </nav>
+    <div class="disclaimer-outer">
+      <div class="disclaimer-wrapper">
+        <span class="disclaimer">
+          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        </span>
+        <span class="disclaimer-underline"></span>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
