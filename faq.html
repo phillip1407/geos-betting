@@ -104,107 +104,152 @@
       padding: 0;
       background: none;
     }
-    /* FAQ Section Styles */
-    .faq-section {
-      padding: 40px 0;
-      max-width: 850px;
-      margin: 35px auto;
-      background: #fff;
-      border-radius: 11px;
-      box-shadow: 0 2px 16px rgba(20,37,65,0.07);
-    }
-    .faq-title {
-      font-size: 2.1rem;
-      font-weight: bold;
-      color: #142541;
-      text-align: center;
-      margin-bottom: 30px;
-      letter-spacing: 0.5px;
-    }
-    .faq-alphabet {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: 32px;
-    }
-    .faq-letter-btn {
-      border: none;
-      background: #e0e7f6;
-      color: #142541;
-      font-weight: 600;
-      font-size: 1.07em;
-      padding: 6px 13px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.16s, color 0.16s;
-      outline: none;
-    }
-    .faq-letter-btn.active, .faq-letter-btn:hover {
-      background: #142541;
-      color: #fff;
-    }
-    .faq-list {
-      margin-top: 10px;
-    }
-    .faq-dropdown {
-      margin-bottom: 16px;
-      border-radius: 7px;
-      background: #eef2fa;
-      box-shadow: 0 1px 7px rgba(20,37,65,0.04);
-    }
-    .faq-question {
-      width: 100%;
-      text-align: left;
-      border: none;
-      background: transparent;
-      font-size: 1.04em;
-      font-weight: 600;
-      color: #142541;
-      padding: 15px 24px 15px 18px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.13s;
-      border-radius: 7px;
-    }
-    .faq-question .arrow {
-      transition: transform 0.2s;
-      margin-left: 10px;
-      font-size: 1.1em;
-    }
-    .faq-question.open .arrow {
-      transform: rotate(90deg);
-    }
-    .faq-answer {
-      display: none;
-      padding: 0 24px 16px 18px;
-      color: #22315a;
-      font-size: 1em;
-      line-height: 1.6;
-      background: transparent;
-    }
-    .faq-dropdown.open .faq-answer {
-      display: block;
-    }
-    .faq-dropdown.open .faq-question {
-      background: #dde7fc;
-    }
     @media (max-width:900px) {
       .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
       .logo { width: 30px; height: 30px; }
       .breadcrumb { margin-right: 10px; }
-      .faq-section { margin: 15px 2vw; }
+    }
+    @media (max-width: 700px) {
+      .sub-header { flex-direction: column; align-items: stretch; gap: 2px; }
+      .disclaimer-outer { justify-content: flex-start; }
+      .disclaimer-wrapper { width: 100%; align-items: flex-start; }
+      .disclaimer { white-space: normal; width: 100%; text-align: left; }
+      .disclaimer-underline { max-width: 100%; }
+      .breadcrumb { margin-bottom: 8px; }
     }
     @media (max-width: 600px) {
       .nav-links { gap: 8px; font-size: 13px; }
       .logo-text .site-name { font-size: 16px; }
       .search-input { width: 90px; font-size: 13px; }
-      .faq-title { font-size: 1.23rem; }
-      .faq-section { padding: 18px 0; }
-      .faq-question { padding: 11px 14px 11px 8px; font-size: 0.98em; }
-      .faq-answer { padding: 0 14px 9px 8px; font-size: 0.98em; }
+    }
+
+    /* FAQ SECTION STYLES */
+    .faq-section {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 22px rgba(20,37,65,0.09);
+      padding: 38px 0 44px 0;
+    }
+    .faq-title {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #142541;
+      text-align: center;
+      margin-bottom: 35px;
+      letter-spacing: 0.5px;
+    }
+    .faq-overview {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .faq-overview-btn {
+      border: none;
+      background: #e0e7f6;
+      color: #142541;
+      font-weight: 600;
+      font-size: 1.08em;
+      padding: 9px 28px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background .13s, color .13s;
+      outline: none;
+      box-shadow: 0 1.5px 7px rgba(20,37,65,0.03);
+      letter-spacing: 0.03em;
+    }
+    .faq-overview-btn.active, .faq-overview-btn:hover {
+      background: #142541;
+      color: #fff;
+    }
+    .faq-dropdown {
+      margin: 0 auto 19px auto;
+      max-width: 760px;
+      border-radius: 10px;
+      background: #f6f8fd;
+      box-shadow: 0 1.5px 9px rgba(20,37,65,0.04);
+      transition: box-shadow .2s;
+      overflow: hidden;
+    }
+    .faq-dropdown-header {
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: transparent;
+      font-size: 1.13em;
+      font-weight: 700;
+      color: #142541;
+      padding: 18px 32px 18px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.13s;
+      border-radius: 10px;
+      position: relative;
+    }
+    .faq-dropdown-header .arrow {
+      font-size: 1.19em;
+      margin-left: 12px;
+      transition: transform 0.21s cubic-bezier(.4,2,.6,1);
+    }
+    .faq-dropdown.open .faq-dropdown-header .arrow {
+      transform: rotate(90deg);
+    }
+    .faq-dropdown.open .faq-dropdown-header {
+      background: #dde7fc;
+    }
+    .faq-dropdown-content {
+      display: none;
+      padding: 0 32px 16px 20px;
+      color: #22315a;
+      font-size: 1.04em;
+      line-height: 1.66;
+      animation: fadeIn .32s;
+    }
+    .faq-dropdown.open .faq-dropdown-content {
+      display: block;
+    }
+    .faq-question {
+      font-weight: 600;
+      margin-top: 18px;
+      margin-bottom: 2px;
+    }
+    .faq-answer {
+      margin-bottom: 10px;
+      color: #35405b;
+      font-size: 0.98em;
+      line-height: 1.6;
+    }
+    .faq-qalist {
+      margin: 0 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .faq-qalist li {
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e3e7f3;
+    }
+    .faq-qalist li:last-child {
+      border-bottom: none;
+    }
+    @media (max-width:900px) {
+      .faq-section { margin: 20px 2vw; }
+      .faq-dropdown-header, .faq-dropdown-content { padding-right: 12px; }
+    }
+    @media (max-width:600px) {
+      .faq-section { padding: 7px 0 16px 0; }
+      .faq-title { font-size: 1.32rem; }
+      .faq-dropdown-header { padding: 12px 9px 12px 9px; font-size: 1em; }
+      .faq-dropdown-content { padding: 0 9px 11px 9px; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
   </style>
 </head>
@@ -256,107 +301,112 @@
 
   <main>
     <section class="faq-section">
-      <h1 class="faq-title">FAQ – Ofte stillede spørgsmål</h1>
-      <div class="faq-alphabet" id="faq-alphabet">
-        <!-- Alfabet knapper auto-genereres af JS -->
-      </div>
-      <div class="faq-list" id="faq-list">
-        <!-- FAQ dropdowns auto-genereres af JS -->
-      </div>
+      <div class="faq-title">FAQ – Ofte stillede spørgsmål</div>
+      <nav class="faq-overview">
+        <button class="faq-overview-btn" data-faq="A–C">A – C</button>
+        <button class="faq-overview-btn" data-faq="D–F">D – F</button>
+        <button class="faq-overview-btn" data-faq="G–I">G – I</button>
+        <button class="faq-overview-btn" data-faq="J–L">J – L</button>
+        <button class="faq-overview-btn" data-faq="M–O">M – O</button>
+        <button class="faq-overview-btn" data-faq="P–R">P – R</button>
+        <button class="faq-overview-btn" data-faq="S–U">S – U</button>
+        <button class="faq-overview-btn" data-faq="V–Å">V – Å</button>
+        <button class="faq-overview-btn" data-faq="spilleloven">FAQ om Spilleloven</button>
+        <button class="faq-overview-btn" data-faq="spilxperten">FAQ om SpilXperten.com</button>
+      </nav>
+      <div id="faq-dropdowns"></div>
     </section>
   </main>
 
   <script>
-    // Eksempeldata – udfyld selv med DINE FAQ's
-    const faqData = [
-      { question: "Abonnement – Hvordan opsiger jeg mit abonnement?", answer: "Du kan opsige dit abonnement direkte via din profilside under 'Mine abonnementer'." },
-      { question: "Betaling – Hvilke betalingsmetoder accepteres?", answer: "Vi accepterer Visa, MasterCard og MobilePay." },
-      { question: "Bonus – Hvordan får jeg en velkomstbonus?", answer: "Du skal oprette en konto og følge instruktionerne for at modtage din bonus." },
-      { question: "Konto – Hvordan nulstiller jeg min adgangskode?", answer: "Brug 'Glemt adgangskode' funktionen på login-siden." },
-      { question: "Livebet – Er live betting tilgængeligt?", answer: "Ja, du kan placere live bets på de fleste kampe." },
-      { question: "Mobil – Findes der en app?", answer: "Vores hjemmeside er mobilvenlig, men vi har endnu ikke en dedikeret app." },
-      { question: "Odds – Hvor ofte opdateres oddsene?", answer: "Odds opdateres løbende og kan ændres før kampstart." },
-      { question: "Registrering – Hvor gammel skal jeg være for at spille?", answer: "Du skal være minimum 18 år for at oprette en konto." },
-      { question: "Support – Hvordan kontakter jeg kundeservice?", answer: "Du kan kontakte kundeservice via chat eller e-mail på support@geobettingtips.dk." },
-      { question: "Udbetaling – Hvor lang tid tager en udbetaling?", answer: "Udbetalinger behandles normalt inden for 1-2 bankdage." },
-      { question: "Verificering – Hvorfor skal jeg verificere min konto?", answer: "Verificering er nødvendig for at overholde lovgivningen og forhindre svindel." }
-    ];
+    // UDFYLD DINE SPØRGSMÅL HER
+    const faqs = {
+      "A–C": [
+        { q: "Abonnement – Hvordan opsiger jeg mit abonnement?", a: "Du kan opsige dit abonnement direkte via din profilside under 'Mine abonnementer'." },
+        { q: "Betaling – Hvilke betalingsmetoder accepteres?", a: "Vi accepterer Visa, MasterCard og MobilePay." },
+        { q: "Bonus – Hvordan får jeg en velkomstbonus?", a: "Du skal oprette en konto og følge instruktionerne for at modtage din bonus." },
+      ],
+      "D–F": [
+        { q: "Depositum – Er der et minimumsbeløb?", a: "Minimumsbeløbet for indbetaling er 100 kr." },
+      ],
+      "G–I": [
+        { q: "Indbetaling – Hvordan indbetaler jeg penge?", a: "Gå til din profil og vælg 'Indbetaling'." },
+      ],
+      "J–L": [
+        { q: "Livebet – Er live betting muligt?", a: "Ja, live betting er tilgængeligt på udvalgte kampe." },
+      ],
+      "M–O": [
+        { q: "Mobil – Findes der en app?", a: "Vores hjemmeside er mobilvenlig, men vi har ikke en dedikeret app endnu." },
+        { q: "Odds – Hvor ofte opdateres oddsene?", a: "Odds opdateres løbende og kan ændres før kampstart." },
+      ],
+      "P–R": [
+        { q: "Registrering – Hvor gammel skal jeg være for at spille?", a: "Du skal være minimum 18 år for at oprette en konto." },
+      ],
+      "S–U": [
+        { q: "Support – Hvordan kontakter jeg kundeservice?", a: "Kontakt os via chat eller e-mail på support@geobettingtips.dk." },
+        { q: "Udbetaling – Hvor lang tid tager en udbetaling?", a: "Udbetalinger behandles normalt inden for 1-2 bankdage." },
+      ],
+      "V–Å": [
+        { q: "Verificering – Hvorfor skal jeg verificere min konto?", a: "For at overholde lovgivningen og forhindre svindel." },
+      ],
+      "spilleloven": [
+        { q: "Hvad er Spilleloven?", a: "Spilleloven regulerer alt spil i Danmark for at beskytte spillere og sikre ansvarligt spil." },
+        { q: "Hvor gammel skal man være for at spille?", a: "Du skal være fyldt 18 år." },
+      ],
+      "spilxperten": [
+        { q: "Hvem står bag SpilXperten.com?", a: "SpilXperten.com drives af et dedikeret team af betting-eksperter." },
+        { q: "Hvordan bliver jeg ekspert på SpilXperten.com?", a: "Kontakt os via vores kontaktformular for mere information." },
+      ]
+    };
 
-    // Byg alfabet (A-Å)
-    const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ'];
-    const faqAlphabet = document.getElementById('faq-alphabet');
-    alphabet.forEach(letter => {
-      const btn = document.createElement('button');
-      btn.textContent = letter;
-      btn.className = 'faq-letter-btn';
-      btn.setAttribute('data-letter', letter);
-      faqAlphabet.appendChild(btn);
-    });
+    const btns = Array.from(document.querySelectorAll('.faq-overview-btn'));
+    const dropdownsDiv = document.getElementById('faq-dropdowns');
 
-    // FAQ grupperet pr. bogstav
-    function groupFAQByLetter(data) {
-      const result = {};
-      data.forEach(item => {
-        const first = item.question.trim()[0].toUpperCase();
-        if (!result[first]) result[first] = [];
-        result[first].push(item);
-      });
-      return result;
-    }
-
-    const groupedFAQ = groupFAQByLetter(faqData);
-
-    // Vælg første bogstav med spørgsmål som aktiv
-    let activeLetter = Object.keys(groupedFAQ)[0];
-
-    function renderFAQList(letter) {
-      const faqList = document.getElementById('faq-list');
-      faqList.innerHTML = '';
-      const faqs = groupedFAQ[letter] || [];
-      faqs.forEach((item, idx) => {
-        const dropdown = document.createElement('div');
-        dropdown.className = 'faq-dropdown';
-        dropdown.innerHTML = `
-          <button class="faq-question" aria-expanded="false">
-            ${item.question}
-            <span class="arrow">&#9654;</span>
-          </button>
-          <div class="faq-answer">${item.answer}</div>
-        `;
-        // Dropdown-funktionalitet
-        dropdown.querySelector('.faq-question').addEventListener('click', function() {
-          const isOpen = dropdown.classList.toggle('open');
-          this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-          dropdown.querySelector('.arrow').innerHTML = isOpen ? '&#9654;' : '&#9654;'; // Arrow rotates via CSS
-        });
-        faqList.appendChild(dropdown);
-      });
-    }
-
-    function setActiveLetter(letter) {
-      activeLetter = letter;
-      document.querySelectorAll('.faq-letter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-letter') === letter);
-      });
-      renderFAQList(letter);
-    }
-
-    document.querySelectorAll('.faq-letter-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        setActiveLetter(this.getAttribute('data-letter'));
-      });
-    });
-
-    // Init første bogstav med spørgsmål
-    setTimeout(() => {
-      // Sæt første bogstav med spørgsmål som aktiv
-      for (const letter of alphabet) {
-        if (groupedFAQ[letter]) {
-          setActiveLetter(letter);
-          break;
-        }
+    // Render dropdown for selected section
+    function renderFaqDropdown(section) {
+      dropdownsDiv.innerHTML = "";
+      const sectionFaqs = faqs[section] || [];
+      if (sectionFaqs.length === 0) {
+        dropdownsDiv.innerHTML = `<div style="text-align:center;color:#8a94ae;font-size:1.06em;padding:30px 0 0 0;">Der er ingen spørgsmål i denne kategori endnu.</div>`;
+        return;
       }
-    }, 0);
+      const dropdown = document.createElement('div');
+      dropdown.className = "faq-dropdown open";
+      dropdown.innerHTML = `
+        <button class="faq-dropdown-header" aria-expanded="true">
+          ${section.replace(/spilleloven/i, "FAQ om Spilleloven").replace(/spilxperten/i, "FAQ om SpilXperten.com")}
+          <span class="arrow">&#9654;</span>
+        </button>
+        <div class="faq-dropdown-content">
+          <ul class="faq-qalist">
+            ${sectionFaqs.map(faq => `
+              <li>
+                <div class="faq-question">${faq.q}</div>
+                <div class="faq-answer">${faq.a}</div>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
+      `;
+      dropdownsDiv.appendChild(dropdown);
+      dropdown.querySelector('.faq-dropdown-header').onclick = function() {
+        if (dropdown.classList.contains('open')) {
+          dropdown.classList.remove('open');
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          dropdown.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      };
+    }
+    function setActive(section) {
+      btns.forEach(btn => btn.classList.toggle('active', btn.dataset.faq === section));
+      renderFaqDropdown(section);
+    }
+    btns.forEach(btn => {
+      btn.onclick = () => setActive(btn.dataset.faq);
+    });
+    setActive('A–C');
   </script>
 </body>
 </html>
