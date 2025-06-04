@@ -73,21 +73,39 @@
 
     /* FAQ SECTION + 3 BOKSE */
     .faq-shell {
-      max-width: 850px;
+      max-width: 950px;
       margin: 45px auto 70px auto;
-      padding: 0 0 0 0;
+      padding: 0;
     }
     .faq-row {
       display: flex;
       gap: 28px;
+      align-items: stretch;
       margin-bottom: 32px;
     }
-    @media (max-width:1000px) {
+    .faq-main-col {
+      flex: 2 1 0;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-width: 0;
+    }
+    .faq-side-col {
+      flex: 1 1 280px;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    @media (max-width: 950px) {
       .faq-shell { max-width: 98vw; }
+    }
+    @media (max-width: 900px) {
       .faq-row { flex-direction: column; gap: 22px; }
+      .faq-side-col { min-width: 0; }
+      .faq-main-col { gap: 18px; }
     }
     .faq-box {
-      flex: 1 1 0;
       background: #fff;
       border-radius: 14px;
       box-shadow: 0 2px 22px rgba(20,37,65,0.07);
@@ -104,7 +122,6 @@
       .faq-box { padding: 14px 6vw 11px 6vw; }
       .faq-shell { margin: 15px 0 30px 0; }
     }
-
     .faq-box.welcome {
       background: #f6f8fd;
       border: 1.5px solid #e3eaf8;
@@ -121,41 +138,6 @@
       color: #29314d;
       font-size: 1.03rem;
       margin-bottom: 2px;
-    }
-    .faq-box.contact {
-      background: #f3f7ff;
-      border: 1.5px solid #d3e1fa;
-      text-align: center;
-      justify-content: center;
-    }
-    .contact-us-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #142541;
-      margin-bottom: 7px;
-    }
-    .contact-us-text {
-      font-size: 1.03rem;
-      color: #1c2743;
-      margin-bottom: 16px;
-    }
-    .contact-us-btn {
-      display: inline-block;
-      padding: 10px 26px;
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: #fff;
-      background: #142541;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background .14s;
-      text-decoration: none;
-      margin-top: 5px;
-      box-shadow: 0 1.5px 7px rgba(20,37,65,0.07);
-    }
-    .contact-us-btn:hover {
-      background: #223366;
     }
     .faq-box.overview {
       background: #fff;
@@ -197,6 +179,44 @@
     .faq-overview-btn.active, .faq-overview-btn:hover {
       background: #142541;
       color: #fff;
+    }
+    .faq-box.contact {
+      background: #f3f7ff;
+      border: 1.5px solid #d3e1fa;
+      text-align: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 170px;
+      box-sizing: border-box;
+    }
+    .contact-us-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #142541;
+      margin-bottom: 7px;
+    }
+    .contact-us-text {
+      font-size: 1.03rem;
+      color: #1c2743;
+      margin-bottom: 16px;
+    }
+    .contact-us-btn {
+      display: inline-block;
+      padding: 10px 26px;
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #fff;
+      background: #142541;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background .14s;
+      text-decoration: none;
+      margin-top: 5px;
+      box-shadow: 0 1.5px 7px rgba(20,37,65,0.07);
+    }
+    .contact-us-btn:hover {
+      background: #223366;
     }
     /* Dropdown */
     .faq-dropdown {
@@ -329,34 +349,38 @@
 
   <div class="faq-shell">
     <div class="faq-row">
-      <div class="faq-box welcome">
-        <div class="faq-welcome-title">Velkommen til Geo's Betting FAQ</div>
-        <div class="faq-welcome-text">
-          Her finder du svar på de oftest stillede spørgsmål om Geo Betting Tips, vores services, og brugen af siden.<br>
-          Brug oversigten for at finde det emne, du søger.
+      <div class="faq-main-col">
+        <div class="faq-box welcome">
+          <div class="faq-welcome-title">Velkommen til Geo's Betting FAQ</div>
+          <div class="faq-welcome-text">
+            Her finder du svar på de oftest stillede spørgsmål om Geo Betting Tips, vores services, og brugen af siden.<br>
+            Brug oversigten for at finde det emne, du søger.
+          </div>
+        </div>
+        <div class="faq-box overview">
+          <div class="faq-title">FAQ OVERSIGT</div>
+          <nav class="faq-overview">
+            <button class="faq-overview-btn" data-faq="A–C">A – C</button>
+            <button class="faq-overview-btn" data-faq="D–F">D – F</button>
+            <button class="faq-overview-btn" data-faq="G–I">G – I</button>
+            <button class="faq-overview-btn" data-faq="J–L">J – L</button>
+            <button class="faq-overview-btn" data-faq="M–O">M – O</button>
+            <button class="faq-overview-btn" data-faq="P–R">P – R</button>
+            <button class="faq-overview-btn" data-faq="S–U">S – U</button>
+            <button class="faq-overview-btn" data-faq="V–Å">V – Å</button>
+            <button class="faq-overview-btn" data-faq="spilleloven">FAQ om Spilleloven</button>
+            <button class="faq-overview-btn" data-faq="geobetting">FAQ om Geo Betting Tips</button>
+          </nav>
         </div>
       </div>
-      <div class="faq-box contact">
-        <div class="contact-us-title">Har du stadig spørgsmål?</div>
-        <div class="contact-us-text">
-          Vi sidder klar til at hjælpe dig – kontakt vores support hvis du ikke finder svar nedenfor.
+      <div class="faq-side-col">
+        <div class="faq-box contact">
+          <div class="contact-us-title">Har du stadig spørgsmål?</div>
+          <div class="contact-us-text">
+            Vi sidder klar til at hjælpe dig – kontakt vores support hvis du ikke finder svar nedenfor.
+          </div>
+          <a class="contact-us-btn" href="mailto:support@geobettingtips.dk">Kontakt os</a>
         </div>
-        <a class="contact-us-btn" href="mailto:support@geobettingtips.dk">Kontakt os</a>
-      </div>
-      <div class="faq-box overview">
-        <div class="faq-title">FAQ OVERSIGT</div>
-        <nav class="faq-overview">
-          <button class="faq-overview-btn" data-faq="A–C">A – C</button>
-          <button class="faq-overview-btn" data-faq="D–F">D – F</button>
-          <button class="faq-overview-btn" data-faq="G–I">G – I</button>
-          <button class="faq-overview-btn" data-faq="J–L">J – L</button>
-          <button class="faq-overview-btn" data-faq="M–O">M – O</button>
-          <button class="faq-overview-btn" data-faq="P–R">P – R</button>
-          <button class="faq-overview-btn" data-faq="S–U">S – U</button>
-          <button class="faq-overview-btn" data-faq="V–Å">V – Å</button>
-          <button class="faq-overview-btn" data-faq="spilleloven">FAQ om Spilleloven</button>
-          <button class="faq-overview-btn" data-faq="geobetting">FAQ om Geo Betting Tips</button>
-        </nav>
       </div>
     </div>
     <div id="faq-dropdowns"></div>
