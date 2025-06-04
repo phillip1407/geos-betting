@@ -16,14 +16,7 @@
       padding-top: 15px; padding-bottom: 15px;
       display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
     }
-    .logo { 
-      width: 38px; 
-      height: 38px; 
-      max-width: 38px; 
-      max-height: 38px; 
-      object-fit: contain;
-      display: inline-block;
-    }
+    .logo { width: 38px; height: 38px; object-fit: contain; }
     .logo-container { display:flex; align-items:center; gap:10px; }
     .logo-text { display:flex; flex-direction:column; }
     .site-name { color:#fff; font-size:22px; font-weight:bold; }
@@ -52,58 +45,13 @@
       display: flex; justify-content: space-between; align-items: center;
       gap: 10px; flex-wrap: wrap; position: relative;
     }
-    .breadcrumb { 
-      font-size: 14px; 
-      color: #142541; 
-      flex-shrink: 0;
-      flex-grow: 0;
-      margin-right: 18px;
-    }
+    .breadcrumb { font-size: 14px; color: #142541; flex-shrink: 0; flex-grow: 0; margin-right: 18px; }
     .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
     .breadcrumb a:hover { text-decoration: underline; }
-    .disclaimer-outer {
-      flex: 1 1 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-width: 0;
-      position: relative;
-    }
-    .disclaimer-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      min-width: 0;
-      width: max-content;
-      max-width: 100%;
-    }
-    .disclaimer {
-      font-size: 14px;
-      color: #142541;
-      background: #fff;
-      white-space: nowrap;
-      margin: 0;
-      box-sizing: border-box;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      padding-bottom: 0;
-      border-bottom: none;
-      position: relative;
-      z-index: 1;
-      max-width: 100%;
-    }
-    .disclaimer-underline {
-      width: 100%;
-      border: none;
-      border-bottom: 1.5px solid #e0e7f6;
-      height: 0;
-      margin: 2px 0 0 0;
-      padding: 0;
-      background: none;
-    }
+    .disclaimer-outer { flex: 1 1 0; display: flex; justify-content: center; align-items: flex-start; min-width: 0; position: relative; }
+    .disclaimer-wrapper { display: flex; flex-direction: column; align-items: center; position: relative; min-width: 0; width: max-content; max-width: 100%; }
+    .disclaimer { font-size: 14px; color: #142541; background: #fff; white-space: nowrap; margin: 0; box-sizing: border-box; text-align: center; justify-content: center; align-items: center; display: flex; padding-bottom: 0; border-bottom: none; position: relative; z-index: 1; max-width: 100%; }
+    .disclaimer-underline { width: 100%; border: none; border-bottom: 1.5px solid #e0e7f6; height: 0; margin: 2px 0 0 0; padding: 0; background: none; }
     @media (max-width:900px) {
       .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
       .logo { width: 30px; height: 30px; }
@@ -123,81 +71,73 @@
       .search-input { width: 90px; font-size: 13px; }
     }
 
-    /* FAQ SECTION STYLES */
-    .faq-shell-wrap {
-      padding-left: 13vw;
-      padding-right: 13vw;
-      margin-top: 40px;
-      margin-bottom: 70px;
+    /* FAQ SECTION + 3 BOKSE */
+    .faq-shell {
+      max-width: 850px;
+      margin: 45px auto 70px auto;
+      padding: 0 0 0 0;
     }
-    @media (max-width:900px) {
-      .faq-shell-wrap { padding-left: 5vw; padding-right: 5vw; }
-    }
-    @media (max-width:600px) {
-      .faq-shell-wrap { padding-left: 2vw; padding-right: 2vw; }
-    }
-    .faq-top-row {
+    .faq-row {
       display: flex;
-      gap: 32px;
-      justify-content: center;
-      align-items: stretch;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
+      gap: 28px;
+      margin-bottom: 32px;
     }
-    .faq-top-box {
+    @media (max-width:1000px) {
+      .faq-shell { max-width: 98vw; }
+      .faq-row { flex-direction: column; gap: 22px; }
+    }
+    .faq-box {
       flex: 1 1 0;
-      min-width: 270px;
-      max-width: 340px;
-      background: #f3f7ff;
-      border: 1.5px solid #d3e1fa;
+      background: #fff;
       border-radius: 14px;
-      box-shadow: 0 2px 12px rgba(20,37,65,0.10);
+      box-shadow: 0 2px 22px rgba(20,37,65,0.07);
+      padding: 32px 28px 27px 28px;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 28px 22px 20px 22px;
-      /* equal height for all */
-      height: 220px;
-      box-sizing: border-box;
-      position: relative;
+      min-height: 170px;
+      max-width: 100%;
     }
-    @media (max-width:1050px) {
-      .faq-top-row { gap: 18px; }
-      .faq-top-box { max-width: 100%; min-width: 200px; }
+    @media (max-width:600px) {
+      .faq-box { padding: 14px 6vw 11px 6vw; }
+      .faq-shell { margin: 15px 0 30px 0; }
     }
-    @media (max-width:900px) {
-      .faq-top-row { flex-direction: column; align-items: center; gap: 22px; }
-      .faq-top-box { width: 100%; max-width: 500px; min-width: 0; }
+
+    .faq-box.welcome {
+      background: #f6f8fd;
+      border: 1.5px solid #e3eaf8;
+      text-align: center;
     }
-    .faq-welcome {
-      font-size: 1.2rem;
+    .faq-welcome-title {
+      font-size: 1.18rem;
       font-weight: 700;
       color: #142541;
-      margin-bottom: 7px;
-      text-align: center;
-      width: 100%;
+      margin-bottom: 6px;
+      letter-spacing: 0.1px;
     }
     .faq-welcome-text {
-      color: #1c2743;
-      font-size: 1.05rem;
+      color: #29314d;
+      font-size: 1.03rem;
+      margin-bottom: 2px;
+    }
+    .faq-box.contact {
+      background: #f3f7ff;
+      border: 1.5px solid #d3e1fa;
       text-align: center;
-      margin-top: 4px;
-      margin-bottom: 0;
+      justify-content: center;
     }
     .contact-us-title {
-      font-size: 1.11rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #142541;
       margin-bottom: 7px;
-      text-align: center;
-      width: 100%;
     }
     .contact-us-text {
-      font-size: 1.01rem;
+      font-size: 1.03rem;
       color: #1c2743;
-      margin-bottom: 17px;
-      text-align: center;
+      margin-bottom: 16px;
     }
     .contact-us-btn {
       display: inline-block;
@@ -211,41 +151,26 @@
       cursor: pointer;
       transition: background .14s;
       text-decoration: none;
+      margin-top: 5px;
+      box-shadow: 0 1.5px 7px rgba(20,37,65,0.07);
     }
     .contact-us-btn:hover {
-      background: #1a4dc4;
+      background: #223366;
     }
-    .faq-info-title {
-      font-size: 1.11rem;
-      font-weight: 700;
-      color: #142541;
-      margin-bottom: 7px;
-      text-align: center;
-      width: 100%;
-    }
-    .faq-info-text {
-      color: #1c2743;
-      font-size: 1.02rem;
-      text-align: center;
-      margin-top: 4px;
-      margin-bottom: 0;
-    }
-
-    .faq-section {
-      max-width: 850px;
-      margin: 0 auto;
+    .faq-box.overview {
       background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 2px 22px rgba(20,37,65,0.09);
-      padding: 38px 0 44px 0;
+      border: 1.5px solid #e0e7f6;
+      text-align: center;
+      justify-content: center;
+      padding-top: 18px;
+      padding-bottom: 18px;
     }
     .faq-title {
-      font-size: 1.45rem;
+      font-size: 1.09rem;
       font-weight: bold;
       color: #1a2745;
       text-align: center;
-      margin-bottom: 35px;
-      letter-spacing: 0.5px;
+      margin-bottom: 14px;
       text-transform: uppercase;
       letter-spacing: 2.5px;
     }
@@ -253,16 +178,15 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
-      margin-bottom: 36px;
+      gap: 14px;
     }
     .faq-overview-btn {
       border: none;
       background: #e0e7f6;
       color: #142541;
       font-weight: 600;
-      font-size: 1.08em;
-      padding: 9px 28px;
+      font-size: 1.03em;
+      padding: 8px 21px;
       border-radius: 7px;
       cursor: pointer;
       transition: background .13s, color .13s;
@@ -274,8 +198,9 @@
       background: #142541;
       color: #fff;
     }
+    /* Dropdown */
     .faq-dropdown {
-      margin: 0 auto 19px auto;
+      margin: 28px auto 19px auto;
       max-width: 760px;
       border-radius: 10px;
       background: #f6f8fd;
@@ -347,21 +272,13 @@
       border-bottom: none;
     }
     @media (max-width:900px) {
-      .faq-section { margin: 20px 2vw; }
       .faq-dropdown-header, .faq-dropdown-content { padding-right: 12px; }
     }
     @media (max-width:600px) {
-      .faq-section { padding: 7px 0 16px 0; }
-      .faq-title { font-size: 1.07rem; letter-spacing: 1.2px;}
       .faq-dropdown-header { padding: 12px 9px 12px 9px; font-size: 1em; }
       .faq-dropdown-content { padding: 0 9px 11px 9px; }
-      .faq-welcome { font-size: 1.09rem; }
-      .faq-top-row { gap: 9px; }
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    @keyframes fadeIn { from { opacity: 0; } to   { opacity: 1; } }
   </style>
 </head>
 <body>
@@ -391,4 +308,160 @@
       </ul>
       <div class="search-wrapper">
         <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
-        <ul id="suggestions" class="suggestions"></
+        <ul id="suggestions" class="suggestions"></ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a> &raquo; <span>FAQ</span>
+    </nav>
+    <div class="disclaimer-outer">
+      <div class="disclaimer-wrapper">
+        <span class="disclaimer">
+          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        </span>
+        <span class="disclaimer-underline"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-shell">
+    <div class="faq-row">
+      <div class="faq-box welcome">
+        <div class="faq-welcome-title">Velkommen til Geo's Betting FAQ</div>
+        <div class="faq-welcome-text">
+          Her finder du svar på de oftest stillede spørgsmål om Geo Betting Tips, vores services, og brugen af siden.  
+          Brug oversigten for at finde det emne, du søger.  
+        </div>
+      </div>
+      <div class="faq-box contact">
+        <div class="contact-us-title">Har du stadig spørgsmål?</div>
+        <div class="contact-us-text">
+          Vi sidder klar til at hjælpe dig – kontakt vores support hvis du ikke finder svar nedenfor.
+        </div>
+        <a class="contact-us-btn" href="mailto:support@geobettingtips.dk">Kontakt os</a>
+      </div>
+      <div class="faq-box overview">
+        <div class="faq-title">FAQ OVERSIGT</div>
+        <nav class="faq-overview">
+          <button class="faq-overview-btn" data-faq="A–C">A – C</button>
+          <button class="faq-overview-btn" data-faq="D–F">D – F</button>
+          <button class="faq-overview-btn" data-faq="G–I">G – I</button>
+          <button class="faq-overview-btn" data-faq="J–L">J – L</button>
+          <button class="faq-overview-btn" data-faq="M–O">M – O</button>
+          <button class="faq-overview-btn" data-faq="P–R">P – R</button>
+          <button class="faq-overview-btn" data-faq="S–U">S – U</button>
+          <button class="faq-overview-btn" data-faq="V–Å">V – Å</button>
+          <button class="faq-overview-btn" data-faq="spilleloven">FAQ om Spilleloven</button>
+          <button class="faq-overview-btn" data-faq="spilxperten">FAQ om SpilXperten.com</button>
+        </nav>
+      </div>
+    </div>
+    <div id="faq-dropdowns"></div>
+  </div>
+
+  <script>
+    // Hent FAQ-data fra ekstern JSON-fil
+    let faqs = {};
+    fetch('faq.json')
+      .then(res => res.json())
+      .then(json => {
+        faqs = json;
+        initFaq();
+      })
+      .catch(() => {
+        // fallback eksempel hvis JSON ikke findes
+        faqs = {
+          "A–C": [
+            { q: "Abonnement – Hvordan opsiger jeg mit abonnement?", a: "Du kan opsige dit abonnement direkte via din profilside under 'Mine abonnementer'." },
+            { q: "Betaling – Hvilke betalingsmetoder accepteres?", a: "Vi accepterer Visa, MasterCard og MobilePay." },
+            { q: "Bonus – Hvordan får jeg en velkomstbonus?", a: "Du skal oprette en konto og følge instruktionerne for at modtage din bonus." }
+          ],
+          "D–F": [
+            { q: "Depositum – Er der et minimumsbeløb?", a: "Minimumsbeløbet for indbetaling er 100 kr." }
+          ],
+          "G–I": [
+            { q: "Indbetaling – Hvordan indbetaler jeg penge?", a: "Gå til din profil og vælg 'Indbetaling'." }
+          ],
+          "J–L": [
+            { q: "Livebet – Er live betting muligt?", a: "Ja, live betting er tilgængeligt på udvalgte kampe." }
+          ],
+          "M–O": [
+            { q: "Mobil – Findes der en app?", a: "Vores hjemmeside er mobilvenlig, men vi har ikke en dedikeret app endnu." },
+            { q: "Odds – Hvor ofte opdateres oddsene?", a: "Odds opdateres løbende og kan ændres før kampstart." }
+          ],
+          "P–R": [
+            { q: "Registrering – Hvor gammel skal jeg være for at spille?", a: "Du skal være minimum 18 år for at oprette en konto." }
+          ],
+          "S–U": [
+            { q: "Support – Hvordan kontakter jeg kundeservice?", a: "Kontakt os via chat eller e-mail på support@geobettingtips.dk." },
+            { q: "Udbetaling – Hvor lang tid tager en udbetaling?", a: "Udbetalinger behandles normalt inden for 1-2 bankdage." }
+          ],
+          "V–Å": [
+            { q: "Verificering – Hvorfor skal jeg verificere min konto?", a: "For at overholde lovgivningen og forhindre svindel." }
+          ],
+          "spilleloven": [
+            { q: "Hvad er Spilleloven?", a: "Spilleloven regulerer alt spil i Danmark for at beskytte spillere og sikre ansvarligt spil." },
+            { q: "Hvor gammel skal man være for at spille?", a: "Du skal være fyldt 18 år." }
+          ],
+          "spilxperten": [
+            { q: "Hvem står bag SpilXperten.com?", a: "SpilXperten.com drives af et dedikeret team af betting-eksperter." },
+            { q: "Hvordan bliver jeg ekspert på SpilXperten.com?", a: "Kontakt os via vores kontaktformular for mere information." }
+          ]
+        };
+        initFaq();
+      });
+
+    function initFaq() {
+      const btns = Array.from(document.querySelectorAll('.faq-overview-btn'));
+      const dropdownsDiv = document.getElementById('faq-dropdowns');
+      function renderFaqDropdown(section) {
+        dropdownsDiv.innerHTML = "";
+        const sectionFaqs = faqs[section] || [];
+        if (sectionFaqs.length === 0) {
+          dropdownsDiv.innerHTML = `<div style="text-align:center;color:#8a94ae;font-size:1.06em;padding:30px 0 0 0;">Der er ingen spørgsmål i denne kategori endnu.</div>`;
+          return;
+        }
+        const dropdown = document.createElement('div');
+        dropdown.className = "faq-dropdown open";
+        dropdown.innerHTML = `
+          <button class="faq-dropdown-header" aria-expanded="true">
+            ${section.replace(/spilleloven/i, "FAQ om Spilleloven").replace(/spilxperten/i, "FAQ om SpilXperten.com")}
+            <span class="arrow">&#9654;</span>
+          </button>
+          <div class="faq-dropdown-content">
+            <ul class="faq-qalist">
+              ${sectionFaqs.map(faq => `
+                <li>
+                  <div class="faq-question">${faq.q}</div>
+                  <div class="faq-answer">${faq.a}</div>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        `;
+        dropdownsDiv.appendChild(dropdown);
+        dropdown.querySelector('.faq-dropdown-header').onclick = function() {
+          if (dropdown.classList.contains('open')) {
+            dropdown.classList.remove('open');
+            this.setAttribute('aria-expanded', 'false');
+          } else {
+            dropdown.classList.add('open');
+            this.setAttribute('aria-expanded', 'true');
+          }
+        };
+      }
+      function setActive(section) {
+        btns.forEach(btn => btn.classList.toggle('active', btn.dataset.faq === section));
+        renderFaqDropdown(section);
+      }
+      btns.forEach(btn => {
+        btn.onclick = () => setActive(btn.dataset.faq);
+      });
+      setActive('A–C');
+    }
+  </script>
+</body>
+</html>
