@@ -332,8 +332,8 @@
       <div class="faq-box welcome">
         <div class="faq-welcome-title">Velkommen til Geo's Betting FAQ</div>
         <div class="faq-welcome-text">
-          Her finder du svar på de oftest stillede spørgsmål om Geo Betting Tips, vores services, og brugen af siden.  
-          Brug oversigten for at finde det emne, du søger.  
+          Her finder du svar på de oftest stillede spørgsmål om Geo Betting Tips, vores services, og brugen af siden.<br>
+          Brug oversigten for at finde det emne, du søger.
         </div>
       </div>
       <div class="faq-box contact">
@@ -355,7 +355,7 @@
           <button class="faq-overview-btn" data-faq="S–U">S – U</button>
           <button class="faq-overview-btn" data-faq="V–Å">V – Å</button>
           <button class="faq-overview-btn" data-faq="spilleloven">FAQ om Spilleloven</button>
-          <button class="faq-overview-btn" data-faq="spilxperten">FAQ om SpilXperten.com</button>
+          <button class="faq-overview-btn" data-faq="geobetting">FAQ om Geo Betting Tips</button>
         </nav>
       </div>
     </div>
@@ -406,9 +406,9 @@
             { q: "Hvad er Spilleloven?", a: "Spilleloven regulerer alt spil i Danmark for at beskytte spillere og sikre ansvarligt spil." },
             { q: "Hvor gammel skal man være for at spille?", a: "Du skal være fyldt 18 år." }
           ],
-          "spilxperten": [
-            { q: "Hvem står bag SpilXperten.com?", a: "SpilXperten.com drives af et dedikeret team af betting-eksperter." },
-            { q: "Hvordan bliver jeg ekspert på SpilXperten.com?", a: "Kontakt os via vores kontaktformular for mere information." }
+          "geobetting": [
+            { q: "Hvem står bag Geo Betting Tips?", a: "Geo Betting Tips drives af et dedikeret team af betting-eksperter." },
+            { q: "Hvordan bliver jeg ekspert på Geo Betting Tips?", a: "Kontakt os via vores kontaktformular for mere information." }
           ]
         };
         initFaq();
@@ -428,7 +428,13 @@
         dropdown.className = "faq-dropdown open";
         dropdown.innerHTML = `
           <button class="faq-dropdown-header" aria-expanded="true">
-            ${section.replace(/spilleloven/i, "FAQ om Spilleloven").replace(/spilxperten/i, "FAQ om SpilXperten.com")}
+            ${
+              section === "geobetting"
+              ? "FAQ om Geo Betting Tips"
+              : section === "spilleloven"
+              ? "FAQ om Spilleloven"
+              : section
+            }
             <span class="arrow">&#9654;</span>
           </button>
           <div class="faq-dropdown-content">
