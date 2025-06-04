@@ -1,0 +1,38 @@
+{
+  "A–C": [
+    { "q": "Abonnement – Hvordan opsiger jeg mit abonnement?", "a": "Du kan opsige dit abonnement direkte via din profilside under 'Mine abonnementer'." },
+    { "q": "Betaling – Hvilke betalingsmetoder accepteres?", "a": "Vi accepterer Visa, MasterCard og MobilePay." },
+    { "q": "Bonus – Hvordan får jeg en velkomstbonus?", "a": "Du skal oprette en konto og følge instruktionerne for at modtage din bonus." }
+  ],
+  "D–F": [
+    { "q": "Depositum – Er der et minimumsbeløb?", "a": "Minimumsbeløbet for indbetaling er 100 kr." }
+  ],
+  "G–I": [
+    { "q": "Indbetaling – Hvordan indbetaler jeg penge?", "a": "Gå til din profil og vælg 'Indbetaling'." }
+  ],
+  "J–L": [
+    { "q": "Livebet – Er live betting muligt?", "a": "Ja, live betting er tilgængeligt på udvalgte kampe." }
+  ],
+  "M–O": [
+    { "q": "Mobil – Findes der en app?", "a": "Vores hjemmeside er mobilvenlig, men vi har ikke en dedikeret app endnu." },
+    { "q": "Odds – Hvor ofte opdateres oddsene?", "a": "Odds opdateres løbende og kan ændres før kampstart." }
+  ],
+  "P–R": [
+    { "q": "Registrering – Hvor gammel skal jeg være for at spille?", "a": "Du skal være minimum 18 år for at oprette en konto." }
+  ],
+  "S–U": [
+    { "q": "Support – Hvordan kontakter jeg kundeservice?", "a": "Kontakt os via chat eller e-mail på support@geobettingtips.dk." },
+    { "q": "Udbetaling – Hvor lang tid tager en udbetaling?", "a": "Udbetalinger behandles normalt inden for 1-2 bankdage." }
+  ],
+  "V–Å": [
+    { "q": "Verificering – Hvorfor skal jeg verificere min konto?", "a": "For at overholde lovgivningen og forhindre svindel." }
+  ],
+  "spilleloven": [
+    { "q": "Hvad er Spilleloven?", "a": "Spilleloven regulerer alt spil i Danmark for at beskytte spillere og sikre ansvarligt spil." },
+    { "q": "Hvor gammel skal man være for at spille?", "a": "Du skal være fyldt 18 år." }
+  ],
+  "spilxperten": [
+    { "q": "Hvem står bag SpilXperten.com?", "a": "SpilXperten.com drives af et dedikeret team af betting-eksperter." },
+    { "q": "Hvordan bliver jeg ekspert på SpilXperten.com?", "a": "Kontakt os via vores kontaktformular for mere information." }
+  ]
+}
