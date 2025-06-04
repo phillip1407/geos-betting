@@ -71,7 +71,7 @@
       .search-input { width: 90px; font-size: 13px; }
     }
 
-    /* FAQ SECTION + 3 BOKSE */
+    /* FAQ SECTION + 3 BOKSE - 2 venstre, kontakt til højre */
     .faq-shell {
       max-width: 950px;
       margin: 45px auto 70px auto;
@@ -184,10 +184,25 @@
       background: #f3f7ff;
       border: 1.5px solid #d3e1fa;
       text-align: center;
-      justify-content: center;
+      justify-content: flex-start;
       height: 100%;
       min-height: 170px;
       box-sizing: border-box;
+    }
+    .contact-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      margin-top: -10px;
+      box-shadow: 0 1.5px 7px rgba(20,37,65,0.08);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width:600px) {
+      .contact-img { width: 75px; height: 75px; }
     }
     .contact-us-title {
       font-size: 1.1rem;
@@ -375,6 +390,7 @@
       </div>
       <div class="faq-side-col">
         <div class="faq-box contact">
+          <img src="kontakt-billede.png" alt="Kontakt os" class="contact-img">
           <div class="contact-us-title">Har du stadig spørgsmål?</div>
           <div class="contact-us-text">
             Vi sidder klar til at hjælpe dig – kontakt vores support hvis du ikke finder svar nedenfor.
