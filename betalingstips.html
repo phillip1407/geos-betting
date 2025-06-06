@@ -58,9 +58,21 @@
       flex-shrink: 0;
       flex-grow: 0;
       margin-right: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
     .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .current-page {
+      font-weight: bold;
+      color: #142541;
+      background: #e0e7f6;
+      border-radius: 7px;
+      padding: 2px 9px;
+      margin-left: 2px;
+      letter-spacing: 0.03em;
+    }
     .disclaimer-outer {
       flex: 1 1 0;
       display: flex;
@@ -125,6 +137,16 @@
     .main-content-wrapper {
       display: flex; align-items: flex-start; gap: 32px; max-width: 1400px; margin: 40px auto; padding: 0 12px;
     }
+    .content-flex-row {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 1100px) {
+      .content-flex-row { flex-direction: column; gap: 24px; }
+    }
     .content-container {
       flex: 3 1 950px;
       min-width: 0;
@@ -149,12 +171,13 @@
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
       max-width: 900px;
-      margin: 0 auto 36px auto;
+      margin: 0 auto;
       padding: 34px 28px 28px 28px;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       gap: 22px;
+      min-width: 320px;
     }
     .mainbox-title {
       font-size: 1.6rem;
@@ -259,12 +282,14 @@
       .mainbox { padding: 16px 4vw 16px 4vw; }
       .leander-tip-boxes { gap: 10px; }
       .leander-tip-box { min-width: 120px; max-width: 100vw; padding: 10px 10px; }
+      .content-flex-row { flex-direction: column; gap: 20px; }
     }
     /* Matcher og nyheder genbruges fra tidligere */
     .matches-box {
       background: #fff; border: 1px solid #e0e7f6; border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 18px 20px 12px 20px; margin-bottom: 32px;
-      max-width: 900px; margin-left: auto; margin-right: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 18px 20px 12px 20px; margin-bottom: 0;
+      max-width: 350px; margin-left: auto; margin-right: auto;
+      min-width: 250px;
     }
     .matches-title {
       font-size: 1.22rem; font-weight: bold; color: #142541; margin-bottom: 14px;
@@ -305,10 +330,12 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       padding: 20px 20px 12px 20px;
-      margin-top: 38px;
-      max-width: 900px;
+      margin-top: 0;
+      max-width: 350px;
       margin-left: auto;
       margin-right: auto;
+      min-width: 250px;
+      /* margin-top fjernet, så den passer med flex-row */
     }
     .news-title {
       font-size: 1.16rem; font-weight: bold; color: #142541; margin-bottom: 14px;
@@ -335,6 +362,9 @@
       margin-top: 1px;
       display: block;
     }
+    @media (max-width: 1100px) {
+      .matches-box, .news-box { max-width: 100vw; min-width: 0; }
+    }
   </style>
 </head>
 <body>
@@ -356,7 +386,7 @@
         <li class="dropdown">
           <a href="#">Mere</a>
           <ul>
-            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="betalingstips.html" class="active">Betalingstips</a></li>
             <li><a href="sport.html">Sport</a></li>
             <li><a href="faq.html">FAQ</a></li>
           </ul>
@@ -372,6 +402,8 @@
   <div class="sub-header">
     <nav class="breadcrumb">
       <a href="index.html">Forside</a>
+      <span style="color:#888; margin: 0 4px;">/</span>
+      <span class="current-page">Betalingstips</span>
     </nav>
     <div class="disclaimer-outer">
       <div class="disclaimer-wrapper">
@@ -385,53 +417,55 @@
 
   <div class="main-content-wrapper">
     <main class="content-container">
-      <!-- MAIN INFO BOX START -->
-      <section class="mainbox">
-        <div class="mainbox-title">Hvad er betalingstips?</div>
-        <div class="mainbox-desc">
-          På Geo Betting Tips er alt indhold gratis for alle brugere.<br>
-          Du kan dog få adgang til eksklusive betalingstips for endnu flere spilforslag og specialanalyser.<br>
-          Betalingstips er udvalgte spiltips, hvor vores eksperter går ekstra i dybden, og hvor kun abonnenter får adgang. Kontakt os for adgang eller spørgsmål.
-        </div>
-        <div class="mainbox-leander-section">
-          <div class="mainbox-leander-title">Se gratis tips fra Geo Betting Tips her:</div>
-          <a class="mainbox-leander-link" href="betalingstips.html">Gå til betalingstips-siden</a>
-          <div class="leander-tip-boxes">
-            <div class="leander-tip-box">
-              <div class="leander-tip-title">Seneste gratis tip</div>
-              <a class="leander-tip-link" href="betalingstips.html#seneste-tip">Se tip</a>
-            </div>
-            <div class="leander-tip-box">
-              <div class="leander-tip-title">Abonner på betalingstips</div>
-              <a class="leander-tip-link" href="betalingstips.html#abonnement">Læs om abonnement</a>
-            </div>
-            <div class="leander-tip-box">
-              <div class="leander-tip-title">Kontakt Geo Betting Tips</div>
-              <a class="leander-tip-link" href="mailto:kontakt@geobettingtips.dk">kontakt@geobettingtips.dk</a>
+      <div class="content-flex-row">
+        <!-- MAIN INFO BOX START -->
+        <section class="mainbox">
+          <div class="mainbox-title">Hvad er betalingstips?</div>
+          <div class="mainbox-desc">
+            På Geo Betting Tips er alt indhold gratis for alle brugere.<br>
+            Du kan dog få adgang til eksklusive betalingstips for endnu flere spilforslag og specialanalyser.<br>
+            Betalingstips er udvalgte spiltips, hvor vores eksperter går ekstra i dybden, og hvor kun abonnenter får adgang. Kontakt os for adgang eller spørgsmål.
+          </div>
+          <div class="mainbox-leander-section">
+            <div class="mainbox-leander-title">Se gratis tips fra Geo Betting Tips her:</div>
+            <a class="mainbox-leander-link" href="betalingstips.html">Gå til betalingstips-siden</a>
+            <div class="leander-tip-boxes">
+              <div class="leander-tip-box">
+                <div class="leander-tip-title">Seneste gratis tip</div>
+                <a class="leander-tip-link" href="betalingstips.html#seneste-tip">Se tip</a>
+              </div>
+              <div class="leander-tip-box">
+                <div class="leander-tip-title">Abonner på betalingstips</div>
+                <a class="leander-tip-link" href="betalingstips.html#abonnement">Læs om abonnement</a>
+              </div>
+              <div class="leander-tip-box">
+                <div class="leander-tip-title">Kontakt Geo Betting Tips</div>
+                <a class="leander-tip-link" href="mailto:kontakt@geobettingtips.dk">kontakt@geobettingtips.dk</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="mainbox-contact">
-          Har du spørgsmål? Skriv til os: <a href="mailto:kontakt@geobettingtips.dk">kontakt@geobettingtips.dk</a>
-        </div>
-      </section>
-      <!-- MAIN INFO BOX SLUT -->
+          <div class="mainbox-contact">
+            Har du spørgsmål? Skriv til os: <a href="mailto:kontakt@geobettingtips.dk">kontakt@geobettingtips.dk</a>
+          </div>
+        </section>
+        <!-- MAIN INFO BOX SLUT -->
 
-      <section class="matches-box">
-        <div class="matches-title">Kommende kampe</div>
-        <ul class="match-list" id="matches-list">
-          <!-- Matcher loader her -->
-        </ul>
-      </section>
-      <section class="news-box">
-        <div class="news-title">Seneste nyheder</div>
-        <ul class="news-list" id="news-list">
-          <!-- Nyheder loader her -->
-        </ul>
-        <div style="text-align:right; margin-top: 8px;">
-          <a href="nyheder.html" class="news-link" style="font-size: 1em;">Se alle nyheder &raquo;</a>
-        </div>
-      </section>
+        <section class="matches-box">
+          <div class="matches-title">Kommende kampe</div>
+          <ul class="match-list" id="matches-list">
+            <!-- Matcher loader her -->
+          </ul>
+        </section>
+        <section class="news-box">
+          <div class="news-title">Seneste nyheder</div>
+          <ul class="news-list" id="news-list">
+            <!-- Nyheder loader her -->
+          </ul>
+          <div style="text-align:right; margin-top: 8px;">
+            <a href="nyheder.html" class="news-link" style="font-size: 1em;">Se alle nyheder &raquo;</a>
+          </div>
+        </section>
+      </div>
     </main>
     <aside class="sidebar">
       <!-- Du kan evt. tilføje ekstra indhold her -->
