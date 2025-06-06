@@ -137,33 +137,38 @@
     .main-content-wrapper {
       display: flex; align-items: flex-start; gap: 32px; max-width: 1400px; margin: 40px auto; padding: 0 12px;
     }
-    .info-flex-row {
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
-    }
-    @media (max-width: 1100px) {
-      .info-flex-row { flex-direction: column; gap: 24px; }
-    }
-    .content-container {
-      flex: 3 1 950px;
+    .content-col-left {
+      flex: 3 1 900px;
       min-width: 0;
-      max-width: 1100px;
+      max-width: 900px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
     }
-    .sidebar { flex: 1 1 270px; min-width: 230px; max-width: 320px; margin-top: 0; }
-    @media (max-width: 1600px) {
-      .main-content-wrapper { max-width: 100vw; }
-      .content-container { max-width: 100vw; }
+    .content-col-right {
+      flex: 1 1 320px;
+      min-width: 270px;
+      max-width: 350px;
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    @media (max-width: 1200px) {
+      .main-content-wrapper { flex-direction: column; gap: 32px; }
+      .content-col-left, .content-col-right { max-width: 100vw; }
+      .content-col-right { flex-direction: row; gap: 24px; }
     }
     @media (max-width: 900px) {
       .main-content-wrapper { flex-direction: column; gap: 24px; max-width: 100vw; }
-      .sidebar { max-width: 100%; min-width: 0; width: 100%; margin-top: 0; }
-      .content-container { width: 100%; max-width: 100vw; }
+      .content-col-left { max-width: 100vw; }
+      .content-col-right { max-width: 100vw; min-width: 0; flex-direction: column; gap: 18px; }
     }
-
+    @media (max-width: 600px) {
+      .main-content-wrapper { padding: 0 4vw; }
+      .content-col-left, .content-col-right { width: 100%; max-width: 100vw; min-width: 0; }
+    }
     /* TELEGRAM BOX STYLES */
     .telegram-box {
       background: #f6faff;
@@ -171,7 +176,7 @@
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(23,52,95,0.04);
       max-width: 900px;
-      margin: 0 auto 28px auto;
+      margin: 0 auto 0 auto;
       padding: 28px 28px 22px 28px;
       display: flex;
       flex-direction: column;
@@ -337,15 +342,9 @@
       .telegram-box { padding: 18px 4vw 16px 4vw; }
       .leander-tip-boxes { gap: 10px; }
       .leander-tip-box { min-width: 120px; max-width: 100vw; padding: 10px 10px; }
-      .info-flex-row { flex-direction: column; gap: 20px; }
-    }
-    .side-column {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      min-width: 270px;
-      max-width: 350px;
-      flex: 1 1 270px;
+      .main-content-wrapper { padding: 0 4vw; }
+      .content-col-left, .content-col-right { width: 100%; max-width: 100vw; min-width: 0; }
+      .content-col-right { flex-direction: column; gap: 18px; }
     }
     .matches-box, .news-box {
       background: #fff; border: 1px solid #e0e7f6; border-radius: 8px;
@@ -408,13 +407,6 @@
       margin-top: 1px;
       display: block;
     }
-    @media (max-width: 1100px) {
-      .side-column { max-width: 100vw; min-width: 0; flex-direction: row; gap: 24px; }
-      .matches-box, .news-box { max-width: 100vw; min-width: 0; }
-    }
-    @media (max-width: 700px) {
-      .side-column { flex-direction: column; gap: 18px; }
-    }
   </style>
 </head>
 <body>
@@ -466,43 +458,7 @@
   </div>
 
   <div class="main-content-wrapper">
-    <main class="content-container">
-
-      <div class="info-flex-row">
-        <section class="mainbox-leander-section" style="margin:0;">
-          <div class="mainbox-leander-title">Se gratis tips fra Geo Betting Tips her:</div>
-          <a class="mainbox-leander-link" href="betalingstips.html">Gå til betalingstips-siden</a>
-          <div class="leander-tip-boxes">
-            <div class="leander-tip-box">
-              <div class="leander-tip-title">Seneste Dagens spil</div>
-              <button class="leander-tip-btn" onclick="window.location.href='index.html'">Se Dagens spil</button>
-            </div>
-            <div class="leander-tip-box">
-              <div class="leander-tip-title">Abonner på betalingstips</div>
-              <button class="leander-tip-btn" onclick="window.location.href='index.html'">Læs om abonnement</button>
-            </div>
-          </div>
-        </section>
-        <div class="side-column">
-          <section class="matches-box">
-            <div class="matches-title">Kommende kampe</div>
-            <ul class="match-list" id="matches-list">
-              <!-- Matcher loader her -->
-            </ul>
-          </section>
-          <section class="news-box">
-            <div class="news-title">Seneste nyheder</div>
-            <ul class="news-list" id="news-list">
-              <!-- Nyheder loader her -->
-            </ul>
-            <div style="text-align:right; margin-top: 8px;">
-              <a href="nyheder.html" class="news-link" style="font-size: 1em;">Se alle nyheder &raquo;</a>
-            </div>
-          </section>
-        </div>
-      </div>
-
-      <!-- TELEGRAM BOX START -->
+    <div class="content-col-left">
       <section class="telegram-box">
         <div class="telegram-desc">
           På Geos Betingstips er alt indhold gratis. Du har dog mulighed for at tilgå betalingstips fra Phillip Geo i Telegram-gruppen “Geo – VIP Group @Geo“.
@@ -511,8 +467,20 @@
           Gå til Geo's telegram-gruppe
         </a>
       </section>
-      <!-- TELEGRAM BOX END -->
-
+      <section class="mainbox-leander-section">
+        <div class="mainbox-leander-title">Se gratis tips fra Geo Betting Tips her:</div>
+        <a class="mainbox-leander-link" href="betalingstips.html">Gå til betalingstips-siden</a>
+        <div class="leander-tip-boxes">
+          <div class="leander-tip-box">
+            <div class="leander-tip-title">Seneste Dagens spil</div>
+            <button class="leander-tip-btn" onclick="window.location.href='index.html'">Se Dagens spil</button>
+          </div>
+          <div class="leander-tip-box">
+            <div class="leander-tip-title">Abonner på betalingstips</div>
+            <button class="leander-tip-btn" onclick="window.location.href='index.html'">Læs om abonnement</button>
+          </div>
+        </div>
+      </section>
       <section class="mainbox">
         <div class="mainbox-title">Hvad er betalingstips?</div>
         <div class="mainbox-desc">
@@ -524,10 +492,24 @@
           Har du spørgsmål? Skriv til os: <a href="mailto:kontakt@geobettingtips.dk">kontakt@geobettingtips.dk</a>
         </div>
       </section>
-    </main>
-    <aside class="sidebar">
-      <!-- Du kan evt. tilføje ekstra indhold her -->
-    </aside>
+    </div>
+    <div class="content-col-right">
+      <section class="matches-box">
+        <div class="matches-title">Kommende kampe</div>
+        <ul class="match-list" id="matches-list">
+          <!-- Matcher loader her -->
+        </ul>
+      </section>
+      <section class="news-box">
+        <div class="news-title">Seneste nyheder</div>
+        <ul class="news-list" id="news-list">
+          <!-- Nyheder loader her -->
+        </ul>
+        <div style="text-align:right; margin-top: 8px;">
+          <a href="nyheder.html" class="news-link" style="font-size: 1em;">Se alle nyheder &raquo;</a>
+        </div>
+      </section>
+    </div>
   </div>
 
   <script type="module">
