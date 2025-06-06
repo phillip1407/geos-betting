@@ -7,18 +7,22 @@
   <title>Geo Betting Tips | Forside</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
+  
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
+
     .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
     .logo-container { display:flex; align-items:center; gap:10px; }
     .logo { width:40px; height:40px; }
     .logo-text { display:flex; flex-direction:column; }
     .site-name { color:#fff; font-size:24px; font-weight:bold; }
     .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
+
     .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
     .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
     .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
@@ -53,30 +57,98 @@
     }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
+
+    /* NYT DESIGN - BREADCRUMB & DISCLAIMER */
     .sub-header {
-      padding: 20px 140px;
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
+      padding: 20px 140px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
+      position: relative;
     }
-    .breadcrumb {
+    .breadcrumb { 
+      font-size: 14px; 
+      color: #142541; 
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin-right: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .current-page {
+      font-weight: bold;
+      color: #142541;
+      background: #e0e7f6;
+      border-radius: 7px;
+      padding: 2px 9px;
+      margin-left: 2px;
+      letter-spacing: 0.03em;
+    }
+    .disclaimer-outer {
+      flex: 1 1 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 0;
+      position: relative;
+    }
+    .disclaimer-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      min-width: 0;
+      width: max-content;
+      max-width: 100%;
+    }
+    .disclaimer {
       font-size: 14px;
       color: #142541;
-      flex-shrink: 0;
+      background: #fff;
+      white-space: nowrap;
+      margin: 0;
+      box-sizing: border-box;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      padding-bottom: 0;
+      border-bottom: none;
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
     }
-    .breadcrumb a {
-      text-decoration: none;
-      color: #0033cc;
-      font-weight: bold;
+    .disclaimer-underline {
+      width: 100%;
+      border: none;
+      border-bottom: 1.5px solid #e0e7f6;
+      height: 0;
+      margin: 2px 0 0 0;
+      padding: 0;
+      background: none;
     }
-    .breadcrumb a:hover {
-      text-decoration: underline;
+    @media (max-width:900px) {
+      .navbar { padding-left: 5vw; padding-right: 5vw; }
+      .sub-header { padding-left: 5vw; padding-right: 5vw; }
+      .logo { width: 30px; height: 30px; }
+      .breadcrumb { margin-right: 10px; }
     }
-    /*-- Under her er desgin til dagens spil */
+    @media (max-width: 700px) {
+      .sub-header { flex-direction: column; align-items: stretch; gap: 2px; }
+      .disclaimer-outer { justify-content: flex-start; }
+      .disclaimer-wrapper { width: 100%; align-items: flex-start; }
+      .disclaimer { white-space: normal; width: 100%; text-align: left; }
+      .disclaimer-underline { max-width: 100%; }
+      .breadcrumb { margin-bottom: 8px; }
+    }
+
     #dagens-spil {
       padding: 20px;
     }
@@ -179,20 +251,6 @@
       font-size: 18px;
       line-height: 1.6;
       margin-bottom: 10px;
-    }
-    .disclaimer {
-      font-size: 14px;
-      color: #142541 ;
-      text-align: center;
-      margin: 10px 0 10px 0;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #e0e7f6; /* meget tynd streg */
-      max-width: 100%;
-      box-sizing: border-box;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
     }
     .nyheder-sektion {
       padding: 20px;
@@ -300,11 +358,18 @@
 
   <div class="sub-header">
     <nav class="breadcrumb">
-      <a href="index.html">Forside</a> &raquo; <span>Forside</span>
+      <a href="index.html">Forside</a>
+      <span style="color:#888; margin: 0 4px;">/</span>
+      <span class="current-page">Forside</span>
     </nav>
-    <p class="disclaimer">
-      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
-    </p>
+    <div class="disclaimer-outer">
+      <div class="disclaimer-wrapper">
+        <span class="disclaimer">
+          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        </span>
+        <span class="disclaimer-underline"></span>
+      </div>
+    </div>
   </div>
 
   <section id="dagens-spil">
@@ -401,7 +466,6 @@
     // Søgefelt Autocomplete
     const input = document.getElementById('search');
     const suggBox = document.getElementById('suggestions');
-
     input.addEventListener('input', async () => {
       const val = input.value.trim().toLowerCase();
       suggBox.innerHTML = '';
@@ -409,30 +473,21 @@
         suggBox.style.display = 'none';
         return;
       }
-
-      // Søg i Dagens Spil
       const { data: spilData } = await supabase
         .from('dagensspil')
         .select('id, hold1, hold2, liga')
         .or(`hold1.ilike.%${val}%,hold2.ilike.%${val}%,liga.ilike.%${val}%`)
         .limit(5);
-
-      // Søg i Nyheder
       const { data: nyhedData } = await supabase
         .from('nyheder')
         .select('id, titel')
         .or(`titel.ilike.%${val}%`)
         .limit(5);
-
-      // Ingen resultater i begge
       if ((!spilData || spilData.length === 0) && (!nyhedData || nyhedData.length === 0)) {
         suggBox.style.display = 'none';
         return;
       }
-
       suggBox.style.width = input.offsetWidth + 'px';
-
-      // Dagens spil resultater
       if (spilData && spilData.length > 0) {
         spilData.forEach(spil => {
           const li = document.createElement('li');
@@ -443,8 +498,6 @@
           suggBox.appendChild(li);
         });
       }
-
-      // Nyheder resultater
       if (nyhedData && nyhedData.length > 0) {
         nyhedData.forEach(nyhed => {
           const li = document.createElement('li');
@@ -455,11 +508,8 @@
           suggBox.appendChild(li);
         });
       }
-
       suggBox.style.display = 'block';
     });
-
-    // Luk dropdown hvis klik udenfor søgefeltet
     document.addEventListener('click', e => {
       if (!e.target.closest('.search-wrapper')) {
         suggBox.style.display = 'none';
@@ -473,17 +523,13 @@
           .from('dagensspil')
           .select('*')
           .order('tidspunkt', { ascending: true });
-
         const container = document.getElementById('spil-container');
         container.innerHTML = '';
-
         if (error) throw error;
-
         if (!data || data.length === 0) {
           container.innerHTML = '<p>Ingen dagens spil tilgængelig.</p>';
           return;
         }
-
         data.forEach(spil => {
           const kort = document.createElement('div');
           kort.className = 'spil-kort';
@@ -540,8 +586,6 @@
         alert('Indtast venligst en gyldig email.');
         return;
       }
-      // Her indsæt din Supabase API-kald eller fetch til din backend for at gemme email
-      // Eksempel: 
       // await supabase.from('nyhedsbrev').insert([{ email }]);
       formMessage.textContent = 'Tak for din tilmelding!';
       formMessage.classList.remove('hidden');
