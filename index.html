@@ -3,312 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Geo Betting Tips | Forside</title>
+  <title>Geo Betting Tips</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
-  
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
   <style>
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
-
-    .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
+    .navbar, .sub-header { padding-left: 13vw; padding-right: 13vw; }
+    .navbar {
+      background:#142541;
+      padding-top: 15px; padding-bottom: 15px;
+      display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
+    }
+    .logo { width: 38px; height: 38px; object-fit: contain; display: inline-block; }
     .logo-container { display:flex; align-items:center; gap:10px; }
-    .logo { width:40px; height:40px; }
     .logo-text { display:flex; flex-direction:column; }
-    .site-name { color:#fff; font-size:24px; font-weight:bold; }
+    .site-name { color:#fff; font-size:22px; font-weight:bold; }
     .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
-
-    .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
-    .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
-    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
+    .nav-container { display:flex; flex-wrap:wrap; align-items:center; }
+    .nav-links { list-style:none; display:flex; gap:22px; margin-right:10px; }
+    .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:16px; position:relative; padding-bottom:5px; transition:color .3s; }
     .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
-    .nav-links li a:hover::after { width:100%; } 
+    .nav-links li a:hover::after { width:100%; }
     .nav-links li a:hover { color:#e0e7f6; }
-
     .nav-links li.dropdown { position:relative; }
-    .nav-links li.dropdown ul {
-      position: absolute;
-      top: 30px;
-      left: 0;
-      background: #142541;
-      padding: 10px 0;
-      list-style: none;
-      display: none;
-      border-radius: 5px;
-      min-width: 160px;
-      z-index: 20;
-    }
+    .nav-links li.dropdown ul { position:absolute; top:30px; left:0; background:#142541; padding:10px 0; list-style:none; display:none; border-radius:5px; min-width:160px; z-index:20; }
     .nav-links li.dropdown:hover ul { display:block; }
-    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
+    .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:15px; color:#fff; }
     .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
-
-    /* Search + autocomplete */
     .search-wrapper { position:relative; }
-    .search-input {
-      padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
-    }
+    .search-input { padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:15px; width:160px; }
     .search-input:focus { outline:none; border-color:#1f3a68; }
-    .suggestions {
-      position:absolute; top:100%; left:0; right:0; background:#fff;
-      border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto;
-      z-index:10; display:none;
-    }
+    .suggestions { position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-top:none; max-height:220px; overflow-y:auto; z-index:100; display:none; }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
-    .suggestions li:hover { background:#f0f0f0; }
-    
-    
-    /* Her fjernes gamle sub-header og disclaimer CSS, de ligger nu i nedenstående style-tag */
-
-  /*-- Under her er desgin til dagens spil */
-    
-    #dagens-spil {
-      padding: 20px;
-    }
-
-    #dagens-spil h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #142541;
-    }
-
-    .spil-container {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .spil-kort {
-      position: relative;
-      background: #f5f7fa;
-      border-radius: 12px;
-      width: 300px; 
-      height: 152px;
-      padding: 15px 15px 45px 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .info-højre {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-weight: 700;
-      font-size: 16px;
-      color: #f0ab4c;
-    }
-
-    .liga {
-      font-weight: 600;
-      font-size: 15px;
-      color: #666;
-      margin-bottom: 8px;
-      text-align: left;
-    }
-
-    .hold-liste {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .hold {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .hold img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-    }
-
-    .hold span {
-      font-weight: 600;
-      font-size: 14px;
-      color: #333;
-    }
-
-    .bund-bjælke {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #142541;
-      border-radius: 0 0 12px 12px;
-      padding: 8px 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      font-size: 14px;
-    }
-
-    .odds {
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .ekspert {
-      font-weight: normal;
-      font-style: italic;
-    }
-
-    .welcome-box {
-      background-color: #e0e7f6;
-      color: #142541;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 800px;
-      margin: 40px auto;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .welcome-box h2 {
-      margin-bottom: 15px;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    
-    .welcome-box p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
-
-  .nyheder-sektion {
-  padding: 20px;
-  max-width: 900px;
-  margin: 40px auto;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-.nyheder-sektion h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
-}
-.nyheds-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-.nyheds-kort {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  transition: transform 0.2s ease-in-out;
-}
-.nyheds-kort:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-}
-.nyheds-kort img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.nyheds-tekst {
-  padding: 15px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.nyheds-tekst h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.1rem;
-  color: #142541;
-}
-.nyheds-tekst p {
-  flex-grow: 1;
-  margin: 0 0 10px 0;
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.4;
-}
-.dato {
-  font-size: 0.8rem;
-  color: #999;
-  font-style: italic;
-  text-align: right;
-}
-@media (max-width: 600px) {
-  .nyheds-grid {
-    grid-template-columns: 1fr;
-  }
-}
-  </style>
-</head>
-<body>
-
-  
-  <header class="navbar">
-    <div class="logo-container">
-      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
-        <img src="logo.png" alt="Logo" class="logo">
-        <div class="logo-text">
-          <h1 class="site-name">Geo Betting Tips</h1>
-          <p class="slogan">Ekspertanalyser til din betting</p>
-        </div>
-      </a>
-    </div>
-
-    <nav class="nav-container">
-      <ul class="nav-links">
-        <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="Analyser.html">Analyser</a></li>
-        <li><a href="tilbud.html">Tilbud</a></li>
-        <li class="dropdown">
-          <a href="#">Mere</a>
-          <ul>
-            <li><a href="betalingstips.html">Betalingstips</a></li>
-            <li><a href="fodboldtabeller.html">Fodboldtabeller</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <div class="search-wrapper">
-        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
-        <ul id="suggestions" class="suggestions"></ul>
-      </div>
-    </nav>
-  </header>
-
-  <!-- NY SUB-HEADER OG DISCLAIMER -->
-  <div class="sub-header">
-    <nav class="breadcrumb">
-      <a href="index.html">Forside</a>
-      <span style="color:#888; margin: 0 4px;">/</span>
-      <span class="current-page">Betalingstips</span>
-    </nav>
-    <div class="disclaimer-outer">
-      <div class="disclaimer-wrapper">
-        <span class="disclaimer">
-          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
-        </span>
-        <span class="disclaimer-underline"></span>
-      </div>
-    </div>
-  </div>
-  <style>
+    .suggestions li:hover, .suggestions li.selected { background:#e0e7f6; }
     .sub-header {
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
@@ -316,72 +45,17 @@
       display: flex; justify-content: space-between; align-items: center;
       gap: 10px; flex-wrap: wrap; position: relative;
     }
-    .breadcrumb { 
-      font-size: 14px; 
-      color: #142541; 
-      flex-shrink: 0;
-      flex-grow: 0;
-      margin-right: 18px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .breadcrumb { font-size: 14px; color: #142541; flex-shrink: 0; flex-grow: 0; margin-right: 18px; display: flex; align-items: center; gap: 6px; }
     .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
     .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb .current-page {
-      font-weight: bold;
-      color: #142541;
-      background: #e0e7f6;
-      border-radius: 7px;
-      padding: 2px 9px;
-      margin-left: 2px;
-      letter-spacing: 0.03em;
-    }
-    .disclaimer-outer {
-      flex: 1 1 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-width: 0;
-      position: relative;
-    }
-    .disclaimer-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      min-width: 0;
-      width: max-content;
-      max-width: 100%;
-    }
-    .disclaimer {
-      font-size: 14px;
-      color: #142541;
-      background: #fff;
-      white-space: nowrap;
-      margin: 0;
-      box-sizing: border-box;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      padding-bottom: 0;
-      border-bottom: none;
-      position: relative;
-      z-index: 1;
-      max-width: 100%;
-    }
-    .disclaimer-underline {
-      width: 100%;
-      border: none;
-      border-bottom: 1.5px solid #e0e7f6;
-      height: 0;
-      margin: 2px 0 0 0;
-      padding: 0;
-      background: none;
-    }
+    .breadcrumb .current-page { font-weight: bold; color: #142541; background: #e0e7f6; border-radius: 7px; padding: 2px 9px; margin-left: 2px; letter-spacing: 0.03em; }
+    .disclaimer-outer { flex: 1 1 0; display: flex; justify-content: center; align-items: flex-start; min-width: 0; position: relative; }
+    .disclaimer-wrapper { display: flex; flex-direction: column; align-items: center; position: relative; min-width: 0; width: max-content; max-width: 100%; }
+    .disclaimer { font-size: 14px; color: #142541; background: #fff; white-space: nowrap; margin: 0; box-sizing: border-box; text-align: center; justify-content: center; align-items: center; display: flex; padding-bottom: 0; border-bottom: none; position: relative; z-index: 1; max-width: 100%; }
+    .disclaimer-underline { width: 100%; border: none; border-bottom: 1.5px solid #e0e7f6; height: 0; margin: 2px 0 0 0; padding: 0; background: none; }
     @media (max-width:900px) {
-      .sub-header { padding-left: 5vw; padding-right: 5vw; }
+      .navbar, .sub-header { padding-left: 5vw; padding-right: 5vw; }
+      .logo { width: 30px; height: 30px; }
       .breadcrumb { margin-right: 10px; }
     }
     @media (max-width: 700px) {
@@ -392,325 +66,332 @@
       .disclaimer-underline { max-width: 100%; }
       .breadcrumb { margin-bottom: 8px; }
     }
-  </style>
-
-
-
-
-// Søgefelt script
-<script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-const input = document.getElementById('search');
-const suggBox = document.getElementById('suggestions');
-
-input.addEventListener('input', async () => {
-  const val = input.value.trim().toLowerCase();
-  suggBox.innerHTML = '';
-  if (!val) {
-    suggBox.style.display = 'none';
-    return;
-  }
-
-  // Søg i Dagens Spil
-  const { data: spilData, error: spilError } = await supabase
-    .from('dagensspil')
-    .select('id, hold1, hold2, liga')
-    .or(`hold1.ilike.%${val}%,hold2.ilike.%${val}%,liga.ilike.%${val}%`)
-    .limit(5);
-
-  // Søg i Nyheder
-  const { data: nyhedData, error: nyhedError } = await supabase
-    .from('nyheder')
-    .select('id, titel')
-    .or(`titel.ilike.%${val}%`)
-    .limit(5);
-
-  // Ingen resultater i begge
-  if ((!spilData || spilData.length === 0) && (!nyhedData || nyhedData.length === 0)) {
-    suggBox.style.display = 'none';
-    return;
-  }
-
-  suggBox.style.width = input.offsetWidth + 'px';
-
-  // Dagens spil resultater
-  if (spilData && spilData.length > 0) {
-    spilData.forEach(spil => {
-      const li = document.createElement('li');
-      li.textContent = `Dagens Spil: ${spil.hold1 || ''} vs ${spil.hold2 || ''} (${spil.liga || ''})`;
-      li.addEventListener('click', () => {
-        window.location.href = `dagensspil.html?id=${spil.id}`;
-      });
-      suggBox.appendChild(li);
-    });
-  }
-
-  // Nyheder resultater
-  if (nyhedData && nyhedData.length > 0) {
-    nyhedData.forEach(nyhed => {
-      const li = document.createElement('li');
-      li.textContent = `Nyhed: ${nyhed.titel}`;
-      li.addEventListener('click', () => {
-        window.location.href = `nyhed.html?id=${nyhed.id}`;
-      });
-      suggBox.appendChild(li);
-    });
-  }
-
-  suggBox.style.display = 'block';
-});
-
-// Luk dropdown hvis klik udenfor søgefeltet
-document.addEventListener('click', e => {
-  if (!e.target.closest('.search-wrapper')) {
-    suggBox.style.display = 'none';
-  }
-});
-</script>
-
-  <script>
-  // Hent første <h1> på siden
-  const h1 = document.querySelector('h1');
-  const siteName = 'Geo Betting Tips';
-
-  if (h1) {
-    // Sæt titlen til: "Overskrift | Geo Betting Tips"
-    document.title = `${h1.textContent.trim()} | ${siteName}`;
-  } else {
-    // Hvis der ikke er h1, bare standard titel
-    document.title = siteName;
-  }
-</script>
-
-  <!-- dagens spil sektion -->
-
-<section id="dagens-spil">
-  <h2>Dagens Spil</h2>
-  <div class="spil-container" id="spil-container"></div>
-</section>
-
-<!-- Her kan du tilføje evt. andre sektioner som Events, Sport osv -->
-
-<!-- nyhed sektion -->
-<section class="nyheder-sektion">
-  <h2>Nyheder</h2>
-  <div class="nyheds-grid">
-    <div class="nyheds-kort">
-      <img src="https://static1.squarespace.com/static/573c1b7d01dbae9b52cd0936/573d6bdc37013bcc611eefd5/5e3ea63be14ad269a8ca9a24/1581168769757/GettyImages-531367362.jpg?format=1500w" alt="Nyhedsbillede 1" />
-      <div class="nyheds-tekst">
-        <h3>Stor målfest i Sønderjyskes sejr over Vejle</h3>
-        <p>Sønderjyske og Vejle var begge sikret overlevelse inden kampen, og efter en målrig anden halvleg vandt Sønderjyske med 3-2 over hjemmeholdet.</p>
-        <span class="dato">24. maj 2025 KL. 17.00</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn-free.tv2i.dk/e/d/i/editorial/2/3/2/232c8cd4-716d-4c83-9a93-6011c6a8c234?ixlib=js-3.8.0&w=624&h=351&q=45&auto=format&fit=crop&rect64=MCw1MDgsNTYxNiwzMTYz&s=b1e789e92a2d99fe88010d66c9f792e5" alt="Nyhedsbillede 2" />
-      <div class="nyheds-tekst">
-        <h3>AaB rykker ud med et brag – rasende fans stjal billedet</h3>
-        <p>De to nedrykkere mødtes i nedrykningsspillets sidste kamp. Her tabte AaB 3-1 til Lyngby, hvorfor AaB ender nederst i tabellen. Undervejs i kampen viste AaB-fansene deres utilfredshed med klubbens tyske ejerskab med massevis af bannere og protester.</p>
-        <span class="dato">23. maj 2025 KL. 17.30</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://bt.bmcdn.dk/users/berlingske/images/127598128.webp?t%5Bcrop%5D%5Bx%5D=0&t%5Bcrop%5D%5By%5D=0&t%5Bcrop%5D%5Bwidth%5D=1920&t%5Bcrop%5D%5Bheight%5D=891&t%5Bquality%5D=85&t%5Bresize%5D%5Bwidth%5D=1376&accessToken=9e4789062b6762adfeefdc1b5f9ef0124e389639b413d21827baac467bdfa7fb" alt="Nyhedsbillede 3" />
-      <div class="nyheds-tekst">
-        <h3>Vanvittige scener i England: Sunderland rykker op i Premier League</h3>
-        <p>Sunderland tager den tredje og sidste billet til Englands bedste fodboldrække.
-
-Med en sejr på 2-1 over Sheffield United på Wembley i London lykkedes det Sunderland at vinde milliardkampen.Det kaldes kampen, fordi det er vurderet, at en oprykker tjener i omegnen af det beløb og måske endnu mere på at rykke op i Premier League.</p>
-        <span class="dato">24. maj 2025 KL. 18.00</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn-free-external.tv2i.dk/https%3A%2F%2Fcf-images.eu-west-1.prod.boltdns.net%2Fv1%2Fjit%2F6293768613001%2F26c02c6c-c014-41a1-9e40-eaf3420e1f9b%2Fmain%2F1280x720%2F20s714ms%2Fmatch%2Fimage.jpg?ixlib=js-3.8.0&w=624&h=351&q=45&auto=format&fit=crop&s=987b96bb05b59840b944d7c51569daef" alt="Nyhedsbillede 4" />
-      <div class="nyheds-tekst">
-        <h3>Utrolig dansk succes – Asgreen vinder i Giroen</h3>
-        <p>Den utrolige danske succes i Giroen fortsatte lørdag på 14. etape, hvor danske Kasper Asgreen vandt efter en lang dag i udbrud. Det er den femte danske etapesejr i årets Giro, efter Mads Pedersen allerede har vundet fire.</p>
-        <span class="dato">24. maj 2025 KL: 18.30</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn-free.tv2i.dk/e/d/i/editorial/6/1/2/612c207b-c477-4f71-9932-394b4bb197cd?ixlib=js-3.8.0&w=624&h=351&q=45&auto=format&fit=crop&rect64=MCwyNDgsNDc0NCwyNjY5&s=d8232b6c425b5ebd1f87f214bea64490" alt="Nyhedsbillede 5" />
-      <div class="nyheds-tekst">
-        <h3>Djokovic når ny milepæl efter maratonfinale</h3>
-        <p>Efter mere end tre timers tennis på gruset i Genève vandt Novak Djokovic ATP-titel nummer 100.</p>
-        <span class="dato">25. maj 2025 KL 19.00</span>
-      </div>
-    </div>
-    <div class="nyheds-kort">
-      <img src="https://cdn-free.tv2i.dk/e/d/i/editorial/6/b/9/6b94853c-2d1c-4e8e-8a6b-610b9474adc5?ixlib=js-3.8.0&w=1280&h=720&q=45&auto=format&fit=crop&rect64=MCw0MDQsNDM1NCwyNDQ3&s=c569aeae4641c0ac85463d73ebb8a271" alt="Nyhedsbillede 6" />
-      <div class="nyheds-tekst">
-        <h3>Nu er det officielt: Legende takker af i Real Madrid</h3>
-        <p>Gennem 13 år har Luka Modric været en af de mest fremtrædende spillere i Real Madrid, men nu slutter det snart.</p>
-        <span class="dato">19. maj 2025</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <!-- Velkommen boks sektion -->
-<div class="welcome-box">
-  <h2>Velkommen til Geo Betting Tips – odds, analyser og betting tips</h2>
-  <p>
-    På Geo Betting Tips finder du alle de informationer, du skal bruge for at blive en succesfuld sportsbetter.
-    Hvad skal der til for at slå bookmakerne? Følg vores skarpe eksperter for at få spiltips på sportsgrene og events, de specifikt har specialiseret sig i.
-  </p>
-  <p>
-    Værktøjerne til at vinde på betting tips finder du på Geo Betting Tips.
-  </p>
-</div>
-
-    
-  
-
-  <!-- Nyhedsbrev Pop-up -->
-  <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white p-8 rounded shadow-lg max-w-md w-full relative">
-      <button id="closePopup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">&times;</button>
-      <h2 class="text-2xl font-bold mb-4 text-main">Tilmeld dig vores nyhedsbrev</h2>
-      <p class="mb-4">Få de bedste bettingtips direkte i din inbox.</p>
-      <form id="newsletterForm" class="flex flex-col gap-4">
-        <input type="email" id="emailInput" placeholder="Din email" required class="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-main" />
-        <button type="submit" class="btn-main py-2 rounded font-semibold">Tilmeld</button>
-      </form>
-      <p id="formMessage" class="mt-3 text-green-600 hidden"></p>
-    </div>
-  </div>
-
-  <script>
-    // Popup og localStorage kontrol
-    const popup = document.getElementById('popup');
-    const closePopupBtn = document.getElementById('closePopup');
-    const newsletterForm = document.getElementById('newsletterForm');
-    const emailInput = document.getElementById('emailInput');
-    const formMessage = document.getElementById('formMessage');
-
-    // Vis popup kun hvis ikke tidligere vist
-    window.addEventListener('load', () => {
-      const popupSeen = localStorage.getItem('popupSeen');
-      if (!popupSeen) {
-        popup.classList.remove('hidden');
-      }
-    });
-
-    // Luk popup og sæt flag i localStorage
-    function closePopup() {
-      popup.classList.add('hidden');
-      localStorage.setItem('popupSeen', 'true');
+    @media (max-width: 600px) {
+      .nav-links { gap: 8px; font-size: 13px; }
+      .logo-text .site-name { font-size: 16px; }
+      .search-input { width: 90px; font-size: 13px; }
     }
+    .main-content-wrapper {
+      display: flex; align-items: flex-start; gap: 32px; max-width: 1400px; margin: 40px auto; padding: 0 12px;
+    }
+    .content-col-left {
+      flex: 3 1 700px;
+      min-width: 0;
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .content-col-right {
+      flex: 1 1 320px;
+      min-width: 270px;
+      max-width: 350px;
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    @media (max-width: 1200px) {
+      .main-content-wrapper { flex-direction: column; gap: 32px; }
+      .content-col-left, .content-col-right { max-width: 100vw; }
+      .content-col-right { flex-direction: row; gap: 24px; }
+    }
+    @media (max-width: 900px) {
+      .main-content-wrapper { flex-direction: column; gap: 24px; max-width: 100vw; }
+      .content-col-left { max-width: 100vw; }
+      .content-col-right { max-width: 100vw; min-width: 0; flex-direction: column; gap: 18px; }
+    }
+    @media (max-width: 600px) {
+      .main-content-wrapper { padding: 0 4vw; }
+      .content-col-left, .content-col-right { width: 100%; max-width: 100vw; min-width: 0; }
+      .content-col-right { flex-direction: column; gap: 18px; }
+      .telegram-box, .mainbox { max-width: 100vw; }
+    }
+    /* Forside-bokse og funktionalitet */
+    .mainbox, .telegram-box, .matches-box, .news-box {
+      background: #fff;
+      border: 1px solid #e0e7f6;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      width: 100%;
+      margin: 0 auto;
+      padding: 34px 28px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 320px;
+      box-sizing: border-box;
+    }
+    .matches-title, .news-title {
+      font-size: 1.22rem; font-weight: bold; color: #142541; margin-bottom: 14px;
+      border-left: 4px solid #142541; padding-left: 12px;
+    }
+    .match-list { list-style: none; padding: 0; margin: 0; }
+    .match-list li {
+      padding: 14px 0 10px 0; border-bottom: 1px solid #e0e7f6; font-size: 0.98rem; color: #222;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .match-list li:last-child { border-bottom: none; }
+    .match-league { color: #888; font-size: 0.97em; }
+    .match-header {
+      display: flex; align-items: center; gap: 8px; justify-content: space-between;
+    }
+    .match-teams {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 600; color: #142541; font-size: 1.03em;
+    }
+    .match-logo {
+      width: 28px; height: 28px; object-fit: contain; background: #f7f7f7; border-radius: 50%; border: 1px solid #e0e7f6;
+      display: inline-block;
+    }
+    .match-date { color: #666; font-size: 0.96em; font-style: italic; }
+    .match-odds-row {
+      display: flex; align-items: center; gap: 9px; margin-top: 2px;
+    }
+    .match-odds-label { color: #666; font-size: 0.97em; margin-right: 2px;}
+    .match-odd { font-size: 1em; font-weight: bold; color: #142541; background: #e0e7f6; border-radius: 4px; padding: 1px 7px; margin-right: 2px;}
+    .match-odds-bookmaker-logo {
+      width: 22px; height: 22px; object-fit: contain; margin-left: 8px; border-radius: 3px; border: 1px solid #e0e7f6; background: #fff;
+      display: inline-block;
+    }
+    .empty-matches { color: #888; text-align: center; padding: 18px 0 6px 0; }
+    .news-list { list-style: none; padding: 0; margin: 0; }
+    .news-list li {
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0e7f6;
+    }
+    .news-list li:last-child { border-bottom: none; }
+    .news-link {
+      color: #0033cc;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.08em;
+      transition: color 0.2s;
+    }
+    .news-link:hover { color: #1f3a68; text-decoration: underline; }
+    .news-short {
+      font-size: 0.98em;
+      color: #222;
+      margin-top: 1px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER & SUB-HEADER fra betalingstips.html -->
+  <header class="navbar">
+    <div class="logo-container">
+      <a href="index.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="logo-text">
+          <span class="site-name">Geo Betting Tips</span>
+          <span class="slogan">Ekspertanalyser til din betting</span>
+        </div>
+      </a>
+    </div>
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="nyheder.html">Nyheder</a></li>
+        <li><a href="analyser.html">Analyser</a></li>
+        <li><a href="tilbud.html">Tilbud</a></li>
+        <li class="dropdown">
+          <a href="#">Mere</a>
+          <ul>
+            <li><a href="betalingstips.html">Betalingstips</a></li>
+            <li><a href="sport.html">Sport</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="search-wrapper">
+        <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
+        <ul id="suggestions" class="suggestions"></ul>
+      </div>
+    </nav>
+  </header>
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a>
+      <span class="current-page">Forside</span>
+    </nav>
+    <div class="disclaimer-outer">
+      <div class="disclaimer-wrapper">
+        <span class="disclaimer">
+          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        </span>
+        <span class="disclaimer-underline"></span>
+      </div>
+    </div>
+  </div>
 
-    closePopupBtn.addEventListener('click', closePopup);
+  <!-- BEHOLD ALT INDHOLD OG FUNKTIONALITET FRA DIN GAMLE INDEX.HTML HERUNDER -->
+  <div class="main-content-wrapper">
+    <div class="content-col-left">
+      <section class="mainbox">
+        <div class="mainbox-title">Velkommen til Geo Betting Tips</div>
+        <div class="mainbox-desc">
+          Få gratis spiltips, analyser og nyheder fra vores eksperter – hver dag.<br>
+          <strong>Scroll ned</strong> for at se dagens spil, læs seneste nyheder og se kommende kampe.
+        </div>
+      </section>
+      <!-- Du kan have flere sektioner her, behold alt fra din originale index.html -->
+    </div>
+    <div class="content-col-right">
+      <section class="matches-box">
+        <div class="matches-title">Kommende kampe</div>
+        <ul class="match-list" id="matches-list">
+          <!-- Matcher loader her -->
+        </ul>
+      </section>
+      <section class="news-box">
+        <div class="news-title">Seneste nyheder</div>
+        <ul class="news-list" id="news-list">
+          <!-- Nyheder loader her -->
+        </ul>
+        <div style="text-align:right; margin-top: 8px;">
+          <a href="nyheder.html" class="news-link" style="font-size: 1em;">Se alle nyheder &raquo;</a>
+        </div>
+      </section>
+    </div>
+  </div>
 
-    // Formular håndtering
-    newsletterForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const email = emailInput.value.trim();
-
-      if (!email) {
-        alert('Indtast venligst en gyldig email.');
-        return;
-      }
-
-      // Her indsæt din Supabase API-kald eller fetch til din backend for at gemme email
-      // Eksempel: 
-      // await supabase.from('nyhedsbrev').insert([{ email }]);
-
-      // For demo viser vi kun succes besked og lukker popup
-      formMessage.textContent = 'Tak for din tilmelding!';
-      formMessage.classList.remove('hidden');
-
-      // Gem at popup er set (så den ikke vises igen)
-      localStorage.setItem('popupSeen', 'true');
-
-      // Luk popup efter 2 sekunder
-      setTimeout(() => {
-        closePopup();
-      }, 2000);
-    });
-
-    // Fanebytte funktion for Seneste / Tilbud
-    const btnSeneste = document.getElementById('btnSeneste');
-    const btnTilbud = document.getElementById('btnTilbud');
-    const seneste = document.getElementById('seneste');
-    const tilbud = document.getElementById('tilbud');
-
-    btnSeneste.addEventListener('click', () => {
-      seneste.classList.remove('hidden');
-      tilbud.classList.add('hidden');
-    });
-
-    btnTilbud.addEventListener('click', () => {
-      tilbud.classList.remove('hidden');
-      seneste.classList.add('hidden');
-    });
-  </script>
-
-  <!-- SUPABASE DAGENS SPIL SCRIPT -->
+  <!-- Behold alle scripts og funktioner fra din gamle index.html -->
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
     const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
     const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
-
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    async function hentDagensSpil() {
-      try {
-        const { data, error } = await supabase
-          .from('dagensspil') // Table name
-          .select('*')
-          .order('tidspunkt', { ascending: true });
-
-        const container = document.getElementById('spil-container');
-        container.innerHTML = '';
-
-        if (error) throw error;
-
-        if (!data || data.length === 0) {
-          container.innerHTML = '<p>Ingen dagens spil tilgængelig.</p>';
-          return;
-        }
-
-        data.forEach(spil => {
-          const kort = document.createElement('div');
-          kort.className = 'spil-kort';
-          kort.innerHTML = `
-            <div class="info-højre">
-              <div class="tidspunkt">${spil.tidspunkt ? spil.tidspunkt : ''}</div>
-            </div>
-            <!-- LIGA vises herunder tidspunkt -->
-            <div class="liga">${spil.liga ? spil.liga : ''}</div>
-            <div class="hold-liste">
-              <div class="hold">
-                ${spil.hold1logo ? `<img src="${spil.hold1logo}" alt="${spil.hold1 || ''} logo" />` : ''}
-                <span>${spil.hold1 ? spil.hold1 : ''}</span>
-              </div>
-              <div class="hold">
-                ${spil.hold2logo ? `<img src="${spil.hold2logo}" alt="${spil.hold2 || ''} logo" />` : ''}
-                <span>${spil.hold2 ? spil.hold2 : ''}</span>
-              </div>
-            </div>
-            <div class="bund-bjælke">
-              <span class="odds">${spil.odds != null ? spil.odds : ''}</span>
-              <span class="ekspert">${spil.ekspert ? spil.ekspert : ''}</span>
-            </div>
-          `;
-          container.appendChild(kort);
-        });
-      } catch (error) {
-        console.error('Fejl ved hentning af dagens spil:', error);
-        document.getElementById('spil-container').innerText = 'Kunne ikke hente dagens spil.';
-      }
+    // KOMMENDE KAMPE
+    function formatMatchDate(dateStr) {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      const dd = String(d.getDate()).padStart(2, '0');
+      const mm = String(d.getMonth()+1).padStart(2, '0');
+      const yyyy = d.getFullYear();
+      const hh = String(d.getHours()).padStart(2, '0');
+      const min = String(d.getMinutes()).padStart(2, '0');
+      return `${dd}-${mm} ${hh}:${min}`;
     }
+    async function loadMatches() {
+      const list = document.getElementById('matches-list');
+      list.innerHTML = '<li class="empty-matches">Indlæser kampe…</li>';
+      const now = new Date().toISOString();
+      const { data, error } = await supabase
+        .from("matches")
+        .select("*")
+        .gt("date", now)
+        .order("date", { ascending: true })
+        .limit(6);
 
-    // Kald funktionen så data bliver hentet når siden loader
-    hentDagensSpil();
+      if (error || !data) {
+        list.innerHTML = '<li class="empty-matches">Kunne ikke hente kampe.</li>';
+        return;
+      }
+      if (data.length === 0) {
+        list.innerHTML = '<li class="empty-matches">Ingen kommende kampe.</li>';
+        return;
+      }
+      list.innerHTML = "";
+      data.forEach(match => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <div class="match-header">
+            <span class="match-league">${match.league || ''}</span>
+            <span class="match-date">${formatMatchDate(match.date)}</span>
+          </div>
+          <div class="match-teams">
+            ${match.home_logo ? `<img src="${match.home_logo}" class="match-logo" alt="Logo ${match.home_team}" />` : ''}
+            <span>${match.home_team || ''}</span>
+            <span style="margin: 0 3px;">-</span>
+            <span>${match.away_team || ''}</span>
+            ${match.away_logo ? `<img src="${match.away_logo}" class="match-logo" alt="Logo ${match.away_team}" />` : ''}
+          </div>
+          <div class="match-odds-row">
+            <span class="match-odds-label">Odds:</span>
+            <span class="match-odd" title="Hjemmehold">${match.odds_home ? match.odds_home : '-'}</span>
+            <span class="match-odd" title="Uafgjort">${match.odds_draw ? match.odds_draw : '-'}</span>
+            <span class="match-odd" title="Udehold">${match.odds_away ? match.odds_away : '-'}</span>
+            ${match.billede_url ? `<img src="${match.billede_url}" class="match-odds-bookmaker-logo" alt="Oddsudbyder" title="Oddsudbyder" />` : ''}
+          </div>
+        `;
+        list.appendChild(li);
+      });
+    }
+    loadMatches();
+
+    // NYHEDER - vis kun 3 seneste, med link til /nyheder.html
+    function truncateText(str, len = 100) {
+      if (!str) return '';
+      return str.length > len ? str.substring(0, len).trim() + '…' : str;
+    }
+    async function loadNewsList() {
+      const newsList = document.getElementById('news-list');
+      newsList.innerHTML = '<li style="color:#888;text-align:center;">Indlæser nyheder…</li>';
+      const { data, error } = await supabase.from("news").select("id,title,content").order("date", { ascending: false }).limit(3);
+      if (error || !data) {
+        newsList.innerHTML = '<li style="color:#f00;text-align:center;">Kunne ikke hente nyheder.</li>';
+        return;
+      }
+      if (data.length === 0) {
+        newsList.innerHTML = '<li style="color:#888;text-align:center;">Ingen nyheder fundet.</li>';
+        return;
+      }
+      newsList.innerHTML = "";
+      data.forEach(nyhed => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <a class="news-link" href="nyheder.html#nyhed-${nyhed.id}">${nyhed.title || ''}</a>
+          <span class="news-short">${truncateText(nyhed.content, 80)}</span>
+        `;
+        newsList.appendChild(li);
+      });
+    }
+    loadNewsList();
+
+    // SØGEFELT - søg direkte i Supabase (title indeholder)
+    const input = document.getElementById('search');
+    const suggBox = document.getElementById('suggestions');
+
+    input.addEventListener('input', async () => {
+      const val = input.value.trim().toLowerCase();
+      suggBox.innerHTML = '';
+      if (!val) {
+        suggBox.style.display = 'none';
+        return;
+      }
+      const { data, error } = await supabase
+        .from('news')
+        .select('id,title')
+        .ilike('title', `%${val}%`)
+        .order("date", { ascending: false })
+        .limit(10);
+
+      if (error || !data || !data.length) {
+        suggBox.style.display = 'none';
+        return;
+      }
+      data.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.title;
+        li.tabIndex = 0;
+        li.addEventListener('click', () => {
+          input.value = '';
+          suggBox.style.display = 'none';
+          window.location.href = "nyheder.html#nyhed-" + item.id;
+        });
+        suggBox.appendChild(li);
+      });
+      suggBox.style.display = 'block';
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search-wrapper')) {
+        suggBox.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>
