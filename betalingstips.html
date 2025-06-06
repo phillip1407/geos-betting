@@ -205,7 +205,17 @@
       color: #fff;
       text-decoration: none;
     }
-
+    /* INFO FLEX ROW STYLES */
+    .info-flex-row {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 1100px) {
+      .info-flex-row { flex-direction: column; gap: 24px; }
+    }
     /* MAIN INFO BOX STYLES */
     .mainbox {
       background: #fff;
@@ -240,8 +250,8 @@
     .mainbox-leander-section {
       margin: 0 auto;
       max-width: 540px;
-      background: #f9f6ea;
-      border: 1px solid #f0e7c7;
+      background: #f6faff;
+      border: 1.5px solid #b7d3f0;
       border-radius: 8px;
       padding: 16px 18px 18px 18px;
       display: flex;
@@ -252,7 +262,7 @@
     .mainbox-leander-title {
       font-size: 1.04rem;
       font-weight: 600;
-      color: #2d2d15;
+      color: #17345f;
       margin-bottom: 2px;
       text-align: center;
     }
@@ -338,7 +348,7 @@
       .telegram-box { padding: 18px 4vw 16px 4vw; }
       .leander-tip-boxes { gap: 10px; }
       .leander-tip-box { min-width: 120px; max-width: 100vw; padding: 10px 10px; }
-      .content-flex-row { flex-direction: column; gap: 20px; }
+      .info-flex-row { flex-direction: column; gap: 20px; }
     }
     .side-column {
       display: flex;
@@ -469,46 +479,21 @@
   <div class="main-content-wrapper">
     <main class="content-container">
 
-      <!-- TELEGRAM BOX START -->
-      <section class="telegram-box">
-        <div class="telegram-desc">
-          På Geos Betingstips er alt indhold gratis. Du har dog mulighed for at tilgå betalingstips fra Phillip Geo i Telegram-gruppen “Geo – VIP Group @Geo“.
-        </div>
-        <a href="https://telegram.dk/geo" target="_blank" class="telegram-btn">
-          Gå til Geo's telegram-gruppe
-        </a>
-      </section>
-      <!-- TELEGRAM BOX END -->
-
-      <div class="content-flex-row">
-        <!-- MAIN INFO BOX START -->
-        <section class="mainbox">
-          <div class="mainbox-title">Hvad er betalingstips?</div>
-          <div class="mainbox-desc">
-            På Geo Betting Tips er alt indhold gratis for alle brugere.<br>
-            Du kan dog få adgang til eksklusive betalingstips for endnu flere spilforslag og specialanalyser.<br>
-            Betalingstips er udvalgte spiltips, hvor vores eksperter går ekstra i dybden, og hvor kun abonnenter får adgang. Kontakt os for adgang eller spørgsmål.
-          </div>
-          <div class="mainbox-leander-section">
-            <div class="mainbox-leander-title">Se gratis tips fra Geo Betting Tips her:</div>
-            <a class="mainbox-leander-link" href="betalingstips.html">Gå til betalingstips-siden</a>
-            <div class="leander-tip-boxes">
-              <div class="leander-tip-box">
-                <div class="leander-tip-title">Seneste Dagens spil</div>
-                <button class="leander-tip-btn" onclick="window.location.href='index.html'">Se Dagens spil</button>
-              </div>
-              <div class="leander-tip-box">
-                <div class="leander-tip-title">Abonner på betalingstips</div>
-                <button class="leander-tip-btn" onclick="window.location.href='index.html'">Læs om abonnement</button>
-              </div>
+      <div class="info-flex-row">
+        <section class="mainbox-leander-section" style="margin:0;">
+          <div class="mainbox-leander-title">Se gratis tips fra Geo Betting Tips her:</div>
+          <a class="mainbox-leander-link" href="betalingstips.html">Gå til betalingstips-siden</a>
+          <div class="leander-tip-boxes">
+            <div class="leander-tip-box">
+              <div class="leander-tip-title">Seneste Dagens spil</div>
+              <button class="leander-tip-btn" onclick="window.location.href='index.html'">Se Dagens spil</button>
+            </div>
+            <div class="leander-tip-box">
+              <div class="leander-tip-title">Abonner på betalingstips</div>
+              <button class="leander-tip-btn" onclick="window.location.href='index.html'">Læs om abonnement</button>
             </div>
           </div>
-          <div class="mainbox-contact">
-            Har du spørgsmål? Skriv til os: <a href="mailto:kontakt@geobettingtips.dk">kontakt@geobettingtips.dk</a>
-          </div>
         </section>
-        <!-- MAIN INFO BOX SLUT -->
-
         <div class="side-column">
           <section class="matches-box">
             <div class="matches-title">Kommende kampe</div>
@@ -527,6 +512,29 @@
           </section>
         </div>
       </div>
+
+      <!-- TELEGRAM BOX START -->
+      <section class="telegram-box">
+        <div class="telegram-desc">
+          På Geos Betingstips er alt indhold gratis. Du har dog mulighed for at tilgå betalingstips fra Phillip Geo i Telegram-gruppen “Geo – VIP Group @Geo“.
+        </div>
+        <a href="https://telegram.dk/geo" target="_blank" class="telegram-btn">
+          Gå til Geo's telegram-gruppe
+        </a>
+      </section>
+      <!-- TELEGRAM BOX END -->
+
+      <section class="mainbox">
+        <div class="mainbox-title">Hvad er betalingstips?</div>
+        <div class="mainbox-desc">
+          På Geo Betting Tips er alt indhold gratis for alle brugere.<br>
+          Du kan dog få adgang til eksklusive betalingstips for endnu flere spilforslag og specialanalyser.<br>
+          Betalingstips er udvalgte spiltips, hvor vores eksperter går ekstra i dybden, og hvor kun abonnenter får adgang. Kontakt os for adgang eller spørgsmål.
+        </div>
+        <div class="mainbox-contact">
+          Har du spørgsmål? Skriv til os: <a href="mailto:kontakt@geobettingtips.dk">kontakt@geobettingtips.dk</a>
+        </div>
+      </section>
     </main>
     <aside class="sidebar">
       <!-- Du kan evt. tilføje ekstra indhold her -->
