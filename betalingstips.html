@@ -226,6 +226,7 @@
       background: #f6faff;
       border: 1px solid #b7d3f0;
       display: inline-block;
+      cursor: pointer;
     }
     .mainbox-leander-link:hover {
       color: #fff;
@@ -249,7 +250,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 3px;
+      gap: 8px;
       box-shadow: 0 1px 5px rgba(224,192,84,0.07);
     }
     .leander-tip-title {
@@ -258,14 +259,26 @@
       font-size: 1.01em;
       margin-bottom: 1px;
     }
-    .leander-tip-link {
-      color: #0033cc;
+    .leander-tip-link, .leander-tip-btn {
+      color: #fff;
+      background: #0033cc;
+      border: none;
+      outline: none;
       font-size: 0.98em;
-      text-decoration: underline;
       font-weight: 500;
-      transition: color 0.2s;
+      text-decoration: none;
+      border-radius: 4px;
+      padding: 7px 18px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      display: inline-block;
+      margin-top: 2px;
     }
-    .leander-tip-link:hover { color: #1f3a68; }
+    .leander-tip-link:hover, .leander-tip-btn:hover {
+      background: #1f3a68;
+      color: #fff;
+      text-decoration: none;
+    }
     .mainbox-contact {
       text-align:center;
       font-size: 1em;
@@ -427,16 +440,16 @@
             <a class="mainbox-leander-link" href="betalingstips.html">Gå til betalingstips-siden</a>
             <div class="leander-tip-boxes">
               <div class="leander-tip-box">
-                <div class="leander-tip-title">Seneste gratis tip</div>
-                <a class="leander-tip-link" href="betalingstips.html#seneste-tip">Se tip</a>
+                <div class="leander-tip-title">Seneste Dagens spil</div>
+                <button class="leander-tip-btn" onclick="window.location.href='index.html'">Se Dagens spil</button>
               </div>
               <div class="leander-tip-box">
                 <div class="leander-tip-title">Abonner på betalingstips</div>
-                <a class="leander-tip-link" href="betalingstips.html#abonnement">Læs om abonnement</a>
+                <button class="leander-tip-btn" onclick="window.location.href='index.html'">Læs om abonnement</button>
               </div>
               <div class="leander-tip-box">
                 <div class="leander-tip-title">Kontakt Geo Betting Tips</div>
-                <a class="leander-tip-link" href="mailto:kontakt@geobettingtips.dk">kontakt@geobettingtips.dk</a>
+                <button class="leander-tip-btn" onclick="window.location.href='index.html'">kontakt@geobettingtips.dk</button>
               </div>
             </div>
           </div>
