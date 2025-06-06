@@ -62,33 +62,7 @@
     .suggestions li:hover { background:#f0f0f0; }
     
     
-    .sub-header {
-      padding: 20px 140px;
-      background: #fff;
-      border-bottom: 1px solid #e0e7f6;
-      
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    
-    .breadcrumb {
-      font-size: 14px;
-      color: #142541;
-      flex-shrink: 0;
-    }
-    .breadcrumb a {
-      text-decoration: none;
-      color: #0033cc;
-      font-weight: bold;
-    }
-    
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
-    
+    /* Her fjernes gamle sub-header og disclaimer CSS, de ligger nu i nedenstående style-tag */
 
   /*-- Under her er desgin til dagens spil */
     
@@ -209,26 +183,7 @@
       line-height: 1.6;
       margin-bottom: 10px;
     }
-    .disclaimer {
-      font-size: 14px;
-      color: #142541 ;
-      text-align: center;
-      margin: 10px 0 10px 0;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #e0e7f6; /* meget tynd streg */
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-    
-    .disclaimer {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 14px;
-      color: #142541;
-      white-space: nowrap;
-    }
-    
+
   .nyheder-sektion {
   padding: 20px;
   max-width: 900px;
@@ -337,14 +292,107 @@
     </nav>
   </header>
 
+  <!-- NY SUB-HEADER OG DISCLAIMER -->
   <div class="sub-header">
     <nav class="breadcrumb">
-      <a href="index.html">Forside</a> &raquo; <span>Forside</span>
+      <a href="index.html">Forside</a>
+      <span style="color:#888; margin: 0 4px;">/</span>
+      <span class="current-page">Betalingstips</span>
     </nav>
-    <p class="disclaimer">
-      18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
-    </p>
+    <div class="disclaimer-outer">
+      <div class="disclaimer-wrapper">
+        <span class="disclaimer">
+          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        </span>
+        <span class="disclaimer-underline"></span>
+      </div>
+    </div>
   </div>
+  <style>
+    .sub-header {
+      background: #fff;
+      border-bottom: 1px solid #e0e7f6;
+      padding-top: 20px; padding-bottom: 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 10px; flex-wrap: wrap; position: relative;
+    }
+    .breadcrumb { 
+      font-size: 14px; 
+      color: #142541; 
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin-right: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .current-page {
+      font-weight: bold;
+      color: #142541;
+      background: #e0e7f6;
+      border-radius: 7px;
+      padding: 2px 9px;
+      margin-left: 2px;
+      letter-spacing: 0.03em;
+    }
+    .disclaimer-outer {
+      flex: 1 1 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 0;
+      position: relative;
+    }
+    .disclaimer-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      min-width: 0;
+      width: max-content;
+      max-width: 100%;
+    }
+    .disclaimer {
+      font-size: 14px;
+      color: #142541;
+      background: #fff;
+      white-space: nowrap;
+      margin: 0;
+      box-sizing: border-box;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      padding-bottom: 0;
+      border-bottom: none;
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+    }
+    .disclaimer-underline {
+      width: 100%;
+      border: none;
+      border-bottom: 1.5px solid #e0e7f6;
+      height: 0;
+      margin: 2px 0 0 0;
+      padding: 0;
+      background: none;
+    }
+    @media (max-width:900px) {
+      .sub-header { padding-left: 5vw; padding-right: 5vw; }
+      .breadcrumb { margin-right: 10px; }
+    }
+    @media (max-width: 700px) {
+      .sub-header { flex-direction: column; align-items: stretch; gap: 2px; }
+      .disclaimer-outer { justify-content: flex-start; }
+      .disclaimer-wrapper { width: 100%; align-items: flex-start; }
+      .disclaimer { white-space: normal; width: 100%; text-align: left; }
+      .disclaimer-underline { max-width: 100%; }
+      .breadcrumb { margin-bottom: 8px; }
+    }
+  </style>
 
 
 
