@@ -108,7 +108,6 @@
       .content-col-right { flex-direction: column; gap: 18px; }
       .telegram-box, .mainbox { max-width: 100vw; }
     }
-    /* TELEGRAM BOX STYLES */
     .telegram-box {
       background: #f6faff;
       border: 1.5px solid #b7d3f0;
@@ -151,7 +150,6 @@
       color: #fff;
       text-decoration: none;
     }
-    /* MAIN INFO BOX STYLES */
     .mainbox {
       background: #fff;
       border: 1px solid #e0e7f6;
@@ -280,16 +278,6 @@
       font-weight: 500;
     }
     .mainbox-contact a:hover { color: #1f3a68; }
-    @media (max-width: 600px) {
-      .mainbox { padding: 16px 4vw 16px 4vw; }
-      .telegram-box { padding: 16px 4vw 14px 4vw; }
-      .leander-tip-boxes { gap: 10px; }
-      .leander-tip-box { min-width: 120px; max-width: 100vw; padding: 10px 10px; }
-      .main-content-wrapper { padding: 0 4vw; }
-      .content-col-left, .content-col-right { width: 100%; max-width: 100vw; min-width: 0; }
-      .content-col-right { flex-direction: column; gap: 18px; }
-      .telegram-box, .mainbox { max-width: 100vw; }
-    }
     .matches-box, .news-box {
       background: #fff; border: 1px solid #e0e7f6; border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -440,9 +428,11 @@
     <div class="content-col-right">
       <section class="matches-box">
         <div class="matches-title">Kommende kampe</div>
-        <ul class="match-list" id="matches-list">
-          <!-- Matcher loader her -->
-        </ul>
+        <!-- FotMob widget start -->
+        <div style="width:100%;overflow:hidden;border-radius:8px;">
+          <iframe src="https://www.fotmob.com/" title="Kommende kampe" style="width:100%;min-height:520px;border:none;" loading="lazy"></iframe>
+        </div>
+        <!-- FotMob widget slut -->
       </section>
       <section class="news-box">
         <div class="news-title">Seneste nyheder</div>
@@ -462,65 +452,7 @@
     const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    // KOMMENDE KAMPE
-    function formatMatchDate(dateStr) {
-      const d = new Date(dateStr);
-      if (isNaN(d.getTime())) return dateStr;
-      const dd = String(d.getDate()).padStart(2, '0');
-      const mm = String(d.getMonth()+1).padStart(2, '0');
-      const yyyy = d.getFullYear();
-      const hh = String(d.getHours()).padStart(2, '0');
-      const min = String(d.getMinutes()).padStart(2, '0');
-      return `${dd}-${mm} ${hh}:${min}`;
-    }
-    async function loadMatches() {
-      const list = document.getElementById('matches-list');
-      list.innerHTML = '<li class="empty-matches">Indlæser kampe…</li>';
-      const now = new Date().toISOString();
-      const { data, error } = await supabase
-        .from("matches")
-        .select("*")
-        .gt("date", now)
-        .order("date", { ascending: true })
-        .limit(6);
-
-      if (error || !data) {
-        list.innerHTML = '<li class="empty-matches">Kunne ikke hente kampe.</li>';
-        return;
-      }
-      if (data.length === 0) {
-        list.innerHTML = '<li class="empty-matches">Ingen kommende kampe.</li>';
-        return;
-      }
-      list.innerHTML = "";
-      data.forEach(match => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <div class="match-header">
-            <span class="match-league">${match.league || ''}</span>
-            <span class="match-date">${formatMatchDate(match.date)}</span>
-          </div>
-          <div class="match-teams">
-            ${match.home_logo ? `<img src="${match.home_logo}" class="match-logo" alt="Logo ${match.home_team}" />` : ''}
-            <span>${match.home_team || ''}</span>
-            <span style="margin: 0 3px;">-</span>
-            <span>${match.away_team || ''}</span>
-            ${match.away_logo ? `<img src="${match.away_logo}" class="match-logo" alt="Logo ${match.away_team}" />` : ''}
-          </div>
-          <div class="match-odds-row">
-            <span class="match-odds-label">Odds:</span>
-            <span class="match-odd" title="Hjemmehold">${match.odds_home ? match.odds_home : '-'}</span>
-            <span class="match-odd" title="Uafgjort">${match.odds_draw ? match.odds_draw : '-'}</span>
-            <span class="match-odd" title="Udehold">${match.odds_away ? match.odds_away : '-'}</span>
-            ${match.billede_url ? `<img src="${match.billede_url}" class="match-odds-bookmaker-logo" alt="Oddsudbyder" title="Oddsudbyder" />` : ''}
-          </div>
-        `;
-        list.appendChild(li);
-      });
-    }
-    loadMatches();
-
-    // NYHEDER - vis kun 3 seneste, med link til /nyheder.html
+    // NYHEDER
     function truncateText(str, len = 100) {
       if (!str) return '';
       return str.length > len ? str.substring(0, len).trim() + '…' : str;
