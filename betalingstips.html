@@ -310,8 +310,8 @@
       margin-top: 1px;
       display: block;
     }
-    /* Sofascore box styling */
-    .sofascore-box {
+    /* FotMob box styling */
+    .fotmob-box {
       margin-bottom: 32px;
       background: #fff;
       border-radius: 8px;
@@ -320,7 +320,7 @@
       overflow: hidden;
       padding: 0 0 16px 0;
     }
-    .sofascore-title {
+    .fotmob-title {
       font-size: 1.22rem; font-weight: bold; color: #142541; margin: 0 0 14px 0;
       border-left: 4px solid #142541; padding-left: 12px; padding-top: 18px;
     }
@@ -411,11 +411,13 @@
       </section>
     </div>
     <div class="content-col-right">
-      <section class="sofascore-box">
-        <div class="sofascore-title">Kommende kampe</div>
-        <!-- Sofascore widget: Livekampe -->
-        <iframe src="https://widget.sofascore.com/da/livescore"
-                width="100%" height="600" style="border:none;overflow:hidden;" loading="lazy"></iframe>
+      <section class="fotmob-box">
+        <div class="fotmob-title">Kommende topkampe</div>
+        <!-- FotMob Topkampe: Embed med de største kampe (bemærk: ren iframe med top fixtures, ikke hele forsiden) -->
+        <iframe src="https://www.fotmob.com/top-matches" title="FotMob Topkampe" style="width:100%;min-height:600px;border:none;overflow:hidden;" loading="lazy"></iframe>
+        <div style="text-align:center;color:#888;font-size:0.96em;padding:8px 12px 0 12px;">
+          Powered by <a href="https://www.fotmob.com/" target="_blank" rel="noopener" style="color:#0033cc;text-decoration:underline;">FotMob</a>
+        </div>
       </section>
       <section class="news-box">
         <div class="news-title">Seneste nyheder</div>
