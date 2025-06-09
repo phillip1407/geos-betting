@@ -289,35 +289,6 @@
       font-size: 1.22rem; font-weight: bold; color: #142541; margin-bottom: 14px;
       border-left: 4px solid #142541; padding-left: 12px;
     }
-    .match-list { list-style: none; padding: 0; margin: 0; }
-    .match-list li {
-      padding: 14px 0 10px 0; border-bottom: 1px solid #e0e7f6; font-size: 0.98rem; color: #222;
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .match-list li:last-child { border-bottom: none; }
-    .match-league { color: #888; font-size: 0.97em; }
-    .match-header {
-      display: flex; align-items: center; gap: 8px; justify-content: space-between;
-    }
-    .match-teams {
-      display: flex; align-items: center; gap: 8px;
-      font-weight: 600; color: #142541; font-size: 1.03em;
-    }
-    .match-logo {
-      width: 28px; height: 28px; object-fit: contain; background: #f7f7f7; border-radius: 50%; border: 1px solid #e0e7f6;
-      display: inline-block;
-    }
-    .match-date { color: #666; font-size: 0.96em; font-style: italic; }
-    .match-odds-row {
-      display: flex; align-items: center; gap: 9px; margin-top: 2px;
-    }
-    .match-odds-label { color: #666; font-size: 0.97em; margin-right: 2px;}
-    .match-odd { font-size: 1em; font-weight: bold; color: #142541; background: #e0e7f6; border-radius: 4px; padding: 1px 7px; margin-right: 2px;}
-    .match-odds-bookmaker-logo {
-      width: 22px; height: 22px; object-fit: contain; margin-left: 8px; border-radius: 3px; border: 1px solid #e0e7f6; background: #fff;
-      display: inline-block;
-    }
-    .empty-matches { color: #888; text-align: center; padding: 18px 0 6px 0; }
     .news-list { list-style: none; padding: 0; margin: 0; }
     .news-list li {
       margin-bottom: 14px;
@@ -339,6 +310,31 @@
       margin-top: 1px;
       display: block;
     }
+    /* Livescore box styling */
+    .livescore-box {
+      margin-bottom: 32px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e0e7f6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      overflow: hidden;
+      padding: 0 0 16px 0;
+    }
+    .livescore-title {
+      font-size: 1.22rem; font-weight: bold; color: #142541; margin: 0 0 14px 0;
+      border-left: 4px solid #142541; padding-left: 12px; padding-top: 18px;
+    }
+    .livescore-link {
+      display: block;
+      text-align: center;
+      margin: 18px 0 6px 0;
+      font-size: 1.08em;
+      font-weight: bold;
+      color: #0033cc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .livescore-link:hover { color: #1f3a68; }
   </style>
 </head>
 <body>
@@ -426,13 +422,15 @@
       </section>
     </div>
     <div class="content-col-right">
-      <section class="matches-box">
-        <div class="matches-title">Kommende kampe</div>
-        <!-- FotMob widget start -->
-        <div style="width:100%;overflow:hidden;border-radius:8px;">
-          <iframe src="https://www.fotmob.com/" title="Kommende kampe" style="width:100%;min-height:520px;border:none;" loading="lazy"></iframe>
+      <section class="livescore-box">
+        <div class="livescore-title">Kommende kampe</div>
+        <!-- Livescore integration: dette er kun et LINK, da Livescore ikke tilbyder embed/widget -->
+        <a class="livescore-link" href="https://www.livescore.com/da/" target="_blank" rel="noopener">
+          Se live kampe og resultater på Livescore.com
+        </a>
+        <div style="text-align:center;color:#888;font-size:0.96em;padding:0 16px 6px 16px;">
+          (Bemærk: Livescore.com tilbyder ikke en embed-widget. Klik for at åbne i ny fane.)
         </div>
-        <!-- FotMob widget slut -->
       </section>
       <section class="news-box">
         <div class="news-title">Seneste nyheder</div>
