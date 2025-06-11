@@ -171,6 +171,7 @@
       <button id="show-news-btn">Nyheder</button>
       <button id="show-dagensspil-btn">Dagens Spil</button>
       <button id="show-tilbud-btn">Tilbud</button>
+      <button id="show-tips-btn">Tips</button>
     </nav>
 
     <!-- Nyheder Sektion -->
@@ -196,7 +197,8 @@
           <tr>
             <th>ID</th>
             <th>Titel</th>
-            <th>Dato</th>
+            <th>D
+ato</th>
             <th>Forfatter</th>
             <th>Handling</th>
           </tr>
@@ -276,6 +278,42 @@
         <tbody></tbody>
       </table>
     </section>
+
+    <!-- Tips Sektion -->
+    <section id="tips-section" class="hidden">
+      <h2>Opret Tip</h2>
+      <label for="tip-dato">Dato</label>
+      <input id="tip-dato" type="date" />
+      <label for="tip-ekspert">Ekspert</label>
+      <input id="tip-ekspert" type="text" placeholder="Ekspert navn" />
+      <label for="tip-status">Status</label>
+      <select id="tip-status">
+        <option value="ramt">Ramt</option>
+        <option value="missed">Missede</option>
+        <option value="afventer">Afventer</option>
+      </select>
+      <label for="tip-odds">Odds</label>
+      <input id="tip-odds" type="number" step="0.01" placeholder="Odds" />
+      <label for="tip-indsats">Indsats (units)</label>
+      <input id="tip-indsats" type="number" step="0.01" placeholder="Indsats" />
+      <button id="add-tip-btn">Tilføj tip</button>
+      <p class="error" id="tip-error"></p>
+      <h3>Eksisterende tips</h3>
+      <table id="tips-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Dato</th>
+            <th>Ekspert</th>
+            <th>Status</th>
+            <th>Odds</th>
+            <th>Indsats</th>
+            <th>Handling</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
   </div>
 
   <script type="module">
@@ -298,10 +336,12 @@
     const showNewsBtn = document.getElementById("show-news-btn");
     const showDagensspilBtn = document.getElementById("show-dagensspil-btn");
     const showTilbudBtn = document.getElementById("show-tilbud-btn");
+    const showTipsBtn = document.getElementById("show-tips-btn");
 
     const newsSection = document.getElementById("news-section");
     const dagensspilSection = document.getElementById("dagensspil-section");
     const tilbudSection = document.getElementById("tilbud-section");
+    const tipsSection = document.getElementById("tips-section");
 
     // Nyhed
     const newsTitle = document.getElementById("news-title");
@@ -339,6 +379,17 @@
     const cancelEditTilbudBtn = document.getElementById("cancel-edit-tilbud-btn");
     const tilbudFormHeader = document.getElementById("tilbud-form-header");
 
+    // Tips
+    const tipDato = document.getElementById("tip-dato");
+    const tipEkspert = document.getElementById("tip-ekspert");
+    const tipStatus = document.getElementById("tip-status");
+    const tipOdds = document.getElementById("tip-odds");
+    const tipIndsats = document.getElementById("tip-indsats");
+    const addTipBtn = document.getElementById("add-tip-btn");
+    const tipError = document.getElementById("tip-error");
+    const tipsTableBody = document.querySelector("#tips-table tbody");
+    let editingTipId = null;
+
     // Rediger state
     let editingBetId = null;
     let editingNewsId = null;
@@ -364,6 +415,7 @@
         loadNews();
         loadBets();
         loadTilbud();
+        loadTips();
       }
     });
 
@@ -381,18 +433,29 @@
       newsSection.classList.remove("hidden");
       dagensspilSection.classList.add("hidden");
       tilbudSection.classList.add("hidden");
+      tipsSection.classList.add("hidden");
     });
 
     showDagensspilBtn.addEventListener("click", () => {
       dagensspilSection.classList.remove("hidden");
       newsSection.classList.add("hidden");
       tilbudSection.classList.add("hidden");
+      tipsSection.classList.add("hidden");
     });
 
     showTilbudBtn.addEventListener("click", () => {
       tilbudSection.classList.remove("hidden");
       newsSection.classList.add("hidden");
       dagensspilSection.classList.add("hidden");
+      tipsSection.classList.add("hidden");
+    });
+
+    showTipsBtn.addEventListener("click", () => {
+      tipsSection.classList.remove("hidden");
+      newsSection.classList.add("hidden");
+      dagensspilSection.classList.add("hidden");
+      tilbudSection.classList.add("hidden");
+      loadTips();
     });
 
     // --- NYHEDER ---
@@ -716,6 +779,111 @@
       cancelEditTilbudBtn.classList.remove("hidden");
     }
 
+    // --- TIPS ---
+    addTipBtn.addEventListener("click", async () => {
+      tipError.textContent = "";
+      const dato = tipDato.value;
+      const ekspert = tipEkspert.value.trim();
+      const status = tipStatus.value;
+      const odds = parseFloat(tipOdds.value);
+      const indsats = parseFloat(tipIndsats.value);
+
+      if (!dato || !ekspert || !status || isNaN(odds) || isNaN(indsats)) {
+        tipError.textContent = "Udfyld alle felter korrekt.";
+        return;
+      }
+
+      if (editingTipId) {
+        const { error } = await supabase
+          .from("tips")
+          .update({ oprettet: dato, ekspert, status, odds, indsats })
+          .eq("id", editingTipId);
+        if (error) {
+          tipError.textContent = "Fejl ved opdatering: " + error.message;
+          return;
+        }
+        editingTipId = null;
+        addTipBtn.textContent = "Tilføj tip";
+      } else {
+        const { error } = await supabase
+          .from("tips")
+          .insert([{ oprettet: dato, ekspert, status, odds, indsats }]);
+        if (error) {
+          tipError.textContent = "Fejl ved tilføjelse: " + error.message;
+          return;
+        }
+      }
+      clearTipInputs();
+      loadTips();
+    });
+
+    async function loadTips() {
+      tipsTableBody.innerHTML = "";
+      const { data, error } = await supabase.from("tips").select("*").order("oprettet", { ascending: false });
+      if (error) {
+        tipError.textContent = "Fejl ved hentning af tips: " + error.message;
+        return;
+      }
+      data.forEach((tip) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${tip.id}</td>
+          <td>${tip.oprettet ? tip.oprettet.substring(0,10) : ""}</td>
+          <td>${tip.ekspert}</td>
+          <td>${tip.status}</td>
+          <td>${tip.odds}</td>
+          <td>${tip.indsats}</td>
+          <td>
+            <button data-id="${tip.id}" class="edit-tip-btn rediger-btn">Rediger</button>
+            <button data-id="${tip.id}" class="delete-tip-btn slet-btn">Slet</button>
+          </td>
+        `;
+        tipsTableBody.appendChild(tr);
+      });
+      document.querySelectorAll(".delete-tip-btn").forEach((btn) => {
+        btn.addEventListener("click", deleteTip);
+      });
+      document.querySelectorAll(".edit-tip-btn").forEach((btn) => {
+        btn.addEventListener("click", () => editTip(btn.getAttribute("data-id")));
+      });
+    }
+
+    async function deleteTip(e) {
+      const id = e.target.getAttribute("data-id");
+      const { error } = await supabase.from("tips").delete().eq("id", id);
+      if (error) {
+        alert("Fejl ved sletning: " + error.message);
+      } else {
+        loadTips();
+      }
+    }
+
+    async function editTip(id) {
+      const { data, error } = await supabase.from("tips").select("*").eq("id", id).single();
+      if (error || !data) {
+        tipError.textContent = "Kunne ikke hente tip til redigering.";
+        return;
+      }
+      tipDato.value = data.oprettet ? data.oprettet.substring(0,10) : "";
+      tipEkspert.value = data.ekspert || "";
+      tipStatus.value = data.status || "ramt";
+      tipOdds.value = data.odds || "";
+      tipIndsats.value = data.indsats || "";
+      editingTipId = id;
+      addTipBtn.textContent = "Opdater tip";
+    }
+
+    function clearTipInputs() {
+      tipDato.value = "";
+      tipEkspert.value = "";
+      tipStatus.value = "ramt";
+      tipOdds.value = "";
+      tipIndsats.value = "";
+      tipError.textContent = "";
+      editingTipId = null;
+      addTipBtn.textContent = "Tilføj tip";
+    }
+
     // --- RYD INPUTS ---
     function clearNewsInputs() {
       newsTitle.value = "";
@@ -757,15 +925,18 @@
       clearNewsInputs();
       clearBetInputs();
       clearTilbudInputs();
+      clearTipInputs();
       loginError.textContent = "";
       newsError.textContent = "";
       betError.textContent = "";
       tilbudError.textContent = "";
+      tipError.textContent = "";
     }
     function clearTables() {
       newsTableBody.innerHTML = "";
       dagensspilTableBody.innerHTML = "";
       tilbudTableBody.innerHTML = "";
+      tipsTableBody.innerHTML = "";
     }
 
     // Tjek om bruger allerede er logget ind ved sideindlæsning
@@ -777,6 +948,7 @@
         loadNews();
         loadBets();
         loadTilbud();
+        loadTips();
       }
     });
   </script>
