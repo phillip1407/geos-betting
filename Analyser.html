@@ -232,6 +232,20 @@
     .kommentar-card .navn {font-weight:600; color:#133b5c;}
     .kommentar-card .tid {font-size:0.98em; color:#777; margin-bottom: 2px;}
     .kommentar-card .tekst {margin-top:4px;}
+    .slet-kommentar {
+      background: #f45151;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 3px 13px;
+      font-size: 0.99em;
+      cursor: pointer;
+      margin-top: 6px;
+      margin-left: 0;
+    }
+    .slet-kommentar:hover {
+      background: #c00;
+    }
     .kommentar-form input, .kommentar-form textarea {
       width:100%; padding:8px 10px; margin-bottom:7px;
       border-radius:6px; border:1px solid #ccc; font-size:1em;
@@ -368,6 +382,18 @@
     const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+    // --- ADMIN EMAILS HER ---
+    const adminEmails = ["admin@ditdomæne.dk"]; // Tilføj alle admin emails!
+
+    let isAdminGlobal = false;
+
+    async function checkAdmin() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user && adminEmails.includes(user.email)) {
+        isAdminGlobal = true;
+      }
+    }
+
     // --- Statistik på tidligere tips ---
     async function hentStatistik() {
       const { data, error } = await supabase.from('tips').select('*');
@@ -379,7 +405,6 @@
       let currentProfit = 0;
       const ekspertStats = {};
 
-      // Sortér efter oprettet-dato for grafen
       data.sort((a, b) => new Date(a.oprettet) - new Date(b.oprettet));
       data.forEach(tip => {
         const indsats = tip.indsats || 1;
@@ -413,7 +438,6 @@
       document.getElementById('profit').textContent = profit.toFixed(2) + " u";
       document.getElementById('profit-kr').textContent = (profit*100).toLocaleString('da-DK') + " kr";
 
-      // Ekspert-statistik
       const tbody = document.querySelector('#ekspert-tabel tbody');
       tbody.innerHTML = '';
       Object.entries(ekspertStats).forEach(([ekspert, stat]) => {
@@ -429,7 +453,6 @@
         tbody.appendChild(tr);
       });
 
-      // GRAF - PROFIT OVER TID
       const ctx = document.getElementById('profit-graf').getContext('2d');
       if (window.profitChart) window.profitChart.destroy();
       window.profitChart = new Chart(ctx, {
@@ -459,7 +482,6 @@
         }
       });
     }
-    hentStatistik();
 
     // --- Kommentarfelt ---
     async function hentKommentarer() {
@@ -471,7 +493,6 @@
         return;
       }
       data.forEach(k => {
-        // Tag forbogstav af navn eller 'A' for Anonym
         const initial = (k.navn && k.navn.trim()) ? k.navn.trim().charAt(0).toUpperCase() : 'A';
         const card = document.createElement('div');
         card.className = 'kommentar-card';
@@ -481,12 +502,24 @@
             <div class="navn">${k.navn ? k.navn : 'Anonym'}</div>
             <div class="tid">${new Date(k.oprettet).toLocaleString("da-DK")}</div>
             <div class="tekst">${k.tekst}</div>
+            ${isAdminGlobal ? `<button class="slet-kommentar" data-id="${k.id}">🗑️ Slet</button>` : ''}
           </div>
         `;
         liste.appendChild(card);
       });
     }
-    hentKommentarer();
+
+    // Slet kommentar kun hvis admin
+    document.getElementById('kommentar-liste').addEventListener('click', async function(e) {
+      if (e.target.classList.contains('slet-kommentar')) {
+        if (!isAdminGlobal) return; // dobbelt-check!
+        if (confirm('Er du sikker på du vil slette denne kommentar?')) {
+          const kommentarId = e.target.getAttribute('data-id');
+          await supabase.from('kommentarer').delete().eq('id', kommentarId);
+          hentKommentarer();
+        }
+      }
+    });
 
     document.getElementById('kommentar-form').addEventListener('submit', async e => {
       e.preventDefault();
@@ -509,6 +542,13 @@
       if (!e.target.closest('.search-wrapper')) {
         suggBox.style.display = 'none';
       }
+    });
+
+    // === INIT ===
+    // Først check admin, så hent statistik og kommentarer
+    checkAdmin().then(() => {
+      hentStatistik();
+      hentKommentarer();
     });
   </script>
 </body>
