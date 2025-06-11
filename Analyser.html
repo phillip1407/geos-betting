@@ -55,21 +55,6 @@
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
 
-    .login-controls { margin-left: 20px; }
-    .login-btn, .logout-btn {
-      background: #e0e7f6;
-      color: #142541;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      padding: 7px 18px;
-      font-size: 1em;
-      cursor: pointer;
-      margin-left: 10px;
-      transition: background .17s;
-    }
-    .login-btn:hover, .logout-btn:hover { background: #cbd7ee; }
-
     .sub-header {
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
@@ -161,7 +146,6 @@
       .breadcrumb { margin-bottom: 8px; }
     }
 
-    /* Statistik og kommentarer - NYT DESIGN */
     .statistik-sektion {
       background: #fff;
       margin: 40px auto 20px auto;
@@ -208,7 +192,6 @@
     .ekspert-stat-tabel th, .ekspert-stat-tabel td { border:1px solid #e0e7f6; padding:10px 8px; text-align:center; }
     .ekspert-stat-tabel th { background:#f0f5fa; color:#142541; }
     .ekspert-stat-tabel td { background:#f8fafd; }
-    /* Kommentarer */
     .kommentar-sektion {
       background:#fff;
       margin:30px auto 40px auto;
@@ -301,11 +284,6 @@
       <div class="search-wrapper">
         <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
         <ul id="suggestions" class="suggestions"></ul>
-      </div>
-      <div class="login-controls">
-        <button id="loginBtn" class="login-btn">Log ind</button>
-        <button id="logoutBtn" class="logout-btn" style="display:none;">Log ud</button>
-        <span id="userEmail" style="margin-left:12px;color:#e0e7f6;font-size:0.98em;"></span>
       </div>
     </nav>
   </header>
@@ -402,58 +380,33 @@
     const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    // --- ADMIN EMAILS HER ---
-    const adminEmails = ["admin@ditdomæne.dk", "phillip1407@gmail.com"]; // Tilføj alle admin emails!
-
+    // Din admin-tjek baseret på users-tabellen
     let isAdminGlobal = false;
     let currentUserEmail = null;
 
-    // Login/Logout knapper
-    const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const userEmailSpan = document.getElementById('userEmail');
-
-    loginBtn.addEventListener('click', async () => {
-      await supabase.auth.signInWithOAuth({ provider: 'google' }); // eller 'github', 'facebook' osv.
-    });
-    logoutBtn.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      window.location.reload();
-    });
-
-    // Vis/skjul knapper afhængig af login-status
-    function updateLoginStatus(session) {
-      if (session && session.user) {
-        loginBtn.style.display = "none";
-        logoutBtn.style.display = "inline-block";
-        userEmailSpan.textContent = session.user.email;
-      } else {
-        loginBtn.style.display = "inline-block";
-        logoutBtn.style.display = "none";
-        userEmailSpan.textContent = "";
-      }
-    }
-
-    // Hent user og tjek admin
     async function checkAdmin() {
-      const { data: { user }, error } = await supabase.auth.getUser();
-      if (user && adminEmails.includes(user.email)) {
-        isAdminGlobal = true;
-        currentUserEmail = user.email;
+      // Få bruger fra authentication (Supabase Auth) - kræver at brugeren er logget ind via Supabase
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user && user.id) {
+        // Antag users-tabellen har en 'admin' boolean kolonne og brugerens id matcher auth user.id
+        const { data: brugerdata } = await supabase
+          .from('users')
+          .select('admin,email')
+          .eq('id', user.id)
+          .single();
+        if (brugerdata && brugerdata.admin === true) {
+          isAdminGlobal = true;
+        } else {
+          isAdminGlobal = false;
+        }
+        if (brugerdata && brugerdata.email) {
+          currentUserEmail = brugerdata.email;
+        }
       } else {
         isAdminGlobal = false;
-        currentUserEmail = user && user.email ? user.email : null;
+        currentUserEmail = null;
       }
     }
-
-    // Auth state change (opdater login/logout knap og email)
-    supabase.auth.onAuthStateChange((_event, session) => {
-      updateLoginStatus(session);
-      // Gen-check admin og reload kommentarer hvis skift
-      checkAdmin().then(() => {
-        hentKommentarer();
-      });
-    });
 
     // Statistik på tidligere tips
     async function hentStatistik() {
@@ -608,10 +561,6 @@
     checkAdmin().then(() => {
       hentStatistik();
       hentKommentarer();
-      // Sæt login status ved første load
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        updateLoginStatus(session);
-      });
     });
   </script>
 </body>
