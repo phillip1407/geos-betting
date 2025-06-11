@@ -3,15 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Geo Betting Tips | Forside</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
-  
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
   <style>
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
@@ -165,6 +162,8 @@
     .ekspert-stat-tabel th, .ekspert-stat-tabel td { border:1px solid #e0e7f6; padding:10px 8px; text-align:center; }
     .ekspert-stat-tabel th { background:#f0f5fa; color:#142541; }
     .ekspert-stat-tabel td { background:#f8fafd; }
+    .graf-container { margin: 40px auto 0 auto; max-width: 700px; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 30px 20px; }
+    #profit-graf { width:100% !important; height: 320px !important; }
     .kommentar-sektion {background:#fff; margin:30px auto 40px auto; max-width:700px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:28px 20px;}
     .kommentar-sektion h2 {margin-bottom:18px; color:#142541;text-align:center;}
     .kommentar-liste {margin-bottom:20px;}
@@ -175,26 +174,6 @@
     .kommentar-form input, .kommentar-form textarea {width:100%; padding:8px;margin-bottom:7px; border-radius:6px; border:1px solid #ccc;}
     .kommentar-form button {background:#142541; color:#fff; border:none; border-radius:6px; padding:10px 0; width:100%; font-size:1em; font-weight:600; cursor:pointer;}
     .kommentar-form button:hover {background:#28487a;}
-    .welcome-box {
-      background-color: #e0e7f6;
-      color: #142541;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 800px;
-      margin: 40px auto;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .welcome-box h2 {
-      margin-bottom: 15px;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .welcome-box p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
   </style>
 </head>
 <body>
@@ -252,6 +231,10 @@
       <div class="stat-box" id="ramte">Ramte: –</div>
       <div class="stat-box" id="missede">Missede: –</div>
       <div class="stat-box" id="profit">Profit: –</div>
+      <div class="stat-box" id="profit-kr">Profit (kr): –</div>
+    </div>
+    <div class="graf-container">
+      <canvas id="profit-graf"></canvas>
     </div>
     <div id="ekspert-statistik">
       <h3 style="text-align:center;margin-top:20px;color:#142541;">Ekspert-statistik</h3>
@@ -263,6 +246,7 @@
             <th>Ramte</th>
             <th>Missede</th>
             <th>Profit</th>
+            <th>Profit (kr)</th>
           </tr>
         </thead>
         <tbody>
@@ -284,17 +268,6 @@
     </form>
   </section>
 
-  <div class="welcome-box">
-    <h2>Velkommen til Geo Betting Tips – odds, analyser og betting tips</h2>
-    <p>
-      På Geo Betting Tips finder du alle de informationer, du skal bruge for at blive en succesfuld sportsbetter.
-      Hvad skal der til for at slå bookmakerne? Følg vores skarpe eksperter for at få spiltips på sportsgrene og events, de specifikt har specialiseret sig i.
-    </p>
-    <p>
-      Værktøjerne til at vinde på betting tips finder du på Geo Betting Tips.
-    </p>
-  </div>
-
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
     const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
@@ -303,31 +276,50 @@
 
     // --- Statistik på tidligere tips ---
     async function hentStatistik() {
-      // Forventet tabel: 'tips' med felter: status ("ramt"/"missed"), odds, ekspert, indsats, profit.
+      // Tabel: 'tips' med felter: oprettet, status ("ramt"/"missed"), odds, indsats, ekspert
       const { data, error } = await supabase.from('tips').select('*');
       if (error || !data) return;
       let totalTips = data.length;
       let ramte = 0, missede = 0, profit = 0;
-      const ekspertStats = {}; // { ekspert: { ramte, missede, antal, profit } }
+      const profitOverTid = [];
+      const labels = [];
+      let currentProfit = 0;
+      const ekspertStats = {};
+
+      // Sortér efter oprettet-dato for grafen
+      data.sort((a, b) => new Date(a.oprettet) - new Date(b.oprettet));
       data.forEach(tip => {
+        const indsats = tip.indsats || 1;
+        let tipProfit = 0;
         if (tip.status === "ramt") {
-          ramte++; profit += (tip.odds ? (tip.odds-1)*(tip.indsats||1) : 0);
-          if (!ekspertStats[tip.ekspert]) ekspertStats[tip.ekspert] = { antal:0, ramte:0, missede:0, profit:0 };
-          ekspertStats[tip.ekspert].ramte++;
-          ekspertStats[tip.ekspert].profit += (tip.odds ? (tip.odds-1)*(tip.indsats||1) : 0);
+          ramte++;
+          tipProfit = (tip.odds ? (tip.odds-1)*indsats : 0);
         } else if (tip.status === "missed") {
-          missede++; profit -= (tip.indsats||1);
-          if (!ekspertStats[tip.ekspert]) ekspertStats[tip.ekspert] = { antal:0, ramte:0, missede:0, profit:0 };
-          ekspertStats[tip.ekspert].missede++;
-          ekspertStats[tip.ekspert].profit -= (tip.indsats||1);
+          missede++;
+          tipProfit = -indsats;
         }
+        currentProfit += tipProfit;
+        profit += tipProfit;
+        profitOverTid.push(currentProfit);
+        labels.push(new Date(tip.oprettet).toLocaleDateString("da-DK"));
+
+        // Ekspert statistik
         if (!ekspertStats[tip.ekspert]) ekspertStats[tip.ekspert] = { antal:0, ramte:0, missede:0, profit:0 };
         ekspertStats[tip.ekspert].antal++;
+        if (tip.status === "ramt") {
+          ekspertStats[tip.ekspert].ramte++;
+          ekspertStats[tip.ekspert].profit += (tip.odds ? (tip.odds-1)*indsats : 0);
+        } else if (tip.status === "missed") {
+          ekspertStats[tip.ekspert].missede++;
+          ekspertStats[tip.ekspert].profit -= indsats;
+        }
       });
+
       document.getElementById('antal-tips').textContent = `Tips: ${totalTips}`;
       document.getElementById('ramte').textContent = `Ramte: ${ramte}`;
       document.getElementById('missede').textContent = `Missede: ${missede}`;
       document.getElementById('profit').textContent = `Profit: ${profit.toFixed(2)} u`;
+      document.getElementById('profit-kr').textContent = `Profit (kr): ${(profit*100).toLocaleString('da-DK')} kr`;
 
       // Ekspert-statistik
       const tbody = document.querySelector('#ekspert-tabel tbody');
@@ -340,8 +332,39 @@
           <td>${stat.ramte}</td>
           <td>${stat.missede}</td>
           <td>${stat.profit.toFixed(2)} u</td>
+          <td>${(stat.profit*100).toLocaleString('da-DK')} kr</td>
         `;
         tbody.appendChild(tr);
+      });
+
+      // GRAF - PROFIT OVER TID
+      const ctx = document.getElementById('profit-graf').getContext('2d');
+      if (window.profitChart) window.profitChart.destroy();
+      window.profitChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Samlet profit (units)',
+            data: profitOverTid,
+            fill: true,
+            borderColor: '#142541',
+            backgroundColor: 'rgba(20,37,65,0.07)',
+            pointBackgroundColor: '#f0ab4c',
+            tension: 0.22
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true, labels: { color: "#142541", font: { weight: 700 } } },
+            title: { display: false }
+          },
+          scales: {
+            y: { beginAtZero: true, title: { display:true, text:'Profit (units)' } },
+            x: { title: { display:true, text:'Dato' } }
+          }
+        }
       });
     }
     hentStatistik();
@@ -371,7 +394,7 @@
       const navn = document.getElementById('navn').value.trim();
       const tekst = document.getElementById('kommentar').value.trim();
       if (!tekst) return;
-      const { error } = await supabase.from('kommentarer').insert([{ navn, tekst, oprettet: new Date() }]);
+      await supabase.from('kommentarer').insert([{ navn, tekst, oprettet: new Date() }]);
       document.getElementById('kommentar').value = '';
       document.getElementById('navn').value = '';
       hentKommentarer();
