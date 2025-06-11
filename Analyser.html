@@ -55,6 +55,21 @@
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
 
+    .login-controls { margin-left: 20px; }
+    .login-btn, .logout-btn {
+      background: #e0e7f6;
+      color: #142541;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 18px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background .17s;
+    }
+    .login-btn:hover, .logout-btn:hover { background: #cbd7ee; }
+
     .sub-header {
       background: #fff;
       border-bottom: 1px solid #e0e7f6;
@@ -287,6 +302,11 @@
         <input type="text" id="search" class="search-input" placeholder="Søg på sitet…">
         <ul id="suggestions" class="suggestions"></ul>
       </div>
+      <div class="login-controls">
+        <button id="loginBtn" class="login-btn">Log ind</button>
+        <button id="logoutBtn" class="logout-btn" style="display:none;">Log ud</button>
+        <span id="userEmail" style="margin-left:12px;color:#e0e7f6;font-size:0.98em;"></span>
+      </div>
     </nav>
   </header>
 
@@ -383,18 +403,59 @@
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
     // --- ADMIN EMAILS HER ---
-    const adminEmails = ["admin@ditdomæne.dk"]; // Tilføj alle admin emails!
+    const adminEmails = ["admin@ditdomæne.dk", "phillip1407@gmail.com"]; // Tilføj alle admin emails!
 
     let isAdminGlobal = false;
+    let currentUserEmail = null;
 
-    async function checkAdmin() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user && adminEmails.includes(user.email)) {
-        isAdminGlobal = true;
+    // Login/Logout knapper
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const userEmailSpan = document.getElementById('userEmail');
+
+    loginBtn.addEventListener('click', async () => {
+      await supabase.auth.signInWithOAuth({ provider: 'google' }); // eller 'github', 'facebook' osv.
+    });
+    logoutBtn.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.reload();
+    });
+
+    // Vis/skjul knapper afhængig af login-status
+    function updateLoginStatus(session) {
+      if (session && session.user) {
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+        userEmailSpan.textContent = session.user.email;
+      } else {
+        loginBtn.style.display = "inline-block";
+        logoutBtn.style.display = "none";
+        userEmailSpan.textContent = "";
       }
     }
 
-    // --- Statistik på tidligere tips ---
+    // Hent user og tjek admin
+    async function checkAdmin() {
+      const { data: { user }, error } = await supabase.auth.getUser();
+      if (user && adminEmails.includes(user.email)) {
+        isAdminGlobal = true;
+        currentUserEmail = user.email;
+      } else {
+        isAdminGlobal = false;
+        currentUserEmail = user && user.email ? user.email : null;
+      }
+    }
+
+    // Auth state change (opdater login/logout knap og email)
+    supabase.auth.onAuthStateChange((_event, session) => {
+      updateLoginStatus(session);
+      // Gen-check admin og reload kommentarer hvis skift
+      checkAdmin().then(() => {
+        hentKommentarer();
+      });
+    });
+
+    // Statistik på tidligere tips
     async function hentStatistik() {
       const { data, error } = await supabase.from('tips').select('*');
       if (error || !data) return;
@@ -483,7 +544,7 @@
       });
     }
 
-    // --- Kommentarfelt ---
+    // Kommentarfelt
     async function hentKommentarer() {
       const { data, error } = await supabase.from('kommentarer').select('*').order('oprettet', { ascending: false });
       const liste = document.getElementById('kommentar-liste');
@@ -509,10 +570,9 @@
       });
     }
 
-    // Slet kommentar kun hvis admin
     document.getElementById('kommentar-liste').addEventListener('click', async function(e) {
       if (e.target.classList.contains('slet-kommentar')) {
-        if (!isAdminGlobal) return; // dobbelt-check!
+        if (!isAdminGlobal) return;
         if (confirm('Er du sikker på du vil slette denne kommentar?')) {
           const kommentarId = e.target.getAttribute('data-id');
           await supabase.from('kommentarer').delete().eq('id', kommentarId);
@@ -532,7 +592,7 @@
       hentKommentarer();
     });
 
-    // --- Søg ---
+    // Søg
     const input = document.getElementById('search');
     const suggBox = document.getElementById('suggestions');
     input.addEventListener('input', async () => {
@@ -544,11 +604,14 @@
       }
     });
 
-    // === INIT ===
-    // Først check admin, så hent statistik og kommentarer
+    // INIT - check admin og hent alt
     checkAdmin().then(() => {
       hentStatistik();
       hentKommentarer();
+      // Sæt login status ved første load
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        updateLoginStatus(session);
+      });
     });
   </script>
 </body>
