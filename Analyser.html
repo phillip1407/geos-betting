@@ -139,22 +139,45 @@
     }
     .stat-boxes {
       display: flex;
-      justify-content: space-around;
-      gap: 24px;
-      margin-bottom: 13px;
+      gap: 22px;
+      justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 10px;
     }
     .stat-box {
-      background: #f0f4f7;
-      border-radius: 9px;
-      padding: 20px 32px;
-      font-size: 1.25rem;
-      text-align: center;
-      color: var(--primary);
+      background: #f8fafc;
+      border-radius: 12px;
+      min-width: 110px;
+      min-height: 110px;
+      box-shadow: 0 1px 7px #0001;
+      padding: 18px 16px 12px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1 1 130px;
+      max-width: 165px;
+      margin-bottom: 7px;
+    }
+    .stat-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      margin-bottom: 7px;
+      box-shadow: 0 1px 3px #0001;
+    }
+    .stat-value {
+      font-size: 1.25em;
       font-weight: 700;
-      min-width: 120px;
-      box-shadow: 0 1px 4px #0001;
-      letter-spacing: 0.03em;
+      color: #172a3a;
+    }
+    .stat-label {
+      font-size: 0.99em;
+      color: #60708a;
+      margin-top: 1px;
+      letter-spacing: 0.01em;
     }
     .graf-container {
       margin: 0 auto 0 auto; width: 100%; max-width: 760px;
@@ -206,31 +229,65 @@
       letter-spacing: 0.02em;
       font-weight: 700;
     }
-    .kommentar-liste {margin-bottom:20px;}
+    .kommentar-liste {
+      margin-bottom: 28px;
+    }
     .kommentar-card {
-      background:#f0f4f7;
-      border-radius:8px;
-      padding:10px 18px;
-      margin-bottom:12px;
+      background:#f4f7fb;
+      border-radius: 7px;
+      padding: 13px 15px 11px 13px;
+      margin-bottom: 14px;
       box-shadow: 0 1px 6px #0001;
-      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      transition: box-shadow 0.13s;
     }
-    .kommentar-card .navn {font-weight:700; color:var(--primary);}
-    .kommentar-card .tid {font-size:0.98em; color:#666; margin-bottom: 4px;}
-    .kommentar-card .tekst {margin-top:5px;}
+    .kommentar-card:hover {
+      box-shadow: 0 4px 14px #0002;
+    }
+    .kommentar-avatar {
+      background: #d8e6f7;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #4062bb;
+      font-size: 1.08em;
+      margin-right: 3px;
+    }
+    .kommentar-content { flex: 1; }
+    .kommentar-card .navn {font-weight:600; color:#133b5c;}
+    .kommentar-card .tid {font-size:0.97em; color:#888; margin-bottom: 2px;}
+    .kommentar-card .tekst {margin-top:4px;}
+    .kommentar-form .form-row { margin-bottom: 8px; }
     .kommentar-form input, .kommentar-form textarea {
-      width:100%; padding:10px 14px; margin-bottom:10px;
-      border-radius:8px; border:1.3px solid #c8d1e1; font-size:1.05em; transition: border 0.18s;
-      background: #f8fafc;
+      background: #f4f7fb;
+      border: 1.2px solid #c8d1e1;
+      border-radius: 7px;
+      font-size: 1.05em;
+      padding: 10px 11px;
+      width: 100%;
     }
-    .kommentar-form input:focus, .kommentar-form textarea:focus { border-color: var(--primary);}
+    .kommentar-form input:focus, .kommentar-form textarea:focus {
+      border-color: #4062bb;
+    }
     .kommentar-form button {
-      background: var(--primary);
-      color:#fff; border:none; border-radius:8px; padding:12px 0; width:100%;
-      font-size:1.08em; font-weight:700; cursor:pointer; box-shadow: 0 2px 10px #0001; letter-spacing: 0.03em;
-      transition: background .19s, transform .11s;
+      background: #4062bb;
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 7px;
+      padding: 12px 0;
+      width: 100%;
+      font-size: 1.08em;
+      margin-top: 4px;
+      transition: background .17s;
     }
-    .kommentar-form button:hover {background: var(--accent); color: var(--primary);}
+    .kommentar-form button:hover {background: #133b5c;}
     @media (max-width:900px) {
       .navbar, .sub-header { padding-left: 2vw; padding-right: 2vw; }
       .statistik-sektion, .graf-container { max-width: 100vw; }
@@ -295,17 +352,37 @@
   <section class="statistik-sektion">
     <h2>Statistik på tidligere tips</h2>
     <div class="stat-boxes" id="hoved-statistik">
-      <div class="stat-box" id="antal-tips">Tips: –</div>
-      <div class="stat-box" id="ramte">Ramte: –</div>
-      <div class="stat-box" id="missede">Missede: –</div>
-      <div class="stat-box" id="profit">Profit: –</div>
-      <div class="stat-box" id="profit-kr">Profit (kr): –</div>
+      <div class="stat-box">
+        <span class="stat-icon" style="background:#4062bb;"><svg width="26" height="26" fill="#fff"><circle cx="13" cy="13" r="13"/></svg></span>
+        <div id="antal-tips" class="stat-value">Tips: –</div>
+        <div class="stat-label">Antal tips</div>
+      </div>
+      <div class="stat-box">
+        <span class="stat-icon" style="background:#36c36a;"><svg width="26" height="26" fill="#fff"><rect width="26" height="26" rx="5"/></svg></span>
+        <div id="ramte" class="stat-value">Ramte: –</div>
+        <div class="stat-label">Ramte</div>
+      </div>
+      <div class="stat-box">
+        <span class="stat-icon" style="background:#f45151;"><svg width="26" height="26" fill="#fff"><polygon points="13,3 23,23 3,23"/></svg></span>
+        <div id="missede" class="stat-value">Missede: –</div>
+        <div class="stat-label">Missede</div>
+      </div>
+      <div class="stat-box">
+        <span class="stat-icon" style="background:#f0ab4c;"><svg width="26" height="26" fill="#fff"><path d="M4,13 Q13,4 22,13 Q13,22 4,13 Z"/></svg></span>
+        <div id="profit" class="stat-value">Profit: –</div>
+        <div class="stat-label">Profit (units)</div>
+      </div>
+      <div class="stat-box">
+        <span class="stat-icon" style="background:#133b5c;"><svg width="26" height="26" fill="#fff"><rect width="26" height="26" rx="8"/></svg></span>
+        <div id="profit-kr" class="stat-value">Profit (kr): –</div>
+        <div class="stat-label">Profit (kr)</div>
+      </div>
     </div>
-    <div class="graf-container">
+    <div class="graf-container" style="margin-top:24px;">
       <canvas id="profit-graf"></canvas>
     </div>
-    <div id="ekspert-statistik">
-      <h3 style="text-align:center;margin-top:18px;color:#172a3a;font-family:'Montserrat',sans-serif;font-size:1.15em;">Ekspert-statistik</h3>
+    <div id="ekspert-statistik" style="margin-top:24px;">
+      <h3 style="text-align:center;color:#142541;font-family:'Montserrat',sans-serif;font-size:1.08em;margin-bottom:8px;">Ekspert-statistik</h3>
       <table class="ekspert-stat-tabel" id="ekspert-tabel">
         <thead>
           <tr>
@@ -317,21 +394,21 @@
             <th>Profit (kr)</th>
           </tr>
         </thead>
-        <tbody>
-          <!-- Udfyldes dynamisk -->
-        </tbody>
+        <tbody><!-- Udfyldes dynamisk --></tbody>
       </table>
     </div>
   </section>
 
   <section class="kommentar-sektion">
     <h2>Kommentarer & Diskussion</h2>
-    <div class="kommentar-liste" id="kommentar-liste">
-      <!-- Kommentarer vises her -->
-    </div>
+    <div class="kommentar-liste" id="kommentar-liste"></div>
     <form class="kommentar-form" id="kommentar-form">
-      <input type="text" id="navn" placeholder="Dit navn (valgfrit)" maxlength="30" />
-      <textarea id="kommentar" placeholder="Skriv din kommentar her…" rows="3" maxlength="300" required></textarea>
+      <div class="form-row">
+        <input type="text" id="navn" placeholder="Dit navn (valgfrit)" maxlength="30"/>
+      </div>
+      <div class="form-row">
+        <textarea id="kommentar" placeholder="Skriv din kommentar her…" rows="3" maxlength="300" required></textarea>
+      </div>
       <button type="submit">Send kommentar</button>
     </form>
   </section>
@@ -447,11 +524,18 @@
         return;
       }
       data.forEach(k => {
+        // Tag forbogstav af navn eller 'A' for Anonym
+        const initial = (k.navn && k.navn.trim()) ? k.navn.trim().charAt(0).toUpperCase() : 'A';
         const card = document.createElement('div');
         card.className = 'kommentar-card';
-        card.innerHTML = `<div class="navn">${k.navn ? k.navn : 'Anonym'}</div>
-        <div class="tid">${new Date(k.oprettet).toLocaleString("da-DK")}</div>
-        <div class="tekst">${k.tekst}</div>`;
+        card.innerHTML = `
+          <div class="kommentar-avatar">${initial}</div>
+          <div class="kommentar-content">
+            <div class="navn">${k.navn ? k.navn : 'Anonym'}</div>
+            <div class="tid">${new Date(k.oprettet).toLocaleString("da-DK")}</div>
+            <div class="tekst">${k.tekst}</div>
+          </div>
+        `;
         liste.appendChild(card);
       });
     }
