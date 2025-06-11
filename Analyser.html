@@ -192,68 +192,6 @@
     .ekspert-stat-tabel th, .ekspert-stat-tabel td { border:1px solid #e0e7f6; padding:10px 8px; text-align:center; }
     .ekspert-stat-tabel th { background:#f0f5fa; color:#142541; }
     .ekspert-stat-tabel td { background:#f8fafd; }
-    .kommentar-sektion {
-      background:#fff;
-      margin:30px auto 40px auto;
-      max-width:700px;
-      border-radius:10px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
-      padding:28px 20px;
-    }
-    .kommentar-sektion h2 {margin-bottom:18px; color:#142541;text-align:center;}
-    .kommentar-liste {margin-bottom:20px;}
-    .kommentar-card {
-      background:#e0e7f6;
-      border-radius:7px;
-      padding:10px 12px 8px 11px;
-      margin-bottom:10px;
-      box-shadow: 0 1px 6px #0001;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .kommentar-avatar {
-      background: #cbd7ee;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #4062bb;
-      font-size: 1.1em;
-      margin-right: 6px;
-      flex-shrink: 0;
-    }
-    .kommentar-content { flex: 1; }
-    .kommentar-card .navn {font-weight:600; color:#133b5c;}
-    .kommentar-card .tid {font-size:0.98em; color:#777; margin-bottom: 2px;}
-    .kommentar-card .tekst {margin-top:4px;}
-    .slet-kommentar {
-      background: #f45151;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      padding: 3px 13px;
-      font-size: 0.99em;
-      cursor: pointer;
-      margin-top: 6px;
-      margin-left: 0;
-    }
-    .slet-kommentar:hover {
-      background: #c00;
-    }
-    .kommentar-form input, .kommentar-form textarea {
-      width:100%; padding:8px 10px; margin-bottom:7px;
-      border-radius:6px; border:1px solid #ccc; font-size:1em;
-      background: #f7faff;
-    }
-    .kommentar-form input:focus, .kommentar-form textarea:focus { border-color: #4062bb;}
-    .kommentar-form button {
-      background:#142541; color:#fff; border:none; border-radius:6px; padding:10px 0; width:100%; font-size:1em; font-weight:600; cursor:pointer;
-    }
-    .kommentar-form button:hover {background:#28487a;}
   </style>
 </head>
 <body>
@@ -364,49 +302,11 @@
     </div>
   </section>
 
-  <section class="kommentar-sektion">
-    <h2>Kommentarer & Diskussion</h2>
-    <div class="kommentar-liste" id="kommentar-liste"></div>
-    <form class="kommentar-form" id="kommentar-form">
-      <input type="text" id="navn" placeholder="Dit navn (valgfrit)" maxlength="30"/>
-      <textarea id="kommentar" placeholder="Skriv din kommentar her…" rows="3" maxlength="300" required></textarea>
-      <button type="submit">Send kommentar</button>
-    </form>
-  </section>
-
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
     const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
     const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-    // Din admin-tjek baseret på users-tabellen
-    let isAdminGlobal = false;
-    let currentUserEmail = null;
-
-    async function checkAdmin() {
-      // Få bruger fra authentication (Supabase Auth) - kræver at brugeren er logget ind via Supabase
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user && user.id) {
-        // Antag users-tabellen har en 'admin' boolean kolonne og brugerens id matcher auth user.id
-        const { data: brugerdata } = await supabase
-          .from('users')
-          .select('admin,email')
-          .eq('id', user.id)
-          .single();
-        if (brugerdata && brugerdata.admin === true) {
-          isAdminGlobal = true;
-        } else {
-          isAdminGlobal = false;
-        }
-        if (brugerdata && brugerdata.email) {
-          currentUserEmail = brugerdata.email;
-        }
-      } else {
-        isAdminGlobal = false;
-        currentUserEmail = null;
-      }
-    }
 
     // Statistik på tidligere tips
     async function hentStatistik() {
@@ -497,54 +397,6 @@
       });
     }
 
-    // Kommentarfelt
-    async function hentKommentarer() {
-      const { data, error } = await supabase.from('kommentarer').select('*').order('oprettet', { ascending: false });
-      const liste = document.getElementById('kommentar-liste');
-      liste.innerHTML = '';
-      if (!data || data.length === 0) {
-        liste.innerHTML = '<p>Ingen kommentarer endnu.</p>';
-        return;
-      }
-      data.forEach(k => {
-        const initial = (k.navn && k.navn.trim()) ? k.navn.trim().charAt(0).toUpperCase() : 'A';
-        const card = document.createElement('div');
-        card.className = 'kommentar-card';
-        card.innerHTML = `
-          <div class="kommentar-avatar">${initial}</div>
-          <div class="kommentar-content">
-            <div class="navn">${k.navn ? k.navn : 'Anonym'}</div>
-            <div class="tid">${new Date(k.oprettet).toLocaleString("da-DK")}</div>
-            <div class="tekst">${k.tekst}</div>
-            ${isAdminGlobal ? `<button class="slet-kommentar" data-id="${k.id}">🗑️ Slet</button>` : ''}
-          </div>
-        `;
-        liste.appendChild(card);
-      });
-    }
-
-    document.getElementById('kommentar-liste').addEventListener('click', async function(e) {
-      if (e.target.classList.contains('slet-kommentar')) {
-        if (!isAdminGlobal) return;
-        if (confirm('Er du sikker på du vil slette denne kommentar?')) {
-          const kommentarId = e.target.getAttribute('data-id');
-          await supabase.from('kommentarer').delete().eq('id', kommentarId);
-          hentKommentarer();
-        }
-      }
-    });
-
-    document.getElementById('kommentar-form').addEventListener('submit', async e => {
-      e.preventDefault();
-      const navn = document.getElementById('navn').value.trim();
-      const tekst = document.getElementById('kommentar').value.trim();
-      if (!tekst) return;
-      await supabase.from('kommentarer').insert([{ navn, tekst, oprettet: new Date() }]);
-      document.getElementById('kommentar').value = '';
-      document.getElementById('navn').value = '';
-      hentKommentarer();
-    });
-
     // Søg
     const input = document.getElementById('search');
     const suggBox = document.getElementById('suggestions');
@@ -557,11 +409,8 @@
       }
     });
 
-    // INIT - check admin og hent alt
-    checkAdmin().then(() => {
-      hentStatistik();
-      hentKommentarer();
-    });
+    // INIT
+    hentStatistik();
   </script>
 </body>
 </html>
