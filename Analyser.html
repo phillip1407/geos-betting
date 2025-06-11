@@ -3,42 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nyheder | Geo Betting Tips</title>
+
+  <title>Geo Betting Tips | Forside</title>
   <link rel="icon" href="logo.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="logo.png">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     * { font-family:'Montserrat',sans-serif; margin:0; padding:0; box-sizing:border-box; }
     body { background:#f9f9f9; }
-    .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; }
+
+    .navbar { background:#142541; padding:15px 220px; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; }
     .logo-container { display:flex; align-items:center; gap:10px; }
-    .logo { width:55px; height:55px; }
+    .logo { width:40px; height:40px; }
     .logo-text { display:flex; flex-direction:column; }
     .site-name { color:#fff; font-size:24px; font-weight:bold; }
     .slogan { color:#e0e7f6; font-size:14px; margin-top:2px; }
-    .nav-container { display:flex; flex-wrap:wrap; align-items:center; }
+
+    .nav-container { display:flex; flex-wrap: wrap; align-items:center; }
     .nav-links { list-style:none; display:flex; gap:30px; margin-right:20px; }
     .nav-links li a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; position:relative; padding-bottom:5px; transition:color .3s; }
     .nav-links li a::after { content:''; position:absolute; left:0; bottom:0; width:0; height:3px; background:#e0e7f6; transition:width .3s; }
     .nav-links li a:hover::after { width:100%; } 
     .nav-links li a:hover { color:#e0e7f6; }
     .nav-links li.dropdown { position:relative; }
-    .nav-links li.dropdown ul { position:absolute; top:30px; left:0; background:#142541; padding:10px 0; list-style:none; display:none; border-radius:5px; min-width:160px; z-index:20; }
+    .nav-links li.dropdown ul {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: #142541;
+      padding: 10px 0;
+      list-style: none;
+      display: none;
+      border-radius: 5px;
+      min-width: 160px;
+      z-index: 20;
+    }
     .nav-links li.dropdown:hover ul { display:block; }
     .nav-links li.dropdown ul li a { display:block; padding:8px 20px; font-size:16px; color:#fff; }
     .nav-links li.dropdown ul li a:hover { background:#1f3a68; }
     .search-wrapper { position:relative; }
-    .search-input { padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px; }
+    .search-input {
+      padding:6px 10px; border:2px solid #e0e7f6; border-radius:4px; font-size:16px; width:200px;
+    }
     .search-input:focus { outline:none; border-color:#1f3a68; }
-    .suggestions { position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto; z-index:10; display:none; }
+    .suggestions {
+      position:absolute; top:100%; left:0; right:0; background:#fff;
+      border:1px solid #ccc; border-top:none; max-height:200px; overflow-y:auto;
+      z-index:10; display:none;
+    }
     .suggestions li { list-style:none; padding:8px 10px; cursor:pointer; }
     .suggestions li:hover { background:#f0f0f0; }
-    .nyheder-container { max-width:800px; margin:40px auto; padding:0 20px; }
-    .nyhed { background:#fff; margin-bottom:30px; padding:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-    .nyhed img { max-width:100%; border-radius:6px; margin-bottom:15px; }
-    .nyhed h2 { font-size:24px; color:#142541; margin-bottom:10px; }
-    .nyhed .dato { font-size:14px; color:#777; margin-bottom:15px; }
-    .nyhed p { font-size:16px; color:#333; line-height:1.6; }
+
+    .sub-header {
+      background: #fff;
+      border-bottom: 1px solid #e0e7f6;
+      padding: 20px 220px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+    }
+    .breadcrumb { 
+      font-size: 14px; 
+      color: #142541; 
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin-right: 18px;
+      margin-left: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb a { text-decoration: none; color: #0033cc; font-weight: bold; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .current-page {
+      font-weight: bold;
+      color: #142541;
+      background: #e0e7f6;
+      border-radius: 7px;
+      padding: 2px 9px;
+      margin-left: 2px;
+      letter-spacing: 0.03em;
+    }
+    .disclaimer-outer {
+      flex: 1 1 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 0;
+      position: relative;
+    }
+    .disclaimer-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      min-width: 0;
+      width: max-content;
+      max-width: 100%;
+    }
+    .disclaimer {
+      font-size: 14px;
+      color: #142541;
+      background: #fff;
+      white-space: nowrap;
+      margin: 0;
+      box-sizing: border-box;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      padding-bottom: 0;
+      border-bottom: none;
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+    }
+    .disclaimer-underline {
+      width: 100%;
+      border: none;
+      border-bottom: 1.5px solid #e0e7f6;
+      height: 0;
+      margin: 2px 0 0 0;
+      padding: 0;
+      background: none;
+    }
+    @media (max-width:900px) {
+      .navbar { padding-left: 5vw; padding-right: 5vw; }
+      .sub-header { padding-left: 5vw; padding-right: 5vw; }
+      .logo { width: 30px; height: 30px; }
+      .breadcrumb { margin-right: 10px; }
+    }
+    @media (max-width: 700px) {
+      .sub-header { flex-direction: column; align-items: stretch; gap: 2px; }
+      .disclaimer-outer { justify-content: flex-start; }
+      .disclaimer-wrapper { width: 100%; align-items: flex-start; }
+      .disclaimer { white-space: normal; width: 100%; text-align: left; }
+      .disclaimer-underline { max-width: 100%; }
+      .breadcrumb { margin-bottom: 8px; }
+    }
+
+    /* Statistik og kommentarer */
+    .statistik-sektion {
+      background: #fff;
+      margin: 40px auto 20px auto;
+      padding: 35px 20px 30px 20px;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .statistik-sektion h2 { text-align: center; margin-bottom: 25px; color: #142541; }
+    .stat-boxes { display: flex; justify-content: space-around; gap: 20px; margin-bottom: 25px; flex-wrap: wrap;}
+    .stat-box { background:#e0e7f6; border-radius:8px; padding:20px 28px; font-size:1.2rem; text-align:center; color:#142541; font-weight:600; min-width:120px; }
+    .ekspert-stat-tabel { width:100%; border-collapse:collapse; margin-top:20px; }
+    .ekspert-stat-tabel th, .ekspert-stat-tabel td { border:1px solid #e0e7f6; padding:10px 8px; text-align:center; }
+    .ekspert-stat-tabel th { background:#f0f5fa; color:#142541; }
+    .ekspert-stat-tabel td { background:#f8fafd; }
+    .kommentar-sektion {background:#fff; margin:30px auto 40px auto; max-width:700px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:28px 20px;}
+    .kommentar-sektion h2 {margin-bottom:18px; color:#142541;text-align:center;}
+    .kommentar-liste {margin-bottom:20px;}
+    .kommentar-card {background:#e0e7f6; border-radius:8px; padding:10px 15px; margin-bottom:10px;}
+    .kommentar-card .navn {font-weight:700; color:#142541;}
+    .kommentar-card .tid {font-size:0.9em; color:#555;}
+    .kommentar-card .tekst {margin-top:5px;}
+    .kommentar-form input, .kommentar-form textarea {width:100%; padding:8px;margin-bottom:7px; border-radius:6px; border:1px solid #ccc;}
+    .kommentar-form button {background:#142541; color:#fff; border:none; border-radius:6px; padding:10px 0; width:100%; font-size:1em; font-weight:600; cursor:pointer;}
+    .kommentar-form button:hover {background:#28487a;}
+    .welcome-box {
+      background-color: #e0e7f6;
+      color: #142541;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 40px auto;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .welcome-box h2 {
+      margin-bottom: 15px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .welcome-box p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -55,7 +211,7 @@
     <nav class="nav-container">
       <ul class="nav-links">
         <li><a href="nyheder.html">Nyheder</a></li>
-        <li><a href="analyser.html">Analyser</a></li>
+        <li><a href="Analyser.html">Analyser</a></li>
         <li><a href="tilbud.html">Tilbud</a></li>
         <li class="dropdown">
           <a href="#">Mere</a>
@@ -73,29 +229,165 @@
     </nav>
   </header>
 
-  <main class="nyheder-container" id="nyheder">
-    <!-- Nyhederne loader her -->
-  </main>
+  <div class="sub-header">
+    <nav class="breadcrumb">
+      <a href="index.html">Forside</a>
+      <span style="color:#888; margin: 0 4px;">/</span>
+      <span class="current-page">Forside</span>
+    </nav>
+    <div class="disclaimer-outer">
+      <div class="disclaimer-wrapper">
+        <span class="disclaimer">
+          18+ | Spil ansvarligt | Regler og vilkår gælder | StopSpillet – 70 22 28 25 | Udeluk dig via ROFUS | Alle links med * er reklamelinks.
+        </span>
+        <span class="disclaimer-underline"></span>
+      </div>
+    </div>
+  </div>
 
-  <script>
-    // Load nyheder fra JSON
-    fetch('nyheder.json')
-      .then(response => response.json())
-      .then(data => {
-        const nyhederContainer = document.getElementById('nyheder');
-        data.forEach(nyhed => {
-          const div = document.createElement('div');
-          div.classList.add('nyhed');
-          div.innerHTML = `
-            <img src="${nyhed.billede}" alt="${nyhed.titel}">
-            <h2>${nyhed.titel}</h2>
-            <p class="dato">${nyhed.dato}</p>
-            <p>${nyhed.indhold}</p>
-          `;
-          nyhederContainer.appendChild(div);
-        });
-      })
-      .catch(err => console.error('Fejl ved indlæsning af nyheder.json', err));
+  <section class="statistik-sektion">
+    <h2>Statistik på tidligere tips</h2>
+    <div class="stat-boxes" id="hoved-statistik">
+      <div class="stat-box" id="antal-tips">Tips: –</div>
+      <div class="stat-box" id="ramte">Ramte: –</div>
+      <div class="stat-box" id="missede">Missede: –</div>
+      <div class="stat-box" id="profit">Profit: –</div>
+    </div>
+    <div id="ekspert-statistik">
+      <h3 style="text-align:center;margin-top:20px;color:#142541;">Ekspert-statistik</h3>
+      <table class="ekspert-stat-tabel" id="ekspert-tabel">
+        <thead>
+          <tr>
+            <th>Ekspert</th>
+            <th>Antal tips</th>
+            <th>Ramte</th>
+            <th>Missede</th>
+            <th>Profit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Udfyldes dynamisk -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="kommentar-sektion">
+    <h2>Kommentarer & Diskussion</h2>
+    <div class="kommentar-liste" id="kommentar-liste">
+      <!-- Kommentarer vises her -->
+    </div>
+    <form class="kommentar-form" id="kommentar-form">
+      <input type="text" id="navn" placeholder="Dit navn (valgfrit)" maxlength="30" />
+      <textarea id="kommentar" placeholder="Skriv din kommentar her…" rows="3" maxlength="300" required></textarea>
+      <button type="submit">Send kommentar</button>
+    </form>
+  </section>
+
+  <div class="welcome-box">
+    <h2>Velkommen til Geo Betting Tips – odds, analyser og betting tips</h2>
+    <p>
+      På Geo Betting Tips finder du alle de informationer, du skal bruge for at blive en succesfuld sportsbetter.
+      Hvad skal der til for at slå bookmakerne? Følg vores skarpe eksperter for at få spiltips på sportsgrene og events, de specifikt har specialiseret sig i.
+    </p>
+    <p>
+      Værktøjerne til at vinde på betting tips finder du på Geo Betting Tips.
+    </p>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    // --- Statistik på tidligere tips ---
+    async function hentStatistik() {
+      // Forventet tabel: 'tips' med felter: status ("ramt"/"missed"), odds, ekspert, indsats, profit.
+      const { data, error } = await supabase.from('tips').select('*');
+      if (error || !data) return;
+      let totalTips = data.length;
+      let ramte = 0, missede = 0, profit = 0;
+      const ekspertStats = {}; // { ekspert: { ramte, missede, antal, profit } }
+      data.forEach(tip => {
+        if (tip.status === "ramt") {
+          ramte++; profit += (tip.odds ? (tip.odds-1)*(tip.indsats||1) : 0);
+          if (!ekspertStats[tip.ekspert]) ekspertStats[tip.ekspert] = { antal:0, ramte:0, missede:0, profit:0 };
+          ekspertStats[tip.ekspert].ramte++;
+          ekspertStats[tip.ekspert].profit += (tip.odds ? (tip.odds-1)*(tip.indsats||1) : 0);
+        } else if (tip.status === "missed") {
+          missede++; profit -= (tip.indsats||1);
+          if (!ekspertStats[tip.ekspert]) ekspertStats[tip.ekspert] = { antal:0, ramte:0, missede:0, profit:0 };
+          ekspertStats[tip.ekspert].missede++;
+          ekspertStats[tip.ekspert].profit -= (tip.indsats||1);
+        }
+        if (!ekspertStats[tip.ekspert]) ekspertStats[tip.ekspert] = { antal:0, ramte:0, missede:0, profit:0 };
+        ekspertStats[tip.ekspert].antal++;
+      });
+      document.getElementById('antal-tips').textContent = `Tips: ${totalTips}`;
+      document.getElementById('ramte').textContent = `Ramte: ${ramte}`;
+      document.getElementById('missede').textContent = `Missede: ${missede}`;
+      document.getElementById('profit').textContent = `Profit: ${profit.toFixed(2)} u`;
+
+      // Ekspert-statistik
+      const tbody = document.querySelector('#ekspert-tabel tbody');
+      tbody.innerHTML = '';
+      Object.entries(ekspertStats).forEach(([ekspert, stat]) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${ekspert||'-'}</td>
+          <td>${stat.antal}</td>
+          <td>${stat.ramte}</td>
+          <td>${stat.missede}</td>
+          <td>${stat.profit.toFixed(2)} u</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+    hentStatistik();
+
+    // --- Kommentarfelt ---
+    async function hentKommentarer() {
+      const { data, error } = await supabase.from('kommentarer').select('*').order('oprettet', { ascending: false });
+      const liste = document.getElementById('kommentar-liste');
+      liste.innerHTML = '';
+      if (!data || data.length === 0) {
+        liste.innerHTML = '<p>Ingen kommentarer endnu.</p>';
+        return;
+      }
+      data.forEach(k => {
+        const card = document.createElement('div');
+        card.className = 'kommentar-card';
+        card.innerHTML = `<div class="navn">${k.navn ? k.navn : 'Anonym'}</div>
+        <div class="tid">${new Date(k.oprettet).toLocaleString("da-DK")}</div>
+        <div class="tekst">${k.tekst}</div>`;
+        liste.appendChild(card);
+      });
+    }
+    hentKommentarer();
+
+    document.getElementById('kommentar-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const navn = document.getElementById('navn').value.trim();
+      const tekst = document.getElementById('kommentar').value.trim();
+      if (!tekst) return;
+      const { error } = await supabase.from('kommentarer').insert([{ navn, tekst, oprettet: new Date() }]);
+      document.getElementById('kommentar').value = '';
+      document.getElementById('navn').value = '';
+      hentKommentarer();
+    });
+
+    // --- Søg (evt. tilpas til at søge i tips/statistik fremfor gamle data) ---
+    const input = document.getElementById('search');
+    const suggBox = document.getElementById('suggestions');
+    input.addEventListener('input', async () => {
+      suggBox.style.display = 'none';
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search-wrapper')) {
+        suggBox.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>
