@@ -3,6 +3,15 @@ const supabaseUrl = 'https://iwbvimwodjlbtxtmfqra.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3YnZpbXdvZGpsYnR4dG1mcXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwNzQ5NDYsImV4cCI6MjA2MzY1MDk0Nn0.S0M8kMbFc4cx7s6I8dNYAxFCRQICeLjRdQ_Uw1TKSTo';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// Sæt dagens dato ind i #dagens-dato i vertikal boks
+function opdaterDagensDato() {
+  const nu = new Date();
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  const danskDato = nu.toLocaleDateString('da-DK', options);
+  document.getElementById('dagens-dato').textContent = danskDato;
+}
+opdaterDagensDato();
+
 // Søgefelt Autocomplete
 const input = document.getElementById('search');
 const suggBox = document.getElementById('suggestions');
@@ -143,13 +152,3 @@ if (h1) {
 } else {
   document.title = siteName;
 }
-
-// Sæt dagens dato ind i #dagens-dato
-function opdaterDagensDato() {
-  const nu = new Date();
-  // Dansk dato-format: dag. måned år
-  const options = { day: 'numeric', month: 'long', year: 'numeric' };
-  const danskDato = nu.toLocaleDateString('da-DK', options);
-  document.getElementById('dagens-dato').textContent = `(${danskDato})`;
-}
-opdaterDagensDato();
