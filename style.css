@@ -135,6 +135,28 @@ body { background:#f9f9f9; }
   .breadcrumb { margin-bottom: 8px; }
 }
 
+/* Dagens Spil header med vertikal dato */
+.dagens-spil-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+.dato-vertikal {
+  display: inline-block;
+  background: #e0e0e0;
+  color: #333;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  transform: rotate(-90deg);
+  margin-right: 0; 
+  margin-left: 0;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
 #dagens-spil {
   padding: 20px;
 }
@@ -306,5 +328,12 @@ body { background:#f9f9f9; }
 @media (max-width: 600px) {
   .nyheds-grid {
     grid-template-columns: 1fr;
+  }
+  .dagens-spil-header {
+    gap: 10px;
+  }
+  .dato-vertikal {
+    font-size: 13px;
+    padding: 7px 10px;
   }
 }
