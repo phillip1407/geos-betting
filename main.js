@@ -143,3 +143,13 @@ if (h1) {
 } else {
   document.title = siteName;
 }
+
+// Sæt dagens dato ind i #dagens-dato
+function opdaterDagensDato() {
+  const nu = new Date();
+  // Dansk dato-format: dag. måned år
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  const danskDato = nu.toLocaleDateString('da-DK', options);
+  document.getElementById('dagens-dato').textContent = `(${danskDato})`;
+}
+opdaterDagensDato();
